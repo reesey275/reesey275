@@ -12,7 +12,6 @@ Welcome to my Codex-driven portfolio. Everything here is real, modular, and batt
 
 ## 🎓 Credentials & Resume
 - **[Resume (PDF)](resume/resume.pdf)**
-- **[Certifications](resume/certs.md)**
 
 ## 🤖 Codex-Powered
 This profile updates itself. Codex Agents handle:
