@@ -1,34 +1,17 @@
-# profile
-codex/add-projects-and-resume-directories-with-files
-This repository contains my personal profile information, projects, and resume.
+# Chad Reesey Profile
 
-## Projects
+This repository hosts the professional portfolio and resume for **Chad Reesey** ("Mr. Potato"). It contains project documentation, credential references and automation scripts used to keep the content current.
 
-Project notes live in the [`projects/`](projects/) directory.
-Some starter files include:
+## Key Directories
 
-- [`projects/devonboarder.md`](projects/devonboarder.md)
-- [`projects/tags_auth_server.md`](projects/tags_auth_server.md)
-- [`projects/example_project.md`](projects/example_project.md)
+- [`projects/`](projects/) – project summaries and notes
+- [`resume/`](resume/) – resume materials and certifications
+- [`.codex/`](.codex/) – agent instructions for automated updates
 
-## Resume
+## Automation Overview
 
-Resume materials are kept in the [`resume/`](resume/) directory.
-Files include:
-
-- [`resume/resume.pdf`](resume/resume.pdf)
-- [`resume/certs.md`](resume/certs.md)
-=======
-## Automation
-
-The `codex-profile-update` workflow automates updates using the OpenAI Codex
-action. It requires two secrets to be configured in the repository settings:
-
-* `CI_PROFILE_PUSH_TOKEN` – used to push commits created by the workflow.
-* `CODEX_AGENT_AUTH` – authenticates the Codex agent to run profile tasks.
-
-Without these secrets the workflow will skip pushing or fail to run the agent.
+Codex agents update the repository via the `codex-profile-update` workflow. Planned enhancements include publishing the site through GitHub Pages and automating README composition from project data.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE).
