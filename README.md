@@ -28,3 +28,7 @@ action. It requires two secrets to be configured in the repository settings:
 * `CODEX_AGENT_AUTH` – authenticates the Codex agent to run profile tasks.
 
 Without these secrets the workflow will skip pushing or fail to run the agent.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
