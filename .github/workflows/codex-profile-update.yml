@@ -18,6 +18,9 @@ jobs:
         uses: openai-labs/openai-codex@v1
         with:
           agent: profile
+        env:
+          CI_PROFILE_PUSH_TOKEN: ${{ secrets.CI_PROFILE_PUSH_TOKEN }}
+          CODEX_AGENT_AUTH: ${{ secrets.CODEX_AGENT_AUTH }}
 
       - name: Commit changes
         run: |
