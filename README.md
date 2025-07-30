@@ -23,3 +23,9 @@ This profile updates itself. Codex Agents handle:
 
 ---
 “Call it a Potato Stack if you want. It’s smarter every day.”
+
+## ✅ Summary & Testing Notes
+
+This repository currently reflects the initial Codex-driven portfolio template.
+Automation scripts manage content updates, but no automated test suite exists yet.
+Manual checks are performed before committing changes to ensure files render correctly.
