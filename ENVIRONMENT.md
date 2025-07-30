@@ -47,7 +47,6 @@ reesey275/
 │
 ├── resume/
 │   ├── resume.pdf
-│   └── certs.md
 │
 ├── .github/
 │   └── workflows/
