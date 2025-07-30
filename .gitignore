@@ -1,0 +1,7 @@
+# Runtime logs (keep directory)
+logs/*
+!logs/.gitkeep
+
+# Codex agent state (keep directory)
+.codex/.state/*
+!.codex/.state/.gitkeep
