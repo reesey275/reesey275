@@ -1,4 +1,4 @@
-name: Codex Profile Update
+name: Update Profile with Codex
 
 on:
   push:
@@ -8,29 +8,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-profile:
+  update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout repository
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Run Codex agent
-        uses: openai-labs/openai-codex-action@v1
-        with:
-          agent: profile
-        env:
-          CI_PROFILE_PUSH_TOKEN: ${{ secrets.CI_PROFILE_PUSH_TOKEN }}
-          CODEX_AGENT_AUTH: ${{ secrets.CODEX_AGENT_AUTH }}
-
-      - name: Commit changes
+      - name: Run Codex Agent (Profile Writer)
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain)" ]; then
-            git add -A
-            git commit -m "chore: apply Codex profile update"
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          echo "[Codex Trigger] Running profile_writer..."
+          ./scripts/run_codex_agent.sh profile_writer
 
+      - name: Commit Changes
+        run: |
+          git config user.name "codex-bot"
+          git config user.email "bot@reesey275.dev"
+          git add .
+          git commit -m "Codex Agent: Profile Update" || echo "No changes."
+          git push

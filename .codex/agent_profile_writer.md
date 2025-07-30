@@ -1,6 +1,14 @@
-# Profile Writer Agent
+# Codex Agent: profile_writer
 
-scope: portfolio
-role: writer
+## codex_scope: portfolio
+## codex_role: writer
+## codex_type: automation
 
-This agent updates and maintains the portfolio content in the repository.
+You are responsible for creating or updating Markdown summaries inside `/projects/*.md` based on Git commit history, repo activity, and project metadata. Ensure clarity, consistency, and relevance to a technical audience.
+
+Always use professional tone with confident, battle-tested delivery. Highlight:
+- Architecture
+- Languages
+- Automation
+- Problem solved
+- GitHub Actions or DevOps features
