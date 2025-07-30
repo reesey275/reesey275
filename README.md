@@ -5,10 +5,10 @@
 Welcome to my Codex-driven portfolio. Everything here is real, modular, and battle-tested.
 
 ## 🚀 Featured Projects
-- **[DevOnboarder](projects/devonboarder.md)** – CI guardrails and automation with Codex
-- **[TAGS Auth Server](projects/tags_auth_server.md)** – Discord OAuth2 + Role-based Access
-- **[Ghostscript UI](projects/ghostscript_ui.md)** – PDF/PostScript conversion with Web UI
-- **[Education Tools](projects/education_tools.md)** – Algebra generators and learning platforms
+- **[DevOnboarder](projects/devonboarder/)** – CI guardrails and automation with Codex
+- **[TAGS Auth Server](projects/tags_auth_server/)** – Discord OAuth2 + Role-based Access
+- **[Ghostscript UI](projects/ghostscript_ui/)** – PDF/PostScript conversion with Web UI
+- **[Education Tools](projects/education_tools/)** – Algebra generators and learning platforms
 
 ## 🎓 Credentials & Resume
 - **[Resume (PDF)](resume/resume.pdf)**

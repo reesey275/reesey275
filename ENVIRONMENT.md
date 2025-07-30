@@ -32,10 +32,18 @@ reesey275/
 │   └── agent_pages_deployer.md
 │
 ├── projects/
-│   ├── devonboarder.md
-│   ├── tags_auth_server.md
-│   ├── ghostscript_ui.md
-│   └── education_tools.md
+│   ├── devonboarder/
+│   │   ├── README.md
+│   │   └── docs/
+│   ├── tags_auth_server/
+│   │   ├── README.md
+│   │   └── docs/
+│   ├── ghostscript_ui/
+│   │   ├── README.md
+│   │   └── docs/
+│   └── education_tools/
+│       ├── README.md
+│       └── docs/
 │
 ├── resume/
 │   ├── resume.pdf
@@ -99,7 +107,7 @@ spend less time on rote maintenance and more on building.
 ### What Needs to Happen Now
 
 - Review the current scaffold for accuracy and update any placeholder info.
-- Populate each project page in `projects/` with real descriptions and links.
+- Populate each project page in `projects/*/README.md` with real descriptions and links.
 - Configure required secrets (`CI_PROFILE_PUSH_TOKEN`, `CODEX_AGENT_AUTH`) if
   you plan to run agents automatically.
 - Enable GitHub Pages once the repo is public and confirm the workflow deploys.
