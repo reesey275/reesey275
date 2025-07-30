@@ -1,17 +1,24 @@
-# Chad Reesey Profile
+# 👨‍💻 Chad Reesey | Mr. Potato 🥔
 
-This repository hosts the professional portfolio and resume for **Chad Reesey** ("Mr. Potato"). It contains project documentation, credential references and automation scripts used to keep the content current.
+**Veteran. Architect. Automator.** Founder of The Angry Gamer Show Productions.
 
-## Key Directories
+Welcome to my Codex-driven portfolio. Everything here is real, modular, and battle-tested.
 
-- [`projects/`](projects/) – project summaries and notes
-- [`resume/`](resume/) – resume materials and certifications
-- [`.codex/`](.codex/) – agent instructions for automated updates
+## 🚀 Featured Projects
+- **[DevOnboarder](projects/devonboarder.md)** – CI guardrails and automation with Codex
+- **[TAGS Auth Server](projects/tags_auth_server.md)** – Discord OAuth2 + Role-based Access
+- **[Ghostscript UI](projects/ghostscript_ui.md)** – PDF/PostScript conversion with Web UI
+- **[Education Tools](projects/education_tools.md)** – Algebra generators and learning platforms
 
-## Automation Overview
+## 🎓 Credentials & Resume
+- **[Resume (PDF)](resume/resume.pdf)**
+- **[Certifications](resume/certs.md)**
 
-Codex agents update the repository via the `codex-profile-update` workflow. Planned enhancements include publishing the site through GitHub Pages and automating README composition from project data.
+## 🤖 Codex-Powered
+This profile updates itself. Codex Agents handle:
+- Project summaries
+- Resume sync
+- Pages deployment
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+---
+“Call it a Potato Stack if you want. It’s smarter every day.”
