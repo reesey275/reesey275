@@ -14,4 +14,4 @@ Codex agents update the repository via the `codex-profile-update` workflow. Plan
 
 ## License
 
-Released under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
