@@ -19,6 +19,7 @@ This profile updates itself. Codex Agents handle:
 - Project summaries
 - Resume sync
 - Pages deployment
+- Manual notes via [`record_knowledge_dump.sh`](record_knowledge_dump.sh)
 
 ---
 “Call it a Potato Stack if you want. It’s smarter every day.”
