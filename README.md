@@ -14,6 +14,8 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
 ## 📊 Engineering Impact & Project Outcomes
 
+For a quick overview of key metrics, see the [Engineering Metrics Summary](codex_metrics_summary.md).
+
 ### 🚀 DevOnboarder (June–July 2025)
 - Built a secure, automated onboarding platform with a **React frontend**, **FastAPI backend**, and **Discord bot**.
 - Enforced **95%+ test coverage** across all services and implemented the custom **"Potato Policy"** to prevent secret leaks.
