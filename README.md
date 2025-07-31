@@ -8,7 +8,7 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
 ## 🚀 Featured Projects
 - **[DevonBoarder](projects/devonboarder/)** – Mapping experiments for the Devon coastline
-- **[TAGS Auth Server](projects/tags_auth_server/)** – Discord OAuth2 + Role-based Access
+- **[Tags Auth Server](projects/tags_auth_server/)** – Discord OAuth2 + Role-based Access
 - **[Ghostscript UI](projects/ghostscript_ui/)** – PDF/PostScript conversion with Web UI
 - **[Education Tools](projects/education_tools/)** – Algebra generators and learning platforms
 
