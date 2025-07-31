@@ -4,6 +4,8 @@
 
 Welcome to my Codex-driven portfolio. Everything here is real, modular, and battle-tested.
 
+Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
+
 ## 🚀 Featured Projects
 - **[DevOnboarder](projects/devonboarder/)** – CI guardrails and automation with Codex
 - **[TAGS Auth Server](projects/tags_auth_server/)** – Discord OAuth2 + Role-based Access
@@ -47,3 +49,9 @@ spend less time on rote maintenance and more on building.
 - Keep all Codex-related instructions under `.codex/` versioned with the repo.
 
 ### Knowledge Transfer & Onboarding
+
+For collaborators:
+- Review `.github/workflows` to see how Codex agents run.
+- Check `.codex/` for each agent's role and configuration.
+- Document any manual setup steps or secrets required.
+- Capture decisions in Markdown so automation has context.
