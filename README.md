@@ -7,7 +7,7 @@ Welcome to my Codex-driven portfolio. Everything here is real, modular, and batt
 Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
 ## 🚀 Featured Projects
-- **[DevOnboarder](projects/devonboarder/)** – CI guardrails and automation with Codex
+- **[DevonBoarder](projects/devonboarder/)** – Mapping experiments for the Devon coastline
 - **[TAGS Auth Server](projects/tags_auth_server/)** – Discord OAuth2 + Role-based Access
 - **[Ghostscript UI](projects/ghostscript_ui/)** – PDF/PostScript conversion with Web UI
 - **[Education Tools](projects/education_tools/)** – Algebra generators and learning platforms
@@ -16,12 +16,11 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
 For a quick overview of key metrics, see the [Engineering Metrics Summary](codex_metrics_summary.md).
 
-### 🚀 DevOnboarder (June–July 2025)
-- Built a secure, automated onboarding platform with a **React frontend**, **FastAPI backend**, and **Discord bot**.
-- Enforced **95%+ test coverage** across all services and implemented the custom **"Potato Policy"** to prevent secret leaks.
-- CI pipeline includes full **linting, coverage enforcement, and security guards** via GitHub Actions.
-- Delivered a modular, production-grade system in under 4 weeks with **multi-environment support** (Dev, Staging, Prod).
-- **Outcome:** Replaced manual onboarding and QA with a fully autonomous workflow for contributors and collaborators.
+### 🚀 DevonBoarder (in progress)
+- Exploring web mapping tools for the Devon coastline.
+- Aggregates walking routes, local attractions, and surf spots using OpenStreetMap data.
+- Currently prototyping a front-end with **Leaflet** while sketching the architecture.
+- **Outcome:** Early-stage experiment focused on planning and data integration.
 
 ### 📘 Core Instructions (Governance OS for Codex Agents)
 - Authored **structured, CI-enforced documentation** for all C-Suite roles across two orgs (TAGS & CRFV), including:
