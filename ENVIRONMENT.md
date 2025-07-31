@@ -31,26 +31,44 @@ reesey275/
 │   ├── agent_certs_sync.md
 │   └── agent_pages_deployer.md
 │
+├── codex/
+│   └── philosophy/
+│       └── manifesto.md
+│
 ├── projects/
 │   ├── devonboarder/
 │   │   ├── README.md
-│   │   └── docs/
+│   │   ├── docs/
+│   │   ├── scripts/
+│   │   └── .codex/philosophy/PHILOSOPHY.md
 │   ├── tags_auth_server/
 │   │   ├── README.md
-│   │   └── docs/
+│   │   ├── docs/
+│   │   ├── scripts/
+│   │   └── .codex/philosophy/PHILOSOPHY.md
 │   ├── ghostscript_ui/
 │   │   ├── README.md
-│   │   └── docs/
+│   │   ├── docs/
+│   │   ├── scripts/
+│   │   └── .codex/philosophy/PHILOSOPHY.md
 │   └── education_tools/
 │       ├── README.md
-│       └── docs/
+│       ├── docs/
+│       ├── scripts/
+│       └── .codex/philosophy/PHILOSOPHY.md
+│
+├── scripts/
+│   └── run_codex_agent.sh
 │
 ├── resume/
-│   ├── resume.pdf
+│   └── resume.pdf
+│
+├── PHILOSOPHY.md
 │
 ├── .github/
 │   └── workflows/
-│       └── codex-profile-update.yml
+│       ├── codex-profile-update.yml
+│       └── deploy-pages.yml
 │
 ├── README.md
 └── index.md
@@ -86,9 +104,10 @@ Only add if future agent pushes or GitHub API actions are needed:
 Consider updating auto setup to ensure Codex automation success:
 - Install `markdownlint-cli2`, `vale`, `jq`, `yq`, `gh`
 - Bootstrap `/logs/`, `/scripts/`, and `.codex/.state` folders
+- Each project contains a `scripts/` folder with helper setup scripts
 
 #### GitHub Pages
-Enable once the profile is made public. Codex Agent `pages_deployer` can deploy `index.md` or a generated `docs/` site.
+Enable once the profile is public. Workflow `deploy-pages.yml` runs the Codex `pages_deployer` agent to publish `index.md` or a generated `docs/` site.
 
 ---
 
@@ -109,7 +128,7 @@ spend less time on rote maintenance and more on building.
 - Populate each project page in `projects/*/README.md` with real descriptions and links.
 - Configure required secrets (`CI_PROFILE_PUSH_TOKEN`, `CODEX_AGENT_AUTH`) if
   you plan to run agents automatically.
-- Enable GitHub Pages once the repo is public and confirm the workflow deploys.
+- Enable GitHub Pages once the repo is public and confirm `deploy-pages.yml` publishes the site.
 - Keep all Codex-related instructions under `.codex/` versioned with the repo.
 
 ### Knowledge Transfer & Onboarding
@@ -120,4 +139,5 @@ When sharing this repo with future collaborators:
 - Point to `.codex/` documents for agent roles and configuration.
 - Document any manual steps for environment setup or secrets management.
 - Encourage contributors to write changes in Markdown so Codex has context.
+- Reference `PHILOSOPHY.md` and each project's `.codex/philosophy` folder for guiding principles.
 
