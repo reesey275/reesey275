@@ -2,7 +2,7 @@
 
 **Veteran. Architect. Automator.** Founder of The Angry Gamer Show Productions.
 
-Welcome to my Codex-driven portfolio. Everything here is real, modular, and battle-tested.
+Welcome to my Codex-driven portfolio. Everything here is real and modular, but most projects are still prototypes rather than fully battle-tested.
 
 Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
