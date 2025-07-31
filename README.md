@@ -14,7 +14,7 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
 ## 📊 Engineering Impact & Project Outcomes
 
-For a quick overview of key metrics, see the [Engineering Metrics Summary](codex_metrics_summary.md).
+For aspirational metrics and planned targets, see the [Engineering Metrics Summary](codex_metrics_summary.md). Actual CI reports and project statistics will replace these numbers once they're available.
 
 ### 🚀 DevonBoarder (in progress)
 - Exploring web mapping tools for the Devon coastline.
