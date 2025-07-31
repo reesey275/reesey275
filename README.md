@@ -30,7 +30,7 @@ This profile updates itself. Codex Agents handle:
 
 This repository currently reflects the initial Codex-driven portfolio template.
 Automation scripts manage content updates, but no automated test suite exists yet.
-Manual checks are performed before committing changes to ensure files render correctly.
+Manual checks are performed before committing changes to ensure files render correctly. The portfolio integration plan is documented in [journal_logs/2025-07-30-portfolio-integrated-methodology.md](journal_logs/2025-07-30-portfolio-integrated-methodology.md).
 
 ### 🧠 Operational Philosophy: Codex as Second Brain
 
@@ -52,6 +52,6 @@ spend less time on rote maintenance and more on building.
 
 For collaborators:
 - Review `.github/workflows` to see how Codex agents run.
-- Check `.codex/` for each agent's role and configuration.
+- Check [docs/AGENT_INDEX.md](docs/AGENT_INDEX.md) for each agent's role and configuration.
 - Document any manual setup steps or secrets required.
 - Capture decisions in Markdown so automation has context.
