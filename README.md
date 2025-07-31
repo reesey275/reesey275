@@ -45,7 +45,6 @@ For aspirational metrics and planned targets, see the [Engineering Metrics Summa
 - **Outcome:** Developer branding and project tracking system that requires zero manual maintenance post-deploy.
 
 ## 🎓 Credentials & Resume
-- **[Resume (PDF)](resume/resume.pdf)**
 
 ## 🤖 Codex-Powered
 This profile updates itself. Codex Agents handle:
