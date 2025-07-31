@@ -12,6 +12,12 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - **[Ghostscript UI](projects/ghostscript_ui/)** – PDF/PostScript conversion with Web UI
 - **[Education Tools](projects/education_tools/)** – Algebra generators and learning platforms
 
+## 📊 Engineering Impact & Project Outcomes
+- **DevOnboarder:** Aggregates OpenStreetMap and local data into a spatial database served to a Leaflet front end. Development favors quick iterations documented in Markdown.
+- **TAGS Auth Server:** Issues tag-based tokens via OAuth login backed by a Tag DB. Simplicity and clear documentation are prioritized for containerized deployments.
+- **Ghostscript UI:** Provides a thin web interface to a Ghostscript container for straightforward batch conversions. Designed so non-technical users can operate it without complex setup.
+- **Education Tools:** Routes requests through a gateway to micro services like AlgebraService and StudyService. Small, modular apps run on modest hardware with open documentation for collaboration.
+
 ## 🎓 Credentials & Resume
 - **[Resume (PDF)](resume/resume.pdf)**
 
