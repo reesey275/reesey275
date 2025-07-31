@@ -12,6 +12,37 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - **[Ghostscript UI](projects/ghostscript_ui/)** – PDF/PostScript conversion with Web UI
 - **[Education Tools](projects/education_tools/)** – Algebra generators and learning platforms
 
+## 📊 Engineering Impact & Project Outcomes
+
+### 🚀 DevOnboarder (June–July 2025)
+- Built a secure, automated onboarding platform with a **React frontend**, **FastAPI backend**, and **Discord bot**.
+- Enforced **95%+ test coverage** across all services and implemented the custom **"Potato Policy"** to prevent secret leaks.
+- CI pipeline includes full **linting, coverage enforcement, and security guards** via GitHub Actions.
+- Delivered a modular, production-grade system in under 4 weeks with **multi-environment support** (Dev, Staging, Prod).
+- **Outcome:** Replaced manual onboarding and QA with a fully autonomous workflow for contributors and collaborators.
+
+### 📘 Core Instructions (Governance OS for Codex Agents)
+- Authored **structured, CI-enforced documentation** for all C-Suite roles across two orgs (TAGS & CRFV), including:
+  - `charter.md`, `checklist.md`, and `agent.md` per role.
+- Created a **7-workflow GitHub Actions CI system** enforcing:
+  - 95%+ coverage, metadata validation, PR-only changes, and full markdownlint/Vale compliance.
+- Designed for agent lifecycle management, permission mapping, and secure governance across Codex-controlled infrastructure.
+- **Outcome:** Built a CI-secured, fully auditable governance framework deployable across any automation-driven org.
+
+### 🧠 Codex Agent Ecosystem & Philosophy
+- Deployed 12+ Codex agents as modular infrastructure across systems, each bound to specific roles (e.g. CTO, CI Guard, Doc Validator).
+- Built a **routing and metadata enforcement model** enabling Codex agents to self-audit, escalate, and follow runtime observability rules.
+- Designed a philosophy of **"Ethical Automation"** and **"Codex-as-OS"**, replacing fragile human-in-loop processes with agent-first design.
+- **Outcome:** Delivered the velocity of an 8-person team with ~5 weeks of solo execution and full reproducibility.
+
+### 🗂️ ReC275 Profile (Codex-Powered Portfolio)
+- Created a **self-maintaining GitHub portfolio** with integrated Codex agents for:
+  - Automatic resume updates  
+  - Project summaries  
+  - Deployment sync via GitHub Actions
+- Live `README.md` content is managed by AI and updates with project metadata automatically.
+- **Outcome:** Developer branding and project tracking system that requires zero manual maintenance post-deploy.
+
 ## 🎓 Credentials & Resume
 - **[Resume (PDF)](resume/resume.pdf)**
 
