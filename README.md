@@ -46,6 +46,12 @@ For aspirational metrics and planned targets, see the [Engineering Metrics Summa
 
 ## 🎓 Credentials & Resume
 
+Seasoned veteran and software architect focused on automation and governance. View the full [resume (PDF)](resume/resume.pdf) for detailed experience.
+
+- Founder of The Angry Gamer Show Productions
+- Architected a CI-secured governance framework for Codex agents
+- Deployed 12+ Codex agents across infrastructure environments
+
 ## 🤖 Codex-Powered
 This profile updates itself. Codex Agents handle:
 - Project summaries
