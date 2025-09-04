@@ -89,6 +89,7 @@ spend less time on rote maintenance and more on building.
 
 For collaborators:
 - Review `.github/workflows` to see how Codex agents run.
+- Ensure Node.js is installed so `npx` can invoke the Codex CLI (required for `scripts/run_codex_agent.sh`).
 - Check [docs/AGENT_INDEX.md](docs/AGENT_INDEX.md) for each agent's role and configuration.
 - Document any manual setup steps or secrets required.
 - Capture decisions in Markdown so automation has context.

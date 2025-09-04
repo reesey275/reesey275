@@ -4,7 +4,18 @@ set -euo pipefail
 AGENT_NAME="${1:-}"
 
 if [[ -z "$AGENT_NAME" ]]; then
-  echo "Usage: $0 <agent_name>" >&2
+  echo "Usage: $0 <agent_name> (requires npx and the Codex CLI)" >&2
+  exit 1
+fi
+
+# Verify dependencies
+if ! command -v npx >/dev/null 2>&1; then
+  echo "Error: npx is required but not installed. Please install Node.js." >&2
+  exit 1
+fi
+
+if ! npx --yes codex --version >/dev/null 2>&1; then
+  echo "Error: Codex CLI is required but could not be invoked via npx." >&2
   exit 1
 fi
 
