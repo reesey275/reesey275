@@ -84,7 +84,13 @@ spend less time on rote maintenance and more on building.
   `scripts/run_codex_agent.sh` now sources `scripts/gh-preflight.sh` to map
   `CI_PROFILE_PUSH_TOKEN` to `GH_TOKEN` (falling back to `CODEX_AGENT_AUTH`)
   and automatically log into `gh` when it isn't already authenticated. For
-  interactive shells, you can still source the script manually:
+  interactive shells, run the helper to install the preflight automatically:
+
+  ```bash
+  scripts/install-gh-preflight.sh
+  ```
+
+  or source the script manually:
 
   ```bash
   echo 'source "$HOME/profile/scripts/gh-preflight.sh"' >> ~/.bashrc
