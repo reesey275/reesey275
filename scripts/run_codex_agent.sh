@@ -15,13 +15,15 @@ if ! command -v npx >/dev/null 2>&1; then
 fi
 
 if ! npx --no-install codex --version >/dev/null 2>&1; then
-  echo "Error: Codex CLI is required but not installed. Please install it globally or locally in your project." >&2
-  exit 1
+  echo "Codex CLI not found; attempting installation..." >&2
+  if ! npm install -g @openai/codex >/dev/null 2>&1; then
+    echo "Error: Codex CLI installation failed. Please install it globally or locally in your project." >&2
+    exit 1
+  fi
 fi
 
 # Ensure runtime directories exist
 mkdir -p logs
-mkdir -p .codex/.state
 
 LOG_FILE="logs/${AGENT_NAME}_$(date +%Y-%m-%d_%H-%M-%S).log"
 
@@ -31,4 +33,4 @@ LOG_FILE="logs/${AGENT_NAME}_$(date +%Y-%m-%d_%H-%M-%S).log"
 } | tee -a "$LOG_FILE"
 
 # Attempt to run the Codex agent
-npx codex run "$AGENT_NAME" --state "$(pwd)/.codex/.state" | tee -a "$LOG_FILE"
+npx codex exec "$AGENT_NAME" | tee -a "$LOG_FILE"
