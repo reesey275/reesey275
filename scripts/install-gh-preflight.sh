@@ -9,11 +9,19 @@ fi
 
 # Create Codex issue to track gh auth preflight if token available
 if [[ -n "${GH_TOKEN:-}" ]]; then
-  curl -sS \
-    -H "Authorization: token \"$GH_TOKEN\"" \
-    -H "Accept: application/vnd.github+json" \
-    -d '{"title":"Embed gh auth preflight","body":"Map CI_PROFILE_PUSH_TOKEN/CODEX_AGENT_AUTH to GH_TOKEN and run gh auth login --with-token on session start."}' \
-    https://api.github.com/repos/reesey275/profile/issues >/dev/null || true
+  REPO="${GITHUB_REPOSITORY:-}"
+  if [[ -z "$REPO" ]]; then
+    REPO="$(git remote get-url origin 2>/dev/null | sed -n 's#.*[:/]\([^/]*\)/\([^/]*\)\(.git\)\?$#\1/\2#p')"
+  fi
+  if [[ -n "$REPO" ]]; then
+    curl -sS \
+      -H "Authorization: token \"$GH_TOKEN\"" \
+      -H "Accept: application/vnd.github+json" \
+      -d '{"title":"Embed gh auth preflight","body":"Map CI_PROFILE_PUSH_TOKEN/CODEX_AGENT_AUTH to GH_TOKEN and run gh auth login --with-token on session start."}' \
+      "https://api.github.com/repos/$REPO/issues" >/dev/null || true
+  else
+    echo "Repository not set; skipping issue creation." >&2
+  fi
 else
   echo "GH_TOKEN not set; skipping issue creation." >&2
 fi
