@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Pre-flight GitHub authentication using CI tokens if available
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -f "$SCRIPT_DIR/gh-preflight.sh" ]]; then
+  # shellcheck source=scripts/gh-preflight.sh
+  source "$SCRIPT_DIR/gh-preflight.sh"
+fi
+
 AGENT_NAME="${1:-}"
 
 if [[ -z "$AGENT_NAME" ]]; then
