@@ -81,9 +81,10 @@ spend less time on rote maintenance and more on building.
 - Review the current scaffold for accuracy and update any placeholder info.
 - Populate each project page in `projects/*/README.md` with real descriptions and links.
 - Configure required secrets (`CI_PROFILE_PUSH_TOKEN`, `CODEX_AGENT_AUTH`).
-  Sourcing `scripts/gh-preflight.sh` (e.g., from `~/.bashrc` or `~/.zshrc`)
-  maps `CI_PROFILE_PUSH_TOKEN` to `GH_TOKEN` (falling back to `CODEX_AGENT_AUTH`)
-  and automatically logs into `gh` when it isn't already authenticated.
+  `scripts/run_codex_agent.sh` now sources `scripts/gh-preflight.sh` to map
+  `CI_PROFILE_PUSH_TOKEN` to `GH_TOKEN` (falling back to `CODEX_AGENT_AUTH`)
+  and automatically log into `gh` when it isn't already authenticated. For
+  interactive shells, you can still source the script manually:
 
   ```bash
   echo 'source "$HOME/profile/scripts/gh-preflight.sh"' >> ~/.bashrc
