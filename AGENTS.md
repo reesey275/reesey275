@@ -13,3 +13,8 @@ Run both scripts and confirm they pass before opening a pull request.
 - Commit directly to the main branch; do not create new branches.
 - Use descriptive commit messages and keep commits focused.
 - Include confirmation of the required checks in the PR body.
+
+## Journal Entries
+- Add new entries in `journal_logs/` using the naming convention `YYYY-MM-DD-title.md`.
+- Run `./scripts/add_journal_entry.sh <path> "Title" "Summary"` to update both
+  `journal_logs/README.md` and `docs/Journal_Index.md`.
