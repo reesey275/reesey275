@@ -21,9 +21,12 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - [Contact](#-contact)
 
 ## 🚀 Featured Projects
-- **[DevonBoarder](docs/PROJECTS/DevonBoarder.md)** – Mapping experiments for the Devon coastline
+- **[DevonBoarder](docs/PROJECTS/DevonBoarder.md)** – Devon coastline mapping experiments
+  [project folder](projects/devonboarder/)
 - **[core-instructions](docs/PROJECTS/core-instructions.md)** – Governance OS for Codex Agents
+  [project folder](projects/core-instructions/)
 - **[SquirrelFocus](docs/PROJECTS/SquirrelFocus.md)** – Task planning and focus tracker
+  [project folder](projects/squirrel_focus/)
 
 ## 📊 Engineering Impact & Project Outcomes
 
