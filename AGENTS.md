@@ -6,6 +6,6 @@ External link checks: bash scripts/check_links.sh
 
 PR rules
 
-Title format: <type>(<area>): <subject>
+Title format: `<type>(<area>): <subject>`
 
 No broken links; README passes lint.
