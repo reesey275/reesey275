@@ -10,8 +10,4 @@ Quick links
 - [Journal Index](docs/Journal_Index.md)
 - [AAR Index](docs/AAR_Index.md)
 
-Contact
-- Email: ADD_EMAIL
-- LinkedIn: ADD_LINKEDIN
-
 We practice in public so others can perform in peace.
