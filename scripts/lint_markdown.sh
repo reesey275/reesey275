@@ -3,6 +3,8 @@ set -euo pipefail
 
 MAX_LEN=${MAX_LEN:-120}
 
+status=0
+
 files=("$@")
 if [ ${#files[@]} -eq 0 ]; then
   files=(README.md)
@@ -17,14 +19,16 @@ for file in "${files[@]}"; do
   if [ -n "$long_lines" ]; then
     echo "Lines longer than $MAX_LEN characters in $file:"
     echo "$long_lines"
+    status=1
   fi
   if [ -n "$trailing" ]; then
     echo "Trailing whitespace in $file:"
     echo "$trailing"
+    status=1
   fi
   if [ -z "$long_lines" ] && [ -z "$trailing" ]; then
     echo "$file: OK"
   fi
 done
 
-exit 0
+exit $status

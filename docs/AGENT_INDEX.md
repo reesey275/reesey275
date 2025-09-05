@@ -4,7 +4,12 @@ This document lists the Codex agents used in this repository and outlines their 
 
 | Agent File | Role | Scope | Description |
 |-----------|------|-------|-------------|
-| [agent_certs_sync.md](../.codex/agent_certs_sync.md) | maintainer | credentials | Synchronizes certificates and credentials with external services. |
-| [agent_pages_deployer.md](../.codex/agent_pages_deployer.md) | maintainer | website | Builds the static site and deploys it to GitHub Pages. |
-| [agent_readme_composer.md](../.codex/agent_readme_composer.md) | writer | documentation | Composes README files from project information. |
-| [agent_profile_writer.md](../.codex/agent_profile_writer.md) | writer | portfolio | Creates or updates project summaries across `/projects/*/README.md`. |
+| [agent_certs_sync][certs] | maintainer | credentials | Syncs certs and creds with external services. |
+| [agent_pages_deployer][pages] | maintainer | website | Builds static site and deploys to GitHub Pages. |
+| [agent_readme_composer][readme] | writer | docs | Composes project README files. |
+| [agent_profile_writer][profile] | writer | portfolio | Writes project summaries for `/projects/*/README.md`. |
+
+[certs]: ../.codex/agent_certs_sync.md
+[pages]: ../.codex/agent_pages_deployer.md
+[readme]: ../.codex/agent_readme_composer.md
+[profile]: ../.codex/agent_profile_writer.md
