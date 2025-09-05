@@ -20,10 +20,9 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - [Knowledge Transfer & Onboarding](#knowledge-transfer--onboarding)
 
 ## 🚀 Featured Projects
-- **[DevonBoarder](projects/devonboarder/)** – Mapping experiments for the Devon coastline
-- **[Tags Auth Server](projects/tags_auth_server/)** – Discord OAuth2 + Role-based Access
-- **[Ghostscript UI](projects/ghostscript_ui/)** – PDF/PostScript conversion with Web UI
-- **[Education Tools](projects/education_tools/)** – Algebra generators and learning platforms
+- **[DevonBoarder](docs/PROJECTS/DevonBoarder.md)** – Mapping experiments for the Devon coastline
+- **[core-instructions](docs/PROJECTS/core-instructions.md)** – Governance OS for Codex Agents
+- **[SquirrelFocus](docs/PROJECTS/SquirrelFocus.md)** – Task planning and focus tracker
 
 ## 📊 Engineering Impact & Project Outcomes
 
