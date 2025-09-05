@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [ "$#" -lt 3 ]; then
-  echo "Usage: $0 <journal-file> \"Title\" \"Summary\"" >&2
+  echo "Usage: $0 <journal-file> \"Title\" \"Summary\" [readme-path] [docs-path]" >&2
   exit 1
 fi
 
@@ -11,17 +11,19 @@ file="$1"
 title="$2"
 summary="$3"
 
-base="$(basename "$file")"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_dir="$(realpath "$script_dir/..")"
+readme="${4:-$repo_dir/journal_logs/README.md}"
+docs="${5:-$repo_dir/docs/Journal_Index.md}"
 
-readme="journal_logs/README.md"
-docs="docs/Journal_Index.md"
-
-link_readme="- [$title]($base)"
+rel_readme="$(realpath --relative-to "$(dirname "$readme")" "$file")"
+link_readme="- [$title]($rel_readme)"
 if ! grep -Fqx "$link_readme" "$readme"; then
   printf '%s\n' "$link_readme" >> "$readme"
 fi
 
-link_docs="- [$title](../journal_logs/$base)"
+rel_docs="$(realpath --relative-to "$(dirname "$docs")" "$file")"
+link_docs="- [$title]($rel_docs)"
 if ! grep -Fqx "$link_docs" "$docs"; then
   {
     printf '%s\n' "$link_docs"
@@ -29,5 +31,5 @@ if ! grep -Fqx "$link_docs" "$docs"; then
   } >> "$docs"
 fi
 
-echo "Appended $base to journal indexes"
+echo "Appended $(basename "$file") to journal indexes"
 
