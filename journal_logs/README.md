@@ -1,6 +1,9 @@
 # Journal Logs
 
-This directory captures visible learning and progress notes. Each entry is a dated Markdown file summarizing key decisions and lessons.
+This directory captures visible learning and progress notes. Each entry is a dated Markdown file
+summarizing key decisions and lessons.
+
+See the [Journal Index](../docs/Journal_Index.md) for summaries of all entries.
 
 ## Entries
 
