@@ -9,6 +9,8 @@ if [ ${#files[@]} -eq 0 ]; then
   done < <(find docs -name '*.md' -print0)
 fi
 
+status=0
+
 for file in "${files[@]}"; do
   mapfile -t urls < <(grep -oE 'https?://[^)>"]+' "$file" | sort -u || true)
   if [ ${#urls[@]} -eq 0 ]; then
@@ -21,8 +23,9 @@ for file in "${files[@]}"; do
       echo "$file: $url -> $code"
     else
       echo "$file: $url -> $code (broken)"
+      status=1
     fi
   done
 done
 
-exit 0
+exit $status
