@@ -4,8 +4,9 @@
 - `./scripts/lint_markdown.sh [files]` – ensures Markdown lines stay within 120 characters
   and do not contain trailing spaces. When no files are provided, all tracked `*.md`
   files are scanned.
-- `./scripts/check_links.sh [files]` – validates that every HTTP(S) link returns a
-  successful status. When no files are provided, all tracked `*.md` files are scanned.
+- `./scripts/check_links.sh [files]` – verifies that every HTTP(S) link resolves with a
+  `2xx` or `3xx` status code. When no files are provided, all tracked `*.md` files are
+  scanned.
 
 Run both scripts and confirm they pass before opening a pull request.
 
