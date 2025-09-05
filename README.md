@@ -6,6 +6,17 @@ Welcome to my Codex-driven portfolio. Everything here is real and modular, but m
 
 Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
+## Table of Contents
+- [Featured Projects](#-featured-projects)
+- [Engineering Impact & Project Outcomes](#-engineering-impact--project-outcomes)
+- [Credentials & Resume](#-credentials--resume)
+- [Learning Journal](#-learning-journal)
+- [Codex-Powered](#-codex-powered)
+- [Summary & Testing Notes](#-summary--testing-notes)
+- [Operational Philosophy: Codex as Second Brain](#-operational-philosophy-codex-as-second-brain)
+- [What Needs to Happen Now](#what-needs-to-happen-now)
+- [Knowledge Transfer & Onboarding](#knowledge-transfer--onboarding)
+
 ## 🚀 Featured Projects
 - **[DevonBoarder](projects/devonboarder/)** – Mapping experiments for the Devon coastline
 - **[Tags Auth Server](projects/tags_auth_server/)** – Discord OAuth2 + Role-based Access
@@ -52,6 +63,12 @@ Seasoned veteran and software architect focused on automation and governance. Vi
 - Architected a CI-secured governance framework for Codex agents
 - Deployed 12+ Codex agents across infrastructure environments
 
+
+## 📚 Learning Journal
+
+Progress notes and lessons are captured in [journal_logs/](journal_logs/).
+
+- [2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md)
 ## 🤖 Codex-Powered
 This profile updates itself. Codex Agents handle:
 - Project summaries
