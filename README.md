@@ -18,6 +18,7 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - [Operational Philosophy: Codex as Second Brain](#-operational-philosophy-codex-as-second-brain)
 - [What Needs to Happen Now](#what-needs-to-happen-now)
 - [Knowledge Transfer & Onboarding](#knowledge-transfer--onboarding)
+- [Contact](#-contact)
 
 ## 🚀 Featured Projects
 - **[DevonBoarder](docs/PROJECTS/DevonBoarder.md)** – Mapping experiments for the Devon coastline
@@ -142,3 +143,8 @@ For collaborators:
 - Check [docs/AGENT_INDEX.md](docs/AGENT_INDEX.md) for each agent's role and configuration.
 - Document any manual setup steps or secrets required.
 - Capture decisions in Markdown so automation has context.
+
+## 📬 Contact
+
+- Email: [chad.reesey@outlook.com](mailto:chad.reesey@outlook.com)
+- LinkedIn: [linkedin.com/in/chad-reesey](https://www.linkedin.com/in/chad-reesey)
