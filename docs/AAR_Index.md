@@ -1,7 +1,7 @@
-# AAR Index
+AAR (After-Action Review) Index
 
-After Action Reviews (AARs) capture lessons learned after significant events or projects.
-Links to individual AAR logs will appear below when available.
+Catalog your AARs with one-line outcomes and links to full write-ups.
 
-- [2025-09-05 Automation Experiment AAR](../journal_logs/2025-09-05-automation-experiment-aar.md)
-  – Reviewed the automation experiment's outcomes and identified steps to improve future logging processes.
+(Example) CI failure surfaced doc drift → updated onboarding script and added check in DevOnboarder. (link TBD)
+
+Format: YYYY-MM-DD — title — 1-line outcome → link

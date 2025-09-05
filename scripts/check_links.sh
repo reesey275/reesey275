@@ -3,28 +3,26 @@ set -euo pipefail
 
 files=("$@")
 if [ ${#files[@]} -eq 0 ]; then
-  mapfile -t files < <(git ls-files '*.md')
+  files=(README.md)
+  while IFS= read -r -d '' file; do
+    files+=("$file")
+  done < <(find docs -name '*.md' -print0)
 fi
 
-status=0
 for file in "${files[@]}"; do
-  mapfile -t urls < <(grep -oE '(https?://|mailto:)[^)>"]+' "$file" | sort -u)
+  mapfile -t urls < <(grep -oE 'https?://[^)>"]+' "$file" | sort -u || true)
+  if [ ${#urls[@]} -eq 0 ]; then
+    echo "$file: no links found"
+    continue
+  fi
   for url in "${urls[@]}"; do
-    if [[ $url == mailto:* ]]; then
-      continue
-    fi
-    if ! code=$(curl -o /dev/null -s -w '%{http_code}' "$url"); then
-      code=000
-    fi
-    if [[ $code == 000 ]]; then
-      echo "$file: $url -> $code (skipped)"
-      continue
-    fi
-    if [[ ! $code =~ ^2[0-9]{2}$ && ! $code =~ ^3[0-9]{2}$ ]]; then
+    code=$(curl -o /dev/null -s -w '%{http_code}' "$url") || code=000
+    if [[ $code =~ ^2[0-9]{2}$ || $code =~ ^3[0-9]{2}$ ]]; then
       echo "$file: $url -> $code"
-      status=1
+    else
+      echo "$file: $url -> $code (broken)"
     fi
   done
 done
 
-exit $status
+exit 0

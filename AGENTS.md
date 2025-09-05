@@ -1,21 +1,11 @@
-# Contributing Guidelines
+Setup commands Codex should run
 
-## Required Checks
-- `./scripts/lint_markdown.sh [files]` – ensures Markdown lines stay within 120 characters
-  and do not contain trailing spaces. When no files are provided, all tracked `*.md`
-  files are scanned.
-- `./scripts/check_links.sh [files]` – verifies that every HTTP(S) link resolves with a
-  `2xx` or `3xx` status code. When no files are provided, all tracked `*.md` files are
-  scanned.
+Markdown checks: bash scripts/lint_markdown.sh
 
-Run both scripts and confirm they pass before opening a pull request.
+External link checks: bash scripts/check_links.sh
 
-## Pull Request Rules
-- Commit directly to the main branch; do not create new branches.
-- Use descriptive commit messages and keep commits focused.
-- Include confirmation of the required checks in the PR body.
+PR rules
 
-## Journal Entries
-- Add new entries in `journal_logs/` using the naming convention `YYYY-MM-DD-title.md`.
-- Run `./scripts/add_journal_entry.sh <path> "Title" "Summary"` to update both
-  `journal_logs/README.md` and `docs/Journal_Index.md`.
+Title format: <type>(<area>): <subject>
+
+No broken links; README passes lint.

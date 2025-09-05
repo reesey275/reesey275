@@ -1,22 +1,5 @@
-# core-instructions
+core-instructions
 
-## Problem Statement
-Codex agents require a unified governance framework with CI-backed documentation.
-This ensures consistent behavior and safety.
-
-## Approach
-A structured repository of Markdown guidelines validated by GitHub Actions and supporting scripts.
-
-## Role
-Architect & author.
-
-## Tech Stack
-GitHub Actions, Markdown, Python, Node.js.
-
-## Outcomes
-Provides a centralized reference that guides agent behavior and standardizes operating procedures.
-
-## Next Steps
-Expand automated policy checks and document multi-agent interaction patterns.
-
-- [Project Folder](../../projects/core-instructions/)
+What. A compact set of policies and contracts that align people and agents.
+Includes. Code style, PR rules, security notes, AGENTS.md patterns, decision checklists.
+Why. Make decisions legible → reduce drift → speed reviews and automation.
