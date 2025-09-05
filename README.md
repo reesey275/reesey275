@@ -18,7 +18,7 @@ AAR Index → docs/AAR_Index.md
 
 Contact
 
-Email: ADD_EMAIL
-LinkedIn: ADD_LINKEDIN
+Email: chad.reesey@theangrygamershow.com
+LinkedIn: https://www.linkedin.com/in/chadreesey/
 
 We practice in public so others can perform in peace.
