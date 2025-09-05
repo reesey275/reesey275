@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-HOOK='bash "${HOME}/.config/codex/preflight_gh_auth.sh"'
+HOOK="bash \"\$HOME/.config/codex/preflight_gh_auth.sh\""
 
 mkdir -p "${HOME}/.config/codex"
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
