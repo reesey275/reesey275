@@ -103,7 +103,7 @@ This repository currently reflects the initial Codex-driven portfolio template.
 Automation scripts manage content updates, but no automated test suite exists yet.
 Manual checks are performed before committing changes to ensure files render
 correctly. The portfolio integration plan is documented in
-[`2025-07-30 Portfolio Integrated Methodology`](journal_logs/2025-07-30-portfolio-integrated-methodology.md).
+[2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md).
 
 ### 🧠 Operational Philosophy: Codex as Second Brain
 
