@@ -16,13 +16,15 @@ base="$(basename "$file")"
 readme="journal_logs/README.md"
 docs="docs/Journal_Index.md"
 
-if ! grep -Fq "$base" "$readme"; then
-  printf '%s\n' "- [$title]($base)" >> "$readme"
+link_readme="- [$title]($base)"
+if ! grep -Fqx "$link_readme" "$readme"; then
+  printf '%s\n' "$link_readme" >> "$readme"
 fi
 
-if ! grep -Fq "$base" "$docs"; then
+link_docs="- [$title](../journal_logs/$base)"
+if ! grep -Fqx "$link_docs" "$docs"; then
   {
-    printf '%s\n' "- [$title](../journal_logs/$base)"
+    printf '%s\n' "$link_docs"
     printf '%s\n' "  – $summary"
   } >> "$docs"
 fi
