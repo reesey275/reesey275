@@ -76,8 +76,9 @@ View the full [resume (PDF)](resume/resume.pdf) for detailed experience.
 ## 📚 Learning Journal
 
 Progress notes and lessons are captured in [journal_logs/](journal_logs/).
-See the [Journal Index](docs/Journal_Index.md) for a complete list.
 
+- [Journal Index](docs/Journal_Index.md) – complete list of journal entries
+- [AAR Index](docs/AAR_Index.md) – After Action Reviews
 - [2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md)
 
 ## 📝 After Action Reviews
