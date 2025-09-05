@@ -1,4 +1,4 @@
-# 👨‍💻 Chad Reesey | Mr. Potato 🥔
+# Chad Reesey | Mr. Potato 🥔
 
 **Veteran. Architect. Automator.** Founder of The Angry Gamer Show Productions.
 
@@ -8,19 +8,19 @@ but most projects are still prototypes rather than fully battle-tested.
 Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
 ## Table of Contents
-- [Featured Projects](#-featured-projects)
-- [Engineering Impact & Project Outcomes](#-engineering-impact--project-outcomes)
-- [Credentials & Resume](#-credentials--resume)
-- [Learning Journal](#-learning-journal)
-- [After Action Reviews](#-after-action-reviews)
-- [Codex-Powered](#-codex-powered)
-- [Summary & Testing Notes](#-summary--testing-notes)
-- [Operational Philosophy: Codex as Second Brain](#-operational-philosophy-codex-as-second-brain)
+- [Featured Projects](#featured-projects)
+- [Engineering Impact & Project Outcomes](#engineering-impact--project-outcomes)
+- [Credentials & Resume](#credentials--resume)
+- [Learning Journal](#learning-journal)
+- [After Action Reviews](#after-action-reviews)
+- [Codex-Powered](#codex-powered)
+- [Summary & Testing Notes](#summary--testing-notes)
+- [Operational Philosophy: Codex as Second Brain](#operational-philosophy-codex-as-second-brain)
 - [What Needs to Happen Now](#what-needs-to-happen-now)
 - [Knowledge Transfer & Onboarding](#knowledge-transfer--onboarding)
-- [Contact](#-contact)
+- [Contact](#contact)
 
-## 🚀 Featured Projects
+## Featured Projects
 - **[DevonBoarder](docs/PROJECTS/DevonBoarder.md)** – Devon coastline mapping experiments
   [project folder](projects/devonboarder/)
 - **[core-instructions](docs/PROJECTS/core-instructions.md)** – Governance OS for Codex Agents
@@ -28,19 +28,19 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - **[SquirrelFocus](docs/PROJECTS/SquirrelFocus.md)** – Task planning and focus tracker
   [project folder](projects/squirrel_focus/)
 
-## 📊 Engineering Impact & Project Outcomes
+## Engineering Impact & Project Outcomes
 
 For aspirational metrics and planned targets, see the
 [Engineering Metrics Summary](codex_metrics_summary.md). Actual CI reports and
 project statistics will replace these numbers once they're available.
 
-### 🚀 DevonBoarder (in progress)
+### DevonBoarder (in progress)
 - Exploring web mapping tools for the Devon coastline.
 - Aggregates walking routes, local attractions, and surf spots using OpenStreetMap data.
 - Currently prototyping a front-end with **Leaflet** while sketching the architecture.
 - **Outcome:** Early-stage experiment focused on planning and data integration.
 
-### 📘 Core Instructions (Governance OS for Codex Agents)
+### Core Instructions (Governance OS for Codex Agents)
 - Authored **structured, CI-enforced documentation** for all C-Suite roles across two orgs (TAGS & CRFV), including:
   - `charter.md`, `checklist.md`, and `agent.md` per role.
 - Created a **7-workflow GitHub Actions CI system** enforcing:
@@ -49,7 +49,7 @@ project statistics will replace these numbers once they're available.
   governance across Codex-controlled infrastructure.
 - **Outcome:** Built a CI-secured, fully auditable governance framework deployable across any automation-driven org.
 
-### 🧠 Codex Agent Ecosystem & Philosophy
+### Codex Agent Ecosystem & Philosophy
 - Deployed 12+ Codex agents as modular infrastructure across systems,
   each bound to specific roles (e.g. CTO, CI Guard, Doc Validator).
 - Built a **routing and metadata enforcement model** enabling Codex agents to
@@ -58,7 +58,7 @@ project statistics will replace these numbers once they're available.
   replacing fragile human-in-loop processes with agent-first design.
 - **Outcome:** Delivered the velocity of an 8-person team with ~5 weeks of solo execution and full reproducibility.
 
-### 🗂️ ReC275 Profile (Codex-Powered Portfolio)
+### ReC275 Profile (Codex-Powered Portfolio)
 - Created a **self-maintaining GitHub portfolio** with integrated Codex agents for:
   - Automatic resume updates
   - Project summaries
@@ -66,7 +66,7 @@ project statistics will replace these numbers once they're available.
 - Live `README.md` content is managed by AI and updates with project metadata automatically.
 - **Outcome:** Developer branding and project tracking system that requires zero manual maintenance post-deploy.
 
-## 🎓 Credentials & Resume
+## Credentials & Resume
 
 Seasoned veteran and software architect focused on automation and governance.
 View the full [resume (PDF)](resume/resume.pdf) for detailed experience.
@@ -76,7 +76,7 @@ View the full [resume (PDF)](resume/resume.pdf) for detailed experience.
 - Deployed 12+ Codex agents across infrastructure environments
 
 
-## 📚 Learning Journal
+## Learning Journal
 
 Progress notes and lessons are captured in [journal_logs/](journal_logs/).
 
@@ -84,12 +84,12 @@ Progress notes and lessons are captured in [journal_logs/](journal_logs/).
 - [AAR Index](docs/AAR_Index.md) – After Action Reviews
 - [2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md)
 
-## 📝 After Action Reviews
+## After Action Reviews
 
 Post-project retrospectives will be tracked as AAR logs.
 Browse the [AAR Index](docs/AAR_Index.md) for available entries.
 
-## 🤖 Codex-Powered
+## Codex-Powered
 This profile updates itself. Codex Agents handle:
 - Project summaries
 - Resume sync
@@ -100,7 +100,7 @@ This profile updates itself. Codex Agents handle:
 ---
 “Call it a Potato Stack if you want. It’s smarter every day.”
 
-## ✅ Summary & Testing Notes
+## Summary & Testing Notes
 
 This repository currently reflects the initial Codex-driven portfolio template.
 Automation scripts manage content updates, but no automated test suite exists yet.
@@ -108,7 +108,7 @@ Manual checks are performed before committing changes to ensure files render
 correctly. The portfolio integration plan is documented in
 [2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md).
 
-### 🧠 Operational Philosophy: Codex as Second Brain
+### Operational Philosophy: Codex as Second Brain
 
 Codex acts as a persistent automation layer for this repository. Treat it as your
 second brain: capture decisions in Markdown, commit small updates frequently and
@@ -148,7 +148,7 @@ For collaborators:
 - Document any manual setup steps or secrets required.
 - Capture decisions in Markdown so automation has context.
 
-## 📬 Contact
+## Contact
 
 - Email: [chad.reesey@outlook.com](mailto:chad.reesey@outlook.com)
 - LinkedIn: [linkedin.com/in/chad-reesey](https://www.linkedin.com/in/chad-reesey)
