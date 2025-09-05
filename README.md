@@ -2,7 +2,8 @@
 
 **Veteran. Architect. Automator.** Founder of The Angry Gamer Show Productions.
 
-Welcome to my Codex-driven portfolio. Everything here is real and modular, but most projects are still prototypes rather than fully battle-tested.
+Welcome to my Codex-driven portfolio. Everything here is real and modular,
+but most projects are still prototypes rather than fully battle-tested.
 
 Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
@@ -11,6 +12,7 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - [Engineering Impact & Project Outcomes](#-engineering-impact--project-outcomes)
 - [Credentials & Resume](#-credentials--resume)
 - [Learning Journal](#-learning-journal)
+- [After Action Reviews](#-after-action-reviews)
 - [Codex-Powered](#-codex-powered)
 - [Summary & Testing Notes](#-summary--testing-notes)
 - [Operational Philosophy: Codex as Second Brain](#-operational-philosophy-codex-as-second-brain)
@@ -25,7 +27,9 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 
 ## 📊 Engineering Impact & Project Outcomes
 
-For aspirational metrics and planned targets, see the [Engineering Metrics Summary](codex_metrics_summary.md). Actual CI reports and project statistics will replace these numbers once they're available.
+For aspirational metrics and planned targets, see the
+[Engineering Metrics Summary](codex_metrics_summary.md). Actual CI reports and
+project statistics will replace these numbers once they're available.
 
 ### 🚀 DevonBoarder (in progress)
 - Exploring web mapping tools for the Devon coastline.
@@ -38,26 +42,31 @@ For aspirational metrics and planned targets, see the [Engineering Metrics Summa
   - `charter.md`, `checklist.md`, and `agent.md` per role.
 - Created a **7-workflow GitHub Actions CI system** enforcing:
   - 95%+ coverage, metadata validation, PR-only changes, and full markdownlint/Vale compliance.
-- Designed for agent lifecycle management, permission mapping, and secure governance across Codex-controlled infrastructure.
+- Designed for agent lifecycle management, permission mapping, and secure
+  governance across Codex-controlled infrastructure.
 - **Outcome:** Built a CI-secured, fully auditable governance framework deployable across any automation-driven org.
 
 ### 🧠 Codex Agent Ecosystem & Philosophy
-- Deployed 12+ Codex agents as modular infrastructure across systems, each bound to specific roles (e.g. CTO, CI Guard, Doc Validator).
-- Built a **routing and metadata enforcement model** enabling Codex agents to self-audit, escalate, and follow runtime observability rules.
-- Designed a philosophy of **"Ethical Automation"** and **"Codex-as-OS"**, replacing fragile human-in-loop processes with agent-first design.
+- Deployed 12+ Codex agents as modular infrastructure across systems,
+  each bound to specific roles (e.g. CTO, CI Guard, Doc Validator).
+- Built a **routing and metadata enforcement model** enabling Codex agents to
+  self-audit, escalate, and follow runtime observability rules.
+- Designed a philosophy of **"Ethical Automation"** and **"Codex-as-OS"**,
+  replacing fragile human-in-loop processes with agent-first design.
 - **Outcome:** Delivered the velocity of an 8-person team with ~5 weeks of solo execution and full reproducibility.
 
 ### 🗂️ ReC275 Profile (Codex-Powered Portfolio)
 - Created a **self-maintaining GitHub portfolio** with integrated Codex agents for:
-  - Automatic resume updates  
-  - Project summaries  
+  - Automatic resume updates
+  - Project summaries
   - Deployment sync via GitHub Actions
 - Live `README.md` content is managed by AI and updates with project metadata automatically.
 - **Outcome:** Developer branding and project tracking system that requires zero manual maintenance post-deploy.
 
 ## 🎓 Credentials & Resume
 
-Seasoned veteran and software architect focused on automation and governance. View the full [resume (PDF)](resume/resume.pdf) for detailed experience.
+Seasoned veteran and software architect focused on automation and governance.
+View the full [resume (PDF)](resume/resume.pdf) for detailed experience.
 
 - Founder of The Angry Gamer Show Productions
 - Architected a CI-secured governance framework for Codex agents
@@ -67,8 +76,15 @@ Seasoned veteran and software architect focused on automation and governance. Vi
 ## 📚 Learning Journal
 
 Progress notes and lessons are captured in [journal_logs/](journal_logs/).
+See the [Journal Index](docs/Journal_Index.md) for a complete list.
 
 - [2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md)
+
+## 📝 After Action Reviews
+
+Post-project retrospectives will be tracked as AAR logs.
+Browse the [AAR Index](docs/AAR_Index.md) for available entries.
+
 ## 🤖 Codex-Powered
 This profile updates itself. Codex Agents handle:
 - Project summaries
@@ -84,7 +100,9 @@ This profile updates itself. Codex Agents handle:
 
 This repository currently reflects the initial Codex-driven portfolio template.
 Automation scripts manage content updates, but no automated test suite exists yet.
-Manual checks are performed before committing changes to ensure files render correctly. The portfolio integration plan is documented in [journal_logs/2025-07-30-portfolio-integrated-methodology.md](journal_logs/2025-07-30-portfolio-integrated-methodology.md).
+Manual checks are performed before committing changes to ensure files render
+correctly. The portfolio integration plan is documented in
+[2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md).
 
 ### 🧠 Operational Philosophy: Codex as Second Brain
 
