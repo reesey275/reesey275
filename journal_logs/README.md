@@ -8,4 +8,5 @@ See the [Journal Index](../docs/Journal_Index.md) for summaries of all entries.
 ## Entries
 
 - [2025-07-30 Portfolio Integrated Methodology](2025-07-30-portfolio-integrated-methodology.md)
-
+- [2025-09-05 CLI Task Automation](2025-09-05-cli-task-automation.md)
+- [2025-09-05 Automation Experiment AAR](2025-09-05-automation-experiment-aar.md)
