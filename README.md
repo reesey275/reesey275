@@ -1,17 +1,22 @@
 # Chad Reesey | Mr. Potato 🥔
 
-**Veteran. Architect. Automator.** Founder of The Angry Gamer Show Productions.
+**Automating the boring stuff so teams can ship.**
 
-Welcome to my Codex-driven portfolio. Everything here is real and modular,
-but most projects are still prototypes rather than fully battle-tested.
+I'm a veteran turned software architect who builds Codex-driven systems that keep
+docs, code, and infrastructure in lockstep.
 
-Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
+## Philosophy
+Curious how these pieces fit together? Explore the guiding
+[integration philosophy](PHILOSOPHY.md).
 
 ## Table of Contents
+- [Philosophy](#philosophy)
 - [Featured Projects](#featured-projects)
 - [Engineering Impact & Project Outcomes](#engineering-impact--project-outcomes)
 - [Credentials & Resume](#credentials--resume)
 - [Learning Journal](#learning-journal)
+- [Journal Index](#journal-index)
+- [AAR Index](#aar-index)
 - [After Action Reviews](#after-action-reviews)
 - [Codex-Powered](#codex-powered)
 - [Summary & Testing Notes](#summary--testing-notes)
@@ -21,12 +26,22 @@ Read the [integration philosophy](PHILOSOPHY.md) for the guiding principles.
 - [Contact](#contact)
 
 ## Featured Projects
-- **[DevonBoarder](docs/PROJECTS/DevonBoarder.md)** – Devon coastline mapping experiments
-  [project folder](projects/devonboarder/)
-- **[core-instructions](docs/PROJECTS/core-instructions.md)** – Governance OS for Codex Agents
-  [project folder](projects/core-instructions/)
-- **[SquirrelFocus](docs/PROJECTS/SquirrelFocus.md)** – Task planning and focus tracker
-  [project folder](projects/squirrel_focus/)
+### [DevonBoarder](docs/PROJECTS/DevonBoarder.md)
+Prototype mapping project charting the Devon coastline.
+It blends OpenStreetMap data with Leaflet to map walking routes,
+surf spots, and local attractions while experimenting with data
+integration strategies.
+
+### [core-instructions](docs/PROJECTS/core-instructions.md)
+Governance OS that turns role documentation into code.
+CI-enforced charters, checklists, and agent specs ensure every
+Codex agent runs with auditable permissions and repeatable workflows.
+
+### [SquirrelFocus](docs/PROJECTS/SquirrelFocus.md)
+A task planning and focus tracker for scattered developers.
+Built with Next.js, Supabase, and OpenAI, it corrals stray to-dos,
+provides gentle nudges, and tracks progress so attention stays on
+what matters.
 
 ## Engineering Impact & Project Outcomes
 
@@ -80,14 +95,19 @@ View the full [resume (PDF)](resume/resume.pdf) for detailed experience.
 
 Progress notes and lessons are captured in [journal_logs/](journal_logs/).
 
-- [Journal Index](docs/Journal_Index.md) – complete list of journal entries
-- [AAR Index](docs/AAR_Index.md) – After Action Reviews
 - [2025-07-30 Portfolio Integrated Methodology](journal_logs/2025-07-30-portfolio-integrated-methodology.md)
+
+## Journal Index
+Browse the full list of journal entries in the
+[Journal Index](docs/Journal_Index.md).
+
+## AAR Index
+After-action reviews are catalogued in the
+[AAR Index](docs/AAR_Index.md).
 
 ## After Action Reviews
 
 Post-project retrospectives will be tracked as AAR logs.
-Browse the [AAR Index](docs/AAR_Index.md) for available entries.
 
 ## Codex-Powered
 This profile updates itself. Codex Agents handle:
@@ -150,5 +170,5 @@ For collaborators:
 
 ## Contact
 
-- Email: [chad.reesey@outlook.com](mailto:chad.reesey@outlook.com)
-- LinkedIn: [linkedin.com/in/chad-reesey](https://www.linkedin.com/in/chad-reesey)
+- Email: [your.email@example.com](mailto:your.email@example.com)
+- LinkedIn: [linkedin.com/in/your-linkedin-handle](https://www.linkedin.com/in/your-linkedin-handle)
