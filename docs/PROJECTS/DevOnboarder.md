@@ -1,16 +1,18 @@
 DevOnboarder
 
 Problem
-Onboarding burns time; context lives in heads.
+Service onboarding across the platform is inconsistent and wastes time recreating context.
 
 Approach
-Trials → AARs → guardrails in CI/docs.
+Centralize multi-service onboarding in a control plane that coordinates Discord intake,
+hybrid Bash/Python automation, and guardrails that uphold a 95% quality bar.
 
 Your role
-architecture/CI/docs/agents.
+program management, automation architecture, Discord integrations, and documentation.
 
 Outcomes
-reduced repeats; faster ramp-up.
+faster contributor ramp-up, measurable quality thresholds, and fewer repeated onboarding blockers.
 
 Next steps
-expand AAR coverage; badge repeat offenders; publish examples.
+finish the hybrid runner migration, expand AAR coverage, and tune automation guardrails
+from real Discord and service feedback.
