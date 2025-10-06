@@ -6,7 +6,7 @@ trap 'echo "Error: devonboarder setup failed at line $LINENO" >&2' ERR
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-LEGACY_TASKS=("phase-status" "list-guardrails")
+readonly LEGACY_TASKS=("phase-status" "list-guardrails")
 
 show_help() {
   cat <<'EOF'
@@ -64,6 +64,7 @@ EOF
     ;;
   *)
     echo "Unknown command: ${command}" >&2
+    printf 'Available commands: %s help\n' "${LEGACY_TASKS[*]}" >&2
     echo >&2
     show_help >&2
     exit 1
