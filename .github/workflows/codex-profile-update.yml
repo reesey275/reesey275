@@ -3,8 +3,8 @@ name: Update Profile with Codex
 on:
   push:
     paths:
-      - 'projects/**'
-      - '.codex/**'
+      - "projects/**"
+      - ".codex/**"
   workflow_dispatch:
 
 jobs:
@@ -17,9 +17,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Codex Agent (Profile Writer)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           echo "[Codex Trigger] Running profile_writer..."
-          ./scripts/run_codex_agent.sh profile_writer
+          ./scripts/run_codex_agent.sh profile_writer --model gpt-4
 
       - name: Commit Changes
         run: |
