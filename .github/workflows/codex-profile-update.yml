@@ -16,20 +16,30 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Debug Environment
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          echo "API key length: ${#OPENAI_API_KEY}"
-          echo "API key starts with: ${OPENAI_API_KEY:0:10}..."
-          echo "API key is set: $([[ -n "$OPENAI_API_KEY" ]] && echo "YES" || echo "NO")"
-
       - name: Run Codex Agent (Profile Writer)
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          echo "[Codex Trigger] Running profile_writer..."
-          ./scripts/run_codex_agent.sh profile_writer
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            You are the profile_writer agent for this portfolio repository.
+
+            Your role is to create or update Markdown summaries inside `/projects/*/README.md` 
+            based on Git commit history, repo activity, and project metadata. 
+
+            Ensure clarity, consistency, and relevance to a technical audience.
+            Always use professional tone with confident, battle-tested delivery. 
+
+            Highlight:
+            - Architecture
+            - Languages  
+            - Automation
+            - Problem solved
+            - GitHub Actions or DevOps features
+
+            Please review all projects in the /projects directory and update their README.md 
+            files based on the current state of each project.
+          sandbox: workspace-write
+          model: gpt-4o-mini
 
       - name: Commit Changes
         run: |
