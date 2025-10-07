@@ -21,7 +21,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           echo "[Codex Trigger] Running profile_writer..."
-          ./scripts/run_codex_agent.sh profile_writer --model gpt-4
+          ./scripts/run_codex_agent.sh profile_writer -m gpt-4
 
       - name: Commit Changes
         run: |
