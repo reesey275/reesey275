@@ -3,8 +3,8 @@
 DevOnboarder structures onboarding into three repeatable phases that balance
 speed with guardrails:
 
-1. **Orientation (Phase 0):** Discord bot prompts new contributors to self-
-   identify their service focus and validates required access across GitHub,
+1. **Orientation (Phase 0):** Discord bot prompts new contributors to self-identify
+   their service focus and validates required access across GitHub,
    observability dashboards, and the knowledge base. The bot records completion
    in the Task API so we can measure readiness before deep work begins.
 2. **Immersion (Phase 1):** Service-specific playbooks move contributors through
