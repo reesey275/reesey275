@@ -1,0 +1,35 @@
+# Codex Configuration for CI/CD Environment
+# This configuration is optimized for automated workflows
+
+# Default model - using gpt-4o-mini which we confirmed works with our API key
+model = "gpt-4o-mini"
+
+# Use OpenAI as the provider
+model_provider = "openai"
+
+# Approval policy for CI - never ask for approval
+approval_policy = "never"
+
+# Sandbox mode - allow workspace write access
+sandbox_mode = "workspace-write"
+
+# Reasoning effort
+model_reasoning_effort = "medium"
+
+# Shell environment policy - include necessary environment variables
+[shell_environment_policy]
+include_only = ["PATH", "HOME", "OPENAI_API_KEY", "GITHUB_TOKEN", "GITHUB_WORKSPACE", "GITHUB_REPOSITORY"]
+
+# Profile for CI environment
+[profiles.ci]
+model = "gpt-4o-mini"
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+model_reasoning_effort = "medium"
+
+# Profile for local development with more powerful model if available
+[profiles.local]
+model = "gpt-4o"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+model_reasoning_effort = "high"

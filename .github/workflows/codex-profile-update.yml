@@ -3,8 +3,8 @@ name: Update Profile with Codex
 on:
   push:
     paths:
-      - 'projects/**'
-      - '.codex/**'
+      - "projects/**"
+      - ".codex/**"
   workflow_dispatch:
 
 jobs:
@@ -17,9 +17,29 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Codex Agent (Profile Writer)
-        run: |
-          echo "[Codex Trigger] Running profile_writer..."
-          ./scripts/run_codex_agent.sh profile_writer
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            You are the profile_writer agent for this portfolio repository.
+
+            Your role is to create or update Markdown summaries inside `/projects/*/README.md` 
+            based on Git commit history, repo activity, and project metadata. 
+
+            Ensure clarity, consistency, and relevance to a technical audience.
+            Always use professional tone with confident, battle-tested delivery. 
+
+            Highlight:
+            - Architecture
+            - Languages  
+            - Automation
+            - Problem solved
+            - GitHub Actions or DevOps features
+
+            Please review all projects in the /projects directory and update their README.md 
+            files based on the current state of each project.
+          sandbox: workspace-write
+          model: gpt-4o-mini
 
       - name: Commit Changes
         run: |

@@ -11,9 +11,13 @@ fi
 AGENT_NAME="${1:-}"
 
 if [[ -z "$AGENT_NAME" ]]; then
-  echo "Usage: $0 <agent_name> (requires npx and the Codex CLI)" >&2
+  echo "Usage: $0 <agent_name> [additional_args...] (requires npx and the Codex CLI)" >&2
   exit 1
 fi
+
+# Shift to remove the first argument (agent name), leaving additional args in $@
+shift
+ADDITIONAL_ARGS=("$@")
 
 # Verify dependencies
 if ! command -v npx >/dev/null 2>&1; then
@@ -42,7 +46,7 @@ LOG_FILE="logs/${AGENT_NAME}_$(date +%Y-%m-%d_%H-%M-%S).log"
 # Attempt to run the Codex agent
 # Run the Codex agent while capturing the exit status separately from tee
 set +e
-npx codex exec "$AGENT_NAME" | tee -a "$LOG_FILE"
+npx codex exec "$AGENT_NAME" "${ADDITIONAL_ARGS[@]}" | tee -a "$LOG_FILE"
 status=${PIPESTATUS[0]}
 set -e
 
