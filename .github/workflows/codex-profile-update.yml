@@ -16,6 +16,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Debug Environment
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "API key length: ${#OPENAI_API_KEY}"
+          echo "API key starts with: ${OPENAI_API_KEY:0:10}..."
+          echo "API key is set: $([[ -n "$OPENAI_API_KEY" ]] && echo "YES" || echo "NO")"
+
       - name: Run Codex Agent (Profile Writer)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
