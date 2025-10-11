@@ -34,6 +34,7 @@ heals itself.
 - **Role:** Founder & Lead Architect
 - **Milestone:** October 10, 2025 - DevOnboarder integration complete
 - **Components:** 9 repositories, MCP servers, quality control systems
+- **Vision:** Premium LinkedIn connector for professional networking (Q1 2026)
 
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
 **Multi-service onboarding control plane** with Discord integration, hybrid automation, and 95% quality guardrails.
