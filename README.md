@@ -94,7 +94,7 @@ heals itself.
 - **🐦 Twitter/X:** [@reesey275](https://x.com/reesey275)
 - **📘 Facebook:** [Reesey275](https://facebook.com/Reesey275)
 - **📸 Instagram:** [reesey275](https://instagram.com/reesey275)
-- **📧 Email:** creesey@wgu.edu • chad.reesey@outlook.com
+- **📧 Email:** reesey275@theangrygamershow.com • creesey@wgu.edu
 
 ## 📋 **Resources**
 
