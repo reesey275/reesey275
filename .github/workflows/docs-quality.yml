@@ -42,7 +42,9 @@ jobs:
 
       - name: Markdownlint
         run: |
-        markdownlint-cli2 --config ".markdownlint-cli2.yaml"
+          markdownlint-cli2 --config ".markdownlint-cli2.yaml"
+
+      - name: Vale
         run: |
           # If you have a Vale config already, this will use it.
           # If not, add .vale.ini + styles (recommended).
