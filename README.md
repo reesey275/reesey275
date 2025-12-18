@@ -9,7 +9,14 @@
 - Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with ISaaS/PaaS/SaaS architecture and 95% quality guardrails
 
 ## 🧭 Engineering Philosophy
-Chad Reesey is a resilient, principled veteran who has spent his life solving problems, protecting people, and rebuilding himself with persistence and integrity. He operates on structure, accountability, and a high personal standard. He values correctness over cleverness, documentation over assumptions, and automation over heroics. He is loyal, direct, forward-focused, and prefers action over excuses—doing the hard, unglamorous work even when no one is watching.
+I build systems the way mission-critical operations demand they be built:
+- Structure over improvisation
+- Accountability over ambiguity
+- Correctness over cleverness
+- Documentation over assumptions
+- Automation over heroics
+
+If a system requires tribal knowledge to function, it is already a liability.
 
 ## 🔧 How I Work
 - Written context before meetings; decisions documented so they aren’t lost
@@ -18,11 +25,6 @@ Chad Reesey is a resilient, principled veteran who has spent his life solving pr
 - Clear standards, direct feedback, and auditability over hand-waving
 
 ## 📊 GitHub Stats
-
-![Profile Stats](https://img.shields.io/badge/Repositories-6-blue)
-![Followers](https://img.shields.io/badge/Followers-13-green)
-![Following](https://img.shields.io/badge/Following-19-orange)
-![Member Since](https://img.shields.io/badge/Member%20Since-June%202013-lightgrey)
 
 **Primary Languages:** Python • Shell • JavaScript • TypeScript • PowerShell  
 **Public Repositories:** 3 active projects • 3 private development repos  
@@ -48,20 +50,21 @@ No activity tracked
 
 ## 🎯 Featured Projects
 
+### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
+Automated developer onboarding and compliance platform.  
+- **Stack:** Python, Shell, Discord API, GitHub Actions  
+- **Capabilities:** CI-enforced workflows, identity/role provisioning (OAuth2/JWT/RBAC), documentation/checklist validation, governance-as-code for growing teams  
+- **Status:** Production foundation platform for TAGS
+
 ### TAGS Ecosystem (9 repos)
-**Complete development platform** for gaming content production with ISaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.  
+Complete development platform for gaming content production with ISaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.  
 - **Stack:** Python, TypeScript, Shell, Docker, GitHub Actions
 - **Role:** Founder & Lead Architect
 - **Components:** DevOnboarder, tags-mcp-servers, core-instructions, quality control systems, Discord/GitHub integration
 - **Vision:** Premium LinkedIn connector for professional networking (Q1 2026)
 
-### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
-**Automated developer onboarding** with Discord integration, hybrid automation, and governance-as-code (95% quality guardrails).  
-- **Stack:** Python, Shell, Discord API, GitHub Actions  
-- **Status:** Production foundation platform for TAGS
-
 ### [tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)
-**Model Context Protocol servers** for task management, knowledge graphs, time operations, and secure filesystem access.  
+Model Context Protocol servers for task management, knowledge graphs, time operations, and secure filesystem access.  
 - **Stack:** Python, MCP SDK, FastAPI, Pydantic  
 - **Features:** 5 servers, 33+ tools, 95% coverage
 
@@ -122,7 +125,6 @@ AI-powered audio transcription pipeline for secure, self-hosted environments.
 - [📚 Journal Index](docs/Journal_Index.md) — Learning documentation
 - [🔍 AAR Index](docs/AAR_Index.md) — After Action Reports
 
----
 > *"We practice in public so others can perform in peace."*
 
 **Open to opportunities** • Veteran-owned • Florida-based
