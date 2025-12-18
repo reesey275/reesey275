@@ -1,40 +1,40 @@
 # Chad Reesey | reesey275
 
-> Veteran software engineer and systems architect building secure,
-> self-hosted tools and AI-integrated platforms. NSLS-inducted leader,
-> founder of TAGS.
+> Veteran software engineer and systems architect building secure, self-hosted tools and AI-integrated platforms. NSLS-inducted leader, founder of TAGS.
 
-## 🚀 **About Me**
+## 🚀 About Me
+- Veteran | Systems-first builder | DevOps & governance automation
+- I build thinking systems: **visible learning → doctrine → automation**
+- 25+ years across civilian and government environments; currently leading TAGS Ecosystem and completing B.S. CS @ WGU (2024–2027)
+- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with ISaaS/PaaS/SaaS architecture and 95% quality guardrails
 
-I build thinking systems: **visible learning → doctrine → automation**.
-With 25+ years across civilian and government environments, I specialize in
-DevOps tooling, AI-driven automation, and infrastructure that documents and
-heals itself.
+## 🧭 Engineering Philosophy
+Chad Reesey is a resilient, principled veteran who has spent his life solving problems, protecting people, and rebuilding himself with persistence and integrity. He operates on structure, accountability, and a high personal standard. He values correctness over cleverness, documentation over assumptions, and automation over heroics. He is loyal, direct, forward-focused, and prefers action over excuses—doing the hard, unglamorous work even when no one is watching.
 
-**Current Focus:** Leading TAGS Ecosystem Development | B.S. Computer Science at WGU (2024–2027) | Cocoa Beach, Florida
+## 🔧 How I Work
+- Written context before meetings; decisions documented so they aren’t lost
+- Bias toward observable, repeatable, resilient systems
+- Deterministic CI, linting, documentation validation, and reproducible builds
+- Clear standards, direct feedback, and auditability over hand-waving
 
-**Recent Achievement:** October 10, 2025 - Successfully integrated DevOnboarder as the foundation platform for the TAGS ecosystem, establishing ISaaS/PaaS/SaaS architecture with 95% quality standards and AI-enhanced development workflows.
-
-## 📊 **GitHub Stats**
+## 📊 GitHub Stats
 
 ![Profile Stats](https://img.shields.io/badge/Repositories-6-blue)
 ![Followers](https://img.shields.io/badge/Followers-13-green)
 ![Following](https://img.shields.io/badge/Following-19-orange)
 ![Member Since](https://img.shields.io/badge/Member%20Since-June%202013-lightgrey)
 
-**Primary Languages:** Python • Shell • JavaScript • TypeScript • PowerShell
-**Public Repositories:** 3 active projects • 3 private development repos
-**Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions) - 9 repositories
+**Primary Languages:** Python • Shell • JavaScript • TypeScript • PowerShell  
+**Public Repositories:** 3 active projects • 3 private development repos  
+**Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions) — 9 repositories
 
 ### GitHub Contribution Activity
 
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark&count_private=true&include_all_commits=true)
-
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark&langs_count=8)
+![GitHub Streak](https://streak-stats.demolab.com/?user=reesey275&theme=dark)
 
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=reesey275&theme=dark)
-
-## 📈 **Weekly Development Stats**
+## 📈 Weekly Development Stats
 
 <!--START_SECTION:waka-->
 
@@ -46,42 +46,40 @@ No activity tracked
 
 <!--END_SECTION:waka-->
 
-## 🎯 **Featured Projects**
+## 🎯 Featured Projects
 
-### [TAGS Ecosystem](https://github.com/theangrygamershowproductions)
-**Complete development platform** for gaming content production with ISaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.
+### TAGS Ecosystem (9 repos)
+**Complete development platform** for gaming content production with ISaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.  
 - **Stack:** Python, TypeScript, Shell, Docker, GitHub Actions
 - **Role:** Founder & Lead Architect
-- **Milestone:** October 10, 2025 - DevOnboarder integration complete
-- **Components:** 9 repositories, MCP servers, quality control systems
+- **Components:** DevOnboarder, tags-mcp-servers, core-instructions, quality control systems, Discord/GitHub integration
 - **Vision:** Premium LinkedIn connector for professional networking (Q1 2026)
 
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
-**Multi-service onboarding control plane** with Discord integration, hybrid automation, and 95% quality guardrails.
-- **Stack:** Python, Shell, Discord API, GitHub Actions
-- **Role:** Program management, automation architecture
-- **Status:** Production foundation platform for TAGS ecosystem
+**Automated developer onboarding** with Discord integration, hybrid automation, and governance-as-code (95% quality guardrails).  
+- **Stack:** Python, Shell, Discord API, GitHub Actions  
+- **Status:** Production foundation platform for TAGS
 
 ### [tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)
-**Model Context Protocol server implementations** providing AI agent capabilities for task management, knowledge graphs, time operations, and secure filesystem access.
-- **Stack:** Python, MCP SDK, FastAPI, Pydantic
-- **Role:** Architecture & implementation
-- **Features:** 5 MCP servers, 33+ tools, 95% test coverage
+**Model Context Protocol servers** for task management, knowledge graphs, time operations, and secure filesystem access.  
+- **Stack:** Python, MCP SDK, FastAPI, Pydantic  
+- **Features:** 5 servers, 33+ tools, 95% coverage
 
 ### [SquirrelFocus](https://github.com/reesey275/squirrelfocus)
-**Lightweight journaling CLI** for turning daily logs into actionable doctrine.
+Lightweight journaling CLI to turn daily logs into actionable doctrine.  
 - **Stack:** Python, Shell scripting
-- **Philosophy:** More logs → better doctrine
 
 ### [Whisper Project](docs/PROJECTS/WhisperProject.md) | [Repository](https://github.com/reesey275/whisper-project)
-**AI-powered audio transcription** and processing pipeline for secure, self-hosted environments.
-- **Stack:** Python, OpenAI Whisper API
+AI-powered audio transcription pipeline for secure, self-hosted environments.  
+- **Stack:** Python, OpenAI Whisper API  
 - **Focus:** Privacy-first AI tools, local processing
 
-### [core-instructions](docs/PROJECTS/core-instructions.md)
-**Policies and contracts for humans + agents** to reduce review loops and enable clearer decisions.
+### Personal tooling
+- [PortalSDK](https://github.com/reesey275/PortalSDK) — Developer toolkit
+- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify developer tools
+- [core-instructions](docs/PROJECTS/core-instructions.md) — Policies/contracts for humans + agents
 
-## 🛠 **Technical Expertise**
+## 🛠 Technical Expertise
 
 ### Infrastructure & DevOps
 - Docker, Kubernetes, Terraform, Ansible
@@ -91,13 +89,13 @@ No activity tracked
 
 ### AI & Automation
 - Model Context Protocol (MCP) server development and integration
-- OpenAI Codex agents for self-documenting infrastructure
-- Python automation frameworks with FastAPI and Pydantic
+- AI/Codex agents for self-documenting infrastructure
+- Python automation with FastAPI and Pydantic
 - Hybrid shell/Python task runners and quality control systems
 - AI-enhanced development workflows with VS Code integration
 
 ### Development Standards & Quality Control
-- Conventional commit standards (TYPE(scope): format) with GPG signing
+- Conventional commits (TYPE(scope): format) with GPG signing
 - Automated quality control with 95%+ test coverage requirements
 - Vale linting, Black formatting, MyPy type checking
 - DevOnboarder quality enforcement and CI/CD validation
@@ -108,7 +106,7 @@ No activity tracked
 - Zero-trust architecture and automated security scanning
 - GitHub repository hygiene and access control
 
-## 🌐 **Connect With Me**
+## 🌐 Connect With Me
 
 - **🏢 Company:** [The Angry Gamer Show Productions](https://theangrygamershow.com)
 - **💼 LinkedIn:** [in/chad-reesey](https://linkedin.com/in/chad-reesey)
@@ -117,15 +115,14 @@ No activity tracked
 - **📸 Instagram:** [reesey275](https://instagram.com/reesey275)
 - **📧 Email:** reesey275@theangrygamershow.com • creesey@wgu.edu
 
-## 📋 **Resources**
+## 📋 Resources
 
-- [📄 Resume](resume/resume.pdf) - Complete professional background
-- [🧠 Philosophy](PHILOSOPHY.md) - Core methodology and approach
-- [📚 Journal Index](docs/Journal_Index.md) - Learning documentation
-- [🔍 AAR Index](docs/AAR_Index.md) - After Action Reports
+- [📄 Resume](resume/resume.pdf) — Complete professional background
+- [🧠 Philosophy](PHILOSOPHY.md) — Core methodology and approach
+- [📚 Journal Index](docs/Journal_Index.md) — Learning documentation
+- [🔍 AAR Index](docs/AAR_Index.md) — After Action Reports
 
 ---
-
 > *"We practice in public so others can perform in peace."*
 
 **Open to opportunities** • Veteran-owned • Florida-based
