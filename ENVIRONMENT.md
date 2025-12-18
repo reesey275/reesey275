@@ -10,7 +10,7 @@ This is a full setup plan for your **Codex-powered GitHub Profile Repository**, 
 **Location:** Cocoa Beach, Florida 32931  
 **Email:** creesey@wgu.edu / chad.reesey@outlook.com  
 **Company:** [The Angry Gamer Show Productions](https://theangrygamershow.com)  
-**Status:** U.S. Air Force Veteran | Pursuing B.S. in Computer Science, WGU (2024–2027)
+**Status:** U.S. Air Force Veteran | Pursuing B.S. in Computer Science, WGU (2024–2027).
 
 **Social Media:**
 - **LinkedIn:** [in/chad-reesey](https://linkedin.com/in/chad-reesey)
@@ -25,7 +25,7 @@ This is a full setup plan for your **Codex-powered GitHub Profile Repository**, 
 - **Followers:** 13 | **Following:** 19
 - **Bio:** Veteran software engineer and systems architect building secure, self-hosted tools and AI-integrated platforms. NSLS-inducted leader, founder of TAGS
 
-#### \u2705 Core Strengths
+#### ✅ Core Strengths
 - **Infrastructure & Automation:** 25+ years across civilian/government environments
 - **DevOps Tooling:** Docker, Ansible, Kubernetes, Terraform, GitHub Actions, CI/CD design
 - **Security & Admin:** Active Directory, Role-based Access, server hardening, secret management
@@ -35,7 +35,7 @@ This is a full setup plan for your **Codex-powered GitHub Profile Repository**, 
 
 ---
 
-### \U0001f4c1 Folder Structure
+### 📁 Folder Structure
 
 ```text
 reesey275/
@@ -90,7 +90,7 @@ reesey275/
 
 ---
 
-### \U0001f522 Environment Configuration Guidelines
+### 🔢 Environment Configuration Guidelines
 
 You are currently working in a private GitHub profile repo connected to Codex, which will be made public once it’s production ready. Use the following guidance to bootstrap and secure the Codex environment effectively:
 

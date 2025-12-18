@@ -187,7 +187,6 @@ Only essential variables are forwarded to Codex:
 - Avoid `gpt-5-codex` unless using specialized endpoints
 
 ### Rate Limiting
-### Model Selection for Performance
 Monitor usage against OpenAI limits:
 - `gpt-4o-mini`: 200,000 TPM, 500 RPM
 - Configure retry logic for rate limit handling

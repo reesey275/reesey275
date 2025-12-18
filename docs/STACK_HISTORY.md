@@ -124,7 +124,7 @@ This document represents technologies I've worked with hands-on across infrastru
 
 ### Miscellaneous
 - Raspberry Pi
-- Linuxs Server
+- Linux Server
 - Microsoft Edge
 - curl
 - hole (network diagnostics)
