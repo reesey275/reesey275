@@ -7,6 +7,7 @@
 - I build thinking systems: **visible learning → doctrine → automation**
 - 25+ years across civilian and government environments; currently leading TAGS Ecosystem and completing B.S. CS @ WGU (2024–2027)
 - Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with ISaaS/PaaS/SaaS architecture and 95% quality guardrails
+- 🇺🇸 **USAF Veteran** — mission-focused operations, accountability, and system reliability shaped by service in mission-critical environments
 
 ## 🧭 Engineering Philosophy
 I build systems the way mission-critical operations demand they be built:
