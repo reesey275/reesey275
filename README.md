@@ -26,6 +26,14 @@ heals itself.
 **Public Repositories:** 3 active projects • 3 private development repos
 **Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions) - 9 repositories
 
+### GitHub Contribution Activity
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark&count_private=true&include_all_commits=true)
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark&langs_count=8)
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=reesey275&theme=dark)
+
 ## 📈 **Weekly Development Stats**
 
 <!--START_SECTION:waka-->
@@ -114,7 +122,7 @@ No activity tracked
 - [📄 Resume](resume/resume.pdf) - Complete professional background
 - [🧠 Philosophy](PHILOSOPHY.md) - Core methodology and approach
 - [📚 Journal Index](docs/Journal_Index.md) - Learning documentation
-- [�� AAR Index](docs/AAR_Index.md) - After Action Reports
+- [🔍 AAR Index](docs/AAR_Index.md) - After Action Reports
 
 ---
 
