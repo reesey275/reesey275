@@ -1,0 +1,15 @@
+{
+    // markdownlint config - rule names preferred for compatibility
+    "default": true,
+    "no-multiple-blanks": false, // MD012
+    "line-length": false, // MD013
+    "blanks-around-headings": false, // MD022
+    "no-trailing-punctuation": false, // MD026
+    "blanks-around-lists": false, // MD032
+    "no-bare-urls": false, // MD034
+    "first-line-heading": false, // MD041
+    "no-inline-html": false, // MD033
+    "emphasis-as-heading": false, // MD036
+    "table-pipe-style": false, // MD060
+    "blanks-around-fences": false // MD031
+}
