@@ -19,7 +19,7 @@ I build systems the way mission-critical operations demand they be built:
 If a system requires tribal knowledge to function, it is already a liability.
 
 ## 🔧 How I Work
-- Written context before meetings; decisions documented so they aren’t lost
+- Written context before meetings; decisions documented so they aren't lost
 - Bias toward observable, repeatable, resilient systems
 - Deterministic CI, linting, documentation validation, and reproducible builds
 - Clear standards, direct feedback, and auditability over hand-waving
@@ -34,7 +34,10 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark&count_private=true&include_all_commits=true)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark&langs_count=8)
-![GitHub Streak](https://streak-stats.demolab.com/?user=reesey275&theme=dark)
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com?user=reesey275&theme=dark&hide_border=false&date_format=M%20j%5B%2C%20Y%5D" alt="GitHub Streak Stats" />
+</div>
 
 ## 📈 Weekly Development Stats
 
@@ -53,11 +56,11 @@ No activity tracked
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
 Automated developer onboarding and compliance platform.  
 - **Stack:** Python, Shell, Discord API, GitHub Actions  
-- **Capabilities:** CI-enforced workflows, identity/role provisioning (OAuth2/JWT/RBAC), documentation/checklist validation, governance-as-code for growing teams  
+- **Capabilities:** CI-enforced workflows, identity/role provisioning (OAuth2/JWT/RBAC), documentation/checklist validation, governance-as-code for growing teams
 - **Status:** Production foundation platform for TAGS
 
 ### TAGS Ecosystem (9 repos)
-Complete development platform for gaming content production with ISaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.  
+Complete development platform for gaming content production with ISaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.
 - **Stack:** Python, TypeScript, Shell, Docker, GitHub Actions
 - **Role:** Founder & Lead Architect
 - **Components:** DevOnboarder, tags-mcp-servers, core-instructions, quality control systems, Discord/GitHub integration
@@ -108,6 +111,15 @@ AI-powered audio transcription pipeline for secure, self-hosted environments.
 - Secret management, Cloudflare Tunnels, Potato Policy (zero-tolerance)
 - Zero-trust architecture and automated security scanning
 - GitHub repository hygiene and access control
+
+### Systems & Tooling (Representative)
+
+<p align="center">
+  <strong>25+ years exposure across civilian and government infrastructure:</strong><br/>
+  Linux • Ubuntu • Docker • NGINX • Python • Shell • GitHub Actions • Cloudflare • Ansible • Terraform
+</p>
+
+**[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience (historical breadth vs current daily usage)
 
 ## 🌐 Connect With Me
 
