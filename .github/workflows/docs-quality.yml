@@ -42,7 +42,7 @@ jobs:
 
       - name: Markdownlint
         run: |
-          markdownlint-cli2 --config .markdownlint-cli2.jsonc "**/*.md" "#node_modules" "#.git"
+          markdownlint-cli2 --config .markdownlint-cli2.yaml
 
       - name: Vale
         run: |
