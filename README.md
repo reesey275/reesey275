@@ -6,7 +6,7 @@
 - Veteran | Systems-first builder | DevOps & governance automation
 - I build thinking systems: **visible learning → doctrine → automation**
 - 25+ years across civilian and government environments; currently leading TAGS Ecosystem and completing B.S. CS @ WGU (2024–2027)
-- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with ISaaS/PaaS/SaaS architecture and 95% quality guardrails
+- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with IaaS/PaaS/SaaS architecture and 95% quality guardrails
 - 🇺🇸 **USAF Veteran** — mission-focused operations, accountability, and system reliability shaped by service in mission-critical environments
 
 ## 🧭 Engineering Philosophy
@@ -61,7 +61,7 @@ Automated developer onboarding and compliance platform.
 - **Status:** Production foundation platform for TAGS
 
 ### TAGS Ecosystem (9 repos)
-Complete development platform for gaming content production with ISaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.
+Complete development platform for gaming content production with IaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.
 - **Stack:** Python, TypeScript, Shell, Docker, GitHub Actions
 - **Role:** Founder & Lead Architect
 - **Components:** DevOnboarder, tags-mcp-servers, core-instructions, quality control systems, Discord/GitHub integration
