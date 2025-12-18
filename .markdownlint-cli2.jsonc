@@ -1,25 +1,28 @@
 {
     // markdownlint-cli2 configuration
-    "config": {
-        "default": true,
-        // Allow common README patterns used in this repo
-        "MD012": false, // multiple consecutive blank lines
-        "MD013": false, // line length
-        "MD022": false, // blanks around headings
-        "MD026": false, // trailing punctuation in heading
-        "MD032": false, // lists should be surrounded by blank lines
-        "MD034": false, // bare URLs
-        "MD041": false, // first line in a file should be a top-level heading
-        "MD033": false, // inline HTML (e.g., <img>, <br>)
-        "MD036": false, // emphasis used instead of headings
-        "MD060": false, // table column style spacing
-        "MD031": false // blank lines around fenced code blocks
-    },
     "globs": [
         "**/*.md"
     ],
     "ignores": [
         "node_modules/**",
         ".git/**"
-    ]
+    ],
+    // Pass markdownlint rule configuration explicitly to the engine
+    "markdownlint": {
+        "config": {
+            "default": true,
+            // Allow common README patterns used in this repo
+            "MD012": false, // multiple consecutive blank lines
+            "MD013": false, // line length
+            "MD022": false, // blanks around headings
+            "MD026": false, // trailing punctuation in heading
+            "MD032": false, // lists should be surrounded by blank lines
+            "MD034": false, // bare URLs
+            "MD041": false, // first line in a file should be a top-level heading
+            "MD033": false, // inline HTML (e.g., <img>, <br>)
+            "MD036": false, // emphasis used instead of headings
+            "MD060": false, // table column style spacing
+            "MD031": false // blank lines around fenced code blocks
+        }
+    }
 }
