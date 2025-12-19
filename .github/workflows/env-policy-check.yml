@@ -1,92 +1,67 @@
-name: Environment Policy Check
+name: Env policy check
 
 on:
-  push:
-    branches: ['**']
   pull_request:
-    branches: ['**']
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-  check-env-files:
-    name: Verify No Forbidden Env Files Tracked
+  validate:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Full history for comprehensive check
-      
-      - name: Check for forbidden env files
+      - name: Checkout
+        # actions/checkout v6.0.1 (2025-12-02) pinned to commit SHA
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Enforce env file policy
+        shell: bash
         run: |
-          echo "🔍 Checking for forbidden .env files in git index..."
-          
-          # Get all tracked env files
-          TRACKED_ENV_FILES=$(git ls-files -- '.env*' 2>/dev/null || true)
-          
-          if [ -z "$TRACKED_ENV_FILES" ]; then
-            echo "✅ No .env files tracked (OK if project doesn't use env files)"
-            exit 0
-          fi
-          
-          # Allowlist
-          ALLOWED_PATTERN='^\(.env\.example\|.env\.TEMPLATE\|.env\.template\)$'
-          
-          FAIL=0
-          FORBIDDEN_FILES=""
-          
-          while IFS= read -r file; do
-            filename=$(basename "$file")
-            
-            # Check if it's in allowlist
-            if ! echo "$filename" | grep -q "$ALLOWED_PATTERN"; then
-              echo "❌ FORBIDDEN: $file"
-              FORBIDDEN_FILES="${FORBIDDEN_FILES}${file}\n"
-              FAIL=1
-            else
-              echo "✅ ALLOWED: $file"
-            fi
-          done <<< "$TRACKED_ENV_FILES"
-          
-          if [ "$FAIL" -eq 1 ]; then
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "❌ CI BLOCKED: Forbidden .env files are tracked"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo -e "Forbidden files:\n${FORBIDDEN_FILES}"
-            echo ""
-            echo "Only these env files are allowed to be committed:"
-            echo "  • .env.example"
-            echo "  • .env.TEMPLATE"
-            echo "  • .env.template"
-            echo ""
-            echo "To fix:"
-            echo "  git rm --cached <file>"
-            echo "  # Then ensure .env is in .gitignore"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          set -euo pipefail
+
+          echo "== 1) No forbidden .env files tracked =="
+          # Allowed public-safe env artifacts:
+          #   .env.TEMPLATE  (documented template)
+          #   .env.example   (lean example)
+          #   .env.template  (legacy/optional allow)
+          bad=""
+          while IFS= read -r f; do
+            b="$(basename "$f")"
+            case "$b" in
+              .env.example|.env.TEMPLATE|.env.template)
+                ;;
+              *)
+                bad+="$f\n"
+                ;;
+            esac
+          done < <(git ls-files -- '.env' '.env.*')
+
+          if [[ -n "$bad" ]]; then
+            echo "::error::Forbidden tracked env files detected:"
+            printf "%b" "$bad"
             exit 1
           fi
-          
-          echo ""
-          echo "✅ All tracked .env files are allowed"
-      
-      - name: Verify .gitignore contains env rules
-        run: |
-          echo "🔍 Checking .gitignore for env rules..."
-          
-          if [ ! -f .gitignore ]; then
-            echo "⚠️  No .gitignore file found"
-            exit 0
+
+          echo "== 2) .gitignore must ignore .env* but whitelist templates/examples =="
+          test -f .gitignore || { echo "::error::.gitignore missing"; exit 1; }
+
+          grep -qE '^\s*\.env\*' .gitignore || { echo "::error::.gitignore must ignore .env*"; exit 1; }
+          grep -qE '^\s*!\.env\.example' .gitignore || { echo "::error::.gitignore must whitelist .env.example"; exit 1; }
+          # Accept either casing strategy, but require at least one whitelist:
+          if ! grep -qE '^\s*!\.env\.TEMPLATE' .gitignore && ! grep -qE '^\s*!\.env\.template' .gitignore; then
+            echo "::error::.gitignore must whitelist .env.TEMPLATE (or .env.template)"
+            exit 1
           fi
-          
-          # Check for .env ignore pattern
-          if grep -q "^\.env$" .gitignore || grep -q "^\.env$" .gitignore; then
-            echo "✅ .env is ignored"
-          else
-            echo "⚠️  .env may not be properly ignored"
-            echo "   Add this to .gitignore:"
-            echo "   .env"
-            echo "   .env.*"
-            echo "   !.env.TEMPLATE"
-            echo "   !.env.example"
-          fi
+
+          echo "== 3) Obvious token sanity check in public-safe files =="
+          for f in .env.example .env.TEMPLATE .env.template; do
+            [[ -f "$f" ]] || continue
+            if grep -qE 'sk-[A-Za-z0-9]+' "$f"; then
+              echo "::error::$f appears to contain an sk- token-like string"
+              exit 1
+            fi
+          done
+
+          echo "✅ env policy OK"
