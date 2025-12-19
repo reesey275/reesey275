@@ -36,10 +36,6 @@ If a system requires tribal knowledge to function, it is already a liability.
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark&count_private=true&include_all_commits=true)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark&langs_count=8)
 
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com?user=reesey275&theme=dark&hide_border=false&date_format=M%20j%5B%2C%20Y%5D" alt="GitHub Streak Stats" />
-</div>
-
 ## 📈 Weekly Development Stats
 
 <!--START_SECTION:waka-->
