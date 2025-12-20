@@ -5,7 +5,7 @@
 ## 🚀 About Me
 - Veteran | Systems-first builder | DevOps & governance automation
 - I build thinking systems: **visible learning → doctrine → automation**
-- 25+ years across civilian and government environments; currently leading TAGS (The Angry Gamer Show Productions) Ecosystem and completing B.S. CS @ WGU (2024–2027)
+- 25+ years across civilian and government environments; currently leading TAGS (The Angry Gamer Show Productions) Ecosystem
 - Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS (The Angry Gamer Show Productions) foundation with IaaS/PaaS/SaaS architecture and 95% quality guardrails
 - **U.S. Air Force veteran** — mission-focused operations, accountability, and system reliability shaped by service in mission-critical environments
 
@@ -58,13 +58,13 @@ Other                13 mins         ⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀�
 
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
 Automated developer onboarding and compliance platform.  
-- **Stack:** Python, Shell, Discord API, GitHub Actions  
+- **Stack:** Python, Shell (POSIX/Bash), Discord API, GitHub Actions  
 - **Capabilities:** CI-enforced workflows, identity/role provisioning (OAuth2/JWT/RBAC), documentation/checklist validation, governance-as-code for growing teams
 - **Status:** Production foundation platform for TAGS
 
 ### TAGS Ecosystem (9 repos)
 Complete development platform for gaming content production with IaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.
-- **Stack:** Python, TypeScript, Shell, Docker, GitHub Actions
+- **Stack:** Python, TypeScript, Shell (POSIX/Bash), Docker, GitHub Actions
 - **Role:** Founder & Lead Architect
 - **Components:** DevOnboarder, tags-mcp-servers, core-instructions, quality control systems, Discord/GitHub integration
 - **Vision:** Premium LinkedIn connector for professional networking (Q1 2026)
@@ -76,7 +76,7 @@ Model Context Protocol servers for task management, knowledge graphs, time opera
 
 ### [SquirrelFocus](https://github.com/reesey275/squirrelfocus)
 Lightweight journaling CLI to turn daily logs into actionable doctrine.  
-- **Stack:** Python, Shell scripting
+- **Stack:** Python, Shell (POSIX/Bash) scripting
 
 ### [Whisper Project](docs/PROJECTS/WhisperProject.md) | [Repository](https://github.com/reesey275/whisper-project)
 AI-powered audio transcription pipeline for secure, self-hosted environments.  
@@ -123,6 +123,12 @@ AI-powered audio transcription pipeline for secure, self-hosted environments.
 </p>
 
 **[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience (historical breadth vs current daily usage)
+
+## 🎓 Education & Certifications
+
+- B.S. in Computer Science (in progress) — Western Governors University
+  - Purpose: formalize and augment two decades of hands-on industry experience; lifelong learning to sharpen foundations and stay current with formal methodologies.
+- National Society of Leadership and Success (NSLS) — Inducted in recognition of leadership and academic excellence
 
 ## 🌐 Connect With Me
 
