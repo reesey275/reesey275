@@ -119,7 +119,7 @@ AI-powered audio transcription pipeline for secure, self-hosted environments.
 
 <p align="center">
   <strong>25+ years exposure across civilian and government infrastructure:</strong><br/>
-  Linux • Ubuntu • Docker • NGINX • Python • Shell • GitHub Actions • Cloudflare • Ansible • Terraform
+  Linux • Ubuntu • Docker • NGINX • Python • Shell (POSIX/Bash) • GitHub Actions • Cloudflare • Ansible • Terraform
 </p>
 
 **[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience (historical breadth vs current daily usage)
