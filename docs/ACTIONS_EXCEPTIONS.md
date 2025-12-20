@@ -17,15 +17,15 @@ All GitHub Actions MUST be pinned to full commit SHAs (not tags) to prevent supp
 
 ### peter-evans/create-pull-request
 
-| Field | Value |
-|-------|-------|
-| **Repository** | [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request) |
-| **Version** | v7 |
-| **SHA** | `22a9089034f40e5a961c8808d113e2c98fb63676` |
-| **Used in** | `.github/workflows/waka-readme.yml` |
-| **Added** | 2025-12-20 |
+| Field       | Value                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------- |
+| Repository  | [peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request) |
+| Version     | v7                                                                                    |
+| SHA         | `22a9089034f40e5a961c8808d113e2c98fb63676`                                            |
+| Used in     | `.github/workflows/waka-readme.yml`                                                   |
+| Added       | 2025-12-20                                                                            |
 
-#### Justification
+#### Why This Action Is Needed
 
 This action is required because:
 
@@ -37,14 +37,14 @@ Without this action, automated PRs from workflows would be blocked by the signed
 
 #### Alternatives Considered
 
-| Alternative | Why Rejected |
-|-------------|--------------|
-| Disable signed commits | Weakens security posture; signed commits provide audit trail |
-| GPG key in workflow | Complex setup; requires secrets management; key rotation burden |
-| Manual git commit + push | Produces unsigned commits; blocked by branch protection |
-| Squash merge workaround | GitHub still blocks merge when unsigned commits exist in PR history |
+| Alternative                 | Why Rejected                                                           |
+| --------------------------- | ---------------------------------------------------------------------- |
+| Disable signed commits      | Weakens security posture; signed commits provide audit trail           |
+| GPG key in workflow         | Complex setup; requires secrets management; key rotation burden        |
+| Manual git commit + push    | Produces unsigned commits; blocked by branch protection                |
+| Squash merge workaround     | GitHub still blocks merge when unsigned commits exist in PR history    |
 
-#### Security Review
+#### Security Review for create-pull-request
 
 - **Stars**: 2,200+ (as of 2025-12)
 - **Open issues**: ~40 (reasonable for a popular action)
@@ -55,29 +55,29 @@ Without this action, automated PRs from workflows would be blocked by the signed
 
 #### Risks and Mitigations
 
-| Risk | Mitigation |
-|------|------------|
-| Supply chain attack via tag update | SHA pinning prevents this |
-| Malicious code injection | Reviewed action source; limited permissions |
-| Token exposure | Action only uses standard `GITHUB_TOKEN` |
+| Risk                        | Mitigation                                        |
+| --------------------------- | ------------------------------------------------- |
+| Supply chain attack via tag | SHA pinning prevents this                         |
+| Malicious code injection    | Reviewed action source; limited permissions       |
+| Token exposure              | Action only uses standard `GITHUB_TOKEN`          |
 
 ---
 
 ### actions/checkout
 
-| Field | Value |
-|-------|-------|
-| **Repository** | [actions/checkout](https://github.com/actions/checkout) |
-| **Version** | v4 |
-| **SHA** | `34e114876b0b11c390a56381ad16ebd13914f8d5` |
-| **Used in** | All workflows |
-| **Added** | 2025-12 |
+| Field       | Value                                                           |
+| ----------- | --------------------------------------------------------------- |
+| Repository  | [actions/checkout](https://github.com/actions/checkout)         |
+| Version     | v4                                                              |
+| SHA         | `34e114876b0b11c390a56381ad16ebd13914f8d5`                      |
+| Used in     | All workflows                                                   |
+| Added       | 2025-12                                                         |
 
-#### Justification
+#### Why actions/checkout Is Used
 
 Official GitHub action for repository checkout. Required for any workflow that needs to access repository contents.
 
-#### Security Review
+#### Security Review for actions/checkout
 
 - **Publisher**: GitHub (official first-party action)
 - **Trust level**: Highest - maintained by GitHub
@@ -87,10 +87,10 @@ Official GitHub action for repository checkout. Required for any workflow that n
 
 ## Audit Log
 
-| Date | Action | Change | Reviewer |
-|------|--------|--------|----------|
-| 2025-12-20 | peter-evans/create-pull-request | Added v7 @ `22a9089...` | reesey275 |
-| 2025-12-20 | actions/checkout | Documented v4 @ `34e1148...` | reesey275 |
+| Date       | Action                         | Change                        | Reviewer  |
+| ---------- | ------------------------------ | ----------------------------- | --------- |
+| 2025-12-20 | peter-evans/create-pull-request | Added v7 @ `22a9089...`      | reesey275 |
+| 2025-12-20 | actions/checkout               | Documented v4 @ `34e1148...` | reesey275 |
 
 ---
 
