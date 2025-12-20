@@ -1,12 +1,12 @@
 # Chad Reesey | reesey275
 
-> Veteran software engineer and systems architect building secure, self-hosted tools and AI-integrated platforms. NSLS-inducted leader, founder of TAGS.
+> Veteran software engineer and systems architect building secure, self-hosted tools and AI-integrated platforms. NSLS-inducted (National Society of Leadership and Success) leader; founder of TAGS (The Angry Gamer Show Productions).
 
 ## 🚀 About Me
 - Veteran | Systems-first builder | DevOps & governance automation
 - I build thinking systems: **visible learning → doctrine → automation**
-- 25+ years across civilian and government environments; currently leading TAGS Ecosystem and completing B.S. CS @ WGU (2024–2027)
-- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with IaaS/PaaS/SaaS architecture and 95% quality guardrails
+- 25+ years across civilian and government environments; currently leading TAGS (The Angry Gamer Show Productions) Ecosystem and completing B.S. CS @ WGU (2024–2027)
+- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS (The Angry Gamer Show Productions) foundation with IaaS/PaaS/SaaS architecture and 95% quality guardrails
 - **U.S. Air Force veteran** — mission-focused operations, accountability, and system reliability shaped by service in mission-critical environments
 
 ## 🧭 Engineering Philosophy
