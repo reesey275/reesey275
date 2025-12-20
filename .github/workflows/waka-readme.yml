@@ -29,16 +29,154 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Update README stats
-        uses: athul/waka-readme@3397f29a4e1cccbaed57c25a059347da48bff5c9 # master
-        with:
+      - name: Fetch WakaTime stats and update README
+        env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-          GH_TOKEN: ${{ github.token }}
-          SHOW_TITLE: true
-          BLOCKS: ⣀⣄⣤⣦⣶⣷⣿
-          TIME_RANGE: last_7_days
-          SHOW_TIME: true
-          SHOW_MASKED_TIME: false
+        run: |
+          set -euo pipefail
+
+          # Fetch stats from WakaTime API
+          AUTH=$(echo -n "$WAKATIME_API_KEY" | base64)
+          STATS=$(curl -sf -H "Authorization: Basic $AUTH" \
+            "https://wakatime.com/api/v1/users/current/stats/last_7_days")
+
+          if [ -z "$STATS" ]; then
+            echo "Failed to fetch WakaTime stats"
+            exit 1
+          fi
+
+          # Extract data using jq
+          TOTAL=$(echo "$STATS" | jq -r '.data.human_readable_total // "0 hrs"')
+          DAILY_AVG=$(echo "$STATS" | jq -r '.data.human_readable_daily_average // "0 hrs"')
+          BEST_DAY_DATE=$(echo "$STATS" | jq -r '.data.best_day.date // "N/A"')
+          BEST_DAY_TIME=$(echo "$STATS" | jq -r '.data.best_day.text // "0 hrs"')
+          RANGE_START=$(echo "$STATS" | jq -r '.data.start // ""' | cut -d'T' -f1)
+          RANGE_END=$(echo "$STATS" | jq -r '.data.end // ""' | cut -d'T' -f1)
+
+          # Build progress bar function (using braille blocks like athul/waka-readme)
+          make_bar() {
+            local pct=$1
+            local blocks="⣀⣄⣤⣦⣶⣷⣿"
+            local bar=""
+            local full_blocks=$((pct * 25 / 100))
+            local remainder=$(((pct * 25 % 100) * 7 / 100))
+
+            for ((i=0; i<full_blocks; i++)); do
+              bar+="${blocks:6:1}"
+            done
+            if [ $full_blocks -lt 25 ] && [ $remainder -gt 0 ]; then
+              bar+="${blocks:$remainder:1}"
+              full_blocks=$((full_blocks + 1))
+            fi
+            for ((i=full_blocks; i<25; i++)); do
+              bar+="${blocks:0:1}"
+            done
+            echo "$bar"
+          }
+
+          # Format time with padding
+          pad_time() {
+            printf "%-16s" "$1"
+          }
+
+          pad_name() {
+            printf "%-20s" "$1"
+          }
+
+          pad_pct() {
+            printf "%6.2f %%" "$1"
+          }
+
+          # Generate languages section
+          LANGUAGES=""
+          while IFS= read -r line; do
+            name=$(echo "$line" | jq -r '.name')
+            text=$(echo "$line" | jq -r '.text')
+            pct=$(echo "$line" | jq -r '.percent')
+            bar=$(make_bar "${pct%.*}")
+            LANGUAGES+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+          done < <(echo "$STATS" | jq -c '.data.languages[:5][]')
+
+          # Generate editors section
+          EDITORS=""
+          while IFS= read -r line; do
+            name=$(echo "$line" | jq -r '.name')
+            text=$(echo "$line" | jq -r '.text')
+            pct=$(echo "$line" | jq -r '.percent')
+            bar=$(make_bar "${pct%.*}")
+            EDITORS+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+          done < <(echo "$STATS" | jq -c '.data.editors[:3][]')
+
+          # Generate OS section
+          OS_STATS=""
+          while IFS= read -r line; do
+            name=$(echo "$line" | jq -r '.name')
+            text=$(echo "$line" | jq -r '.text')
+            pct=$(echo "$line" | jq -r '.percent')
+            bar=$(make_bar "${pct%.*}")
+            OS_STATS+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+          done < <(echo "$STATS" | jq -c '.data.operating_systems[:3][]')
+
+          # Generate projects section
+          PROJECTS=""
+          while IFS= read -r line; do
+            name=$(echo "$line" | jq -r '.name')
+            text=$(echo "$line" | jq -r '.text')
+            pct=$(echo "$line" | jq -r '.percent')
+            bar=$(make_bar "${pct%.*}")
+            PROJECTS+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+          done < <(echo "$STATS" | jq -c '.data.projects[:5][]')
+
+          # Generate categories section (AI Coding, Coding, Writing Docs, etc.)
+          CATEGORIES=""
+          while IFS= read -r line; do
+            name=$(echo "$line" | jq -r '.name')
+            text=$(echo "$line" | jq -r '.text')
+            pct=$(echo "$line" | jq -r '.percent')
+            bar=$(make_bar "${pct%.*}")
+            CATEGORIES+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+          done < <(echo "$STATS" | jq -c '.data.categories[:5][]')
+
+          # Get current timestamp
+          UPDATED=$(date -u "+%Y-%m-%d %H:%M:%S UTC")
+
+          # Build the full stats section
+          STATS_CONTENT="
+          \`\`\`txt
+          📅 ${RANGE_START} - ${RANGE_END}
+          ⏱️  Total: ${TOTAL}  |  Daily Avg: ${DAILY_AVG}  |  Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
+
+          💻 Languages
+          ${LANGUAGES}
+          🛠️  Editors
+          ${EDITORS}
+          🖥️  Operating Systems
+          ${OS_STATS}
+          📁 Projects
+          ${PROJECTS}
+          📊 Categories
+          ${CATEGORIES}\`\`\`
+
+          _Last updated: ${UPDATED}_"
+
+          # Clean up the content (remove leading spaces from heredoc)
+          STATS_CONTENT=$(echo "$STATS_CONTENT" | sed 's/^          //')
+
+          # Update README between markers
+          awk -v content="$STATS_CONTENT" '
+            /<!--START_SECTION:waka-->/ { print; print content; skip=1; next }
+            /<!--END_SECTION:waka-->/ { skip=0 }
+            !skip { print }
+          ' README.md > README.tmp && mv README.tmp README.md
+
+          # Stage changes
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "No changes to README.md"
+          else
+            git commit -m "chore(waka): update weekly development stats"
+            echo "Changes committed"
+          fi
 
       - name: Push waka-readme branch
         run: |
@@ -54,7 +192,14 @@ jobs:
           base="main"
           head="waka-readme"
           title="chore(waka): update weekly stats"
-          body="Automated WakaTime stats update from GitHub Actions."
+          body="Automated WakaTime stats update from GitHub Actions.
+
+          **Stats Include:**
+          - 💻 Languages breakdown
+          - 🛠️ Editors used
+          - 🖥️ Operating systems
+          - 📁 Active projects
+          - 📊 Activity categories (AI Coding, Coding, Docs)"
 
           # Fetch latest main to compare against
           git fetch origin main
