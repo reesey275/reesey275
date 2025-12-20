@@ -23,12 +23,6 @@ jobs:
         with:
           ref: main
 
-      - name: Checkout or create waka-readme branch
-        run: |
-          git fetch origin waka-readme 2>/dev/null && git checkout waka-readme || git checkout -b waka-readme
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Fetch WakaTime stats and update README
         env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
@@ -169,85 +163,24 @@ jobs:
             !skip { print }
           ' README.md > README.tmp && mv README.tmp README.md
 
-          # Stage changes
-          git add README.md
-          if git diff --staged --quiet; then
-            echo "No changes to README.md"
-          else
-            git commit -m "chore(waka): update weekly development stats"
-            echo "Changes committed"
-          fi
+      # Create PR via GitHub API (produces signed commits)
+      # See docs/ACTIONS_EXCEPTIONS.md for rationale
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: waka-readme
+          base: main
+          commit-message: "chore(waka): update weekly development stats"
+          title: "chore(waka): update weekly stats"
+          body: |
+            Automated WakaTime stats update from GitHub Actions.
 
-      - name: Push waka-readme branch
-        run: |
-          git push origin waka-readme || git push -u origin waka-readme
-
-      - name: Create or update PR
-        id: create-pr
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          repo="reesey275/reesey275"
-          base="main"
-          head="waka-readme"
-          title="chore(waka): update weekly stats"
-          body="Automated WakaTime stats update from GitHub Actions.
-
-          **Stats Include:**
-          - 💻 Languages breakdown
-          - 🛠️ Editors used
-          - 🖥️ Operating systems
-          - 📁 Active projects
-          - 📊 Activity categories (AI Coding, Coding, Docs)"
-
-          # Fetch latest main to compare against
-          git fetch origin main
-
-          # Check for ACTUAL file differences (not commit count)
-          if git diff --quiet origin/main -- README.md; then
-            echo "No file changes detected - stats unchanged"
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          echo "README.md has changes:"
-          git diff --stat origin/main -- README.md
-          echo "has_changes=true" >> "$GITHUB_OUTPUT"
-
-          # Check if PR already exists
-          pr_number=$(gh pr list --repo "$repo" --head "$head" --base "$base" --json number -q '.[0].number' 2>/dev/null || echo "")
-
-          if [ -z "$pr_number" ]; then
-            echo "Creating new PR..."
-            gh pr create --repo "$repo" --base "$base" --head "$head" --title "$title" --body "$body"
-          else
-            echo "Updating existing PR #$pr_number..."
-            gh pr edit "$pr_number" --repo "$repo" --title "$title" --body "$body"
-          fi
-
-      - name: Wait for checks and auto-merge
-        if: steps.create-pr.outputs.has_changes == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          repo="reesey275/reesey275"
-          head="waka-readme"
-          base="main"
-
-          # Get the PR number
-          pr_number=$(gh pr list --repo "$repo" --head "$head" --base "$base" --json number -q '.[0].number')
-          echo "PR #$pr_number is ready for merge"
-
-          # Wait for checks (up to 5 minutes)
-          for i in {1..30}; do
-            status=$(gh pr checks "$pr_number" --repo "$repo" 2>/dev/null | grep -c "pass" || echo "0")
-            if [ "$status" -gt "0" ]; then
-              echo "Checks passed, attempting auto-merge..."
-              gh pr merge "$pr_number" --repo "$repo" --squash --auto || echo "Auto-merge not enabled or PR not ready yet"
-              break
-            fi
-            echo "Waiting for checks... ($i/30)"
-            sleep 10
-          done
+            **Stats Include:**
+            - 💻 Languages breakdown
+            - 🛠️ Editors used
+            - 🖥️ Operating systems
+            - 📁 Active projects
+            - 📊 Activity categories (AI Coding, Coding, Docs)
+          delete-branch: false
+          signoff: true
