@@ -13,31 +13,41 @@ The tags-mcp-servers repository implements Model Context Protocol (MCP) server c
 ## MCP Server Implementations
 
 ### 1. TODO Server (`servers/todo_server/`)
-**Task and project management capabilities**
+
+#### Task and project management capabilities
+
 - **Tools:** 9 MCP tools for task management
 - **Features:** Create, read, update, delete tasks; priority management; deadline tracking
 - **Integration:** VS Code task management and project organization
 
 ### 2. Sequential Thinking Server (`servers/sequential_thinking_server/`)
-**Enhanced reasoning and problem-solving capabilities**
+
+#### Enhanced reasoning and problem-solving capabilities
+
 - **Tools:** 8 MCP tools for structured thinking processes
 - **Features:** Step-by-step analysis, hypothesis generation, validation frameworks
 - **Integration:** AI-assisted development and debugging workflows
 
 ### 3. Knowledge Graph Memory Server (`servers/knowledge_graph_memory_server/`)
-**Persistent knowledge management and relationships**
+
+#### Persistent knowledge management and relationships
+
 - **Tools:** 7 MCP tools for graph operations
 - **Features:** Entity management, relationship mapping, observation tracking
 - **Integration:** Context persistence across development sessions
 
 ### 4. Time Server (`servers/time_server/`)
-**Timezone-aware time operations and scheduling**
+
+#### Timezone-aware time operations and scheduling
+
 - **Tools:** 11 MCP tools for time management
 - **Features:** Timezone conversion, meeting scheduling, business hours, notifications
 - **Integration:** Global team coordination and deadline management
 
 ### 5. Filesystem Server (`servers/filesystem_server/`)
-**Secure filesystem operations with access controls**
+
+#### Secure filesystem operations with access controls
+
 - **Tools:** 7 MCP tools for file operations
 - **Features:** File/directory operations, pattern searching, metadata analysis
 - **Security:** Path validation and access restrictions
@@ -87,6 +97,7 @@ The tags-mcp-servers repository implements Model Context Protocol (MCP) server c
 ## Usage Examples
 
 ### VS Code Configuration
+
 ```json
 {
   "mcp.servers": {
