@@ -1,6 +1,6 @@
 # Chad Reesey | reesey275
 
-> Veteran software engineer and systems architect building secure, self-hosted tools and AI-integrated platforms. NSLS-inducted (National Society of Leadership and Success) leader; founder of TAGS (The Angry Gamer Show Productions).
+> I'm a veteran software engineer and systems architect. I build secure, self-hosted tools and AI-integrated platforms. I'm an NSLS-inducted (National Society of Leadership and Success) leader, and I founded TAGS (The Angry Gamer Show Productions).
 
 ## 🚀 About Me
 - Veteran | Systems-first builder | DevOps & governance automation
@@ -57,19 +57,59 @@ Other                13 mins         ⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀�
 ## 🎯 Featured Projects
 
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
-DevOnboarder — automated developer onboarding and compliance platform → service foundation (FastAPI + CI governance + Discord bots) → scales to enterprise workflows and CI/CD triggers.
+**Overview:** Automated developer onboarding and compliance platform; service foundation (FastAPI + CI governance + Discord bots); scales to enterprise workflows and CI/CD triggers.
+
+**Stack:** Python • Shell (POSIX/Bash) • FastAPI • Discord API • GitHub Actions
+
+**Role:** I designed and lead the architecture; I enforce 95%+ quality guardrails and governance-as-code.
+
+**Highlights:** CI-enforced workflows; OAuth2/JWT/RBAC provisioning; documentation/checklist validation; production foundation for TAGS.
+
+---
 
 ### TAGS Ecosystem (9 repos)
-TAGS Ecosystem — multi-repo platform for gaming content production → web app + bots + APIs → scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality gates. (Founder & Lead Architect)
+**Overview:** Multi-repo platform for gaming content production; web app + bots + APIs; scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality gates.
+
+**Stack:** Python • TypeScript • Shell (POSIX/Bash) • Docker • GitHub Actions
+
+**Role:** I founded and lead the ecosystem; I own platform architecture and standards.
+
+**Highlights:** DevOnboarder, MCP servers, core-instructions, QA/QC systems; Discord/GitHub integrations.
+
+---
 
 ### [tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)
-tags-mcp-servers — Model Context Protocol servers → services (FastAPI/Pydantic) → focus: 5 servers, 33+ tools, ~95% coverage.
+**Overview:** Model Context Protocol servers for task management, knowledge graphs, time operations, and secure filesystem access.
+
+**Stack:** Python • FastAPI • Pydantic • MCP SDK
+
+**Role:** I designed server architecture and tooling; I maintain developer experience.
+
+**Highlights:** 5 servers, 33+ tools, ~95% coverage.
+
+---
 
 ### [SquirrelFocus](https://github.com/reesey275/squirrelfocus)
-SquirrelFocus — lightweight journaling → CLI → turns daily logs into actionable doctrine.
+**Overview:** Lightweight journaling that turns daily logs into actionable doctrine.
+
+**Stack:** Python • Shell (POSIX/Bash)
+
+**Role:** I built the CLI and paper-trail patterns.
+
+**Highlights:** Zero-dependency workflow; repeatable journaling with doctrine output.
+
+---
 
 ### [Whisper Project](docs/PROJECTS/WhisperProject.md) | [Repository](https://github.com/reesey275/whisper-project)
-Whisper Project — secure audio transcription → CLI + Docker + API → privacy-first local processing.
+**Overview:** Secure audio transcription with a universal interface; CLI + Docker + API; privacy-first local processing.
+
+**Stack:** Python • OpenAI Whisper • Docker
+
+**Role:** I designed the universal interface across local/Docker/API; I focus on privacy and reproducibility.
+
+**Highlights:** Organized outputs; batch processing; optional GPU acceleration.
+
+---
 
 ### Personal tooling
 - [PortalSDK](https://github.com/reesey275/PortalSDK) — developer toolkit → library/CLI → productivity patterns.
