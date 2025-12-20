@@ -7,7 +7,7 @@ This document provides comprehensive information about available OpenAI models, 
 ### Chat Models
 
 | Model | Token Limits | Request and Other Limits | Batch Queue Limits |
-|-------|-------------|-------------------------|-------------------|
+| --- | --- | --- | --- |
 | gpt-3.5-turbo | 200,000 TPM | 500 RPM, 10,000 RPD | 2,000,000 TPD |
 | gpt-3.5-turbo-0125 | 200,000 TPM | 500 RPM, 10,000 RPD | 2,000,000 TPD |
 | gpt-3.5-turbo-1106 | 200,000 TPM | 500 RPM, 10,000 RPD | 2,000,000 TPD |
@@ -51,7 +51,7 @@ This document provides comprehensive information about available OpenAI models, 
 ### GPT-5 Models
 
 | Model | Token Limits | Request and Other Limits | Batch Queue Limits |
-|-------|-------------|-------------------------|-------------------|
+| --- | --- | --- | --- |
 | gpt-5 (gpt-5-2025-08-07) | 500,000 TPM | 500 RPM | 1,500,000 TPD |
 | gpt-5-chat-latest | 30,000 TPM | 500 RPM | 900,000 TPD |
 | **gpt-5-codex** | **500,000 TPM** | **500 RPM** | **900,000 TPD** |

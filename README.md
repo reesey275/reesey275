@@ -154,10 +154,8 @@ Other                13 mins         ⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀�
 
 ### Systems & Tooling (Representative)
 
-<p align="center">
-  <strong>25+ years exposure across civilian and government infrastructure:</strong><br/>
-  Linux • Ubuntu • Docker • NGINX • Python • Shell (POSIX/Bash) • GitHub Actions • Cloudflare • Ansible • Terraform
-</p>
+**25+ years exposure across civilian and government infrastructure:**  
+Linux • Ubuntu • Docker • NGINX • Python • Shell (POSIX/Bash) • GitHub Actions • Cloudflare • Ansible • Terraform
 
 **[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience (historical breadth vs current daily usage)
 
