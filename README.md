@@ -111,7 +111,7 @@ AI-powered audio transcription pipeline for secure, self-hosted environments.
 
 ### Security & Administration
 - Active Directory, RBAC, server hardening
-- Secret management, Cloudflare Tunnels, Potato Policy (zero-tolerance)
+- Secret management, Cloudflare Tunnels, **Potato Policy** (personal engineering governance standard for evidence-first decisions, explicit tradeoffs, and long-term maintainability)
 - Zero-trust architecture and automated security scanning
 - GitHub repository hygiene and access control
 
