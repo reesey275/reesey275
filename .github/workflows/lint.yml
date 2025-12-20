@@ -12,7 +12,7 @@ jobs:
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Run ShellCheck
         run: |
           find . -name '*.sh' -print0 | xargs -0 shellcheck
@@ -21,7 +21,7 @@ jobs:
     name: MarkdownLint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Run markdownlint
         run: |
           npm install -g markdownlint-cli
