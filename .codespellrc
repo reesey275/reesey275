@@ -1,3 +1,2 @@
 [codespell]
 skip = *.lock,*.png,*.jpg,*.jpeg,*.gif,*.svg,*.pdf,node_modules,.git
-ignore-words-list = 
