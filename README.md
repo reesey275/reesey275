@@ -203,6 +203,6 @@ Linux • Ubuntu • Docker • NGINX • Python • Shell (POSIX/Bash) • GitH
 - [📚 Journal Index](docs/Journal_Index.md) — Learning documentation
 - [🔍 AAR Index](docs/AAR_Index.md) — After Action Reports
 
-> *"We practice in public so others can perform in peace."*
+> _"We practice in public so others can perform in peace."_
 
 **Open to opportunities** • Veteran-owned • Florida-based
