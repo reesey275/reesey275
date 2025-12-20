@@ -45,6 +45,7 @@ jobs:
           git push origin waka-readme || git push -u origin waka-readme
 
       - name: Create or update PR
+        id: create-pr
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -54,6 +55,16 @@ jobs:
           head="waka-readme"
           title="chore(waka): update weekly stats"
           body="Automated WakaTime stats update from GitHub Actions."
+
+          # Check if there are any commits between branches
+          commits_ahead=$(git rev-list --count origin/main..HEAD 2>/dev/null || echo "0")
+          if [ "$commits_ahead" = "0" ]; then
+            echo "No new commits to PR - stats unchanged"
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
 
           # Check if PR already exists
           pr_number=$(gh pr list --repo "$repo" --head "$head" --base "$base" --json number -q '.[0].number' 2>/dev/null || echo "")
@@ -67,6 +78,7 @@ jobs:
           fi
 
       - name: Wait for checks and auto-merge
+        if: steps.create-pr.outputs.has_changes == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -83,7 +95,7 @@ jobs:
           for i in {1..30}; do
             status=$(gh pr checks "$pr_number" --repo "$repo" 2>/dev/null | grep -c "pass" || echo "0")
             if [ "$status" -gt "0" ]; then
-              echo "✓ Checks passed, attempting auto-merge..."
+              echo "Checks passed, attempting auto-merge..."
               gh pr merge "$pr_number" --repo "$repo" --squash --auto || echo "Auto-merge not enabled or PR not ready yet"
               break
             fi
