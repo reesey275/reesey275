@@ -11,19 +11,82 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  update-readme:
-    name: Update this repo's README
+  update:
+    name: Update README stats via PR
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-      - uses: athul/waka-readme@3397f29a4e1cccbaed57c25a059347da48bff5c9 # master
+      - name: Checkout main
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: main
+
+      - name: Checkout or create waka-readme branch
+        run: |
+          git fetch origin waka-readme 2>/dev/null && git checkout waka-readme || git checkout -b waka-readme
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update README stats
+        uses: athul/waka-readme@3397f29a4e1cccbaed57c25a059347da48bff5c9 # master
         with:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           SHOW_TITLE: true
           BLOCKS: ⣀⣄⣤⣦⣶⣷⣿
           TIME_RANGE: last_7_days
           SHOW_TIME: true
           SHOW_MASKED_TIME: false
+
+      - name: Push waka-readme branch
+        run: |
+          git push origin waka-readme || git push -u origin waka-readme
+
+      - name: Create or update PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          repo="reesey275/reesey275"
+          base="main"
+          head="waka-readme"
+          title="chore(waka): update weekly stats"
+          body="Automated WakaTime stats update from GitHub Actions."
+
+          # Check if PR already exists
+          pr_number=$(gh pr list --repo "$repo" --head "$head" --base "$base" --json number -q '.[0].number' 2>/dev/null || echo "")
+
+          if [ -z "$pr_number" ]; then
+            echo "Creating new PR..."
+            gh pr create --repo "$repo" --base "$base" --head "$head" --title "$title" --body "$body"
+          else
+            echo "Updating existing PR #$pr_number..."
+            gh pr edit "$pr_number" --repo "$repo" --title "$title" --body "$body"
+          fi
+
+      - name: Wait for checks and auto-merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          repo="reesey275/reesey275"
+          head="waka-readme"
+          base="main"
+
+          # Get the PR number
+          pr_number=$(gh pr list --repo "$repo" --head "$head" --base "$base" --json number -q '.[0].number')
+          echo "PR #$pr_number is ready for merge"
+
+          # Wait for checks (up to 5 minutes)
+          for i in {1..30}; do
+            status=$(gh pr checks "$pr_number" --repo "$repo" 2>/dev/null | grep -c "pass" || echo "0")
+            if [ "$status" -gt "0" ]; then
+              echo "✓ Checks passed, attempting auto-merge..."
+              gh pr merge "$pr_number" --repo "$repo" --squash --auto || echo "Auto-merge not enabled or PR not ready yet"
+              break
+            fi
+            echo "Waiting for checks... ($i/30)"
+            sleep 10
+          done
