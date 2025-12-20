@@ -87,10 +87,10 @@ Official GitHub action for repository checkout. Required for any workflow that n
 
 ## Audit Log
 
-| Date       | Action                         | Change                        | Reviewer  |
-| ---------- | ------------------------------ | ----------------------------- | --------- |
+| Date       | Action                          | Change                       | Reviewer  |
+| ---------- | ------------------------------- | ---------------------------- | --------- |
 | 2025-12-20 | peter-evans/create-pull-request | Added v7 @ `22a9089...`      | reesey275 |
-| 2025-12-20 | actions/checkout               | Documented v4 @ `34e1148...` | reesey275 |
+| 2025-12-20 | actions/checkout                | Documented v4 @ `34e1148...` | reesey275 |
 
 ---
 
