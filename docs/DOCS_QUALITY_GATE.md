@@ -19,7 +19,7 @@
 3. **Smoke Test** ✅
    - Branch: `test/docs-quality-smoke-test`
    - Status: Pushed to origin; waiting for PR creation
-   - Purpose: Verify workflow catches intentional typos (teh, recieve)
+   - Purpose: Verify workflow catches intentional typos (the, receive)
 
 ### Next Steps (Manual, Requires GitHub UI)
 
