@@ -57,36 +57,24 @@ Other                13 mins         ⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀�
 ## 🎯 Featured Projects
 
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
-Automated developer onboarding and compliance platform.  
-- **Stack:** Python, Shell (POSIX/Bash), Discord API, GitHub Actions  
-- **Capabilities:** CI-enforced workflows, identity/role provisioning (OAuth2/JWT/RBAC), documentation/checklist validation, governance-as-code for growing teams
-- **Status:** Production foundation platform for TAGS
+DevOnboarder — automated developer onboarding and compliance platform → service foundation (FastAPI + CI governance + Discord bots) → scales to enterprise workflows and CI/CD triggers.
 
 ### TAGS Ecosystem (9 repos)
-Complete development platform for gaming content production with IaaS/PaaS/SaaS architecture, AI-enhanced workflows, and automated quality control.
-- **Stack:** Python, TypeScript, Shell (POSIX/Bash), Docker, GitHub Actions
-- **Role:** Founder & Lead Architect
-- **Components:** DevOnboarder, tags-mcp-servers, core-instructions, quality control systems, Discord/GitHub integration
-- **Vision:** Premium LinkedIn connector for professional networking (Q1 2026)
+TAGS Ecosystem — multi-repo platform for gaming content production → web app + bots + APIs → scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality gates. (Founder & Lead Architect)
 
 ### [tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)
-Model Context Protocol servers for task management, knowledge graphs, time operations, and secure filesystem access.  
-- **Stack:** Python, MCP SDK, FastAPI, Pydantic  
-- **Features:** 5 servers, 33+ tools, 95% coverage
+tags-mcp-servers — Model Context Protocol servers → services (FastAPI/Pydantic) → focus: 5 servers, 33+ tools, ~95% coverage.
 
 ### [SquirrelFocus](https://github.com/reesey275/squirrelfocus)
-Lightweight journaling CLI to turn daily logs into actionable doctrine.  
-- **Stack:** Python, Shell (POSIX/Bash) scripting
+SquirrelFocus — lightweight journaling → CLI → turns daily logs into actionable doctrine.
 
 ### [Whisper Project](docs/PROJECTS/WhisperProject.md) | [Repository](https://github.com/reesey275/whisper-project)
-AI-powered audio transcription pipeline for secure, self-hosted environments.  
-- **Stack:** Python, OpenAI Whisper API  
-- **Focus:** Privacy-first AI tools, local processing
+Whisper Project — secure audio transcription → CLI + Docker + API → privacy-first local processing.
 
 ### Personal tooling
-- [PortalSDK](https://github.com/reesey275/PortalSDK) — Developer toolkit
-- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify developer tools
-- [core-instructions](docs/PROJECTS/core-instructions.md) — Policies/contracts for humans + agents
+- [PortalSDK](https://github.com/reesey275/PortalSDK) — developer toolkit → library/CLI → productivity patterns.
+- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist management → full-stack (API + SPA + Python CLI) → session auth + rate limiting.
+- [core-instructions](docs/PROJECTS/core-instructions.md) — engineering policies/contracts → docs → governance-as-code.
 
 ## 🛠 Technical Expertise
 
