@@ -33,7 +33,7 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 ### GitHub Contribution Activity
 
-Note: Contribution activity charts are GitHub-generated; current ratios reflect a solo build phase (more commits than reviews).
+Note: Contribution activity reflects a solo build phase focused on end-to-end system design and execution.
 
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark&count_private=true&include_all_commits=true)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark&langs_count=8)
