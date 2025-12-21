@@ -259,28 +259,48 @@ jobs:
           # Build the full stats section
           STATS_CONTENT="
           \`\`\`txt
+          🌍 Time Zone: ${TIMEZONE}
           📅 ${RANGE_START} - ${RANGE_END}
           ⏱️  Total: ${TOTAL}  |  Daily Avg: ${DAILY_AVG}  |  Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
-          🌍 Time Zone: ${TIMEZONE}
+
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
           📊 I'm Most Productive on ${max_day}
+
           ${DAYS_OF_WEEK}
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
           💻 Languages
+
           ${LANGUAGES}
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
           🛠️  Editors
+
           ${EDITORS}
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
           🖥️  Operating Systems
+
           ${OS_STATS}
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
           📁 Projects
+
           ${PROJECTS}
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
           📊 Categories
+
           ${CATEGORIES}"
           
           # Add language repos section only if data exists
           if [ -n "${LANGUAGE_REPOS:-}" ] && [ -n "${most_used_lang:-}" ]; then
             STATS_CONTENT+="
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
           🔤 I Mostly Code in ${most_used_lang}
+
           ${LANGUAGE_REPOS}"
           fi
           
