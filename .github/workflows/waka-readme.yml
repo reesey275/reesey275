@@ -31,13 +31,42 @@ jobs:
 
           # Fetch stats from WakaTime API
           AUTH=$(echo -n "$WAKATIME_API_KEY" | base64)
-          STATS=$(curl -sf -H "Authorization: Basic $AUTH" \
-            "https://wakatime.com/api/v1/users/current/stats/last_7_days")
-
-          if [ -z "$STATS" ]; then
-            echo "Failed to fetch WakaTime stats"
-            exit 1
-          fi
+          
+          # Retry logic for stale data (WakaTime free tier caches stats)
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            STATS=$(curl -sf -H "Authorization: Basic $AUTH" \
+              "https://wakatime.com/api/v1/users/current/stats/last_7_days")
+            
+            if [ -z "$STATS" ]; then
+              echo "Failed to fetch WakaTime stats"
+              exit 1
+            fi
+            
+            # Check if stats are up to date
+            IS_UP_TO_DATE=$(echo "$STATS" | jq -r '.data.is_up_to_date // false')
+            PERCENT_CALCULATED=$(echo "$STATS" | jq -r '.data.percent_calculated // 0')
+            
+            echo "Stats up-to-date: $IS_UP_TO_DATE (${PERCENT_CALCULATED}% calculated)"
+            
+            if [ "$IS_UP_TO_DATE" = "true" ]; then
+              echo "Received fresh stats from WakaTime API"
+              break
+            fi
+            
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+              echo "Stats are stale, retrying in 5 seconds (attempt $RETRY_COUNT/$MAX_RETRIES)..."
+              sleep 5
+            else
+              echo "Warning: Using potentially stale stats after $MAX_RETRIES attempts"
+            fi
+          done
+          
+          # Debug: Log key stats totals
+          TOTAL_SECONDS=$(echo "$STATS" | jq -r '.data.total_seconds_including_other_language // 0')
+          echo "Debug: Total seconds from API: $TOTAL_SECONDS ($(echo "scale=2; $TOTAL_SECONDS / 3600" | bc) hours)"
 
           # Extract data using jq
           TOTAL=$(echo "$STATS" | jq -r '.data.human_readable_total // "0 hrs"')
