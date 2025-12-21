@@ -96,6 +96,7 @@ jobs:
           BEST_DAY_TIME=$(echo "$STATS" | jq -r '.data.best_day.text // "0 hrs"')
           RANGE_START=$(echo "$STATS" | jq -r '.data.start // ""' | cut -d'T' -f1)
           RANGE_END=$(echo "$STATS" | jq -r '.data.end // ""' | cut -d'T' -f1)
+          TIMEZONE=$(echo "$STATS" | jq -r '.data.timezone // "UTC"')
 
           # Build progress bar function (using braille blocks like athul/waka-readme)
           make_bar() {
@@ -189,6 +190,7 @@ jobs:
           \`\`\`txt
           📅 ${RANGE_START} - ${RANGE_END}
           ⏱️  Total: ${TOTAL}  |  Daily Avg: ${DAILY_AVG}  |  Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
+          🌍 Time Zone: ${TIMEZONE}
 
           💻 Languages
           ${LANGUAGES}
