@@ -1,4 +1,5 @@
-name: docs-quality
+---
+name: Quality Gate
 
 on:
   pull_request:
@@ -8,10 +9,11 @@ on:
   workflow_dispatch:
 
 permissions:
+  pull-requests: read
   contents: read
 
 jobs:
-  docs-quality:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,18 +23,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          
+          # Python tools
           python3 -m pip install --upgrade pip
           python3 -m pip install codespell
-
+          
+          # Node tools
           npm install -g markdownlint-cli2
-
-          # Vale (pin version; update intentionally)
+          
+          # Vale (pinned version)
           VALE_VERSION="3.11.0"
           curl -fsSL -o vale.tar.gz \
             "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz"
           tar -xzf vale.tar.gz vale
           sudo mv vale /usr/local/bin/vale
           vale --version
+
+      - name: ShellCheck
+        run: |
+          find . -name '*.sh' -print0 | xargs -0 shellcheck
 
       - name: Codespell
         run: |
@@ -48,6 +57,11 @@ jobs:
 
       - name: Vale
         run: |
-          # If you have a Vale config already, this will use it.
-          # If not, add .vale.ini + styles (recommended).
           vale .
+
+      - name: PR Thread Governance
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash scripts/pr_threads_guard.sh "${{ github.event.pull_request.number }}" --check
