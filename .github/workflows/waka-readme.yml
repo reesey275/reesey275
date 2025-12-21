@@ -163,24 +163,44 @@ jobs:
             !skip { print }
           ' README.md > README.tmp && mv README.tmp README.md
 
-      # Create PR via GitHub API (produces signed commits)
-      # See docs/ACTIONS_EXCEPTIONS.md for rationale
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: waka-readme
-          base: main
-          commit-message: "chore(waka): update weekly development stats"
-          title: "chore(waka): update weekly stats"
-          body: |
-            Automated WakaTime stats update from GitHub Actions.
+      - name: Create or update PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git checkout -B waka-readme
+          git add README.md
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          git commit -m "chore(waka): update weekly development stats"
+          git push -f origin waka-readme
+          
+          # Create PR if it doesn't exist, otherwise it will auto-update
+          gh pr create --fill --head waka-readme --base main \
+            --title "chore(waka): update weekly stats" \
+            --body "Automated WakaTime stats update from GitHub Actions.
 
-            **Stats Include:**
-            - 💻 Languages breakdown
-            - 🛠️ Editors used
-            - 🖥️ Operating systems
-            - 📁 Active projects
-            - 📊 Activity categories (AI Coding, Coding, Docs)
-          delete-branch: false
-          signoff: true
+          **Stats Include:**
+          - 💻 Languages breakdown
+          - 🛠️ Editors used
+          - 🖥️ Operating systems
+          - 📁 Active projects
+          - 📊 Activity categories (AI Coding, Coding, Docs)" \
+            || gh pr edit waka-readme --body "Automated WakaTime stats update from GitHub Actions.
+
+          **Stats Include:**
+          - 💻 Languages breakdown
+          - 🛠️ Editors used
+          - 🖥️ Operating systems
+          - 📁 Active projects
+          - 📊 Activity categories (AI Coding, Coding, Docs)
+
+          _Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_"
