@@ -289,14 +289,7 @@ jobs:
 
           ${CATEGORIES}
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          
-          # Add language repos section only if data exists
-          if [ -n "${LANGUAGE_REPOS:-}" ] && [ -n "${most_used_lang:-}" ]; then
-            STATS_CONTENT+="
-
-          fi
-          
-          STATS_CONTENT+="\`\`\`
+          \`\`\`
 
           _Last updated: ${UPDATED}_"
 
