@@ -24,15 +24,19 @@ set -euo pipefail
 PR="${1:-}"
 DRY_RUN=false
 FORCE=false
+AUDIT_OUTDATED=false
+RESOLVE_OUTDATED=false
 
 if [[ -z "${PR}" ]]; then
-  echo "Usage: $0 <PR_NUMBER|PR_URL> [--dry-run] [--force]"
+  echo "Usage: $0 <PR_NUMBER|PR_URL> [OPTIONS]"
   echo ""
   echo "Resolves bot review threads with inline audit trail."
   echo ""
   echo "Options:"
-  echo "  --dry-run    Show what would be resolved without modifying"
-  echo "  --force      Resolve even if inline reply fails (breaks audit trail)"
+  echo "  --dry-run            Show what would be resolved without modifying"
+  echo "  --force              Resolve even if inline reply fails (breaks audit trail)"
+  echo "  --audit-outdated     Include outdated unresolved threads in output"
+  echo "  --resolve-outdated   Resolve outdated threads (requires --audit-outdated)"
   exit 2
 fi
 
@@ -52,9 +56,17 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=true; shift ;;
     --force) FORCE=true; shift ;;
+    --audit-outdated) AUDIT_OUTDATED=true; shift ;;
+    --resolve-outdated) RESOLVE_OUTDATED=true; shift ;;
     *) echo "Unknown arg: $1"; exit 2 ;;
   esac
 done
+
+# Validation: --resolve-outdated requires --audit-outdated
+if ${RESOLVE_OUTDATED} && ! ${AUDIT_OUTDATED}; then
+  echo "❌ --resolve-outdated requires --audit-outdated"
+  exit 2
+fi
 
 command -v gh >/dev/null || { echo "❌ gh CLI not found"; exit 3; }
 command -v jq >/dev/null || { echo "❌ jq not found"; exit 3; }
@@ -127,17 +139,30 @@ PR_TITLE="$(echo "${RESULT}" | jq -r '.data.repository.pullRequest.title')"
 THREADS="$(echo "${RESULT}" | jq '.data.repository.pullRequest.reviewThreads.nodes')"
 TOTAL="$(echo "${THREADS}" | jq 'length')"
 
-# Filter for unresolved, not outdated, bot-authored threads
-BOT_THREADS="$(echo "${THREADS}" | jq '[
-  .[] 
-  | select(.isResolved == false and .isOutdated == false)
-  | select(.comments.nodes[0].author.login | test("bot|copilot"; "i"))
-]')"
+# Filter for bot-authored threads based on mode
+if ${AUDIT_OUTDATED}; then
+  # Include outdated threads (for governance cleanup)
+  BOT_THREADS="$(echo "${THREADS}" | jq '[
+    .[] 
+    | select(.isResolved == false)
+    | select(.comments.nodes[0].author.login | test("bot|copilot"; "i"))
+  ]')"
+  MODE_NOTE=" (including outdated)"
+else
+  # Default: only active (not outdated) threads
+  BOT_THREADS="$(echo "${THREADS}" | jq '[
+    .[] 
+    | select(.isResolved == false and .isOutdated == false)
+    | select(.comments.nodes[0].author.login | test("bot|copilot"; "i"))
+  ]')"
+  MODE_NOTE=""
+fi
+
 BOT_COUNT="$(echo "${BOT_THREADS}" | jq 'length')"
 
 echo "PR: ${PR_TITLE}"
 echo "Total threads: ${TOTAL}"
-echo "Unresolved bot threads: ${BOT_COUNT}"
+echo "Unresolved bot threads${MODE_NOTE}: ${BOT_COUNT}"
 echo ""
 
 if [[ "${BOT_COUNT}" -eq 0 ]]; then
@@ -151,6 +176,7 @@ echo "────────────────────────�
 echo "${BOT_THREADS}" | jq -r '.[] | 
   "📍 \(.comments.nodes[0].path):\(.comments.nodes[0].line // "?")
    Author: \(.comments.nodes[0].author.login)
+   Outdated: \(.isOutdated)
    Body: \(.comments.nodes[0].body[:100])...
 "'
 echo "─────────────────────────────────────────────────────────────"
@@ -164,6 +190,7 @@ fi
 # Process each thread: reply inline + resolve
 SUCCESS=0
 FAILED=0
+SKIPPED=0
 
 while read -r thread_data; do
   THREAD_ID="$(echo "${thread_data}" | jq -r '.id')"
@@ -171,8 +198,17 @@ while read -r thread_data; do
   AUTHOR="$(echo "${thread_data}" | jq -r '.comments.nodes[0].author.login')"
   PATH="$(echo "${thread_data}" | jq -r '.comments.nodes[0].path')"
   LINE="$(echo "${thread_data}" | jq -r '.comments.nodes[0].line // "?"')"
+  IS_OUTDATED="$(echo "${thread_data}" | jq -r '.isOutdated')"
   
-  echo "Processing: ${PATH}:${LINE} (${AUTHOR})"
+  echo "Processing: ${PATH}:${LINE} (${AUTHOR}, outdated: ${IS_OUTDATED})"
+  
+  # Skip outdated threads unless --resolve-outdated is set
+  if [[ "${IS_OUTDATED}" == "true" ]] && ! ${RESOLVE_OUTDATED}; then
+    echo "  ⚠️  Skipping outdated thread (use --resolve-outdated to clean up)"
+    SKIPPED=$((SKIPPED + 1))
+    echo ""
+    continue
+  fi
   
   # Step 1: Post inline reply for audit trail
   REPLY_BODY="✅ **Resolved by automation**
@@ -215,7 +251,13 @@ Thread resolved automatically after checks passed."
 done < <(echo "${BOT_THREADS}" | jq -c '.[]')
 
 echo "─────────────────────────────────────────────────────────────"
-echo "Results: ${SUCCESS} resolved, ${FAILED} failed"
+echo "Results: ${SUCCESS} resolved, ${FAILED} failed, ${SKIPPED} skipped (outdated)"
+
+if [[ "${SKIPPED}" -gt 0 ]] && ! ${RESOLVE_OUTDATED}; then
+  echo ""
+  echo "⚠️  ${SKIPPED} outdated thread(s) skipped. To resolve them:"
+  echo "  $0 ${PR} --audit-outdated --resolve-outdated"
+fi
 
 if [[ "${FAILED}" -gt 0 ]]; then
   echo "❌ Some threads could not be resolved"

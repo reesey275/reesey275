@@ -27,12 +27,16 @@ PR="${1:-}"
 STRICT=false
 RESOLVE_MODE=false
 ANNOTATE=false
+AUDIT_OUTDATED=false
+FAIL_ON_OUTDATED=false
 
 if [[ -z "${PR}" ]]; then
   echo "Usage: $0 <PR_NUMBER|PR_URL> [OPTIONS]"
   echo ""
   echo "Options:"
   echo "  --strict                Fail on any unresolved thread (even if outdated)"
+  echo "  --audit-outdated        Report outdated unresolved threads (warning only, exit 0)"
+  echo "  --fail-on-outdated      Exit 2 if outdated unresolved threads exist (with --audit-outdated)"
   echo "  --resolve-bot-threads   Resolve bot threads (requires --annotate)"
   echo "  --annotate              Leave audit trail when resolving (mandatory with --resolve-bot-threads)"
   echo ""
@@ -70,6 +74,8 @@ shift || true
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --strict) STRICT=true; shift ;;
+    --audit-outdated) AUDIT_OUTDATED=true; shift ;;
+    --fail-on-outdated) FAIL_ON_OUTDATED=true; shift ;;
     --resolve-bot-threads) RESOLVE_MODE=true; shift ;;
     --annotate) ANNOTATE=true; shift ;;
     *) echo "Unknown arg: $1"; exit 2 ;;
@@ -213,6 +219,43 @@ echo "Mode: ${MODE_DESC}"
 echo "Total threads: ${TOTAL}"
 echo "Active threads: ${ACTIVE_COUNT}"
 echo ""
+
+# Check for outdated unresolved threads (governance debt)
+if ${AUDIT_OUTDATED}; then
+  OUTDATED_UNRESOLVED="$(echo "${THREADS}" | jq '[.[] | select(.isResolved == false and .isOutdated == true)]')"
+  OUTDATED_COUNT="$(echo "${OUTDATED_UNRESOLVED}" | jq 'length')"
+  
+  if [[ "${OUTDATED_COUNT}" -gt 0 ]]; then
+    echo "⚠️  GOVERNANCE DEBT: ${OUTDATED_COUNT} outdated but unresolved thread(s)"
+    echo ""
+    echo "These threads are not merge-blocking but should be cleaned up:"
+    echo "─────────────────────────────────────────────────────────────"
+    
+    while read -r thread; do
+      AUTHOR="$(echo "${thread}" | jq -r '.comments.nodes[0].author.login // "(unknown)"')"
+      PATH_FILE="$(echo "${thread}" | jq -r '.path // "(no path)"')"
+      LINE="$(echo "${thread}" | jq -r '.line // "?"')"
+      BODY="$(echo "${thread}" | jq -r '.comments.nodes[0].body // "(no body)"' | head -c 120)"
+      
+      echo "📍 ${PATH_FILE}:${LINE}"
+      echo "   Author: ${AUTHOR}"
+      echo "   Comment: ${BODY}..."
+      echo ""
+    done < <(echo "${OUTDATED_UNRESOLVED}" | jq -c '.[]')
+    
+    echo "─────────────────────────────────────────────────────────────"
+    echo "Suggested cleanup (with audit trail):"
+    echo "  scripts/resolve_bot_threads.sh ${PR} --audit-outdated --resolve-outdated"
+    echo ""
+    
+    if ${FAIL_ON_OUTDATED}; then
+      echo "❌ --fail-on-outdated: Failing due to governance debt"
+      exit 2
+    else
+      echo "::warning title=Governance debt::${OUTDATED_COUNT} outdated unresolved threads (not merge-blocking)"
+    fi
+  fi
+fi
 
 if [[ "${ACTIVE_COUNT}" -eq 0 ]]; then
   echo "✅ No active review threads. Safe to proceed."
