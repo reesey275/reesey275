@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: main
+          token: ${{ secrets.WAKA_PAT || github.token }}
 
       - name: Fetch WakaTime stats and update README
         env:
@@ -214,7 +215,7 @@ jobs:
 
       - name: Create or update PR and enable auto-merge
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.WAKA_PAT || github.token }}
         run: |
           set -euo pipefail
 
