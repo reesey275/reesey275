@@ -227,9 +227,11 @@ gh pr list --state merged --limit 5 | grep "waka"
 # Check which token was used
 gh run view <RUN_NUMBER> --log | grep "Auto-merge"
 
-# Check PR commit status
-gh api repos/reesey275/reesey275/pulls/<PR_NUMBER>/commits -q '.[].sha' | head -1 | \
-  xargs -I {} gh api repos/reesey275/reesey275/commits/{}/status --jq '.statuses'
+# Check PR commit status (replace OWNER/REPO with your repository)
+OWNER=reesey275
+REPO=reesey275
+gh api repos/${OWNER}/${REPO}/pulls/<PR_NUMBER>/commits -q '.[].sha' | head -1 | \
+  xargs -I {} gh api repos/${OWNER}/${REPO}/commits/{}/status --jq '.statuses'
 ```
 
 **Solutions**:
