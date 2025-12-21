@@ -20,7 +20,7 @@ The workflow is fully functional and requires zero manual intervention:
 - ✅ Fetches stats from WakaTime API
 - ✅ Creates/updates PR with auto-merge enabled
 - ✅ All checks run automatically and merge when passing
-- **Note**: Stats will be 2-4 hours delayed on free tier (see [WakaTime Free Tier Limitations](#wakatime-free-tier-limitations))
+- **Note**: Stats are 2-4 hours behind real-time activity on the free tier (see [WakaTime Free Tier Limitations](#wakatime-free-tier-limitations))
 
 ## Problem Statement
 
