@@ -74,19 +74,19 @@ jobs:
           echo "Debug: Total seconds from API: $TOTAL_SECONDS ($(echo "scale=2; $TOTAL_SECONDS / 3600" | bc) hours)"
           
           echo "Debug: Languages breakdown"
-          echo "$STATS" | jq -r '(.data.languages // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          echo "$STATS" | jq -r '(.data.languages // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
           
           echo "Debug: Editors breakdown"
-          echo "$STATS" | jq -r '(.data.editors // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          echo "$STATS" | jq -r '(.data.editors // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
           
           echo "Debug: Operating systems breakdown"
-          echo "$STATS" | jq -r '(.data.operating_systems // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          echo "$STATS" | jq -r '(.data.operating_systems // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
           
           echo "Debug: Projects breakdown"
-          echo "$STATS" | jq -r '(.data.projects // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          echo "$STATS" | jq -r '(.data.projects // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
           
           echo "Debug: Categories breakdown"
-          echo "$STATS" | jq -r '(.data.categories // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          echo "$STATS" | jq -r '(.data.categories // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
 
           # Extract data using jq
           TOTAL=$(echo "$STATS" | jq -r '.data.human_readable_total // "0 hrs"')
@@ -264,11 +264,11 @@ jobs:
           printf '%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n' \
             "Automated WakaTime stats update from GitHub Actions." \
             "**Stats Include:**" \
-            "- 💻 Languages breakdown" \
-            "- 🛠️ Editors used" \
-            "- 🖥️ Operating systems" \
-            "- 📁 Active projects" \
-            "- 📊 Activity categories (AI Coding, Coding, Docs)" \
+            "- Languages breakdown" \
+            "- Editors used" \
+            "- Operating systems" \
+            "- Active projects" \
+            "- Activity categories (AI Coding, Coding, Docs)" \
             "_Updated: ${TIMESTAMP}_" \
             > "$TEMP_BODY"
 
