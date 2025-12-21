@@ -261,7 +261,16 @@ jobs:
           trap cleanup EXIT
           
           TIMESTAMP="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          PR_BODY=$'Automated WakaTime stats update from GitHub Actions.\n\n**Stats Include:**\n- 💻 Languages breakdown\n- 🛠️ Editors used\n- 🖥️ Operating systems\n- 📁 Active projects\n- 📊 Activity categories (AI Coding, Coding, Docs)\n\n_Updated: '"${TIMESTAMP}"$'_'
+          PR_BODY="Automated WakaTime stats update from GitHub Actions.
+
+**Stats Include:**
+- 💻 Languages breakdown
+- 🛠️ Editors used
+- 🖥️ Operating systems
+- 📁 Active projects
+- 📊 Activity categories (AI Coding, Coding, Docs)
+
+_Updated: ${TIMESTAMP}_"
           printf '%s' "$PR_BODY" > "$TEMP_BODY"
 
           PR_NUMBER=$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open --json number -q '.[0].number' || true)

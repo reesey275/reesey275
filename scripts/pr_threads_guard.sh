@@ -487,8 +487,8 @@ rm -f /tmp/pr_title_$$
 TOTAL="$(echo "${THREADS}" | jq 'length')"
 
 # Calculate all three thread states for visibility
-# Note: THREADS already only contains unresolved threads (isResolved=false) from the GraphQL query
-UNRESOLVED_TOTAL="${TOTAL}"
+# THREADS contains ALL threads - filter for unresolved ones
+UNRESOLVED_TOTAL="$(echo "${THREADS}" | jq '[.[] | select(.isResolved == false)] | length')"
 UNRESOLVED_ACTIVE="$(echo "${THREADS}" | jq '[.[] | select(.isResolved == false and .isOutdated == false)] | length')"
 UNRESOLVED_OUTDATED="$(echo "${THREADS}" | jq '[.[] | select(.isResolved == false and .isOutdated == true)] | length')"
 
