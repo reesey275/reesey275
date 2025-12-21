@@ -157,7 +157,7 @@ Use AI for **structure and challenge**, not authority.
 
 ---
 
-## Quick Daily Loop (15–45 minutes)
+## Quick Daily Loop (15–30 minutes)
 
 1. Pick one topic (small).
 2. Write the 1-paragraph explanation from memory.
@@ -270,13 +270,14 @@ Force deeper understanding.
 ### Day 5 — Teach-Back
 
 Make it transferable.
+
 Write 5 bullets:
 
-* problem
-* root cause
-* fix
-* prevention
-* verification source
+  * problem
+  * root cause
+  * fix
+  * prevention
+  * verification source
 
 **Deliverable:** Teach-back bullets.
 
@@ -318,28 +319,6 @@ Prove you own it.
 * What's the difference between relative and absolute paths?
 * What does "idempotent" mean? Give one real example.
 * What's a database transaction? What breaks without one?
-
----
-
-## Optional AI Assistance Policy
-
-Use AI for **structure and challenge**, not authority.
-
-Allowed:
-
-* generate quizzes, edge cases, labs
-* simplify explanations
-
-Not allowed without verification:
-
-* production commands/configs
-* security-critical guidance
-
-Anti-bullshit prompts:
-
-* "What assumptions are you making?"
-* "What would change your mind?"
-* "Give a minimal reproduction + pass/fail test."
 
 ---
 
