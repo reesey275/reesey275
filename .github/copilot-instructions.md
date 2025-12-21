@@ -21,6 +21,7 @@ reesey275 is a personal knowledge management and productivity system with automa
 ## PR Guidelines
 
 ### Title Format
+
 ```text
 <type>(<area>): <subject>
 ```
@@ -82,7 +83,8 @@ gh pr list --search "is:pr is:open"
 
 ### Commit Message Format
 Required format (enforced):
-```
+
+```text
 TYPE(scope): description
 
 Types: FEAT, FIX, DOCS, STYLE, REFACTOR, TEST, CHORE, CI

@@ -104,7 +104,7 @@ Personal Access Tokens (PATs) are **not** subject to bot token restrictions:
   Pull requests: Read and write     # Create/update PRs, enable auto-merge
   ```
 
-5. **Generate and copy token**:
+1. **Generate and copy token**:
    - Click "Generate token"
    - **CRITICAL**: Copy token immediately (shown only once)
    - Store securely (you'll need it for next step)
@@ -347,6 +347,7 @@ gh workflow run waka-readme.yml
 **Verdict**: Fine-Grained PAT is simpler and sufficient for this use case.
 
 ### Why Fallback to github.token?
+
 ```yaml
 token: ${{ secrets.WAKA_PAT || github.token }}
 ```
