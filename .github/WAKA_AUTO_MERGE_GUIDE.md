@@ -8,8 +8,8 @@
 - [Implementation](#implementation-steps)
 - [Testing](#step-4-test-the-fix)
 
-**Status**: ✅ Working (as of 2025-12-21)  
-**Last Test**: PR #107 auto-merged successfully  
+**Status**: ✅ Working  
+**Last Verified**: 2025-12-21 (PR #107 auto-merged successfully)  
 **Current Schedule**: Midnight UTC daily (via cron)
 **Known Limitation**: WakaTime free tier stats are 2-4 hours behind (caching behavior)
 
@@ -274,8 +274,10 @@ grep -A 5 "^on:" .github/workflows/docs-quality.yml
 # Check auto-merge request status
 gh pr view <PR_NUMBER> --json autoMergeRequest
 
-# Check required checks configuration
-gh api repos/reesey275/reesey275/branches/main/protection -q '.required_status_checks'
+# Check required checks configuration (replace OWNER/REPO with your repository)
+OWNER=reesey275
+REPO=reesey275
+gh api repos/${OWNER}/${REPO}/branches/main/protection -q '.required_status_checks'
 ```
 
 **Solutions**:

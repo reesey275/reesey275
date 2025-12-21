@@ -85,7 +85,7 @@ Required format (enforced):
 ```
 TYPE(scope): description
 
-Types: FEAT, FIX, DOCS, STYLE, REFACTOR, TEST, CHORE, CI, WIP
+Types: FEAT, FIX, DOCS, STYLE, REFACTOR, TEST, CHORE, CI
 ```
 
 ### Testing Before Commit
@@ -138,7 +138,8 @@ gh workflow run waka-readme.yml
 └── copilot-instructions.md     # This file
 scripts/
 ├── lint_markdown.sh             # Markdown linting
-└── check_links.sh               # Link validation
+├── check_links.sh               # Link validation
+└── pr_threads_guard.sh          # Review thread governance enforcement
 ```
 
 ## When Something Breaks

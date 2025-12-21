@@ -39,8 +39,8 @@ The repository includes an automated WakaTime stats workflow for keeping README 
    - Overall stats: total hours, daily average, best day
 
 6. **Removed Sections** (API limitations):
-   - Day-of-week breakdown (WakaTime free tier doesn't provide `.data.days`)
-   - Language repos (GitHub API returns incomplete repo list)
+   - Day-of-week breakdown (WakaTime free tier API response doesn't include `.data.days` array with daily breakdowns)
+   - Language repos (GitHub API returns incomplete repository list for languages)
 
 ### When Modifying the Workflow
 
