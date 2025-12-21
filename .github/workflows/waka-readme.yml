@@ -17,6 +17,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      actions: write
     steps:
       - name: Checkout main
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -67,6 +68,21 @@ jobs:
           # Debug: Log key stats totals
           TOTAL_SECONDS=$(echo "$STATS" | jq -r '.data.total_seconds_including_other_language // 0')
           echo "Debug: Total seconds from API: $TOTAL_SECONDS ($(echo "scale=2; $TOTAL_SECONDS / 3600" | bc) hours)"
+          
+          echo "Debug: Languages breakdown"
+          echo "$STATS" | jq -r '(.data.languages // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          
+          echo "Debug: Editors breakdown"
+          echo "$STATS" | jq -r '(.data.editors // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          
+          echo "Debug: Operating systems breakdown"
+          echo "$STATS" | jq -r '(.data.operating_systems // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          
+          echo "Debug: Projects breakdown"
+          echo "$STATS" | jq -r '(.data.projects // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
+          
+          echo "Debug: Categories breakdown"
+          echo "$STATS" | jq -r '(.data.categories // [])[] | "- \(.name // \"unknown\"): \(.text // \"0 secs\") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
 
           # Extract data using jq
           TOTAL=$(echo "$STATS" | jq -r '.data.human_readable_total // "0 hrs"')
@@ -192,44 +208,88 @@ jobs:
             !skip { print }
           ' README.md > README.tmp && mv README.tmp README.md
 
-      - name: Create or update PR
+      - name: Create or update PR and enable auto-merge
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          git checkout -B waka-readme
+
+          BASE_BRANCH="main"
+          HEAD_BRANCH="waka-readme"
+          REPO="$GITHUB_REPOSITORY"
+
+          git fetch origin "$HEAD_BRANCH" || true
+          git checkout -B "$HEAD_BRANCH"
+
+          CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          if [ "$CURRENT_BRANCH" != "$HEAD_BRANCH" ]; then
+            echo "ERROR: Expected to be on $HEAD_BRANCH but on $CURRENT_BRANCH"
+            exit 1
+          fi
+
           git add README.md
-          
+
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          
+
           git commit -m "chore(waka): update weekly development stats"
-          git push -f origin waka-readme
-          
-          # Create PR if it doesn't exist, otherwise it will auto-update
-          gh pr create --fill --head waka-readme --base main \
-            --title "chore(waka): update weekly stats" \
-            --body "Automated WakaTime stats update from GitHub Actions.
 
-          **Stats Include:**
-          - 💻 Languages breakdown
-          - 🛠️ Editors used
-          - 🖥️ Operating systems
-          - 📁 Active projects
-          - 📊 Activity categories (AI Coding, Coding, Docs)" \
-            || gh pr edit waka-readme --body "Automated WakaTime stats update from GitHub Actions.
+          git fetch origin "$BASE_BRANCH" --depth=1 || true
+          if git diff --quiet "origin/$BASE_BRANCH"...HEAD; then
+            echo "No diff vs $BASE_BRANCH; skipping PR."
+            echo "No PR needed; deleting remote branch $HEAD_BRANCH to avoid orphaned branch."
+            git push origin HEAD:"$HEAD_BRANCH" --force-with-lease
+            git push origin --delete "$HEAD_BRANCH" || echo "Warning: Failed to delete remote branch $HEAD_BRANCH"
+            exit 0
+          fi
 
-          **Stats Include:**
-          - 💻 Languages breakdown
-          - 🛠️ Editors used
-          - 🖥️ Operating systems
-          - 📁 Active projects
-          - 📊 Activity categories (AI Coding, Coding, Docs)
+          git fetch origin "$HEAD_BRANCH" || true
+          git push origin HEAD:"$HEAD_BRANCH" --force-with-lease
 
-          _Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_"
+          PR_NUMBER=$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open --json number -q '.[0].number' || true)
+
+          if [ -z "${PR_NUMBER:-}" ] || [ "$PR_NUMBER" = "null" ]; then
+            PR_URL=$(gh pr create --repo "$REPO" --base "$BASE_BRANCH" --head "$HEAD_BRANCH" \
+              --title "chore(waka): update waka stats" \
+              --body "Automated WakaTime stats update from GitHub Actions.
+
+**Stats Include:**
+- 💻 Languages breakdown
+- 🛠️ Editors used
+- 🖥️ Operating systems
+- 📁 Active projects
+- 📊 Activity categories (AI Coding, Coding, Docs)
+
+_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_" )
+            PR_NUMBER=$(gh pr view "$PR_URL" --repo "$REPO" --json number -q .number)
+          else
+            gh pr edit "$PR_NUMBER" --repo "$REPO" --title "chore(waka): update waka stats" --body "Automated WakaTime stats update from GitHub Actions.
+
+**Stats Include:**
+- 💻 Languages breakdown
+- 🛠️ Editors used
+- 🖥️ Operating systems
+- 📁 Active projects
+- 📊 Activity categories (AI Coding, Coding, Docs)
+
+_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_"
+          fi
+
+          if [ -z "${PR_NUMBER:-}" ]; then
+            echo "ERROR: Failed to create/find PR for $HEAD_BRANCH -> $BASE_BRANCH"
+            exit 1
+          fi
+
+          STATE=$(gh pr view --repo "$REPO" "$PR_NUMBER" --json state -q .state)
+          if [ "$STATE" != "OPEN" ]; then
+            echo "ERROR: PR #$PR_NUMBER is not OPEN (state=$STATE). Head branch may have been deleted or PR closed."
+            exit 1
+          fi
+
+          gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash --delete-branch
+          echo "Auto-merge requested for PR #$PR_NUMBER (checks will run via standard PR triggers)."
