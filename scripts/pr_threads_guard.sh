@@ -221,6 +221,7 @@ REPO="$(jq -r '.name' <<<"${REPO_INFO}")"
 # GraphQL Queries
 # ─────────────────────────────────────────────────────────────
 
+# shellcheck disable=SC2016  # GraphQL queries intentionally use single quotes
 QUERY_THREADS='
 query($owner: String!, $name: String!, $number: Int!, $after: String) {
   repository(owner: $owner, name: $name) {
@@ -484,6 +485,7 @@ THREADS="$(fetch_all_threads)"
 PR_TITLE="$(cat /tmp/pr_title_$$ 2>/dev/null || echo "(unknown)")"
 rm -f /tmp/pr_title_$$
 
+# shellcheck disable=SC2034  # TOTAL used for context/debugging
 TOTAL="$(echo "${THREADS}" | jq 'length')"
 
 # Calculate all three thread states for visibility
