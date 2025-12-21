@@ -34,7 +34,7 @@ The workflow is fully functional and requires zero manual intervention:
 **GitHub Security Policy**: Pull requests created with `GITHUB_TOKEN` (bot token) do **NOT** trigger `pull_request` workflow events.
 
 This is intentional to prevent infinite workflow loops:
-```
+```text
 Workflow runs → Creates PR → Triggers workflow → Creates PR → ∞
 ```
 
@@ -93,6 +93,7 @@ Personal Access Tokens (PATs) are **not** subject to bot token restrictions:
    - **Choose**: `reesey275/reesey275` (or your repo)
 
 4. **Repository permissions** (exact requirements):
+
    ```
    Actions: Read and write          # Trigger workflow_dispatch
    Commit statuses: Read and write  # Optional but helpful
@@ -132,6 +133,7 @@ gh secret list | grep WAKA_PAT
 Modify `.github/workflows/waka-readme.yml`:
 
 **Checkout step** (line ~27):
+
 ```yaml
 - name: Checkout main
   uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -141,6 +143,7 @@ Modify `.github/workflows/waka-readme.yml`:
 ```
 
 **PR creation step** (line ~218):
+
 ```yaml
 - name: Create or update PR and enable auto-merge
   env:
@@ -157,6 +160,7 @@ Modify `.github/workflows/waka-readme.yml`:
 ### Step 4: Test the Fix
 
 #### Manual Test (Immediate)
+
 ```bash
 # Trigger workflow manually
 gh workflow run waka-readme.yml
@@ -196,6 +200,7 @@ on:
 ```
 
 **Check next automated run**:
+
 ```bash
 # View recent workflow runs
 gh run list --workflow=waka-readme.yml --limit 5
@@ -217,6 +222,7 @@ gh pr list --state merged --limit 5 | grep "waka"
 - No workflows triggered
 
 **Diagnosis**:
+
 ```bash
 # Check which token was used
 gh run view <RUN_NUMBER> --log | grep "Auto-merge"
@@ -240,6 +246,7 @@ gh api repos/reesey275/reesey275/pulls/<PR_NUMBER>/commits -q '.[].sha' | head -
 - PR event should fire but doesn't
 
 **Diagnosis**:
+
 ```bash
 # Check workflow triggers
 grep -A 5 "^on:" .github/workflows/lint.yml
@@ -262,6 +269,7 @@ grep -A 5 "^on:" .github/workflows/docs-quality.yml
 - PR remains open
 
 **Diagnosis**:
+
 ```bash
 # Check auto-merge request status
 gh pr view <PR_NUMBER> --json autoMergeRequest
@@ -283,6 +291,7 @@ gh api repos/reesey275/reesey275/branches/main/protection -q '.required_status_c
 - Error: "refusing to allow a Personal Access Token to create or update workflow"
 
 **Diagnosis**:
+
 ```bash
 # Check workflow run errors
 gh run view <RUN_NUMBER> --log | grep -i "error\|forbidden\|403"
@@ -304,6 +313,7 @@ gh run view <RUN_NUMBER> --log | grep -i "error\|forbidden\|403"
 - Error: "Bad credentials" or "token is invalid"
 
 **Solutions**:
+
 ```bash
 # Regenerate PAT at GitHub
 # https://github.com/settings/personal-access-tokens

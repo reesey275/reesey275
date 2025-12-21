@@ -30,9 +30,9 @@ The repository includes an automated WakaTime stats workflow for keeping README 
    - By next midnight run, cache will have refreshed
    - If real-time stats needed, only paid tier provides that
 
-5. **Stats Included**: 
+5. **Stats Included**:
    - Languages (top 5)
-   - Editors (top 3) 
+   - Editors (top 3)
    - Operating systems (top 3)
    - Projects (top 5)
    - Categories like "AI Coding", "Coding", "Writing Docs"
