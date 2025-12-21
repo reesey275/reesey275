@@ -296,8 +296,12 @@ jobs:
           # Explicitly dispatch required workflow checks on the PR branch
           # This prevents "Expected — Waiting" status from bot token limitations
           echo "Dispatching required workflows on $HEAD_BRANCH branch..."
-          gh workflow run lint.yml --repo "$REPO" --ref "$HEAD_BRANCH"
-          gh workflow run docs-quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"
+          if ! gh workflow run lint.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
+            echo "WARNING: Failed to dispatch lint workflow (workflow_dispatch may not be configured)"
+          fi
+          if ! gh workflow run docs-quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
+            echo "WARNING: Failed to dispatch docs-quality workflow (workflow_dispatch may not be configured)"
+          fi
 
           # Enable auto-merge (checks will be verified by GitHub before merging)
           gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash --delete-branch
