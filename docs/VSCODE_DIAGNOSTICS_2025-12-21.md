@@ -8,6 +8,8 @@
 **Location:** `.github/workflows/waka-readme.yml`, line 263, column 1
 
 **Code Context:**
+
+
 ```yaml
 cat > "$TEMP_BODY" <<'EOF'
 Automated WakaTime stats update from GitHub Actions.

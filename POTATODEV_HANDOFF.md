@@ -229,6 +229,7 @@ workflow_dispatch:
 **Fix:** Move to sibling level (same indentation as `pull_request:` and `push:`)
 
 **Current (BROKEN):**
+
 ```yaml
 on:
   pull_request:
@@ -238,6 +239,7 @@ on:
 ```
 
 **Fixed:**
+
 ```yaml
 on:
   pull_request:
