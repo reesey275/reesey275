@@ -273,11 +273,11 @@ Make it transferable.
 
 Write 5 bullets:
 
-  - problem
-  - root cause
-  - fix
-  - prevention
-  - verification source
+- problem
+- root cause
+- fix
+- prevention
+- verification source
 
 **Deliverable:** Teach-back bullets.
 
