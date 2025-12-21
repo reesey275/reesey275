@@ -15,7 +15,7 @@ jobs:
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Run ShellCheck
         run: |
           find . -name '*.sh' -print0 | xargs -0 shellcheck
@@ -24,7 +24,7 @@ jobs:
     name: MarkdownLint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Run markdownlint
         run: |
           npm install -g markdownlint-cli
@@ -37,9 +37,9 @@ jobs:
     permissions:
       pull-requests: read
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Check for active review threads
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          bash scripts/pr_threads_guard.sh "${{ github.event.pull_request.number }}" --audit-outdated
+          bash scripts/pr_threads_guard.sh "${{ github.event.pull_request.number }}" --check

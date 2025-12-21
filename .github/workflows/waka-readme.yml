@@ -24,7 +24,7 @@ jobs:
       actions: write
     steps:
       - name: Checkout main
-        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: main
 
@@ -255,24 +255,22 @@ jobs:
           git fetch origin "$HEAD_BRANCH" || true
           git push origin HEAD:"$HEAD_BRANCH" --force-with-lease
 
-          # Create PR body in temp file (avoids YAML parsing issues with markdown colons)
-          TEMP_BODY="/tmp/waka_pr_body_${PR_NUMBER:-new_$RANDOM}.md"
-          trap "rm -f \"$TEMP_BODY\"" EXIT
+          # Create PR body in temp file (printf pattern avoids YAML heredoc parsing issues)
+          TEMP_BODY="$(mktemp -t "waka_pr_body.XXXXXX")"
+          cleanup() { rm -f "$TEMP_BODY"; }
+          trap cleanup EXIT
           
-          cat > "$TEMP_BODY" <<'EOF'
-Automated WakaTime stats update from GitHub Actions.
-
-**Stats Include:**
-- 💻 Languages breakdown
-- 🛠️ Editors used
-- 🖥️ Operating systems
-- 📁 Active projects
-- 📊 Activity categories (AI Coding, Coding, Docs)
-EOF
-          
-          # Add timestamp to body
-          echo "" >> "$TEMP_BODY"
-          echo "_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_" >> "$TEMP_BODY"
+          TIMESTAMP="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          printf '%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n' \
+            "Automated WakaTime stats update from GitHub Actions." \
+            "**Stats Include:**" \
+            "- 💻 Languages breakdown" \
+            "- 🛠️ Editors used" \
+            "- 🖥️ Operating systems" \
+            "- 📁 Active projects" \
+            "- 📊 Activity categories (AI Coding, Coding, Docs)" \
+            "_Updated: ${TIMESTAMP}_" \
+            > "$TEMP_BODY"
 
           PR_NUMBER=$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open --json number -q '.[0].number' || true)
 
