@@ -10,6 +10,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update:
     name: Update README stats via PR
@@ -251,33 +255,34 @@ jobs:
           git fetch origin "$HEAD_BRANCH" || true
           git push origin HEAD:"$HEAD_BRANCH" --force-with-lease
 
+          # Create PR body in temp file (avoids YAML parsing issues with markdown colons)
+          TEMP_BODY="/tmp/waka_pr_body_${PR_NUMBER:-new_$RANDOM}.md"
+          trap "rm -f \"$TEMP_BODY\"" EXIT
+          
+          cat > "$TEMP_BODY" <<'EOF'
+Automated WakaTime stats update from GitHub Actions.
+
+**Stats Include:**
+- 💻 Languages breakdown
+- 🛠️ Editors used
+- 🖥️ Operating systems
+- 📁 Active projects
+- 📊 Activity categories (AI Coding, Coding, Docs)
+EOF
+          
+          # Add timestamp to body
+          echo "" >> "$TEMP_BODY"
+          echo "_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_" >> "$TEMP_BODY"
+
           PR_NUMBER=$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open --json number -q '.[0].number' || true)
 
           if [ -z "${PR_NUMBER:-}" ] || [ "$PR_NUMBER" = "null" ]; then
             PR_URL=$(gh pr create --repo "$REPO" --base "$BASE_BRANCH" --head "$HEAD_BRANCH" \
               --title "chore(waka): update waka stats" \
-              --body "Automated WakaTime stats update from GitHub Actions.
-
-**Stats Include:**
-- 💻 Languages breakdown
-- 🛠️ Editors used
-- 🖥️ Operating systems
-- 📁 Active projects
-- 📊 Activity categories (AI Coding, Coding, Docs)
-
-_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_" )
+              --body-file "$TEMP_BODY")
             PR_NUMBER=$(gh pr view "$PR_URL" --repo "$REPO" --json number -q .number)
           else
-            gh pr edit "$PR_NUMBER" --repo "$REPO" --title "chore(waka): update waka stats" --body "Automated WakaTime stats update from GitHub Actions.
-
-**Stats Include:**
-- 💻 Languages breakdown
-- 🛠️ Editors used
-- 🖥️ Operating systems
-- 📁 Active projects
-- 📊 Activity categories (AI Coding, Coding, Docs)
-
-_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_"
+            gh pr edit "$PR_NUMBER" --repo "$REPO" --title "chore(waka): update waka stats" --body-file "$TEMP_BODY"
           fi
 
           if [ -z "${PR_NUMBER:-}" ]; then
@@ -291,5 +296,17 @@ _Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_"
             exit 1
           fi
 
+          # Explicitly dispatch required workflow checks on the PR branch
+          # This prevents "Expected — Waiting" status from bot token limitations
+          echo "Dispatching required workflows on $HEAD_BRANCH branch..."
+          if ! gh workflow run lint.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
+            echo "WARNING: Failed to dispatch lint workflow (workflow_dispatch may not be configured)"
+          fi
+          if ! gh workflow run docs-quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
+            echo "WARNING: Failed to dispatch docs-quality workflow (workflow_dispatch may not be configured)"
+          fi
+
+          # Enable auto-merge (checks will be verified by GitHub before merging)
           gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash --delete-branch
-          echo "Auto-merge requested for PR #$PR_NUMBER (checks will run via standard PR triggers)."
+          echo "Auto-merge requested for PR #$PR_NUMBER"
+          echo "Checks dispatched and will be verified before merge."

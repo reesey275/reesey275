@@ -7,6 +7,9 @@ name: Lint
       - main
   pull_request:
 
+permissions:
+  pull-requests: read
+
 jobs:
   shellcheck:
     name: ShellCheck
@@ -26,3 +29,15 @@ jobs:
         run: |
           npm install -g markdownlint-cli
           markdownlint '**/*.md' --ignore node_modules
+
+  pr-thread-guard:
+    name: PR Thread Governance
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Check for active review threads
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash scripts/pr_threads_guard.sh "${{ github.event.pull_request.number }}"
