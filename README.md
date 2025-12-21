@@ -12,10 +12,11 @@
 ## 🥔 Chad Reesey — Mr. Potato
 
 ## 🚀 About Me
-- Veteran | Systems-first builder | DevOps & governance automation
+- **25+ years** building and securing systems across civilian and government environments
+- Veteran | Systems-first builder | DevOps & governance automation specialist
 - I build thinking systems: **visible learning → doctrine → automation**
-- 25+ years across civilian and government environments; currently leading TAGS (The Angry Gamer Show Productions) Ecosystem
-- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS (The Angry Gamer Show Productions) foundation with IaaS/PaaS/SaaS architecture and 95% quality guardrails
+- Currently leading TAGS (The Angry Gamer Show Productions) Ecosystem
+- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with IaaS/PaaS/SaaS architecture and 95% quality guardrails
 - **U.S. Air Force veteran** — mission-focused operations, accountability, and system reliability shaped by service in mission-critical environments
 
 ## 🧭 Engineering Philosophy
@@ -199,11 +200,10 @@ Linux • Ubuntu • Docker • NGINX • Python • Shell (POSIX/Bash) • GitH
 
 **[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience (historical breadth vs current daily usage)
 
-## 🎓 Education & Certifications
+## 🎓 Continuous Learning
 
-- B.S. in Computer Science (in progress) — Western Governors University
-  - Purpose: formalize and augment two decades of hands-on industry experience; lifelong learning to sharpen foundations and stay current with formal methodologies.
-- National Society of Leadership and Success (NSLS) — Inducted in recognition of leadership and academic excellence
+- **National Society of Leadership and Success (NSLS)** — Inducted in recognition of leadership and academic excellence
+- **Western Governors University** — B.S. Software Engineering *(in progress)* — formalizing CS fundamentals to complement 25+ years of hands-on systems work
 
 ## 🌐 Connect With Me
 
