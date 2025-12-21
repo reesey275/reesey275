@@ -251,33 +251,31 @@ jobs:
           git fetch origin "$HEAD_BRANCH" || true
           git push origin HEAD:"$HEAD_BRANCH" --force-with-lease
 
+          # Create PR body in temp file (avoids YAML parsing issues with markdown colons)
+          cat > /tmp/waka_pr_body.md <<'EOF'
+          Automated WakaTime stats update from GitHub Actions.
+
+          **Stats Include:**
+          - 💻 Languages breakdown
+          - 🛠️ Editors used
+          - 🖥️ Operating systems
+          - 📁 Active projects
+          - 📊 Activity categories (AI Coding, Coding, Docs)
+          EOF
+          
+          # Add timestamp to body
+          echo "" >> /tmp/waka_pr_body.md
+          echo "_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_" >> /tmp/waka_pr_body.md
+
           PR_NUMBER=$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open --json number -q '.[0].number' || true)
 
           if [ -z "${PR_NUMBER:-}" ] || [ "$PR_NUMBER" = "null" ]; then
             PR_URL=$(gh pr create --repo "$REPO" --base "$BASE_BRANCH" --head "$HEAD_BRANCH" \
               --title "chore(waka): update waka stats" \
-              --body "Automated WakaTime stats update from GitHub Actions.
-
-**Stats Include:**
-- 💻 Languages breakdown
-- 🛠️ Editors used
-- 🖥️ Operating systems
-- 📁 Active projects
-- 📊 Activity categories (AI Coding, Coding, Docs)
-
-_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_" )
+              --body-file /tmp/waka_pr_body.md)
             PR_NUMBER=$(gh pr view "$PR_URL" --repo "$REPO" --json number -q .number)
           else
-            gh pr edit "$PR_NUMBER" --repo "$REPO" --title "chore(waka): update waka stats" --body "Automated WakaTime stats update from GitHub Actions.
-
-**Stats Include:**
-- 💻 Languages breakdown
-- 🛠️ Editors used
-- 🖥️ Operating systems
-- 📁 Active projects
-- 📊 Activity categories (AI Coding, Coding, Docs)
-
-_Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_"
+            gh pr edit "$PR_NUMBER" --repo "$REPO" --title "chore(waka): update waka stats" --body-file /tmp/waka_pr_body.md
           fi
 
           if [ -z "${PR_NUMBER:-}" ]; then
@@ -291,5 +289,13 @@ _Updated: $(date -u '+%Y-%m-%d %H:%M:%S UTC')_"
             exit 1
           fi
 
+          # Explicitly dispatch required workflow checks on the PR branch
+          # This prevents "Expected — Waiting" status from bot token limitations
+          echo "Dispatching required workflows on $HEAD_BRANCH branch..."
+          gh workflow run lint.yml --repo "$REPO" --ref "$HEAD_BRANCH"
+          gh workflow run docs-quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"
+
+          # Enable auto-merge (checks will be verified by GitHub before merging)
           gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash --delete-branch
-          echo "Auto-merge requested for PR #$PR_NUMBER (checks will run via standard PR triggers)."
+          echo "Auto-merge requested for PR #$PR_NUMBER"
+          echo "Checks dispatched and will be verified before merge."
