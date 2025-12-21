@@ -5,3 +5,7 @@ logs/*
 # Codex agent state (keep directory)
 .codex/.state/*
 !.codex/.state/.gitkeep
+
+# Sensitive resume/personal info
+resume/*.pdf
+*.pdf
