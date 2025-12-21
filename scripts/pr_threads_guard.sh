@@ -47,6 +47,7 @@ trap cleanup_temp_files EXIT
 FORCE_REGISTRY="${TAGS_ROOT}/governance/force_registry.sh"
 if [[ -f "${FORCE_REGISTRY}" ]]; then
   # shellcheck source=governance/force_registry.sh
+  # shellcheck disable=SC1091  # External governance file not always present
   source "${FORCE_REGISTRY}"
 fi
 
@@ -251,6 +252,7 @@ query($owner: String!, $name: String!, $number: Int!, $after: String) {
 }
 '
 
+# shellcheck disable=SC2016  # GraphQL queries intentionally use single quotes
 MUTATION_ADD_COMMENT='
 mutation($threadId: ID!, $body: String!) {
   addPullRequestReviewThreadReply(input: {pullRequestReviewThreadId: $threadId, body: $body}) {
@@ -262,6 +264,7 @@ mutation($threadId: ID!, $body: String!) {
 }
 '
 
+# shellcheck disable=SC2016  # GraphQL queries intentionally use single quotes
 MUTATION_RESOLVE='
 mutation($threadId: ID!) {
   resolveReviewThread(input: {threadId: $threadId}) {
