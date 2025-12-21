@@ -261,13 +261,8 @@ jobs:
           \`\`\`txt
           🌍 Time Zone: ${TIMEZONE}
           📅 ${RANGE_START} - ${RANGE_END}
-          ⏱️  Total: ${TOTAL}  |  Daily Avg: ${DAILY_AVG}  |  Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
+          ⏱️ Total: ${TOTAL}  |  Daily Avg: ${DAILY_AVG}  |  Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
 
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-          📊 I'm Most Productive on ${max_day}
-
-          ${DAYS_OF_WEEK}
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
           💻 Languages
@@ -293,16 +288,12 @@ jobs:
           📊 Categories
 
           ${CATEGORIES}
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           
           # Add language repos section only if data exists
           if [ -n "${LANGUAGE_REPOS:-}" ] && [ -n "${most_used_lang:-}" ]; then
             STATS_CONTENT+="
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-          🔤 I Mostly Code in ${most_used_lang}
-
-          ${LANGUAGE_REPOS}"
           fi
           
           STATS_CONTENT+="\`\`\`
