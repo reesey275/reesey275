@@ -264,11 +264,11 @@ jobs:
           printf '%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n' \
             "Automated WakaTime stats update from GitHub Actions." \
             "**Stats Include:**" \
-            "- 💻 Languages breakdown" \
-            "- 🛠️ Editors used" \
-            "- 🖥️ Operating systems" \
-            "- 📁 Active projects" \
-            "- 📊 Activity categories (AI Coding, Coding, Docs)" \
+            "- Languages breakdown" \
+            "- Editors used" \
+            "- Operating systems" \
+            "- Active projects" \
+            "- Activity categories (AI Coding, Coding, Docs)" \
             "_Updated: ${TIMESTAMP}_" \
             > "$TEMP_BODY"
 
