@@ -240,7 +240,11 @@ jobs:
             while IFS= read -r line; do
               lang=$(echo "$line" | jq -r '.language')
               count=$(echo "$line" | jq -r '.count')
-              pct=$(echo "scale=2; $count * 100 / $TOTAL_REPOS" | bc)
+              if [ "${TOTAL_REPOS:-0}" -eq 0 ]; then
+                pct=0
+              else
+                pct=$(echo "scale=2; $count * 100 / $TOTAL_REPOS" | bc)
+              fi
               # Safe decimal removal
               pct_int="${pct%.*}"
               if [ -z "$pct_int" ]; then pct_int=0; fi
@@ -261,6 +265,7 @@ jobs:
 
           📊 I'm Most Productive on ${max_day}
           ${DAYS_OF_WEEK}
+
           💻 Languages
           ${LANGUAGES}
           🛠️  Editors
