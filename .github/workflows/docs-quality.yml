@@ -3,7 +3,8 @@ name: docs-quality
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
