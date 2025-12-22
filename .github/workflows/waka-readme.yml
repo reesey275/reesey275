@@ -58,7 +58,7 @@ jobs:
           TOTAL_HOURS=$(echo "scale=0; $TOTAL_SECONDS / 3600" | bc)
           TOTAL_MINS=$(echo "scale=0; ($TOTAL_SECONDS % 3600) / 60" | bc)
           DAILY_AVG_HOURS=$(echo "scale=0; $TOTAL_SECONDS / 7 / 3600" | bc)
-          DAILY_AVG_MINS=$(echo "scale=0; ($TOTAL_SECONDS / 7 % 3600) / 60" | bc)
+          DAILY_AVG_MINS=$(echo "scale=0; (($TOTAL_SECONDS / 7) % 3600) / 60" | bc)
           
           # Build stats JSON using jq string interpolation instead of concatenation
           STATS=$(echo "$SUMMARIES" | jq --arg total "$TOTAL_SECONDS" \
