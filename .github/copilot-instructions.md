@@ -168,7 +168,7 @@ When changing workflow job names or consolidating workflows:
 1. **Update the workflow file** in `.github/workflows/`
 2. **Update branch protection** to use new check name:
 
-```bash
+   ```bash
 # Get current protection settings
 gh api repos/reesey275/reesey275/branches/main/protection
 
@@ -184,12 +184,13 @@ echo '{
 }' | gh api --method PATCH \
   repos/reesey275/reesey275/branches/main/protection/required_status_checks \
   --input -
-```
+   ```
 
 3. **Verify protection update**:
-```bash
+
+   ```bash
 gh api repos/reesey275/reesey275/branches/main/protection/required_status_checks
-```
+   ```
 
 **Critical Notes**:
 - The `context` value must match the job name in the workflow
@@ -233,6 +234,7 @@ The repository enforces **mandatory human-in-the-loop review** through `scripts/
 **Complete Workflow**:
 
 1. **Check thread status first**:
+
    ```bash
    scripts/pr_threads_guard.sh <PR_NUMBER>
    ```
@@ -245,6 +247,7 @@ The repository enforces **mandatory human-in-the-loop review** through `scripts/
    - Understand the root cause, not just symptoms
 
 3. **Push fixes** to address the issues:
+
    ```bash
    # Make changes to fix the issues
    git add .
@@ -255,6 +258,7 @@ The repository enforces **mandatory human-in-the-loop review** through `scripts/
    - Outdated threads don't block merges
 
 4. **Re-check thread status**:
+
    ```bash
    scripts/pr_threads_guard.sh <PR_NUMBER>
    ```
@@ -266,6 +270,7 @@ The repository enforces **mandatory human-in-the-loop review** through `scripts/
    - Do not try to use `--resolve-bot-threads` (agent-blocked)
 
 6. **Merge only when clear**:
+
    ```bash
    # Only after pr_threads_guard.sh exits 0
    gh pr merge <PR_NUMBER> --squash

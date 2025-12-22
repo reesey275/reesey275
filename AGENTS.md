@@ -92,6 +92,7 @@ scripts/pr_threads_guard.sh <PR_NUMBER>
 **Step-by-step procedure**:
 
 1. **Check thread status**:
+
    ```bash
    scripts/pr_threads_guard.sh 112
    ```
@@ -113,6 +114,7 @@ scripts/pr_threads_guard.sh <PR_NUMBER>
    - Wait for human to resolve any remaining threads
 
 4. **Merge when clear**:
+
    ```bash
    # Only after pr_threads_guard.sh exits 0
    gh pr merge <PR_NUMBER> --squash
@@ -121,12 +123,14 @@ scripts/pr_threads_guard.sh <PR_NUMBER>
 ### Script Modes and Options
 
 **Default mode (--check)**:
+
 ```bash
 scripts/pr_threads_guard.sh <PR_NUMBER>        # Read-only check
 scripts/pr_threads_guard.sh <PR_NUMBER> --check  # Explicit check
 ```
 
 **Human-only mode (AGENTS BLOCKED)**:
+
 ```bash
 # AGENTS CANNOT USE THESE - Will fail if AGENT_CONTEXT=true
 scripts/pr_threads_guard.sh <PR_NUMBER> --resolve-bot-threads --annotate
@@ -134,6 +138,7 @@ scripts/pr_threads_guard.sh <PR_NUMBER> --resolve-bot-threads --force
 ```
 
 **Strict mode** (auto-enabled in CI and for agents):
+
 ```bash
 # Treats ALL unresolved threads as blocking (ignores outdated status)
 export AGENT_CONTEXT=true  # Auto-enables strict mode
@@ -149,7 +154,8 @@ scripts/pr_threads_guard.sh <PR_NUMBER> --strict
 
 When multiple workflows perform duplicate checks, consolidate them to reduce CI minutes and maintenance burden.
 
-**Example: Consolidating Quality Checks**
+#### Example: Consolidating Quality Checks
+
 - **Problem**: `lint.yml` and `docs-quality.yml` both run markdown linting
 - **Solution**: Merge into single `quality.yml` with sequential steps
 - **Benefit**: ~50% reduction in CI minutes, single workflow to maintain
@@ -171,6 +177,7 @@ gh api repos/OWNER/REPO/branches/main/protection
 #### Step 2: Determine New Check Name
 
 ```yaml
+
 # In new workflow file (e.g., quality.yml)
 jobs:
   quality:  # <-- This is the check name
@@ -226,6 +233,7 @@ gh api repos/OWNER/REPO/branches/main/protection/required_status_checks
 ### Common Workflow Patterns
 
 **Quality Gate Pattern** (sequential validation):
+
 ```yaml
 jobs:
   quality:
