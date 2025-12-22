@@ -137,6 +137,7 @@ gh workflow run waka-readme.yml
 ```text
 .github/
 ├── workflows/
+│   ├── quality.yml              # Consolidated quality gate (lint + docs + governance)
 │   └── waka-readme.yml          # Auto-merge WakaTime stats workflow
 ├── WAKA_AUTO_MERGE_GUIDE.md    # Complete technical documentation
 └── copilot-instructions.md     # This file
@@ -146,12 +147,64 @@ scripts/
 └── pr_threads_guard.sh          # Review thread governance enforcement
 ```
 
+## CI Workflow Management
+
+### Quality Gate Workflow
+
+The `quality.yml` workflow consolidates all quality checks into a single sequential job:
+
+1. **ShellCheck**: Validates shell script syntax
+2. **Codespell**: Checks spelling across all files
+3. **Markdownlint CLI2**: Enforces markdown formatting rules
+4. **Vale**: Validates prose style and quality
+5. **PR Thread Governance**: Ensures review threads are resolved (PR-only)
+
+**Status Check Name**: `Quality Gate / quality`
+
+### Modifying Workflows
+
+When changing workflow job names or consolidating workflows:
+
+1. **Update the workflow file** in `.github/workflows/`
+2. **Update branch protection** to use new check name:
+
+```bash
+# Get current protection settings
+gh api repos/reesey275/reesey275/branches/main/protection
+
+# Update required checks (replace old with new)
+echo '{
+   "strict": true,
+   "checks": [
+      {
+         "context": "quality",
+         "app_id": 15368
+      }
+   ]
+}' | gh api --method PATCH \
+   repos/reesey275/reesey275/branches/main/protection/required_status_checks \
+   --input -
+```
+
+1. **Verify protection update**:
+
+```bash
+gh api repos/reesey275/reesey275/branches/main/protection/required_status_checks
+```
+
+**Critical Notes**:
+- The `context` value must match the job name in the workflow
+- Use `app_id: 15368` for GitHub Actions checks
+- JSON types matter: `strict` is boolean, `app_id` is integer
+- All old checks are replaced when updating
+
 ## When Something Breaks
 
 1. **Stats not updating**: Check `gh run list --workflow=waka-readme.yml` for failures
 2. **Auto-merge not triggering**: Verify PAT exists: `gh secret list | grep WAKA_PAT`
 3. **PR stuck open**: Check GitHub Actions logs for workflow failures
 4. **Lint failures**: Run `bash scripts/lint_markdown.sh` locally to see issues
+5. **Required checks failing**: Verify branch protection matches current workflow job names
 
 ## Security Notes
 
@@ -178,16 +231,67 @@ The repository enforces **mandatory human-in-the-loop review** through `scripts/
 
 ### When Copilot Leaves Review Comments
 
-**Correct Workflow**:
-1. Review the Copilot comments carefully
-2. Push fixes to address the issues (threads become outdated automatically)
-3. **STOP and wait** - a human must resolve threads in GitHub UI
-4. Do not attempt workarounds or force options
+**Complete Workflow**:
+
+1. **Check thread status first**:
+
+```bash
+scripts/pr_threads_guard.sh <PR_NUMBER>
+```
+
+- Exit 0 = no blocking threads (proceed)
+- Exit 1 = active threads found (address them first)
+
+1. **Review Copilot comments** in GitHub UI:
+   - Navigate to PR → Files changed
+   - Read each comment thread carefully
+   - Understand the root cause, not just symptoms
+
+1. **Push fixes** to address the issues:
+
+```bash
+# Make changes to fix the issues
+git add .
+git commit -m "FIX(component): address Copilot review feedback"
+git push
+```
+
+- Fixed threads become "outdated" automatically
+- Outdated threads don't block merges
+
+1. **Re-check thread status**:
+
+```bash
+scripts/pr_threads_guard.sh <PR_NUMBER>
+```
+
+- Verify threads are now outdated or resolved
+
+1. **STOP and wait** - a human must resolve threads in GitHub UI:
+   - Only humans can mark threads as "Resolved"
+   - Do not attempt workarounds or force options
+   - Do not try to use `--resolve-bot-threads` (agent-blocked)
+
+1. **Merge only when clear**:
+
+```bash
+# Only after pr_threads_guard.sh exits 0
+gh pr merge <PR_NUMBER> --squash
+```
 
 **Result**: Outdated threads no longer block merges, but unresolved threads always do.
+
+**Exit Codes Reference**:
+- `0` - No active threads (safe to merge)
+- `1` - Active threads exist (policy violation)
+- `2` - Usage error (check command syntax)
+- `3` - API error (check network/authentication)
+- `4` - Annotation failed (human-only operation)
+- `5` - Force blocked (agent attempted human-only operation)
 
 ---
 
 **Last Updated**: 2025-12-21
 **Status**: Operational
+**Workflows**: quality.yml (consolidated), waka-readme.yml (auto-merge)
 **Emergency Contact**: `.github/WAKA_AUTO_MERGE_GUIDE.md` for WakaTime issues
