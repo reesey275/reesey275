@@ -148,6 +148,29 @@ scripts/pr_threads_guard.sh <PR_NUMBER> --strict
 
 **Note**: The `--resolve-bot-threads` mode is human-only and will fail if agent context is detected.
 
+### Exit Codes Reference
+
+The `pr_threads_guard.sh` script uses exit codes to indicate different outcomes:
+
+- **0** - No active threads (safe to merge) or all threads resolved successfully
+- **1** - Active threads exist (policy violation, PR blocked)
+- **2** - Usage error (incorrect command syntax or missing arguments)
+- **3** - API error (network issues, authentication failure, GitHub API problems)
+- **4** - Annotation failed (human-only operation attempted without proper authorization)
+- **5** - Force blocked (agent attempted to use `--resolve-bot-threads` in agent context)
+
+**Usage in Scripts**:
+
+```bash
+if scripts/pr_threads_guard.sh "$PR_NUMBER"; then
+  echo "No blocking threads, safe to merge"
+  gh pr merge "$PR_NUMBER" --squash
+else
+  echo "Blocking threads exist, cannot merge"
+  exit 1
+fi
+```
+
 ## CI Workflow Management
 
 ### Workflow Consolidation Strategy
