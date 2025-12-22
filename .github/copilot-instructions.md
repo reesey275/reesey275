@@ -168,29 +168,29 @@ When changing workflow job names or consolidating workflows:
 1. **Update the workflow file** in `.github/workflows/`
 2. **Update branch protection** to use new check name:
 
-   ```bash
+```bash
 # Get current protection settings
 gh api repos/reesey275/reesey275/branches/main/protection
 
 # Update required checks (replace old with new)
 echo '{
-  "strict": true,
-  "checks": [
-    {
-      "context": "quality",
-      "app_id": 15368
-    }
-  ]
+   "strict": true,
+   "checks": [
+      {
+         "context": "quality",
+         "app_id": 15368
+      }
+   ]
 }' | gh api --method PATCH \
-  repos/reesey275/reesey275/branches/main/protection/required_status_checks \
-  --input -
-   ```
+   repos/reesey275/reesey275/branches/main/protection/required_status_checks \
+   --input -
+```
 
-3. **Verify protection update**:
+1. **Verify protection update**:
 
-   ```bash
+```bash
 gh api repos/reesey275/reesey275/branches/main/protection/required_status_checks
-   ```
+```
 
 **Critical Notes**:
 - The `context` value must match the job name in the workflow
@@ -235,46 +235,49 @@ The repository enforces **mandatory human-in-the-loop review** through `scripts/
 
 1. **Check thread status first**:
 
-   ```bash
-   scripts/pr_threads_guard.sh <PR_NUMBER>
-   ```
-   - Exit 0 = no blocking threads (proceed)
-   - Exit 1 = active threads found (address them first)
+```bash
+scripts/pr_threads_guard.sh <PR_NUMBER>
+```
 
-2. **Review Copilot comments** in GitHub UI:
+- Exit 0 = no blocking threads (proceed)
+- Exit 1 = active threads found (address them first)
+
+1. **Review Copilot comments** in GitHub UI:
    - Navigate to PR → Files changed
    - Read each comment thread carefully
    - Understand the root cause, not just symptoms
 
-3. **Push fixes** to address the issues:
+1. **Push fixes** to address the issues:
 
-   ```bash
-   # Make changes to fix the issues
-   git add .
-   git commit -m "FIX(component): address Copilot review feedback"
-   git push
-   ```
-   - Fixed threads become "outdated" automatically
-   - Outdated threads don't block merges
+```bash
+# Make changes to fix the issues
+git add .
+git commit -m "FIX(component): address Copilot review feedback"
+git push
+```
 
-4. **Re-check thread status**:
+- Fixed threads become "outdated" automatically
+- Outdated threads don't block merges
 
-   ```bash
-   scripts/pr_threads_guard.sh <PR_NUMBER>
-   ```
-   - Verify threads are now outdated or resolved
+1. **Re-check thread status**:
 
-5. **STOP and wait** - a human must resolve threads in GitHub UI:
+```bash
+scripts/pr_threads_guard.sh <PR_NUMBER>
+```
+
+- Verify threads are now outdated or resolved
+
+1. **STOP and wait** - a human must resolve threads in GitHub UI:
    - Only humans can mark threads as "Resolved"
    - Do not attempt workarounds or force options
    - Do not try to use `--resolve-bot-threads` (agent-blocked)
 
-6. **Merge only when clear**:
+1. **Merge only when clear**:
 
-   ```bash
-   # Only after pr_threads_guard.sh exits 0
-   gh pr merge <PR_NUMBER> --squash
-   ```
+```bash
+# Only after pr_threads_guard.sh exits 0
+gh pr merge <PR_NUMBER> --squash
+```
 
 **Result**: Outdated threads no longer block merges, but unresolved threads always do.
 

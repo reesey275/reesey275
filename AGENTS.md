@@ -273,6 +273,7 @@ jobs:
 ```
 
 **Parallel Execution Pattern** (independent checks):
+
 ```yaml
 jobs:
   lint:
