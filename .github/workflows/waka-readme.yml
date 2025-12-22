@@ -38,37 +38,37 @@ jobs:
           # Fetch stats from WakaTime API
           AUTH=$(echo -n "$WAKATIME_API_KEY" | base64)
           
-          # Retry logic for stale data (WakaTime free tier caches stats)
-          MAX_RETRIES=3
-          RETRY_COUNT=0
-          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            STATS=$(curl -sf -H "Authorization: Basic $AUTH" \
-              "https://wakatime.com/api/v1/users/current/stats/last_7_days")
-            
-            if [ -z "$STATS" ]; then
-              echo "Failed to fetch WakaTime stats"
-              exit 1
-            fi
-            
-            # Check if stats are up to date
-            IS_UP_TO_DATE=$(echo "$STATS" | jq -r '.data.is_up_to_date // false')
-            PERCENT_CALCULATED=$(echo "$STATS" | jq -r '.data.percent_calculated // 0')
-            
-            echo "Stats up-to-date: $IS_UP_TO_DATE (${PERCENT_CALCULATED}% calculated)"
-            
-            if [ "$IS_UP_TO_DATE" = "true" ]; then
-              echo "Received fresh stats from WakaTime API"
-              break
-            fi
-            
-            RETRY_COUNT=$((RETRY_COUNT + 1))
-            if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
-              echo "Stats are stale, retrying in 5 seconds (attempt $RETRY_COUNT/$MAX_RETRIES)..."
-              sleep 5
-            else
-              echo "Warning: Using potentially stale stats after $MAX_RETRIES attempts"
-            fi
-          done
+          # Use summaries endpoint with date range for real-time data (bypasses cache)
+          END_DATE=$(date -u +%Y-%m-%d)
+          START_DATE=$(date -u -d '7 days ago' +%Y-%m-%d)
+          
+          echo "Fetching WakaTime data from $START_DATE to $END_DATE"
+          
+          SUMMARIES=$(curl -sf -H "Authorization: Basic $AUTH" \
+            "https://wakatime.com/api/v1/users/current/summaries?start=$START_DATE&end=$END_DATE")
+          
+          if [ -z "$SUMMARIES" ]; then
+            echo "Failed to fetch WakaTime summaries"
+            exit 1
+          fi
+          
+          # Aggregate summaries into stats format
+          STATS=$(echo "$SUMMARIES" | jq '{
+            data: {
+              total_seconds_including_other_language: [.data[].grand_total.total_seconds] | add,
+              human_readable_total: ([.data[].grand_total.total_seconds] | add | . / 3600 | floor | tostring) + " hrs " + (([.data[].grand_total.total_seconds] | add % 3600 / 60 | floor | tostring) + " mins"),
+              human_readable_daily_average: ([.data[].grand_total.total_seconds] | add / 7 / 3600 | floor | tostring) + " hrs " + (([.data[].grand_total.total_seconds] | add / 7 % 3600 / 60 | floor | tostring) + " mins"),
+              languages: ([.data[].languages] | flatten | group_by(.name) | map({name: .[0].name, total_seconds: ([.[].total_seconds] | add), percent: 0, text: ""}) | sort_by(.total_seconds) | reverse | .[0:5] | to_entries | map(.value + {percent: (.value.total_seconds / ([..] | .total_seconds) | add) * 100 | floor, text: ((.value.total_seconds / 3600 | floor | tostring) + " hrs " + ((.value.total_seconds % 3600 / 60 | floor | tostring) + " mins"))})),
+              editors: ([.data[].editors] | flatten | group_by(.name) | map({name: .[0].name, total_seconds: ([.[].total_seconds] | add), percent: 0, text: ""}) | sort_by(.total_seconds) | reverse | .[0:3] | to_entries | map(.value + {percent: (.value.total_seconds / ([..] | .total_seconds) | add) * 100 | floor, text: ((.value.total_seconds / 3600 | floor | tostring) + " hrs " + ((.value.total_seconds % 3600 / 60 | floor | tostring) + " mins"))})),
+              operating_systems: ([.data[].operating_systems] | flatten | group_by(.name) | map({name: .[0].name, total_seconds: ([.[].total_seconds] | add), percent: 0, text: ""}) | sort_by(.total_seconds) | reverse | .[0:3] | to_entries | map(.value + {percent: (.value.total_seconds / ([..] | .total_seconds) | add) * 100 | floor, text: ((.value.total_seconds / 3600 | floor | tostring) + " hrs " + ((.value.total_seconds % 3600 / 60 | floor | tostring) + " mins"))})),
+              projects: ([.data[].projects] | flatten | group_by(.name) | map({name: .[0].name, total_seconds: ([.[].total_seconds] | add), percent: 0, text: ""}) | sort_by(.total_seconds) | reverse | .[0:5] | to_entries | map(.value + {percent: (.value.total_seconds / ([..] | .total_seconds) | add) * 100 | floor, text: ((.value.total_seconds / 3600 | floor | tostring) + " hrs " + ((.value.total_seconds % 3600 / 60 | floor | tostring) + " mins"))})),
+              categories: ([.data[].categories] | flatten | group_by(.name) | map({name: .[0].name, total_seconds: ([.[].total_seconds] | add), percent: 0, text: ""}) | sort_by(.total_seconds) | reverse | .[0:5] | to_entries | map(.value + {percent: (.value.total_seconds / ([..] | .total_seconds) | add) * 100 | floor, text: ((.value.total_seconds / 3600 | floor | tostring) + " hrs " + ((.value.total_seconds % 3600 / 60 | floor | tostring) + " mins"))})),
+              best_day: (.data | max_by(.grand_total.total_seconds) | {date: .range.date, text: ((.grand_total.total_seconds / 3600 | floor | tostring) + " hrs " + ((.grand_total.total_seconds % 3600 / 60 | floor | tostring) + " mins"))}),
+              start: .data[0].range.date,
+              end: .data[-1].range.date,
+              timezone: .data[0].range.timezone
+            }
+          }')
           
           # Debug: Log key stats totals
           TOTAL_SECONDS=$(echo "$STATS" | jq -r '.data.total_seconds_including_other_language // 0')
