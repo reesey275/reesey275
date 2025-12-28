@@ -22,6 +22,9 @@
 [docker]: https://www.docker.com/
 [actions-badge]: https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&style=flat
 [actions]: https://docs.github.com/actions
+[github-stats]: https://github-readme-stats-sigma-five.vercel.app/api?username=reesey275&show_icons=true&theme=dark
+[top-languages]: https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=reesey275&theme=dark
+[profile]: https://github.com/reesey275
 
 <!-- Optional ASCII header -->
 ## 🥔 Chad Reesey — Mr. Potato
@@ -63,8 +66,8 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 Note: Contribution activity reflects a solo build phase focused on end-to-end system design and execution.
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark)
+[![GitHub Stats][github-stats]][profile]
+[![Top Languages][top-languages]][profile]
 
 ## 📈 Weekly Development Stats
 
