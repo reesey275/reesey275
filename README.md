@@ -9,7 +9,14 @@
 [![Python][python-badge]][python]
 [![Bash][bash-badge]][posix]
 [![TypeScript][ts-badge]][typescript]
+[![JavaScript][js-badge]][javascript]
+[![PowerShell][ps-badge]][powershell]
+[![FastAPI][fastapi-badge]][fastapi]
 [![Docker][docker-badge]][docker]
+[![Kubernetes][k8s-badge]][kubernetes]
+[![Terraform][terraform-badge]][terraform]
+[![Azure][azure-badge]][azure]
+[![PostgreSQL][postgres-badge]][postgres]
 [![GitHub Actions][actions-badge]][actions]
 
 [python-badge]: https://img.shields.io/badge/Python-3.12-3776AB?logo=python&style=flat
@@ -18,8 +25,22 @@
 [posix]: https://pubs.opengroup.org/onlinepubs/9699919799/
 [ts-badge]: https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&style=flat
 [typescript]: https://www.typescriptlang.org/
+[js-badge]: https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?logo=javascript&style=flat
+[javascript]: https://developer.mozilla.org/docs/Web/JavaScript
+[ps-badge]: https://img.shields.io/badge/PowerShell-7.x-5391FE?logo=powershell&style=flat
+[powershell]: https://learn.microsoft.com/powershell/
+[fastapi-badge]: https://img.shields.io/badge/FastAPI-Framework-009688?logo=fastapi&style=flat
+[fastapi]: https://fastapi.tiangolo.com/
 [docker-badge]: https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&style=flat
 [docker]: https://www.docker.com/
+[k8s-badge]: https://img.shields.io/badge/Kubernetes-Orchestration-326ce5?logo=kubernetes&style=flat
+[kubernetes]: https://kubernetes.io/
+[terraform-badge]: https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&style=flat
+[terraform]: https://www.terraform.io/
+[azure-badge]: https://img.shields.io/badge/Azure-Cloud-0078D4?logo=microsoftazure&style=flat
+[azure]: https://azure.microsoft.com/
+[postgres-badge]: https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&style=flat
+[postgres]: https://www.postgresql.org/
 [actions-badge]: https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&style=flat
 [actions]: https://docs.github.com/actions
 [github-stats]: https://github-readme-stats-sigma-five.vercel.app/api?username=reesey275&show_icons=true&theme=dark
