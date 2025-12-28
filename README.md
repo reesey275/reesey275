@@ -1,12 +1,27 @@
 # Chad Reesey | reesey275 | Mr. Potato
 
-> I'm a veteran software engineer and systems architect. I build secure, self-hosted tools and AI-integrated platforms. I'm an NSLS-inducted (National Society of Leadership and Success) leader, and I founded TAGS (The Angry Gamer Show Productions).
+[!NOTE]
+> I'm a veteran software engineer and systems architect.
+> I build secure, self-hosted tools and AI-integrated platforms.
+> I'm an NSLS-inducted (National Society of Leadership and Success) leader,
+> and I founded TAGS (The Angry Gamer Show Productions).
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white&style=flat-square)](https://www.python.org/)
-[![Bash](https://img.shields.io/badge/Shell-POSIX%2FBash-4EAA25?logo=gnubash&logoColor=white&style=flat-square)](https://pubs.opengroup.org/onlinepubs/9699919799/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white&style=flat-square)](https://www.typescriptlang.org/)
-[![Docker](https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&logoColor=white&style=flat-square)](https://www.docker.com/)
-[![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white&style=flat-square)](https://docs.github.com/actions)
+[![Python][python-badge]][python]
+[![Bash][bash-badge]][posix]
+[![TypeScript][ts-badge]][typescript]
+[![Docker][docker-badge]][docker]
+[![GitHub Actions][actions-badge]][actions]
+
+[python-badge]: https://img.shields.io/badge/Python-3.12-3776AB?logo=python&style=flat
+[python]: https://www.python.org/
+[bash-badge]: https://img.shields.io/badge/Shell-POSIX%2FBash-4EAA25?logo=gnubash&style=flat
+[posix]: https://pubs.opengroup.org/onlinepubs/9699919799/
+[ts-badge]: https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&style=flat
+[typescript]: https://www.typescriptlang.org/
+[docker-badge]: https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&style=flat
+[docker]: https://www.docker.com/
+[actions-badge]: https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&style=flat
+[actions]: https://docs.github.com/actions
 
 <!-- Optional ASCII header -->
 ## 🥔 Chad Reesey — Mr. Potato
@@ -16,8 +31,10 @@
 - Veteran | Systems-first builder | DevOps & governance automation specialist
 - I build thinking systems: **visible learning → doctrine → automation**
 - Currently leading TAGS (The Angry Gamer Show Productions) Ecosystem
-- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with IaaS/PaaS/SaaS architecture and 95% quality guardrails
-- **U.S. Air Force veteran** — mission-focused operations, accountability, and system reliability shaped by service in mission-critical environments
+- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with IaaS/PaaS/SaaS architecture and 95% quality
+  guardrails
+- **U.S. Air Force veteran** — mission-focused operations, accountability, and system reliability shaped by service in
+  mission-critical environments
 
 ## 🧭 Engineering Philosophy
 I build systems the way mission-critical operations demand they be built:
@@ -30,23 +47,24 @@ I build systems the way mission-critical operations demand they be built:
 If a system requires tribal knowledge to function, it is already a liability.
 
 ## 🔧 How I Work
-- Written context before decisions; initial meetings are used for scoping and discovery when requirements are still forming
+- Written context before decisions; initial meetings are used for scoping and discovery when requirements are still
+  forming
 - Bias toward observable, repeatable, resilient systems
 - Deterministic CI, linting, documentation validation, and reproducible builds
 - Clear standards, direct feedback, and auditability over hand-waving
 
 ## 📊 GitHub Stats
 
-**Primary Languages:** Python • Shell (POSIX/Bash) • JavaScript • TypeScript • PowerShell  
-**Public Repositories:** 3 active projects • 3 private development repos  
+**Primary Languages:** Python • Shell (POSIX/Bash) • JavaScript • TypeScript • PowerShell
+**Public Repositories:** 3 active projects • 3 private development repos
 **Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions) — 9 repositories
 
 ### GitHub Contribution Activity
 
 Note: Contribution activity reflects a solo build phase focused on end-to-end system design and execution.
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark&count_private=true&include_all_commits=true)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark&langs_count=8)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=reesey275&show_icons=true&theme=dark)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=reesey275&layout=compact&theme=dark)
 
 ## 📈 Weekly Development Stats
 
@@ -108,18 +126,21 @@ _Last updated: 2025-12-28 00:14:09 UTC_
 ## 🎯 Featured Projects
 
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
-**Overview:** Automated developer onboarding and compliance platform; service foundation (FastAPI + CI governance + Discord bots); scales to enterprise workflows and CI/CD triggers.
+**Overview:** Automated developer onboarding and compliance platform;
+service foundation (FastAPI + CI governance + Discord bots); scales to enterprise workflows and CI/CD triggers.
 
 **Stack:** Python • Shell (POSIX/Bash) • FastAPI • Discord API • GitHub Actions
 
 **Role:** I designed and lead the architecture; I enforce 95%+ quality guardrails and governance-as-code.
 
-**Highlights:** CI-enforced workflows; OAuth2/JWT/RBAC provisioning; documentation/checklist validation; production foundation for TAGS.
+**Highlights:** CI-enforced workflows; OAuth2/JWT/RBAC provisioning; documentation/checklist validation; production
+foundation for TAGS.
 
 ---
 
 ### TAGS Ecosystem (9 repos)
-**Overview:** Multi-repo platform for gaming content production; web app + bots + APIs; scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality gates.
+**Overview:** Multi-repo platform for gaming content production; web app + bots + APIs;
+scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality gates.
 
 **Stack:** Python • TypeScript • Shell (POSIX/Bash) • Docker • GitHub Actions
 
@@ -130,7 +151,8 @@ _Last updated: 2025-12-28 00:14:09 UTC_
 ---
 
 ### [tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)
-**Overview:** Model Context Protocol servers for task management, knowledge graphs, time operations, and secure filesystem access.
+**Overview:** Model Context Protocol servers for task management, knowledge graphs, time operations,
+and secure filesystem access.
 
 **Stack:** Python • FastAPI • Pydantic • MCP SDK
 
@@ -164,7 +186,8 @@ _Last updated: 2025-12-28 00:14:09 UTC_
 
 ### Personal tooling
 - [PortalSDK](https://github.com/reesey275/PortalSDK) — developer toolkit → library/CLI → productivity patterns.
-- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist management → full-stack (API + SPA + Python CLI) → session auth + rate limiting.
+- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist management → full-stack
+  (API + SPA + Python CLI) → session auth + rate limiting.
 - [core-instructions](docs/PROJECTS/core-instructions.md) — engineering policies/contracts → docs → governance-as-code.
 
 ## 🛠 Technical Expertise
@@ -190,21 +213,24 @@ _Last updated: 2025-12-28 00:14:09 UTC_
 
 ### Security & Administration
 - Active Directory, RBAC, server hardening
-- Secret management, Cloudflare Tunnels, **Potato Policy** (personal engineering governance standard for evidence-first decisions, explicit tradeoffs, and long-term maintainability)
+- Secret management, Cloudflare Tunnels, **Potato Policy** (personal engineering governance standard for evidence-first
+decisions, explicit tradeoffs, and long-term maintainability)
 - Zero-trust architecture and automated security scanning
 - GitHub repository hygiene and access control
 
 ### Systems & Tooling (Representative)
 
-**25+ years exposure across civilian and government infrastructure:**  
+**25+ years exposure across civilian and government infrastructure:**
 Linux • Ubuntu • Docker • NGINX • Python • Shell (POSIX/Bash) • GitHub Actions • Cloudflare • Ansible • Terraform
 
-**[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience (historical breadth vs current daily usage)
+**[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience
+(historical breadth vs current daily usage)
 
 ## 🎓 Continuous Learning
 
 - **National Society of Leadership and Success (NSLS)** — Inducted in recognition of leadership and academic excellence
-- **Western Governors University** — B.S. Software Engineering _(in progress)_ — formalizing CS fundamentals to complement 25+ years of hands-on systems work
+- **Western Governors University** — B.S. Software Engineering _(in progress)_ —
+  formalizing CS fundamentals to complement 25+ years of hands-on systems work
 
 ## 🌐 Connect With Me
 
