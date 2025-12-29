@@ -12,6 +12,55 @@
 
 ---
 
+## 🥔 Developer Portfolio Snapshot
+
+**Mr. Potato — Chad Allan Reesey | Founder, The Angry Gamer Show Productions (TAGS)**  \
+Latest update: **13 May 2025 00:27 (EST)**
+
+### 🔑 Executive Summary
+Senior-level full-stack developer and infrastructure architect focused on scalable, secure, and modular platforms across the TAGS ecosystem, including authentication systems, Discord bot infrastructure, educational tools, and AI-integrated user platforms.
+
+### 📊 Core Competencies
+- **Full Stack Development**: Vite, React, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend Architecture**: Node.js/TypeScript, Fastify, JWT, OAuth2, RBAC
+- **DevOps & Infrastructure**: Docker, Docker Compose, Traefik, Cloudflare Tunnel, TrueNAS SCALE
+- **Database & Caching**: PostgreSQL, Redis
+- **AI & Automation**: OpenAI Custom GPTs, GitHub Copilot, CI/CD with GitHub Actions
+- **Security & Role Management**: Discord OAuth2 integration, per-route RBAC, token validation
+- **Project Management**: Canvas-based documentation, semantic versioning, phased development, internal auditing
+
+### 📖 Projects & Achievements
+**The Angry Gamer Show Productions (TAGS)**
+- **TAG Auth Server**: Discord OAuth2 login with secure token exchange; JWT-based sessions with dynamic role resolution; modular middleware for RBAC enforcement
+- **TAG WebApp**: Role-gated front end for verified users, admins, and moderators; real-time session state handling via `useSession`; integration with Discord roles and verification status
+- **Discord Commander Bot**: Modular command handling, admin moderation, guild verification; integrated with backend APIs for synced role status and user state
+- **Ghostscript UI**: Web-based interface for PDF/Postscript conversions; automation candidate with planned public release
+- **Educational Tools (in development)**: Algebra chart generator with interactive playground; programming learning modules (Python, C#)
+
+### 🌐 Infrastructure Stack
+- Hosted in TrueNAS SCALE with Docker
+- Traefik reverse proxy for TLS termination and routing
+- Cloudflare Tunnel for secure remote development access
+- GitHub Actions and Docker tags integrated for CI/CD
+
+### 🖊️ AI Integration
+- Custom GPTs for code refactoring, documentation generation, interactive chart and UI scaffolding, and prompt-driven development flows
+- Vision: AI-powered verification, moderation, and educational assistants under development
+
+### 🌟 Notable Traits
+- Inventive, vision-driven, and technically precise; balances humor ("Potato Stack") with disciplined engineering
+- Proactive in designing for scale, maintainability, and team onboarding
+
+### ✍️ Future Goals
+- Harden infrastructure with advanced monitoring/logging (Grafana, Prometheus)
+- Publish Ghostscript UI and algebra tools as public educational utilities
+- Expand AI assistant toolkit for creators, moderators, and students
+- Launch public-facing TAG platform with monetization, analytics, and secure user services
+
+> "Call it a Potato Stack if you want. It’s battle-tested, modular, and smarter every day."
+
+---
+
 ## 🔧 Core Competencies
 
 ### Infrastructure & DevOps
@@ -38,6 +87,15 @@
 - **Security**: Zero-trust architecture, server hardening, secret management
 - **Compliance**: Automated security scanning, documentation validation
 - **Network**: Cloudflare Tunnels, NGINX reverse proxy, secure remote access
+
+### Systems & Operations Experience
+- **Operating Systems**: Windows 7/8/10/11; Windows Server 200x; Exchange Server 20xx; Microsoft SharePoint Services 2.0, 3.0, 2010, 2013, 2016; O365/M365
+- **Enterprise Platforms**: Cargo Movement Operating System; Automated Business Services System; Commander's Resource Integration System; Oracle applications and servers; Symantec/Veritas backup systems; Citrix XenServer
+- **Asset & Supply Systems**: InfoConnect/SBSS; Remedy 6.3/7.5; enterprise asset tracking and management
+- **Networking**: DHCP, WINS, TCP/IP, VoIP, Plain Old Telephone Service (POTS)
+- **Server & Directory Management**: SCCM; Active Directory; Active Roles Server; Directory Resource and Administration (DRA)
+- **Programming & Tooling**: JavaScript, Python, Ansible, Terraform, Node.js, Bash, Docker, Docker Compose, Git, VS Code; Azure and Kubernetes administration
+- **Strengths**: Root-cause troubleshooting for system failures, performance bottlenecks, and network interruptions; clear communication with cross-functional teams and stakeholders
 
 ---
 
@@ -94,8 +152,22 @@ Formalizing computer science fundamentals to complement 25+ years of hands-on sy
 **National Society of Leadership and Success (NSLS)**  
 Inducted in recognition of leadership excellence and academic achievement
 
-**U.S. Air Force**  
+**U.S. Air Force**
 Veteran — Mission-critical operations training and execution
+
+---
+
+## 📜 Professional Education & Certifications
+- **United States Air Force Airman Leadership School** — 2005
+- **United States Air Force Knowledge Operations Management Course** — 2009
+- **DevOps with Azure (O’Reilly Media)** — March 2024
+- **Docker (O’Reilly Media)** — March 2024
+- **Linux Fundamentals (O’Reilly Media)** — March 2024
+- **Ansible for Beginners (O’Reilly Media)** — March 2024
+- **Kubernetes for Beginners (O’Reilly Media)** — March 2024
+- **Linux Under the Hood (O’Reilly Media)** — April 2024
+- **Practical Docker Guide (O’Reilly Media)** — April 2024
+- **DevOps Complete Course (O’Reilly Media)** — April 2024
 
 ---
 
