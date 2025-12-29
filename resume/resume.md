@@ -14,7 +14,7 @@
 
 ## 🥔 Developer Portfolio Snapshot
 
-**Mr. Potato — Chad Allan Reesey | Founder, The Angry Gamer Show Productions (TAGS)**
+### Mr. Potato — Chad Allan Reesey | Founder, The Angry Gamer Show Productions (TAGS)
 
 Latest update: **13 May 2025 00:27 (EST)**
 
