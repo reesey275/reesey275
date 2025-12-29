@@ -14,7 +14,8 @@
 
 ## 🥔 Developer Portfolio Snapshot
 
-**Mr. Potato — Chad Allan Reesey | Founder, The Angry Gamer Show Productions (TAGS)**<br>
+**Mr. Potato — Chad Allan Reesey | Founder, The Angry Gamer Show Productions (TAGS)**
+
 Latest update: **13 May 2025 00:27 (EST)**
 
 ### 🔑 Executive Summary
@@ -30,7 +31,7 @@ Senior-level full-stack developer and infrastructure architect focused on scalab
 - **Project Management**: Canvas-based documentation, semantic versioning, phased development, internal auditing
 
 ### 📖 Projects & Achievements
-**The Angry Gamer Show Productions (TAGS)**
+#### The Angry Gamer Show Productions (TAGS)
 - **TAG Auth Server**: Discord OAuth2 login with secure token exchange; JWT-based sessions with dynamic role resolution; modular middleware for RBAC enforcement
 - **TAG WebApp**: Role-gated front end for verified users, admins, and moderators; real-time session state handling via `useSession`; integration with Discord roles and verification status
 - **Discord Commander Bot**: Modular command handling, admin moderation, guild verification; integrated with backend APIs for synced role status and user state
