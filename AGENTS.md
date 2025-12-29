@@ -1,6 +1,6 @@
 Setup commands Codex should run
 
-Markdown checks: bash scripts/lint_markdown.sh
+Markdown checks: bash scripts/lint_markdown.sh (runs markdownlint-cli2 with the same patterns as CI; set RUN_LINE_CHECKS=1 to also flag long lines and trailing whitespace)
 
 External link checks: bash scripts/check_links.sh
 
