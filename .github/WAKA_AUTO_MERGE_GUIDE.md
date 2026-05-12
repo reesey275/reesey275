@@ -40,8 +40,7 @@ Workflow runs → Creates PR → Triggers workflow → Creates PR → ∞
 ```
 
 **Impact**:
-- `lint.yml` requires `pull_request` event to run
-- `docs-quality.yml` requires `pull_request` event to run
+- `quality.yml` (`Quality Gate / quality`) requires `pull_request` event to run
 - No workflows = no commit status = auto-merge blocked
 
 ### Why workflow_dispatch Didn't Work
@@ -180,7 +179,7 @@ watch -n 5 'gh pr view <PR_NUMBER> --json state,statusCheckRollup,autoMergeReque
 #### Expected Behavior
 1. **Workflow runs** (1-2 minutes)
 2. **PR created** with proper title/body
-3. **Workflows trigger automatically** (`lint.yml`, `docs-quality.yml`)
+3. **Quality Gate triggers automatically** (`quality.yml`)
 4. **Checks report status** (visible in PR, not "Expected — Waiting")
 5. **Auto-merge executes** when all checks pass (30-60 seconds)
 6. **PR merges automatically** without manual intervention
@@ -254,17 +253,16 @@ gh api repos/${OWNER}/${REPO}/pulls/<PR_NUMBER>/commits -q '.[].sha' | head -1 |
 
 ```bash
 # Check workflow triggers
-grep -A 5 "^on:" .github/workflows/lint.yml
-grep -A 5 "^on:" .github/workflows/docs-quality.yml
+grep -A 5 "^on:" .github/workflows/quality.yml
 
 # Verify pull_request event is listed
 ```
 
 **Solutions**:
-1. Ensure workflows have `pull_request:` in `on:` trigger
-2. Check workflow files aren't disabled
-3. Verify branch protection requires these checks
-4. Test workflow manually: `gh workflow run lint.yml --ref <BRANCH>`
+1. Ensure `quality.yml` has `pull_request:` in `on:` trigger
+2. Check `quality.yml` is not disabled
+3. Verify branch protection requires `Quality Gate / quality`
+4. Test workflow manually: `gh workflow run quality.yml --ref <BRANCH>`
 
 ### Issue: Checks Run But Auto-Merge Doesn't Trigger
 
@@ -476,7 +474,7 @@ Consider setting up notifications for:
 - **PR #89**: Fixed heredoc YAML parsing in waka-readme.yml
 - **PR #90**: Fixed emoji UTF-8 encoding in waka-readme.yml
 - **PR #91**: Fixed JQ syntax errors in debug commands
-- **PR #93**: Added workflow_dispatch to lint.yml (partial solution)
+- **PR #93**: Added workflow_dispatch to split check workflows (partial solution)
 - **PR #95**: Implemented PAT solution (complete fix)
 - **PR #96**: First successful auto-merge with PAT
 

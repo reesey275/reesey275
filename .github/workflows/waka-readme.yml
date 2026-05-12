@@ -3,7 +3,7 @@ name: Waka Readme
 on:
   schedule:
     # Runs at 12am UTC every day
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -37,16 +37,16 @@ jobs:
 
           # Fetch stats from WakaTime API
           AUTH=$(echo -n "$WAKATIME_API_KEY" | base64)
-          
+
           # Use summaries endpoint with date range for real-time data (bypasses cache)
           END_DATE=$(date -u +%Y-%m-%d)
           START_DATE=$(date -u -d '7 days ago' +%Y-%m-%d)
-          
+
           echo "Fetching WakaTime data from $START_DATE to $END_DATE"
-          
+
           SUMMARIES=$(curl -sf -H "Authorization: Basic $AUTH" \
             "https://wakatime.com/api/v1/users/current/summaries?start=$START_DATE&end=$END_DATE")
-          
+
           if [ -z "$SUMMARIES" ]; then
             echo "Failed to fetch WakaTime summaries"
             exit 1
@@ -57,7 +57,7 @@ jobs:
             echo "No summary days returned from WakaTime; cannot compute daily average."
             exit 1
           fi
-          
+
           # Aggregate summaries into stats format using simpler approach
           # Calculate totals first with bc (more reliable than jq arithmetic with string concat)
           TOTAL_SECONDS=$(echo "$SUMMARIES" | jq '[.data[].grand_total.total_seconds] | add')
@@ -65,7 +65,7 @@ jobs:
           TOTAL_MINS=$(echo "scale=0; ($TOTAL_SECONDS % 3600) / 60" | bc)
           DAILY_AVG_HOURS=$(echo "scale=0; $TOTAL_SECONDS / $DAY_COUNT / 3600" | bc)
           DAILY_AVG_MINS=$(echo "scale=0; (($TOTAL_SECONDS / $DAY_COUNT) % 3600) / 60" | bc)
-          
+
           # Build stats JSON using jq string interpolation instead of concatenation
           STATS=$(echo "$SUMMARIES" | jq --arg total "$TOTAL_SECONDS" \
             --arg total_text "$TOTAL_HOURS hrs $TOTAL_MINS mins" \
@@ -118,23 +118,23 @@ jobs:
               timezone: .data[0].range.timezone
             }
           }')
-          
+
           # Debug: Log key stats totals
           TOTAL_SECONDS=$(echo "$STATS" | jq -r '.data.total_seconds_including_other_language // 0')
           echo "Debug: Total seconds from API: $TOTAL_SECONDS ($(echo "scale=2; $TOTAL_SECONDS / 3600" | bc) hours)"
-          
+
           echo "Debug: Languages breakdown"
           echo "$STATS" | jq -r '(.data.languages // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-          
+
           echo "Debug: Editors breakdown"
           echo "$STATS" | jq -r '(.data.editors // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-          
+
           echo "Debug: Operating systems breakdown"
           echo "$STATS" | jq -r '(.data.operating_systems // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-          
+
           echo "Debug: Projects breakdown"
           echo "$STATS" | jq -r '(.data.projects // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-          
+
           echo "Debug: Categories breakdown"
           echo "$STATS" | jq -r '(.data.categories // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
 
@@ -146,12 +146,12 @@ jobs:
           RANGE_START=$(echo "$STATS" | jq -r '.data.start // ""' | cut -d'T' -f1)
           RANGE_END=$(echo "$STATS" | jq -r '.data.end // ""' | cut -d'T' -f1)
           TIMEZONE=$(echo "$STATS" | jq -r '.data.timezone // "UTC"')
-          
+
           # Fetch GitHub language stats (non-fork repos with language info)
           GITHUB_LANGUAGES=$(curl -sf -H "Authorization: Bearer ${{ github.token }}" \
             "https://api.github.com/users/reesey275/repos?per_page=100&type=owner" | \
             jq -r '[.[] | select(.fork == false and .language != null) | .language] | group_by(.) | map({language: .[0], count: length}) | sort_by(-.count) | .[:5]')
-          
+
           TOTAL_REPOS=$(echo "$GITHUB_LANGUAGES" | jq -r 'map(.count) | add // 0')
 
           # Build progress bar function (using braille blocks like athul/waka-readme)
@@ -245,7 +245,7 @@ jobs:
             bar=$(make_bar "${pct%.*}")
             CATEGORIES+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
           done < <(echo "$STATS" | jq -c '.data.categories[:5][]')
-          
+
           # Generate day-of-week section
           DAYS_OF_WEEK=""
           declare -A day_names=([0]="Sunday" [1]="Monday" [2]="Tuesday" [3]="Wednesday" [4]="Thursday" [5]="Friday" [6]="Saturday")
@@ -256,7 +256,7 @@ jobs:
               day_data[$i]="$day_info"
             fi
           done
-          
+
           # Find most productive day (integer comparison with proper handling)
           max_seconds=0
           max_day=""
@@ -269,12 +269,12 @@ jobs:
               fi
             fi
           done
-          
+
           # Default to Sunday if no data available
           if [ -z "$max_day" ]; then
             max_day="Sunday"
           fi
-          
+
           # Build day-of-week stats (Monday-Sunday order for readability)
           for i in {1..6} 0; do
             if [ -n "${day_data[$i]:-}" ]; then
@@ -288,7 +288,7 @@ jobs:
               DAYS_OF_WEEK+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
             fi
           done
-          
+
           # Generate language repos section from GitHub (with division by zero guard)
           LANGUAGE_REPOS=""
           most_used_lang=""
@@ -373,7 +373,15 @@ jobs:
           HEAD_BRANCH="waka-readme"
           REPO="$GITHUB_REPOSITORY"
 
-          git fetch origin "$HEAD_BRANCH" || true
+          fetch_head_branch_if_exists() {
+            if git ls-remote --exit-code --heads origin "$HEAD_BRANCH" >/dev/null 2>&1; then
+              git fetch origin "$HEAD_BRANCH"
+            else
+              echo "Info: Remote branch $HEAD_BRANCH does not exist yet (first run)."
+            fi
+          }
+
+          fetch_head_branch_if_exists
           git checkout -B "$HEAD_BRANCH"
 
           CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -400,14 +408,14 @@ jobs:
             exit 0
           fi
 
-          git fetch origin "$HEAD_BRANCH" || true
+          fetch_head_branch_if_exists
           git push origin HEAD:"$HEAD_BRANCH" --force-with-lease
 
           # Create PR body in temp file (printf pattern avoids YAML heredoc parsing issues)
           TEMP_BODY="$(mktemp -t "waka_pr_body.XXXXXX")"
           cleanup() { rm -f "$TEMP_BODY"; }
           trap cleanup EXIT
-          
+
           TIMESTAMP="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           printf '%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n' \
             "Automated WakaTime stats update from GitHub Actions." \
@@ -442,17 +450,15 @@ jobs:
             exit 1
           fi
 
-          # Explicitly dispatch required workflow checks on the PR branch
+          # Explicitly dispatch required workflow check on the PR branch
           # This prevents "Expected — Waiting" status from bot token limitations
-          echo "Dispatching required workflows on $HEAD_BRANCH branch..."
-          if ! gh workflow run lint.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
-            echo "WARNING: Failed to dispatch lint workflow (workflow_dispatch may not be configured)"
-          fi
-          if ! gh workflow run docs-quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
-            echo "WARNING: Failed to dispatch docs-quality workflow (workflow_dispatch may not be configured)"
+          echo "Dispatching Quality Gate on $HEAD_BRANCH branch..."
+          if ! gh workflow run quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
+            echo "ERROR: Failed to dispatch quality.yml on $HEAD_BRANCH branch."
+            exit 1
           fi
 
           # Enable auto-merge (checks will be verified by GitHub before merging)
           gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash --delete-branch
           echo "Auto-merge requested for PR #$PR_NUMBER"
-          echo "Checks dispatched and will be verified before merge."
+          echo "Quality Gate dispatched and will be verified before merge."
