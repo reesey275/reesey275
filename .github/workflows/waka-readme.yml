@@ -69,44 +69,49 @@ jobs:
           # Build stats JSON using jq string interpolation instead of concatenation
           STATS=$(echo "$SUMMARIES" | jq --arg total "$TOTAL_SECONDS" \
             --arg total_text "$TOTAL_HOURS hrs $TOTAL_MINS mins" \
-            --arg daily_text "$DAILY_AVG_HOURS hrs $DAILY_AVG_MINS mins" '{
+            --arg daily_text "$DAILY_AVG_HOURS hrs $DAILY_AVG_MINS mins" '($total | tonumber) as $total_num |
+            def rounded_percent(total):
+              if total == 0 then 0
+              else (((.total_seconds / total * 10000) + 0.5) | floor) / 100
+              end;
+            {
             data: {
-              total_seconds_including_other_language: ($total | tonumber),
+              total_seconds_including_other_language: $total_num,
               human_readable_total: $total_text,
               human_readable_daily_average: $daily_text,
               languages: ([.data[].languages] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:5] | 
                 map(. + {
-                  percent: (.total_seconds / ($total | tonumber) * 100 | floor),
+                  percent: rounded_percent($total_num),
                   text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
                 })),
               editors: ([.data[].editors] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:3] | 
                 map(. + {
-                  percent: (.total_seconds / ($total | tonumber) * 100 | floor),
+                  percent: rounded_percent($total_num),
                   text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
                 })),
               operating_systems: ([.data[].operating_systems] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:3] | 
                 map(. + {
-                  percent: (.total_seconds / ($total | tonumber) * 100 | floor),
+                  percent: rounded_percent($total_num),
                   text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
                 })),
               projects: ([.data[].projects] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:5] | 
                 map(. + {
-                  percent: (.total_seconds / ($total | tonumber) * 100 | floor),
+                  percent: rounded_percent($total_num),
                   text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
                 })),
               categories: ([.data[].categories] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:5] | 
                 map(. + {
-                  percent: (.total_seconds / ($total | tonumber) * 100 | floor),
+                  percent: rounded_percent($total_num),
                   text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
                 })),
               best_day: (.data | max_by(.grand_total.total_seconds) | {
@@ -374,10 +379,16 @@ jobs:
           REPO="$GITHUB_REPOSITORY"
 
           fetch_head_branch_if_exists() {
-            if git ls-remote --exit-code --heads origin "$HEAD_BRANCH" >/dev/null 2>&1; then
+            local ls_remote_status=0
+            git ls-remote --exit-code --heads origin "$HEAD_BRANCH" >/dev/null 2>&1 || ls_remote_status=$?
+
+            if [ "$ls_remote_status" -eq 0 ]; then
               git fetch origin "$HEAD_BRANCH"
-            else
+            elif [ "$ls_remote_status" -eq 2 ]; then
               echo "Info: Remote branch $HEAD_BRANCH does not exist yet (first run)."
+            else
+              echo "ERROR: Failed to query remote branch $HEAD_BRANCH (git ls-remote exit $ls_remote_status)."
+              exit 1
             fi
           }
 
@@ -450,15 +461,21 @@ jobs:
             exit 1
           fi
 
-          # Explicitly dispatch required workflow check on the PR branch
-          # This prevents "Expected — Waiting" status from bot token limitations
-          echo "Dispatching Quality Gate on $HEAD_BRANCH branch..."
-          if ! gh workflow run quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
-            echo "ERROR: Failed to dispatch quality.yml on $HEAD_BRANCH branch."
-            exit 1
+          HEAD_SHA=$(git rev-parse HEAD)
+          QUALITY_RUN_COUNT=$(gh api "repos/$REPO/commits/$HEAD_SHA/check-runs" --jq '[.check_runs[] | select(.name == "quality")] | length')
+
+          # Fallback dispatch only when no Quality Gate run exists yet for this head SHA.
+          if [ "$QUALITY_RUN_COUNT" -gt 0 ]; then
+            echo "Quality Gate already present for $HEAD_SHA; skipping workflow_dispatch fallback."
+          else
+            echo "No Quality Gate run found for $HEAD_SHA; dispatching quality.yml fallback on $HEAD_BRANCH."
+            if ! gh workflow run quality.yml --repo "$REPO" --ref "$HEAD_BRANCH"; then
+              echo "ERROR: Failed to dispatch quality.yml fallback on $HEAD_BRANCH branch."
+              exit 1
+            fi
           fi
 
           # Enable auto-merge (checks will be verified by GitHub before merging)
           gh pr merge "$PR_NUMBER" --repo "$REPO" --auto --squash --delete-branch
           echo "Auto-merge requested for PR #$PR_NUMBER"
-          echo "Quality Gate dispatched and will be verified before merge."
+          echo "Quality Gate status confirmed (existing run or fallback dispatch) and will be verified before merge."

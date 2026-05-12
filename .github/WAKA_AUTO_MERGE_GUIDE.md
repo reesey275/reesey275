@@ -40,7 +40,7 @@ Workflow runs → Creates PR → Triggers workflow → Creates PR → ∞
 ```
 
 **Impact**:
-- `quality.yml` (`Quality Gate / quality`) requires `pull_request` event to run
+- `quality.yml` (`Quality Gate / quality`) normally runs from PR/push events, with `workflow_dispatch` fallback when a run for the head SHA is missing
 - No workflows = no commit status = auto-merge blocked
 
 ### Why workflow_dispatch Didn't Work
