@@ -51,14 +51,20 @@ jobs:
             echo "Failed to fetch WakaTime summaries"
             exit 1
           fi
+
+          DAY_COUNT=$(echo "$SUMMARIES" | jq -r '(.data | length) // 0')
+          if [[ "$DAY_COUNT" -eq 0 ]]; then
+            echo "No summary days returned from WakaTime; cannot compute daily average."
+            exit 1
+          fi
           
           # Aggregate summaries into stats format using simpler approach
           # Calculate totals first with bc (more reliable than jq arithmetic with string concat)
           TOTAL_SECONDS=$(echo "$SUMMARIES" | jq '[.data[].grand_total.total_seconds] | add')
           TOTAL_HOURS=$(echo "scale=0; $TOTAL_SECONDS / 3600" | bc)
           TOTAL_MINS=$(echo "scale=0; ($TOTAL_SECONDS % 3600) / 60" | bc)
-          DAILY_AVG_HOURS=$(echo "scale=0; $TOTAL_SECONDS / 7 / 3600" | bc)
-          DAILY_AVG_MINS=$(echo "scale=0; (($TOTAL_SECONDS / 7) % 3600) / 60" | bc)
+          DAILY_AVG_HOURS=$(echo "scale=0; $TOTAL_SECONDS / $DAY_COUNT / 3600" | bc)
+          DAILY_AVG_MINS=$(echo "scale=0; (($TOTAL_SECONDS / $DAY_COUNT) % 3600) / 60" | bc)
           
           # Build stats JSON using jq string interpolation instead of concatenation
           STATS=$(echo "$SUMMARIES" | jq --arg total "$TOTAL_SECONDS" \
@@ -175,7 +181,15 @@ jobs:
           }
 
           pad_name() {
-            printf "%-20s" "$1"
+            local name="$1"
+            local max_width=24
+
+            if [[ ${#name} -gt $max_width ]]; then
+              name="${name:0:$((max_width - 3))}..."
+            fi
+
+            # Keep columns aligned with a guaranteed gap before time values.
+            printf "%-${max_width}s  " "$name"
           }
 
           pad_pct() {
