@@ -6,43 +6,104 @@
 > I'm an NSLS-inducted (National Society of Leadership and Success) leader,
 > and I founded TAGS (The Angry Gamer Show Productions).
 
+## Capability Badges
+
+**Primary Identity:** Platform Engineering · Infrastructure Architecture · DevOps Automation ·
+Security/Governance · AI-Enhanced Engineering
+
+### Core Languages & Formats
+
 [![Python][python-badge]][python]
-[![Bash][bash-badge]][posix]
 [![TypeScript][ts-badge]][typescript]
 [![JavaScript][js-badge]][javascript]
-[![PowerShell][ps-badge]][powershell]
+[![Bash][bash-badge]][posix]
+[![SQL][sql-badge]][sql]
+[![Markdown][markdown-badge]][markdown]
+[![YAML][yaml-badge]][yaml]
+[![JSON][json-badge]][json]
+
+### Active Learning
+
+[![Java][java-badge]][java]
+
+### Backend & APIs
+
 [![FastAPI][fastapi-badge]][fastapi]
+[![Node.js][node-badge]][node]
+[![Fastify][fastify-badge]][fastify]
+[![Express][express-badge]][express]
+[![Discord API][discord-badge]][discord-api]
+[![MCP SDK][mcp-badge]][mcp]
+
+### DevOps & Infrastructure
+
 [![Docker][docker-badge]][docker]
-[![Kubernetes][k8s-badge]][kubernetes]
-[![Terraform][terraform-badge]][terraform]
-[![Azure][azure-badge]][azure]
-[![PostgreSQL][postgres-badge]][postgres]
+[![Docker Compose][compose-badge]][docker-compose]
 [![GitHub Actions][actions-badge]][actions]
+[![Terraform][terraform-badge]][terraform]
+[![Ansible][ansible-badge]][ansible]
+[![Traefik][traefik-badge]][traefik]
+[![Cloudflare][cloudflare-badge]][cloudflare]
+
+### Data
+
+[![PostgreSQL][postgres-badge]][postgres]
+[![Redis][redis-badge]][redis]
+[![MySQL][mysql-badge]][mysql]
+[![Supabase][supabase-badge]][supabase]
 
 [python-badge]: https://img.shields.io/badge/Python-3.12-3776AB?logo=python&style=flat
 [python]: https://www.python.org/
-[bash-badge]: https://img.shields.io/badge/Shell-POSIX%2FBash-4EAA25?logo=gnubash&style=flat
-[posix]: https://pubs.opengroup.org/onlinepubs/9699919799/
 [ts-badge]: https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&style=flat
 [typescript]: https://www.typescriptlang.org/
 [js-badge]: https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?logo=javascript&style=flat
 [javascript]: https://developer.mozilla.org/docs/Web/JavaScript
-[ps-badge]: https://img.shields.io/badge/PowerShell-7.x-5391FE?logo=powershell&style=flat
-[powershell]: https://learn.microsoft.com/powershell/
+[bash-badge]: https://img.shields.io/badge/Shell-POSIX%2FBash-4EAA25?logo=gnubash&style=flat
+[posix]: https://pubs.opengroup.org/onlinepubs/9699919799/
+[sql-badge]: https://img.shields.io/badge/SQL-Query%20Language-336791?style=flat
+[sql]: https://en.wikipedia.org/wiki/SQL
+[markdown-badge]: https://img.shields.io/badge/Markdown-Documentation-000000?logo=markdown&style=flat
+[markdown]: https://www.markdownguide.org/
+[yaml-badge]: https://img.shields.io/badge/YAML-Workflow%20Config-CB171E?logo=yaml&style=flat
+[yaml]: https://yaml.org/
+[json-badge]: https://img.shields.io/badge/JSON-Data%20Format-000000?logo=json&style=flat
+[json]: https://www.json.org/json-en.html
+[java-badge]: https://img.shields.io/badge/Java-Active%20Learning-ED8B00?logo=openjdk&style=flat
+[java]: https://www.java.com/
 [fastapi-badge]: https://img.shields.io/badge/FastAPI-Framework-009688?logo=fastapi&style=flat
 [fastapi]: https://fastapi.tiangolo.com/
+[node-badge]: https://img.shields.io/badge/Node.js-Runtime-5FA04E?logo=nodedotjs&style=flat
+[node]: https://nodejs.org/
+[fastify-badge]: https://img.shields.io/badge/Fastify-Framework-000000?logo=fastify&style=flat
+[fastify]: https://fastify.dev/
+[express-badge]: https://img.shields.io/badge/Express-Framework-000000?logo=express&style=flat
+[express]: https://expressjs.com/
+[discord-badge]: https://img.shields.io/badge/Discord%20API-Integration-5865F2?logo=discord&style=flat
+[discord-api]: https://discord.com/developers/docs/intro
+[mcp-badge]: https://img.shields.io/badge/MCP-SDK-000000?style=flat
+[mcp]: https://modelcontextprotocol.io/
 [docker-badge]: https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&style=flat
 [docker]: https://www.docker.com/
-[k8s-badge]: https://img.shields.io/badge/Kubernetes-Orchestration-326ce5?logo=kubernetes&style=flat
-[kubernetes]: https://kubernetes.io/
-[terraform-badge]: https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&style=flat
-[terraform]: https://www.terraform.io/
-[azure-badge]: https://img.shields.io/badge/Azure-Cloud-0078D4?logo=microsoftazure&style=flat
-[azure]: https://azure.microsoft.com/
-[postgres-badge]: https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&style=flat
-[postgres]: https://www.postgresql.org/
+[compose-badge]: https://img.shields.io/badge/Docker%20Compose-Orchestration-2496ED?logo=docker&style=flat
+[docker-compose]: https://docs.docker.com/compose/
 [actions-badge]: https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&style=flat
 [actions]: https://docs.github.com/actions
+[terraform-badge]: https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&style=flat
+[terraform]: https://www.terraform.io/
+[ansible-badge]: https://img.shields.io/badge/Ansible-Automation-EE0000?logo=ansible&style=flat
+[ansible]: https://www.ansible.com/
+[traefik-badge]: https://img.shields.io/badge/Traefik-Proxy-24A1C1?logo=traefikproxy&style=flat
+[traefik]: https://traefik.io/
+[cloudflare-badge]: https://img.shields.io/badge/Cloudflare-Edge%2FTunnel-F38020?logo=cloudflare&style=flat
+[cloudflare]: https://www.cloudflare.com/
+[postgres-badge]: https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&style=flat
+[postgres]: https://www.postgresql.org/
+[redis-badge]: https://img.shields.io/badge/Redis-Cache-FF4438?logo=redis&style=flat
+[redis]: https://redis.io/
+[mysql-badge]: https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql&style=flat
+[mysql]: https://www.mysql.com/
+[supabase-badge]: https://img.shields.io/badge/Supabase-Platform-3FCF8E?logo=supabase&style=flat
+[supabase]: https://supabase.com/
 [github-stats]: https://github-readme-stats-sigma-five.vercel.app/api?username=reesey275&show_icons=true&theme=dark
 [top-languages]: https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=reesey275&theme=dark
 [profile]: https://github.com/reesey275
@@ -79,9 +140,10 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 ## 📊 GitHub Stats
 
-**Primary Languages:** Python • Shell (POSIX/Bash) • JavaScript • TypeScript • PowerShell
-**Public Repositories:** 3 active projects • 3 private development repos
-**Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions) — 9 repositories
+- **Core Languages & Formats:** Python • TypeScript • JavaScript • Bash • SQL • Markdown • YAML • JSON
+- **Active Learning:** Java
+- **Public Repositories:** 3 active projects • 3 private development repos
+- **Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions) — 9 repositories
 
 ### GitHub Contribution Activity
 
@@ -91,6 +153,12 @@ Note: Contribution activity reflects a solo build phase focused on end-to-end sy
 [![Top Languages][top-languages]][profile]
 
 ## 📈 Weekly Development Stats
+
+WakaTime reflects rolling development activity across daily engineering work,
+coursework, project builds, documentation, and active learning. It is current
+workflow evidence, not a permanent ranking of professional skill depth. Large
+"Other" entries are unclassified activity that need follow-up before they
+influence badge changes.
 
 <!--START_SECTION:waka-->
 
@@ -216,38 +284,26 @@ and secure filesystem access.
   (API + SPA + Python CLI) → session auth + rate limiting.
 - [core-instructions](docs/PROJECTS/core-instructions.md) — engineering policies/contracts → docs → governance-as-code.
 
-## 🛠 Technical Expertise
+## Abilities
 
-### Infrastructure & DevOps
-- Docker, Kubernetes, Terraform, Ansible
-- GitHub Actions, CI/CD pipeline design with 95% quality gates
-- Azure, Hyper-V, TrueNAS SCALE
-- Ubuntu 24.04 development environment automation
+I build infrastructure-backed software systems with an emphasis on platform
+reliability, security boundaries, automation, and maintainable engineering
+workflows.
 
-### AI & Automation
-- Model Context Protocol (MCP) server development and integration
-- AI/Codex agents for self-documenting infrastructure
-- Python automation with FastAPI and Pydantic
-- Hybrid shell/Python task runners and quality control systems
-- AI-enhanced development workflows with VS Code integration
-
-### Development Standards & Quality Control
-- Conventional commits (TYPE(scope): format) with GPG signing
-- Automated quality control with 95%+ test coverage requirements
-- Vale linting, Black formatting, MyPy type checking
-- DevOnboarder quality enforcement and CI/CD validation
-
-### Security & Administration
-- Active Directory, RBAC, server hardening
-- Secret management, Cloudflare Tunnels, **Potato Policy** (personal engineering governance standard for evidence-first
-decisions, explicit tradeoffs, and long-term maintainability)
-- Zero-trust architecture and automated security scanning
-- GitHub repository hygiene and access control
-
-### Systems & Tooling (Representative)
-
-**25+ years exposure across civilian and government infrastructure:**
-Linux • Ubuntu • Docker • NGINX • Python • Shell (POSIX/Bash) • GitHub Actions • Cloudflare • Ansible • Terraform
+- **Languages & Formats:** Python, TypeScript, JavaScript, Bash, SQL, Markdown,
+  YAML, JSON
+- **Frontend:** React, Vite, Tailwind CSS, shadcn/ui
+- **Backend/API:** Node.js, Fastify, FastAPI, Express, REST APIs, Discord API,
+  MCP SDK
+- **DevOps & Infrastructure:** Docker, Docker Compose, GitHub Actions, Traefik,
+  Cloudflare Tunnel, TrueNAS SCALE
+- **Security & Governance:** OAuth2, JWT, RBAC, Active Directory, secret
+  management, CI quality gates, documentation validation
+- **Data:** PostgreSQL, Redis, MySQL, Supabase
+- **AI-Enhanced Engineering:** OpenAI Custom GPTs, GitHub Copilot,
+  Codex-assisted planning, MCP servers, prompt-driven workflows
+- **Systems Operations:** Windows/Linux administration, virtualization, patching,
+  troubleshooting, service reliability, and infrastructure documentation
 
 **[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience
 (historical breadth vs current daily usage)
