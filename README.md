@@ -99,7 +99,7 @@ Security/Governance · AI-Enhanced Engineering
 [markdown]: https://www.markdownguide.org/
 [yaml-badge]: https://img.shields.io/badge/YAML-Workflow%20Config-CB171E?logo=yaml&style=flat
 [yaml]: https://yaml.org/
-[json-badge]: https://img.shields.io/badge/JSON-Data%20Format-4B5563?logo=json&logoColor=white&style=flat
+[json-badge]: https://img.shields.io/badge/JSON-Data%20Format-4B5563?style=flat
 [json]: https://www.json.org/json-en.html
 [java-badge]: https://img.shields.io/badge/Java-Active%20Learning-ED8B00?logo=openjdk&style=flat
 [java]: https://www.java.com/
@@ -137,11 +137,11 @@ Security/Governance · AI-Enhanced Engineering
 [vite]: https://vite.dev/
 [tailwind-badge]: https://img.shields.io/badge/Tailwind%20CSS-Styling-06B6D4?logo=tailwindcss&style=flat
 [tailwind]: https://tailwindcss.com/
-[shadcn-badge]: https://img.shields.io/badge/shadcn%2Fui-Components-334155?logo=shadcnui&logoColor=white&style=flat
+[shadcn-badge]: https://img.shields.io/badge/shadcn%2Fui-Components-334155?style=flat
 [shadcn]: https://ui.shadcn.com/
 [oauth-badge]: https://img.shields.io/badge/OAuth2-Authorization-2563EB?style=flat
 [oauth]: https://oauth.net/2/
-[jwt-badge]: https://img.shields.io/badge/JWT-Tokens-2F2F2F?logo=jsonwebtokens&logoColor=white&style=flat
+[jwt-badge]: https://img.shields.io/badge/JWT-Tokens-2F2F2F?style=flat
 [jwt]: https://jwt.io/
 [rbac-badge]: https://img.shields.io/badge/RBAC-Access%20Control-6F42C1?style=flat
 [rbac]: https://csrc.nist.gov/projects/role-based-access-control
@@ -153,7 +153,7 @@ Security/Governance · AI-Enhanced Engineering
 [quality-gates]: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-jobs
 [openai-badge]: https://img.shields.io/badge/OpenAI-Custom%20GPTs-412991?logo=openai&logoColor=white&style=flat
 [openai]: https://openai.com/
-[copilot-badge]: https://img.shields.io/badge/GitHub%20Copilot-AI%20Pairing-2EA44F?logo=githubcopilot&logoColor=white&style=flat
+[copilot-badge]: https://img.shields.io/badge/GitHub%20Copilot-AI%20Pairing-2EA44F?style=flat
 [copilot]: https://github.com/features/copilot
 [codex-badge]: https://img.shields.io/badge/Codex-Assisted%20Planning-412991?logo=openai&logoColor=white&style=flat
 [codex]: https://openai.com/codex/
