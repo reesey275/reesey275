@@ -157,8 +157,8 @@ Note: Contribution activity reflects a solo build phase focused on end-to-end sy
 WakaTime reflects rolling development activity across daily engineering work,
 coursework, project builds, documentation, and active learning. It is current
 workflow evidence, not a permanent ranking of professional skill depth. Large
-"Other" entries are unclassified activity that need follow-up before they
-influence badge changes.
+"Other" entries represent unclassified activity and require follow-up before
+influencing badge changes.
 
 <!--START_SECTION:waka-->
 
