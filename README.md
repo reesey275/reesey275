@@ -44,6 +44,39 @@ Security/Governance · AI-Enhanced Engineering
 [![Ansible][ansible-badge]][ansible]
 [![Traefik][traefik-badge]][traefik]
 [![Cloudflare][cloudflare-badge]][cloudflare]
+[![TrueNAS SCALE][truenas-badge]][truenas]
+
+### Frontend
+
+[![React][react-badge]][react]
+[![Vite][vite-badge]][vite]
+[![Tailwind CSS][tailwind-badge]][tailwind]
+[![shadcn/ui][shadcn-badge]][shadcn]
+
+### Security & Governance
+
+[![OAuth2][oauth-badge]][oauth]
+[![JWT][jwt-badge]][jwt]
+[![RBAC][rbac-badge]][rbac]
+[![Active Directory][ad-badge]][active-directory]
+[![Secrets][secrets-badge]][secrets]
+[![Quality Gates][quality-badge]][quality-gates]
+
+### AI & Automation
+
+[![OpenAI][openai-badge]][openai]
+[![GitHub Copilot][copilot-badge]][copilot]
+[![Codex][codex-badge]][codex]
+[![MCP Servers][mcp-servers-badge]][mcp]
+[![Prompt-Driven Workflows][prompt-badge]][prompt-workflows]
+
+### Systems Operations
+
+[![Linux][linux-badge]][linux]
+[![Windows][windows-badge]][windows]
+[![WSL][wsl-badge]][wsl]
+[![PowerShell][powershell-badge]][powershell]
+[![Virtualization][virtualization-badge]][virtualization]
 
 ### Data
 
@@ -96,6 +129,47 @@ Security/Governance · AI-Enhanced Engineering
 [traefik]: https://traefik.io/
 [cloudflare-badge]: https://img.shields.io/badge/Cloudflare-Edge%2FTunnel-F38020?logo=cloudflare&style=flat
 [cloudflare]: https://www.cloudflare.com/
+[truenas-badge]: https://img.shields.io/badge/TrueNAS%20SCALE-Storage-0095D5?logo=truenas&style=flat
+[truenas]: https://www.truenas.com/truenas-scale/
+[react-badge]: https://img.shields.io/badge/React-UI-61DAFB?logo=react&style=flat
+[react]: https://react.dev/
+[vite-badge]: https://img.shields.io/badge/Vite-Build%20Tool-646CFF?logo=vite&style=flat
+[vite]: https://vite.dev/
+[tailwind-badge]: https://img.shields.io/badge/Tailwind%20CSS-Styling-06B6D4?logo=tailwindcss&style=flat
+[tailwind]: https://tailwindcss.com/
+[shadcn-badge]: https://img.shields.io/badge/shadcn%2Fui-Components-000000?style=flat
+[shadcn]: https://ui.shadcn.com/
+[oauth-badge]: https://img.shields.io/badge/OAuth2-Authorization-4285F4?style=flat
+[oauth]: https://oauth.net/2/
+[jwt-badge]: https://img.shields.io/badge/JWT-Tokens-000000?logo=jsonwebtokens&style=flat
+[jwt]: https://jwt.io/
+[rbac-badge]: https://img.shields.io/badge/RBAC-Access%20Control-6F42C1?style=flat
+[rbac]: https://csrc.nist.gov/projects/role-based-access-control
+[ad-badge]: https://img.shields.io/badge/Active%20Directory-Identity-0078D4?logo=microsoft&style=flat
+[active-directory]: https://learn.microsoft.com/windows-server/identity/ad-ds/
+[secrets-badge]: https://img.shields.io/badge/Secrets-Management-2E7D32?style=flat
+[secrets]: https://docs.github.com/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
+[quality-badge]: https://img.shields.io/badge/Quality%20Gates-CI%20Governance-2088FF?logo=githubactions&style=flat
+[quality-gates]: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-jobs
+[openai-badge]: https://img.shields.io/badge/OpenAI-Custom%20GPTs-412991?logo=openai&style=flat
+[openai]: https://openai.com/
+[copilot-badge]: https://img.shields.io/badge/GitHub%20Copilot-AI%20Pairing-000000?logo=githubcopilot&style=flat
+[copilot]: https://github.com/features/copilot
+[codex-badge]: https://img.shields.io/badge/Codex-Assisted%20Planning-000000?logo=openai&style=flat
+[codex]: https://openai.com/codex/
+[mcp-servers-badge]: https://img.shields.io/badge/MCP%20Servers-Tooling-000000?style=flat
+[prompt-badge]: https://img.shields.io/badge/Prompt--Driven-Workflows-FF6F00?style=flat
+[prompt-workflows]: https://developers.openai.com/api/docs/guides/prompt-engineering
+[linux-badge]: https://img.shields.io/badge/Linux-Administration-FCC624?logo=linux&style=flat
+[linux]: https://www.linux.org/
+[windows-badge]: https://img.shields.io/badge/Windows-Administration-0078D4?logo=windows&style=flat
+[windows]: https://www.microsoft.com/windows/
+[wsl-badge]: https://img.shields.io/badge/WSL-Linux%20on%20Windows-4D4D4D?logo=linux&style=flat
+[wsl]: https://learn.microsoft.com/windows/wsl/
+[powershell-badge]: https://img.shields.io/badge/PowerShell-Automation-5391FE?logo=powershell&style=flat
+[powershell]: https://learn.microsoft.com/powershell/
+[virtualization-badge]: https://img.shields.io/badge/Virtualization-Operations-607D8B?style=flat
+[virtualization]: https://en.wikipedia.org/wiki/Virtualization
 [postgres-badge]: https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&style=flat
 [postgres]: https://www.postgresql.org/
 [redis-badge]: https://img.shields.io/badge/Redis-Cache-FF4438?logo=redis&style=flat
