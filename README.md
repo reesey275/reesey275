@@ -159,7 +159,7 @@ Security/Governance · AI-Enhanced Engineering
 [codex]: https://openai.com/codex/
 [mcp-servers-badge]: https://img.shields.io/badge/MCP%20Servers-Tooling-000000?style=flat
 [prompt-badge]: https://img.shields.io/badge/Prompt--Driven-Workflows-FF6F00?style=flat
-[prompt-workflows]: https://developers.openai.com/api/docs/guides/prompt-engineering
+[prompt-workflows]: https://platform.openai.com/docs/guides/prompting
 [linux-badge]: https://img.shields.io/badge/Linux-Administration-FCC624?logo=linux&style=flat
 [linux]: https://www.linux.org/
 [windows-badge]: https://img.shields.io/badge/Windows-Administration-0078D4?logo=windows&style=flat
