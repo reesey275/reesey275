@@ -61,15 +61,48 @@ jobs:
           # Aggregate summaries into stats format using simpler approach
           # Calculate totals first with bc (more reliable than jq arithmetic with string concat)
           TOTAL_SECONDS=$(echo "$SUMMARIES" | jq '[.data[].grand_total.total_seconds] | add')
-          TOTAL_HOURS=$(echo "scale=0; $TOTAL_SECONDS / 3600" | bc)
-          TOTAL_MINS=$(echo "scale=0; ($TOTAL_SECONDS % 3600) / 60" | bc)
-          DAILY_AVG_HOURS=$(echo "scale=0; $TOTAL_SECONDS / $DAY_COUNT / 3600" | bc)
-          DAILY_AVG_MINS=$(echo "scale=0; (($TOTAL_SECONDS / $DAY_COUNT) % 3600) / 60" | bc)
+          format_duration() {
+            local total_seconds="$1"
+            local hours=$((total_seconds / 3600))
+            local minutes=$(((total_seconds % 3600) / 60))
+            local parts=()
+
+            if [[ "$hours" -eq 1 ]]; then
+              parts+=("1 hr")
+            elif [[ "$hours" -gt 1 ]]; then
+              parts+=("$hours hrs")
+            fi
+
+            if [[ "$minutes" -eq 1 ]]; then
+              parts+=("1 min")
+            elif [[ "$minutes" -gt 1 || ${#parts[@]} -eq 0 ]]; then
+              parts+=("$minutes mins")
+            fi
+
+            local output="${parts[0]}"
+            for ((i=1; i<${#parts[@]}; i++)); do
+              output+=" ${parts[$i]}"
+            done
+            printf '%s' "$output"
+          }
+
+          TOTAL_TEXT=$(format_duration "$TOTAL_SECONDS")
+          DAILY_AVG_SECONDS=$(echo "scale=0; $TOTAL_SECONDS / $DAY_COUNT" | bc)
+          DAILY_TEXT=$(format_duration "$DAILY_AVG_SECONDS")
 
           # Build stats JSON using jq string interpolation instead of concatenation
           STATS=$(echo "$SUMMARIES" | jq --arg total "$TOTAL_SECONDS" \
-            --arg total_text "$TOTAL_HOURS hrs $TOTAL_MINS mins" \
-            --arg daily_text "$DAILY_AVG_HOURS hrs $DAILY_AVG_MINS mins" '($total | tonumber) as $total_num |
+            --arg total_text "$TOTAL_TEXT" \
+            --arg daily_text "$DAILY_TEXT" '
+            def format_duration:
+              (. / 1 | floor) as $seconds |
+              ($seconds / 3600 | floor) as $hours |
+              (($seconds % 3600) / 60 | floor) as $minutes |
+              ([
+                (if $hours == 1 then "1 hr" elif $hours > 1 then "\($hours) hrs" else empty end),
+                (if $minutes == 1 then "1 min" elif ($minutes > 1 or $hours == 0) then "\($minutes) mins" else empty end)
+              ] | join(" "));
+            ($total | tonumber) as $total_num |
             def rounded_percent(total):
               if total == 0 then 0
               else (((.total_seconds / total * 10000) + 0.5) | floor) / 100
@@ -84,39 +117,39 @@ jobs:
                 sort_by(.total_seconds) | reverse | .[0:5] | 
                 map(. + {
                   percent: rounded_percent($total_num),
-                  text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
+                  text: (.total_seconds | format_duration)
                 })),
               editors: ([.data[].editors] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:3] | 
                 map(. + {
                   percent: rounded_percent($total_num),
-                  text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
+                  text: (.total_seconds | format_duration)
                 })),
               operating_systems: ([.data[].operating_systems] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:3] | 
                 map(. + {
                   percent: rounded_percent($total_num),
-                  text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
+                  text: (.total_seconds | format_duration)
                 })),
               projects: ([.data[].projects] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:5] | 
                 map(. + {
                   percent: rounded_percent($total_num),
-                  text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
+                  text: (.total_seconds | format_duration)
                 })),
               categories: ([.data[].categories] | flatten | group_by(.name) | 
                 map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
                 sort_by(.total_seconds) | reverse | .[0:5] | 
                 map(. + {
                   percent: rounded_percent($total_num),
-                  text: "\((.total_seconds / 3600 | floor)) hrs \(((.total_seconds % 3600) / 60 | floor)) mins"
+                  text: (.total_seconds | format_duration)
                 })),
               best_day: (.data | max_by(.grand_total.total_seconds) | {
                 date: .range.date, 
-                text: "\((.grand_total.total_seconds / 3600 | floor)) hrs \(((.grand_total.total_seconds % 3600) / 60 | floor)) mins"
+                text: (.grand_total.total_seconds | format_duration)
               }),
               start: .data[0].range.date,
               end: .data[-1].range.date,
