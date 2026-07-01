@@ -236,59 +236,47 @@ influencing badge changes.
 
 <!--START_SECTION:waka-->
 
-```txt
-🌍 Time Zone: America/New_York
-📅 2026-06-19 - 2026-06-26
-⏱️ Total: 34 hrs 16 mins  |  Daily Avg: 4 hrs 17 mins  |  Best Day: 2026-06-19 (9 hrs 19 mins)
+- **Time Zone:** America/New_York
+- **Date Range:** 2026-06-19 - 2026-06-26
+- **Total:** 34 hrs 16 mins
+- **Daily Average:** 4 hrs 17 mins
+- **Best Day:** 2026-06-19 (9 hrs 19 mins)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+### Languages
 
-💻 Languages
+- Markdown: 22 hrs 33 mins (65.78 %)
+- Other: 4 hrs 30 mins (13.14 %)
+- Java: 3 hrs 18 mins (9.67 %)
+- JSON: 2 hrs 1 mins (5.93 %)
+- PowerShell: 1 hrs 35 mins (4.66 %)
 
-Markdown                  22 hrs 33 mins  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀    65.78 %
-Other                     4 hrs 30 mins   ⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀    13.14 %
-Java                      3 hrs 18 mins   ⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     9.67 %
-JSON                      2 hrs 1 mins    ⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     5.93 %
-PowerShell                1 hrs 35 mins   ⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     4.66 %
+### Editors
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- VS Code: 34 hrs 16 mins (100.00 %)
 
-🛠️  Editors
+### Operating Systems
 
-VS Code                   34 hrs 16 mins  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   100.00 %
+- Windows: 28 hrs 32 mins (83.25 %)
+- WSL: 4 hrs 59 mins (14.58 %)
+- Linux: 0 hrs 44 mins (2.17 %)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+### Projects
 
-🖥️  Operating Systems
+- TAGS Ai: 10 hrs 6 mins (29.48 %)
+- scripts: 6 hrs 41 mins (19.54 %)
+- java: 4 hrs 29 mins (13.08 %)
+- Unknown Project: 3 hrs 21 mins (9.79 %)
+- Plans: 2 hrs 5 mins (6.10 %)
 
-Windows                   28 hrs 32 mins  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣀⣀⣀⣀    83.25 %
-WSL                       4 hrs 59 mins   ⣿⣿⣿⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀    14.58 %
-Linux                     0 hrs 44 mins   ⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     2.17 %
+### Categories
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- AI Coding: 27 hrs 36 mins (80.55 %)
+- Coding: 4 hrs 10 mins (12.17 %)
+- Writing Docs: 2 hrs 27 mins (7.18 %)
+- Debugging: 0 hrs 1 mins (0.09 %)
+- Writing Tests: 0 hrs 0 mins (0.01 %)
 
-📁 Projects
-
-TAGS Ai                   10 hrs 6 mins   ⣿⣿⣿⣿⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀    29.48 %
-scripts                   6 hrs 41 mins   ⣿⣿⣿⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀    19.54 %
-java                      4 hrs 29 mins   ⣿⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀    13.08 %
-Unknown Project           3 hrs 21 mins   ⣿⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     9.79 %
-Plans                     2 hrs 5 mins    ⣿⣦⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     6.10 %
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📊 Categories
-
-AI Coding                 27 hrs 36 mins  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⣀⣀⣀⣀    80.55 %
-Coding                    4 hrs 10 mins   ⣿⣿⣿⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀    12.17 %
-Writing Docs              2 hrs 27 mins   ⣿⣷⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     7.18 %
-Debugging                 0 hrs 1 mins    ⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     0.09 %
-Writing Tests             0 hrs 0 mins    ⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀     0.01 %
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
-
-_Last updated: 2026-06-26 00:38:08 UTC_
+Last updated: 2026-06-26 00:38:08 UTC
 <!--END_SECTION:waka-->
 
 ## 🎯 Featured Projects
