@@ -192,49 +192,15 @@ jobs:
 
           TOTAL_REPOS=$(echo "$GITHUB_LANGUAGES" | jq -r 'map(.count) | add // 0')
 
-          BAR_WIDTH=8
-          SEPARATOR="────────────────────────────────────────────────────────"
-
-          # Build compact progress bars that keep generated README lines short.
-          make_bar() {
-            local pct=$1
-            local blocks="⣀⣄⣤⣦⣶⣷⣿"
-            local bar=""
-            local full_blocks=$((pct * BAR_WIDTH / 100))
-            local remainder=$(((pct * BAR_WIDTH % 100) * 7 / 100))
-
-            for ((i=0; i<full_blocks; i++)); do
-              bar+="${blocks:6:1}"
-            done
-            if [ $full_blocks -lt $BAR_WIDTH ] && [ $remainder -gt 0 ]; then
-              bar+="${blocks:$remainder:1}"
-              full_blocks=$((full_blocks + 1))
-            fi
-            for ((i=full_blocks; i<BAR_WIDTH; i++)); do
-              bar+="${blocks:0:1}"
-            done
-            echo "$bar"
-          }
-
-          # Format time with padding
-          pad_time() {
-            printf "%-16s" "$1"
-          }
-
-          pad_name() {
-            local name="$1"
-            local max_width=24
-
-            if [[ ${#name} -gt $max_width ]]; then
-              name="${name:0:$((max_width - 3))}..."
-            fi
-
-            # Keep columns aligned with a guaranteed gap before time values.
-            printf "%-${max_width}s  " "$name"
-          }
-
           pad_pct() {
-            printf "%6.2f %%" "$1"
+            printf "%.2f %%" "$1"
+          }
+
+          format_stat_line() {
+            local name="$1"
+            local text="$2"
+            local pct="$3"
+            printf -- "- %s: %s (%s)" "$name" "$text" "$(pad_pct "$pct")"
           }
 
           # Generate languages section
@@ -243,8 +209,7 @@ jobs:
             name=$(echo "$line" | jq -r '.name')
             text=$(echo "$line" | jq -r '.text')
             pct=$(echo "$line" | jq -r '.percent')
-            bar=$(make_bar "${pct%.*}")
-            LANGUAGES+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+            LANGUAGES+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
           done < <(echo "$STATS" | jq -c '.data.languages[:5][]')
 
           # Generate editors section
@@ -253,8 +218,7 @@ jobs:
             name=$(echo "$line" | jq -r '.name')
             text=$(echo "$line" | jq -r '.text')
             pct=$(echo "$line" | jq -r '.percent')
-            bar=$(make_bar "${pct%.*}")
-            EDITORS+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+            EDITORS+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
           done < <(echo "$STATS" | jq -c '.data.editors[:3][]')
 
           # Generate OS section
@@ -263,8 +227,7 @@ jobs:
             name=$(echo "$line" | jq -r '.name')
             text=$(echo "$line" | jq -r '.text')
             pct=$(echo "$line" | jq -r '.percent')
-            bar=$(make_bar "${pct%.*}")
-            OS_STATS+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+            OS_STATS+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
           done < <(echo "$STATS" | jq -c '.data.operating_systems[:3][]')
 
           # Generate projects section
@@ -273,8 +236,7 @@ jobs:
             name=$(echo "$line" | jq -r '.name')
             text=$(echo "$line" | jq -r '.text')
             pct=$(echo "$line" | jq -r '.percent')
-            bar=$(make_bar "${pct%.*}")
-            PROJECTS+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+            PROJECTS+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
           done < <(echo "$STATS" | jq -c '.data.projects[:5][]')
 
           # Generate categories section (AI Coding, Coding, Writing Docs, etc.)
@@ -283,8 +245,7 @@ jobs:
             name=$(echo "$line" | jq -r '.name')
             text=$(echo "$line" | jq -r '.text')
             pct=$(echo "$line" | jq -r '.percent')
-            bar=$(make_bar "${pct%.*}")
-            CATEGORIES+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+            CATEGORIES+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
           done < <(echo "$STATS" | jq -c '.data.categories[:5][]')
 
           # Generate day-of-week section
@@ -322,11 +283,7 @@ jobs:
               name="${day_names[$i]}"
               text=$(echo "${day_data[$i]}" | jq -r '.text // "0 secs"')
               pct=$(echo "${day_data[$i]}" | jq -r '.percent // 0')
-              # Safe decimal removal: handle whole numbers and decimals
-              pct_int="${pct%.*}"
-              if [ -z "$pct_int" ]; then pct_int=0; fi
-              bar=$(make_bar "$pct_int")
-              DAYS_OF_WEEK+="$(pad_name "$name")$(pad_time "$text")$bar   $(pad_pct "$pct")"$'\n'
+              DAYS_OF_WEEK+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
             fi
           done
 
@@ -343,11 +300,7 @@ jobs:
               else
                 pct=$(echo "scale=2; $count * 100 / $TOTAL_REPOS" | bc)
               fi
-              # Safe decimal removal
-              pct_int="${pct%.*}"
-              if [ -z "$pct_int" ]; then pct_int=0; fi
-              bar=$(make_bar "$pct_int")
-              LANGUAGE_REPOS+="$(pad_name "$lang")$(printf "%-16s" "$count repos")$bar   $(pad_pct "$pct")"$'\n'
+              LANGUAGE_REPOS+="$(format_stat_line "$lang" "$count repos" "$pct")"$'\n'
             done < <(echo "$GITHUB_LANGUAGES" | jq -c '.[]')
           fi
 
@@ -356,41 +309,27 @@ jobs:
 
           # Build the full stats section
           STATS_CONTENT="
-          \`\`\`txt
-          🌍 Time Zone: ${TIMEZONE}
-          📅 ${RANGE_START} - ${RANGE_END}
-          ⏱️ Total: ${TOTAL}
-          📊 Daily Avg: ${DAILY_AVG}
-          🏆 Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
+          - **Time Zone:** ${TIMEZONE}
+          - **Date Range:** ${RANGE_START} - ${RANGE_END}
+          - **Total:** ${TOTAL}
+          - **Daily Average:** ${DAILY_AVG}
+          - **Best Day:** ${BEST_DAY_DATE} (${BEST_DAY_TIME})
 
-          ${SEPARATOR}
-
-          💻 Languages
+          ### Languages
 
           ${LANGUAGES}
-          ${SEPARATOR}
-
-          🛠️  Editors
+          ### Editors
 
           ${EDITORS}
-          ${SEPARATOR}
-
-          🖥️  Operating Systems
+          ### Operating Systems
 
           ${OS_STATS}
-          ${SEPARATOR}
-
-          📁 Projects
+          ### Projects
 
           ${PROJECTS}
-          ${SEPARATOR}
-
-          📊 Categories
+          ### Categories
 
           ${CATEGORIES}
-          ${SEPARATOR}
-          \`\`\`
-
           _Last updated: ${UPDATED}_"
 
           # Clean up the content (remove leading spaces from heredoc)
