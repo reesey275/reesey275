@@ -192,22 +192,25 @@ jobs:
 
           TOTAL_REPOS=$(echo "$GITHUB_LANGUAGES" | jq -r 'map(.count) | add // 0')
 
-          # Build progress bar function (using braille blocks like athul/waka-readme)
+          BAR_WIDTH=8
+          SEPARATOR="────────────────────────────────────────────────────────"
+
+          # Build compact progress bars that keep generated README lines short.
           make_bar() {
             local pct=$1
             local blocks="⣀⣄⣤⣦⣶⣷⣿"
             local bar=""
-            local full_blocks=$((pct * 25 / 100))
-            local remainder=$(((pct * 25 % 100) * 7 / 100))
+            local full_blocks=$((pct * BAR_WIDTH / 100))
+            local remainder=$(((pct * BAR_WIDTH % 100) * 7 / 100))
 
             for ((i=0; i<full_blocks; i++)); do
               bar+="${blocks:6:1}"
             done
-            if [ $full_blocks -lt 25 ] && [ $remainder -gt 0 ]; then
+            if [ $full_blocks -lt $BAR_WIDTH ] && [ $remainder -gt 0 ]; then
               bar+="${blocks:$remainder:1}"
               full_blocks=$((full_blocks + 1))
             fi
-            for ((i=full_blocks; i<25; i++)); do
+            for ((i=full_blocks; i<BAR_WIDTH; i++)); do
               bar+="${blocks:0:1}"
             done
             echo "$bar"
@@ -356,34 +359,36 @@ jobs:
           \`\`\`txt
           🌍 Time Zone: ${TIMEZONE}
           📅 ${RANGE_START} - ${RANGE_END}
-          ⏱️ Total: ${TOTAL}  |  Daily Avg: ${DAILY_AVG}  |  Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
+          ⏱️ Total: ${TOTAL}
+          📊 Daily Avg: ${DAILY_AVG}
+          🏆 Best Day: ${BEST_DAY_DATE} (${BEST_DAY_TIME})
 
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ${SEPARATOR}
 
           💻 Languages
 
           ${LANGUAGES}
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ${SEPARATOR}
 
           🛠️  Editors
 
           ${EDITORS}
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ${SEPARATOR}
 
           🖥️  Operating Systems
 
           ${OS_STATS}
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ${SEPARATOR}
 
           📁 Projects
 
           ${PROJECTS}
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ${SEPARATOR}
 
           📊 Categories
 
           ${CATEGORIES}
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          ${SEPARATOR}
           \`\`\`
 
           _Last updated: ${UPDATED}_"
