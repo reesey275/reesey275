@@ -330,7 +330,7 @@ jobs:
           ### Categories
 
           ${CATEGORIES}
-          _Last updated: ${UPDATED}_"
+          Last updated: ${UPDATED}"
 
           # Clean up the content (remove leading spaces from heredoc)
           STATS_CONTENT=$(echo "$STATS_CONTENT" | sed 's/^          //')
