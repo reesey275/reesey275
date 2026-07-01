@@ -59,8 +59,8 @@ jobs:
           fi
 
           # Aggregate summaries into stats format using simpler approach
-          # Calculate totals first with bc (more reliable than jq arithmetic with string concat)
-          TOTAL_SECONDS=$(echo "$SUMMARIES" | jq '[.data[].grand_total.total_seconds] | add')
+          # Calculate totals as whole seconds because Bash arithmetic only accepts integers
+          TOTAL_SECONDS=$(echo "$SUMMARIES" | jq -r '[.data[].grand_total.total_seconds] | add | floor')
           format_duration() {
             local total_seconds="$1"
             local hours=$((total_seconds / 3600))
@@ -87,7 +87,7 @@ jobs:
           }
 
           TOTAL_TEXT=$(format_duration "$TOTAL_SECONDS")
-          DAILY_AVG_SECONDS=$(echo "scale=0; $TOTAL_SECONDS / $DAY_COUNT" | bc)
+          DAILY_AVG_SECONDS=$((TOTAL_SECONDS / DAY_COUNT))
           DAILY_TEXT=$(format_duration "$DAILY_AVG_SECONDS")
 
           # Build stats JSON using jq string interpolation instead of concatenation
