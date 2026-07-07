@@ -237,44 +237,45 @@ influencing badge changes.
 <!--START_SECTION:waka-->
 
 - **Time Zone:** America/New_York
-- **Date Range:** 2026-06-29 - 2026-07-06
-- **Total:** 31 hrs 36 mins
-- **Daily Average:** 3 hrs 57 mins
+- **Date Range:** 2026-06-30 - 2026-07-07
+- **Total:** 28 hrs 45 mins
+- **Daily Average:** 3 hrs 35 mins
 - **Best Day:** 2026-07-01 (9 hrs 6 mins)
 
 ### Languages
 
-- Markdown: 15 hrs 49 mins (50.09 %)
-- Other: 5 hrs 10 mins (16.40 %)
-- PowerShell: 3 hrs 48 mins (12.04 %)
-- Java: 3 hrs 24 mins (10.79 %)
-- JSON: 2 hrs 1 min (6.42 %)
+- Markdown: 15 hrs 56 mins (55.46 %)
+- Other: 5 hrs 10 mins (18.03 %)
+- PowerShell: 3 hrs 48 mins (13.24 %)
+- JSON: 2 hrs 1 min (7.05 %)
+- Bash: 34 mins (1.97 %)
 
 ### Editors
 
-- VS Code: 31 hrs 36 mins (100.00 %)
+- VS Code: 28 hrs 45 mins (100.00 %)
 
 ### Operating Systems
 
-- Windows: 20 hrs 56 mins (66.28 %)
-- WSL: 6 hrs 32 mins (20.72 %)
-- Linux: 4 hrs 6 mins (13.00 %)
+- Windows: 20 hrs 56 mins (72.86 %)
+- Linux: 4 hrs 15 mins (14.82 %)
+- WSL: 3 hrs 32 mins (12.32 %)
 
 ### Projects
 
-- TAGS-Ai: 9 hrs 15 mins (29.31 %)
-- TAGS: 4 hrs 5 mins (12.95 %)
-- java: 3 hrs 58 mins (12.60 %)
-- TAGS Ai: 3 hrs 47 mins (11.98 %)
-- Unknown Project: 3 hrs 14 mins (10.28 %)
+- TAGS-Ai: 9 hrs 15 mins (32.21 %)
+- TAGS: 4 hrs 14 mins (14.77 %)
+- TAGS Ai: 3 hrs 47 mins (13.17 %)
+- Unknown Project: 3 hrs 14 mins (11.30 %)
+- gameserver-manager: 2 hrs 49 mins (9.85 %)
 
 ### Categories
 
-- AI Coding: 23 hrs 3 mins (72.98 %)
-- Writing Docs: 4 hrs 46 mins (15.10 %)
-- Coding: 3 hrs 45 mins (11.92 %)
+- AI Coding: 23 hrs 3 mins (80.22 %)
+- Writing Docs: 4 hrs 53 mins (17.00 %)
+- Coding: 47 mins (2.76 %)
+- Debugging: 0 mins (0.01 %)
 
-Last updated: 2026-07-06 02:29:56 UTC
+Last updated: 2026-07-07 02:25:37 UTC
 <!--END_SECTION:waka-->
 
 ## 🎯 Featured Projects
