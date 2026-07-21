@@ -39,27 +39,37 @@ jobs:
           END_DATE="$(date -u +%Y-%m-%d)"
           START_DATE="$(date -u -d '6 days ago' +%Y-%m-%d)"
           SUMMARIES_FILE="$(mktemp -t waka_summaries.XXXXXX.json)"
+          README_CANDIDATE="$(mktemp -t waka_readme.XXXXXX.md)"
+          SVG_CANDIDATE="$(mktemp -t waka_dashboard.XXXXXX.svg)"
 
           cleanup() {
-            rm -f "$SUMMARIES_FILE"
+            rm -f "$SUMMARIES_FILE" "$README_CANDIDATE" "$SVG_CANDIDATE"
           }
           trap cleanup EXIT
 
+          WAKA_REFRESHED=false
+          cp README.md "$README_CANDIDATE"
           echo "Fetching seven calendar days from $START_DATE to $END_DATE"
 
-          curl -fsS \
-            --retry 2 \
-            --retry-all-errors \
-            --connect-timeout 15 \
-            --max-time 60 \
-            -H "Authorization: Basic $AUTH" \
-            -o "$SUMMARIES_FILE" \
-            "https://wakatime.com/api/v1/users/current/summaries?start=$START_DATE&end=$END_DATE"
-
-          python3 scripts/generate_waka_dashboard.py \
-            --input "$SUMMARIES_FILE" \
-            --svg-output profile/wakatime-dashboard.svg \
-            --readme README.md
+          if curl -fsS \
+              --retry 2 \
+              --retry-all-errors \
+              --connect-timeout 15 \
+              --max-time 60 \
+              -H "Authorization: Basic $AUTH" \
+              -o "$SUMMARIES_FILE" \
+              "https://wakatime.com/api/v1/users/current/summaries?start=$START_DATE&end=$END_DATE" && \
+            python3 scripts/generate_waka_dashboard.py \
+              --input "$SUMMARIES_FILE" \
+              --svg-output "$SVG_CANDIDATE" \
+              --readme "$README_CANDIDATE"; then
+            mv "$SVG_CANDIDATE" profile/wakatime-dashboard.svg
+            mv "$README_CANDIDATE" README.md
+            WAKA_REFRESHED=true
+          else
+            echo "::warning title=WakaTime refresh skipped::Keeping the last successful dashboard and README details."
+          fi
+          echo "WAKA_REFRESHED=$WAKA_REFRESHED" >> "$GITHUB_ENV"
 
       - name: Generate GitHub profile cards
         env:
@@ -79,20 +89,16 @@ jobs:
             profile/top-languages.svg \
             profile/wakatime-dashboard.svg; do
             test -s "$card"
-            grep -q '<svg' "$card"
+            python3 scripts/generate_waka_dashboard.py --validate-svg "$card"
 
             if grep -Eq 'Something went wrong|No GitHub API tokens found|Maximum retries exceeded' "$card"; then
               echo "ERROR: $card contains a renderer error"
               exit 1
             fi
-
-            if grep -Eq '<script|href=' "$card"; then
-              echo "ERROR: $card contains active or external content"
-              exit 1
-            fi
           done
 
-          if grep -q 'First automated refresh pending' profile/wakatime-dashboard.svg; then
+          if [[ "${WAKA_REFRESHED:-false}" == "true" ]] && \
+            grep -q 'First automated refresh pending' profile/wakatime-dashboard.svg; then
             echo "ERROR: WakaTime dashboard did not receive daily activity"
             exit 1
           fi
