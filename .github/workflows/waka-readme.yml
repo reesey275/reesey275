@@ -344,7 +344,7 @@ jobs:
 
       - name: Generate GitHub profile cards
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.WAKA_PAT || github.token }}
         run: |
           python3 scripts/generate_profile_stats.py \
             --username "${{ github.repository_owner }}" \
