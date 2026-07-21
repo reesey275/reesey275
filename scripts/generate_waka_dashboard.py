@@ -12,6 +12,7 @@ import json
 import math
 import pathlib
 import tempfile
+import xml.etree.ElementTree as element_tree
 from typing import Any
 
 
@@ -77,6 +78,30 @@ class DashboardData:
 
 class DashboardDataError(ValueError):
     """Raised when the WakaTime response cannot produce a safe dashboard."""
+
+
+def xml_local_name(value: str) -> str:
+    """Return a case-normalized local name from an XML qualified name."""
+
+    return value.rsplit("}", 1)[-1].lower()
+
+
+def validate_svg(path: pathlib.Path) -> None:
+    """Reject malformed SVGs and elements capable of loading active content."""
+
+    try:
+        root = element_tree.parse(path).getroot()
+    except (OSError, element_tree.ParseError) as error:
+        raise DashboardDataError(f"Could not parse SVG: {path}") from error
+
+    if xml_local_name(root.tag) != "svg":
+        raise DashboardDataError(f"SVG root element is missing: {path}")
+
+    for element in root.iter():
+        if xml_local_name(element.tag) == "script":
+            raise DashboardDataError(f"SVG contains a script element: {path}")
+        if any(xml_local_name(attribute) == "href" for attribute in element.attrib):
+            raise DashboardDataError(f"SVG contains an external-content link: {path}")
 
 
 def safe_number(value: object, label: str) -> float:
@@ -263,15 +288,23 @@ def dashboard_from_snapshot(payload: dict[str, Any]) -> DashboardData:
     if not isinstance(raw_daily, list):
         raise DashboardDataError("snapshot.daily must be a list")
     daily = tuple(
-        Day(
-            parse_date(item.get("date"), "snapshot.daily.date"),
-            safe_number(item.get("total_seconds"), "snapshot.daily.total_seconds"),
-            format_duration(
-                safe_number(item.get("total_seconds"), "snapshot daily")
+        sorted(
+            (
+                Day(
+                    parse_date(item.get("date"), "snapshot.daily.date"),
+                    safe_number(
+                        item.get("total_seconds"),
+                        "snapshot.daily.total_seconds",
+                    ),
+                    format_duration(
+                        safe_number(item.get("total_seconds"), "snapshot daily")
+                    ),
+                )
+                for item in raw_daily
+                if isinstance(item, dict)
             ),
+            key=lambda item: item.date,
         )
-        for item in raw_daily
-        if isinstance(item, dict)
     )
 
     return DashboardData(
@@ -573,7 +606,9 @@ def update_readme(path: pathlib.Path, markdown: str) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", required=True, type=pathlib.Path)
+    operation = parser.add_mutually_exclusive_group(required=True)
+    operation.add_argument("--input", type=pathlib.Path)
+    operation.add_argument("--validate-svg", type=pathlib.Path)
     parser.add_argument(
         "--svg-output",
         type=pathlib.Path,
@@ -589,6 +624,11 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    if args.validate_svg:
+        validate_svg(args.validate_svg)
+        print(f"Validated self-contained SVG: {args.validate_svg}")
+        return 0
+
     data = load_dashboard(args.input)
     write_atomic(args.svg_output, render_svg(data, args.updated))
     if args.readme:
