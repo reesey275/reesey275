@@ -178,7 +178,6 @@ Security/Governance · AI-Enhanced Engineering
 [mysql]: https://www.mysql.com/
 [supabase-badge]: https://img.shields.io/badge/Supabase-Platform-3FCF8E?logo=supabase&style=flat
 [supabase]: https://supabase.com/
-[View contribution activity on GitHub][profile].
 [profile]: https://github.com/reesey275
 
 <!-- Optional ASCII header -->
