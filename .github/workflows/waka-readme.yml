@@ -29,318 +29,37 @@ jobs:
           ref: main
           token: ${{ secrets.WAKA_PAT || github.token }}
 
-      - name: Fetch WakaTime stats and update README
+      - name: Fetch WakaTime stats and update dashboard
         env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         run: |
           set -euo pipefail
 
-          # Fetch stats from WakaTime API
-          AUTH=$(echo -n "$WAKATIME_API_KEY" | base64)
+          AUTH="$(printf '%s' "$WAKATIME_API_KEY" | base64 | tr -d '\n')"
+          END_DATE="$(date -u +%Y-%m-%d)"
+          START_DATE="$(date -u -d '6 days ago' +%Y-%m-%d)"
+          SUMMARIES_FILE="$(mktemp -t waka_summaries.XXXXXX.json)"
 
-          # Use summaries endpoint with date range for real-time data (bypasses cache)
-          END_DATE=$(date -u +%Y-%m-%d)
-          START_DATE=$(date -u -d '7 days ago' +%Y-%m-%d)
-
-          echo "Fetching WakaTime data from $START_DATE to $END_DATE"
-
-          SUMMARIES=$(curl -sf -H "Authorization: Basic $AUTH" \
-            "https://wakatime.com/api/v1/users/current/summaries?start=$START_DATE&end=$END_DATE")
-
-          if [ -z "$SUMMARIES" ]; then
-            echo "Failed to fetch WakaTime summaries"
-            exit 1
-          fi
-
-          DAY_COUNT=$(echo "$SUMMARIES" | jq -r '(.data | length) // 0')
-          if [[ "$DAY_COUNT" -eq 0 ]]; then
-            echo "No summary days returned from WakaTime; cannot compute daily average."
-            exit 1
-          fi
-
-          # Aggregate summaries into stats format using simpler approach
-          # Calculate totals as whole seconds because Bash arithmetic only accepts integers
-          TOTAL_SECONDS=$(echo "$SUMMARIES" | jq -r '[.data[].grand_total.total_seconds] | add | floor')
-          format_duration() {
-            local total_seconds="$1"
-            local hours=$((total_seconds / 3600))
-            local minutes=$(((total_seconds % 3600) / 60))
-            local parts=()
-
-            if [[ "$hours" -eq 1 ]]; then
-              parts+=("1 hr")
-            elif [[ "$hours" -gt 1 ]]; then
-              parts+=("$hours hrs")
-            fi
-
-            if [[ "$minutes" -eq 1 ]]; then
-              parts+=("1 min")
-            elif [[ "$minutes" -gt 1 || ${#parts[@]} -eq 0 ]]; then
-              parts+=("$minutes mins")
-            fi
-
-            local output="${parts[0]}"
-            for ((i=1; i<${#parts[@]}; i++)); do
-              output+=" ${parts[$i]}"
-            done
-            printf '%s' "$output"
+          cleanup() {
+            rm -f "$SUMMARIES_FILE"
           }
+          trap cleanup EXIT
 
-          TOTAL_TEXT=$(format_duration "$TOTAL_SECONDS")
-          DAILY_AVG_SECONDS=$((TOTAL_SECONDS / DAY_COUNT))
-          DAILY_TEXT=$(format_duration "$DAILY_AVG_SECONDS")
+          echo "Fetching seven calendar days from $START_DATE to $END_DATE"
 
-          # Build stats JSON using jq string interpolation instead of concatenation
-          STATS=$(echo "$SUMMARIES" | jq --arg total "$TOTAL_SECONDS" \
-            --arg total_text "$TOTAL_TEXT" \
-            --arg daily_text "$DAILY_TEXT" '
-            def format_duration:
-              (. / 1 | floor) as $seconds |
-              ($seconds / 3600 | floor) as $hours |
-              (($seconds % 3600) / 60 | floor) as $minutes |
-              ([
-                (if $hours == 1 then "1 hr" elif $hours > 1 then "\($hours) hrs" else empty end),
-                (if $minutes == 1 then "1 min" elif ($minutes > 1 or $hours == 0) then "\($minutes) mins" else empty end)
-              ] | join(" "));
-            ($total | tonumber) as $total_num |
-            def rounded_percent(total):
-              if total == 0 then 0
-              else (((.total_seconds / total * 10000) + 0.5) | floor) / 100
-              end;
-            {
-            data: {
-              total_seconds_including_other_language: $total_num,
-              human_readable_total: $total_text,
-              human_readable_daily_average: $daily_text,
-              languages: ([.data[].languages] | flatten | group_by(.name) | 
-                map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
-                sort_by(.total_seconds) | reverse | .[0:5] | 
-                map(. + {
-                  percent: rounded_percent($total_num),
-                  text: (.total_seconds | format_duration)
-                })),
-              editors: ([.data[].editors] | flatten | group_by(.name) | 
-                map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
-                sort_by(.total_seconds) | reverse | .[0:3] | 
-                map(. + {
-                  percent: rounded_percent($total_num),
-                  text: (.total_seconds | format_duration)
-                })),
-              operating_systems: ([.data[].operating_systems] | flatten | group_by(.name) | 
-                map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
-                sort_by(.total_seconds) | reverse | .[0:3] | 
-                map(. + {
-                  percent: rounded_percent($total_num),
-                  text: (.total_seconds | format_duration)
-                })),
-              projects: ([.data[].projects] | flatten | group_by(.name) | 
-                map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
-                sort_by(.total_seconds) | reverse | .[0:5] | 
-                map(. + {
-                  percent: rounded_percent($total_num),
-                  text: (.total_seconds | format_duration)
-                })),
-              categories: ([.data[].categories] | flatten | group_by(.name) | 
-                map({name: .[0].name, total_seconds: ([.[].total_seconds] | add)}) | 
-                sort_by(.total_seconds) | reverse | .[0:5] | 
-                map(. + {
-                  percent: rounded_percent($total_num),
-                  text: (.total_seconds | format_duration)
-                })),
-              best_day: (.data | max_by(.grand_total.total_seconds) | {
-                date: .range.date, 
-                text: (.grand_total.total_seconds | format_duration)
-              }),
-              start: .data[0].range.date,
-              end: .data[-1].range.date,
-              timezone: .data[0].range.timezone
-            }
-          }')
+          curl -fsS \
+            --retry 2 \
+            --retry-all-errors \
+            --connect-timeout 15 \
+            --max-time 60 \
+            -H "Authorization: Basic $AUTH" \
+            -o "$SUMMARIES_FILE" \
+            "https://wakatime.com/api/v1/users/current/summaries?start=$START_DATE&end=$END_DATE"
 
-          # Debug: Log key stats totals
-          TOTAL_SECONDS=$(echo "$STATS" | jq -r '.data.total_seconds_including_other_language // 0')
-          echo "Debug: Total seconds from API: $TOTAL_SECONDS ($(echo "scale=2; $TOTAL_SECONDS / 3600" | bc) hours)"
-
-          echo "Debug: Languages breakdown"
-          echo "$STATS" | jq -r '(.data.languages // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-
-          echo "Debug: Editors breakdown"
-          echo "$STATS" | jq -r '(.data.editors // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-
-          echo "Debug: Operating systems breakdown"
-          echo "$STATS" | jq -r '(.data.operating_systems // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-
-          echo "Debug: Projects breakdown"
-          echo "$STATS" | jq -r '(.data.projects // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-
-          echo "Debug: Categories breakdown"
-          echo "$STATS" | jq -r '(.data.categories // [])[] | "- \(.name // "unknown"): \(.text // "0 secs") (\(.percent // 0)% / \(.total_seconds // 0) sec)"'
-
-          # Extract data using jq
-          TOTAL=$(echo "$STATS" | jq -r '.data.human_readable_total // "0 hrs"')
-          DAILY_AVG=$(echo "$STATS" | jq -r '.data.human_readable_daily_average // "0 hrs"')
-          BEST_DAY_DATE=$(echo "$STATS" | jq -r '.data.best_day.date // "N/A"')
-          BEST_DAY_TIME=$(echo "$STATS" | jq -r '.data.best_day.text // "0 hrs"')
-          RANGE_START=$(echo "$STATS" | jq -r '.data.start // ""' | cut -d'T' -f1)
-          RANGE_END=$(echo "$STATS" | jq -r '.data.end // ""' | cut -d'T' -f1)
-          TIMEZONE=$(echo "$STATS" | jq -r '.data.timezone // "UTC"')
-
-          # Fetch GitHub language stats (non-fork repos with language info)
-          GITHUB_LANGUAGES=$(curl -sf -H "Authorization: Bearer ${{ github.token }}" \
-            "https://api.github.com/users/reesey275/repos?per_page=100&type=owner" | \
-            jq -r '[.[] | select(.fork == false and .language != null) | .language] | group_by(.) | map({language: .[0], count: length}) | sort_by(-.count) | .[:5]')
-
-          TOTAL_REPOS=$(echo "$GITHUB_LANGUAGES" | jq -r 'map(.count) | add // 0')
-
-          pad_pct() {
-            printf "%.2f %%" "$1"
-          }
-
-          format_stat_line() {
-            local name="$1"
-            local text="$2"
-            local pct="$3"
-            printf -- "- %s: %s (%s)" "$name" "$text" "$(pad_pct "$pct")"
-          }
-
-          # Generate languages section
-          LANGUAGES=""
-          while IFS= read -r line; do
-            name=$(echo "$line" | jq -r '.name')
-            text=$(echo "$line" | jq -r '.text')
-            pct=$(echo "$line" | jq -r '.percent')
-            LANGUAGES+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
-          done < <(echo "$STATS" | jq -c '.data.languages[:5][]')
-
-          # Generate editors section
-          EDITORS=""
-          while IFS= read -r line; do
-            name=$(echo "$line" | jq -r '.name')
-            text=$(echo "$line" | jq -r '.text')
-            pct=$(echo "$line" | jq -r '.percent')
-            EDITORS+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
-          done < <(echo "$STATS" | jq -c '.data.editors[:3][]')
-
-          # Generate OS section
-          OS_STATS=""
-          while IFS= read -r line; do
-            name=$(echo "$line" | jq -r '.name')
-            text=$(echo "$line" | jq -r '.text')
-            pct=$(echo "$line" | jq -r '.percent')
-            OS_STATS+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
-          done < <(echo "$STATS" | jq -c '.data.operating_systems[:3][]')
-
-          # Generate projects section
-          PROJECTS=""
-          while IFS= read -r line; do
-            name=$(echo "$line" | jq -r '.name')
-            text=$(echo "$line" | jq -r '.text')
-            pct=$(echo "$line" | jq -r '.percent')
-            PROJECTS+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
-          done < <(echo "$STATS" | jq -c '.data.projects[:5][]')
-
-          # Generate categories section (AI Coding, Coding, Writing Docs, etc.)
-          CATEGORIES=""
-          while IFS= read -r line; do
-            name=$(echo "$line" | jq -r '.name')
-            text=$(echo "$line" | jq -r '.text')
-            pct=$(echo "$line" | jq -r '.percent')
-            CATEGORIES+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
-          done < <(echo "$STATS" | jq -c '.data.categories[:5][]')
-
-          # Generate day-of-week section
-          DAYS_OF_WEEK=""
-          declare -A day_names=([0]="Sunday" [1]="Monday" [2]="Tuesday" [3]="Wednesday" [4]="Thursday" [5]="Friday" [6]="Saturday")
-          declare -a day_data
-          for i in {0..6}; do
-            day_info=$(echo "$STATS" | jq -r ".data.days[$i] // empty")
-            if [ -n "$day_info" ]; then
-              day_data[$i]="$day_info"
-            fi
-          done
-
-          # Find most productive day (integer comparison with proper handling)
-          max_seconds=0
-          max_day=""
-          for i in {0..6}; do
-            if [ -n "${day_data[$i]:-}" ]; then
-              seconds=$(echo "${day_data[$i]}" | jq -r '.total_seconds // 0' | cut -d'.' -f1)
-              if [ "${seconds:-0}" -gt "$max_seconds" ]; then
-                max_seconds=$seconds
-                max_day="${day_names[$i]}"
-              fi
-            fi
-          done
-
-          # Default to Sunday if no data available
-          if [ -z "$max_day" ]; then
-            max_day="Sunday"
-          fi
-
-          # Build day-of-week stats (Monday-Sunday order for readability)
-          for i in {1..6} 0; do
-            if [ -n "${day_data[$i]:-}" ]; then
-              name="${day_names[$i]}"
-              text=$(echo "${day_data[$i]}" | jq -r '.text // "0 secs"')
-              pct=$(echo "${day_data[$i]}" | jq -r '.percent // 0')
-              DAYS_OF_WEEK+="$(format_stat_line "$name" "$text" "$pct")"$'\n'
-            fi
-          done
-
-          # Generate language repos section from GitHub (with division by zero guard)
-          LANGUAGE_REPOS=""
-          most_used_lang=""
-          if [ -n "${GITHUB_LANGUAGES:-}" ] && [ "$GITHUB_LANGUAGES" != "null" ] && [ "$TOTAL_REPOS" -gt 0 ]; then
-            most_used_lang=$(echo "$GITHUB_LANGUAGES" | jq -r '.[0].language // "Unknown"')
-            while IFS= read -r line; do
-              lang=$(echo "$line" | jq -r '.language')
-              count=$(echo "$line" | jq -r '.count')
-              if [ "${TOTAL_REPOS:-0}" -eq 0 ]; then
-                pct=0
-              else
-                pct=$(echo "scale=2; $count * 100 / $TOTAL_REPOS" | bc)
-              fi
-              LANGUAGE_REPOS+="$(format_stat_line "$lang" "$count repos" "$pct")"$'\n'
-            done < <(echo "$GITHUB_LANGUAGES" | jq -c '.[]')
-          fi
-
-          # Get current timestamp
-          UPDATED=$(date -u "+%Y-%m-%d %H:%M:%S UTC")
-
-          # Build the full stats section
-          STATS_CONTENT="
-          - **Time Zone:** ${TIMEZONE}
-          - **Date Range:** ${RANGE_START} - ${RANGE_END}
-          - **Total:** ${TOTAL}
-          - **Daily Average:** ${DAILY_AVG}
-          - **Best Day:** ${BEST_DAY_DATE} (${BEST_DAY_TIME})
-
-          ### Languages
-
-          ${LANGUAGES}
-          ### Editors
-
-          ${EDITORS}
-          ### Operating Systems
-
-          ${OS_STATS}
-          ### Projects
-
-          ${PROJECTS}
-          ### Categories
-
-          ${CATEGORIES}
-          Last updated: ${UPDATED}"
-
-          # Clean up the content (remove leading spaces from heredoc)
-          STATS_CONTENT=$(echo "$STATS_CONTENT" | sed 's/^          //')
-
-          # Update README between markers
-          awk -v content="$STATS_CONTENT" '
-            /<!--START_SECTION:waka-->/ { print; print content; skip=1; next }
-            /<!--END_SECTION:waka-->/ { skip=0 }
-            !skip { print }
-          ' README.md > README.tmp && mv README.tmp README.md
+          python3 scripts/generate_waka_dashboard.py \
+            --input "$SUMMARIES_FILE" \
+            --svg-output profile/wakatime-dashboard.svg \
+            --readme README.md
 
       - name: Generate GitHub profile cards
         env:
@@ -355,7 +74,10 @@ jobs:
         run: |
           set -euo pipefail
 
-          for card in profile/github-stats.svg profile/top-languages.svg; do
+          for card in \
+            profile/github-stats.svg \
+            profile/top-languages.svg \
+            profile/wakatime-dashboard.svg; do
             test -s "$card"
             grep -q '<svg' "$card"
 
@@ -363,7 +85,17 @@ jobs:
               echo "ERROR: $card contains a renderer error"
               exit 1
             fi
+
+            if grep -Eq '<script|href=' "$card"; then
+              echo "ERROR: $card contains active or external content"
+              exit 1
+            fi
           done
+
+          if grep -q 'First automated refresh pending' profile/wakatime-dashboard.svg; then
+            echo "ERROR: WakaTime dashboard did not receive daily activity"
+            exit 1
+          fi
 
       - name: Create or update PR and enable auto-merge
         env:
@@ -401,7 +133,11 @@ jobs:
             exit 1
           fi
 
-          git add README.md profile/github-stats.svg profile/top-languages.svg
+          git add \
+            README.md \
+            profile/github-stats.svg \
+            profile/top-languages.svg \
+            profile/wakatime-dashboard.svg
 
           if git diff --staged --quiet; then
             echo "No changes to commit"
@@ -434,6 +170,7 @@ jobs:
             "**Stats Include:**" \
             "- GitHub activity card" \
             "- Top languages card" \
+            "- Seven-day WakaTime activity dashboard" \
             "- Languages breakdown" \
             "- Editors used" \
             "- Operating systems" \

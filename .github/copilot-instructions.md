@@ -48,6 +48,8 @@ Always verify:
 ### What Gets Updated
 The `waka-readme.yml` workflow automatically updates:
 - Repository-hosted GitHub activity and top languages cards
+- Repository-hosted seven-day WakaTime dashboard
+- Daily activity chart and collapsed accessible details
 - Languages used (top 5 from WakaTime)
 - Editors used (top 3)
 - Operating systems
@@ -72,6 +74,9 @@ gh workflow run waka-readme.yml
 
 # Regenerate the profile cards locally
 python3 scripts/generate_profile_stats.py --output-dir profile
+
+# Regenerate the WakaTime dashboard from a summaries response
+python3 scripts/generate_waka_dashboard.py --input <summaries.json>
 
 # Check run status
 gh run list --workflow=waka-readme.yml --limit 5
@@ -147,6 +152,7 @@ gh workflow run waka-readme.yml
 └── copilot-instructions.md     # This file
 scripts/
 ├── generate_profile_stats.py    # Repository-hosted profile card generator
+├── generate_waka_dashboard.py   # Weekly WakaTime SVG and Markdown generator
 ├── lint_markdown.sh             # Markdown linting
 ├── check_links.sh               # Link validation
 ├── pr_threads_guard.sh          # Review thread governance enforcement
@@ -161,7 +167,7 @@ The `quality.yml` workflow consolidates all quality checks into a single sequent
 
 1. **ShellCheck**: Validates shell script syntax
 2. **Codespell**: Checks spelling across all files
-3. **Profile stats tests**: Validates self-contained SVG rendering
+3. **Generated stats tests**: Validates self-contained SVG rendering
 4. **Markdownlint CLI2**: Enforces markdown formatting rules
 5. **Vale**: Validates prose style and quality
 6. **PR Thread Governance**: Ensures review threads are resolved (PR-only)

@@ -5,3 +5,7 @@ MD041: false
 MD034: false
 MD026: false
 MD012: false
+MD033:
+  allowed_elements:
+    - details
+    - summary

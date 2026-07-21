@@ -48,7 +48,7 @@ jobs:
             --skip="*.lock,*.png,*.jpg,*.jpeg,*.gif,*.svg,*.pdf,node_modules,.git" \
             .
 
-      - name: Profile stats tests
+      - name: Generated stats tests
         run: |
           python3 -m unittest discover \
             --start-directory scripts/tests \
