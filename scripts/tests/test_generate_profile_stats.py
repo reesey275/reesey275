@@ -73,6 +73,14 @@ class FakeGitHubClient:
                     "stargazers_count": 99,
                     "visibility": "private",
                 },
+                {
+                    "fork": False,
+                    "full_name": "reesey275/unknown-visibility",
+                    "name": "unknown-visibility",
+                    "owner": {"login": "reesey275"},
+                    "private": False,
+                    "stargazers_count": 99,
+                },
             ]
         if path == "/repos/reesey275/public-project/languages":
             return {"Python": 500, "Shell": 300}
@@ -95,6 +103,10 @@ class ProfileStatsRendererTests(unittest.TestCase):
         self.assertNotIn("/repos/reesey275/reesey275/languages", client.calls)
         self.assertNotIn("/repos/reesey275/public-fork/languages", client.calls)
         self.assertNotIn("/repos/reesey275/private-project/languages", client.calls)
+        self.assertNotIn(
+            "/repos/reesey275/unknown-visibility/languages",
+            client.calls,
+        )
         self.assertFalse(any(path.startswith("/search/") for path in client.calls))
 
     def test_stats_card_contains_only_unambiguously_public_metrics(self) -> None:
