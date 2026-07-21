@@ -236,7 +236,12 @@ influencing badge changes.
 
 <!--START_SECTION:waka-->
 
-- **Time Zone:** America/New_York
+![Weekly WakaTime development dashboard](./profile/wakatime-dashboard.svg)
+
+<details>
+<summary>View detailed weekly data</summary>
+
+- **Time Zone:** America/New\_York
 - **Date Range:** 2026-07-14 - 2026-07-21
 - **Total:** 49 hrs 3 mins
 - **Daily Average:** 6 hrs 7 mins
@@ -244,39 +249,41 @@ influencing badge changes.
 
 ### Languages
 
-- Markdown: 28 hrs 17 mins (57.67 %)
-- PowerShell: 10 hrs 11 mins (20.77 %)
-- Other: 3 hrs 49 mins (7.81 %)
-- Java: 2 hrs 12 mins (4.49 %)
-- JSON: 1 hr 21 mins (2.76 %)
+- Markdown: 28 hrs 17 mins (57.67%)
+- PowerShell: 10 hrs 11 mins (20.77%)
+- Other: 3 hrs 49 mins (7.81%)
+- Java: 2 hrs 12 mins (4.49%)
+- JSON: 1 hr 21 mins (2.76%)
 
 ### Editors
 
-- VS Code: 49 hrs 3 mins (100.00 %)
+- VS Code: 49 hrs 3 mins (100.00%)
 
 ### Operating Systems
 
-- Windows: 30 hrs 54 mins (63.00 %)
-- WSL: 16 hrs 46 mins (34.17 %)
-- Linux: 1 hr 23 mins (2.83 %)
+- Windows: 30 hrs 54 mins (63.00%)
+- WSL: 16 hrs 46 mins (34.17%)
+- Linux: 1 hr 23 mins (2.83%)
 
 ### Projects
 
-- TAGS-Ai: 24 hrs 13 mins (49.37 %)
-- gameserver-manager: 14 hrs 33 mins (29.68 %)
-- PowerShellScripts: 3 hrs 12 mins (6.52 %)
-- TAGS: 2 hrs 32 mins (5.18 %)
-- java: 2 hrs 15 mins (4.59 %)
+- TAGS-Ai: 24 hrs 13 mins (49.37%)
+- gameserver-manager: 14 hrs 33 mins (29.68%)
+- PowerShellScripts: 3 hrs 12 mins (6.52%)
+- TAGS: 2 hrs 32 mins (5.18%)
+- java: 2 hrs 15 mins (4.59%)
 
 ### Categories
 
-- AI Coding: 39 hrs 30 mins (80.54 %)
-- Coding: 4 hrs 50 mins (9.85 %)
-- Writing Docs: 3 hrs 35 mins (7.32 %)
-- Writing Tests: 1 hr 5 mins (2.21 %)
-- Debugging: 2 mins (0.08 %)
+- AI Coding: 39 hrs 30 mins (80.54%)
+- Coding: 4 hrs 50 mins (9.85%)
+- Writing Docs: 3 hrs 35 mins (7.32%)
+- Writing Tests: 1 hr 5 mins (2.21%)
+- Debugging: 2 mins (0.08%)
 
-Last updated: 2026-07-21 01:57:39 UTC
+</details>
+
+_Last updated: 2026-07-21 01:57:39 UTC_
 <!--END_SECTION:waka-->
 
 ## 🎯 Featured Projects

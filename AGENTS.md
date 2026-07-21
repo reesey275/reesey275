@@ -33,6 +33,8 @@ The repository includes an automated WakaTime stats workflow for keeping README 
 5. **Stats Included**:
    - Repository-hosted GitHub activity card
    - Repository-hosted top languages card
+   - Repository-hosted seven-day WakaTime dashboard
+   - Daily activity chart with exact duration labels
    - Languages (top 5)
    - Editors (top 3)
    - Operating systems (top 3)
@@ -50,9 +52,13 @@ The repository includes an automated WakaTime stats workflow for keeping README 
 - Keep the midnight UTC schedule unless there's a specific reason to change
 - Keep `scripts/generate_profile_stats.py` dependency-free so it runs on the
   standard GitHub Actions Python installation
+- Keep `scripts/generate_waka_dashboard.py` dependency-free and generate its
+  SVG and collapsed Markdown details from the same summaries response
 - Debug with `gh workflow run waka-readme.yml` for manual testing
 - Preview profile cards locally with
   `python3 scripts/generate_profile_stats.py --output-dir profile`
+- Preview the WakaTime dashboard with
+  `python3 scripts/generate_waka_dashboard.py --input <summaries.json>`
 - Check recent runs: `gh run list --workflow=waka-readme.yml --limit 10`
 - Reference `.github/WAKA_AUTO_MERGE_GUIDE.md` for troubleshooting
 
