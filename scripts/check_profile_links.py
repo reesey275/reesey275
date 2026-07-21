@@ -172,7 +172,17 @@ def discover_markdown_files(
                 files.add(candidate)
             continue
         if candidate.is_dir():
-            files.update(path.resolve() for path in candidate.rglob("*.md"))
+            for path in candidate.rglob("*.md"):
+                resolved_path = path.resolve()
+                try:
+                    resolved_path.relative_to(root)
+                except ValueError as error:
+                    relative_path = path.relative_to(root)
+                    raise ValueError(
+                        "discovered Markdown file escapes repository root: "
+                        f"{relative_path}"
+                    ) from error
+                files.add(resolved_path)
             continue
         raise ValueError(f"profile link input does not exist: {raw_input}")
 
