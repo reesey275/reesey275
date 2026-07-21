@@ -2,7 +2,13 @@ Setup commands Codex should run
 
 Markdown checks: bash scripts/lint_markdown.sh (runs markdownlint-cli2 with the same patterns as CI; set RUN_LINE_CHECKS=1 to also flag long lines and trailing whitespace)
 
-External link checks: bash scripts/check_links.sh
+Profile link policy: python3 scripts/check_profile_links.py (validates relative
+profile links and requires explicit public visibility for linked GitHub
+repositories)
+
+Broad external link audit: bash scripts/check_links.sh (manual; exit 1 means a
+confirmed accessibility failure and exit 2 means verification was blocked or
+transient)
 
 PR rules
 

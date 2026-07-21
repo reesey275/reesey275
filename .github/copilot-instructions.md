@@ -40,8 +40,9 @@ Examples:
 ### Before Creating PRs
 Always verify:
 1. Markdown lint passes: `bash scripts/lint_markdown.sh`
-2. External links are valid: `bash scripts/check_links.sh`
-3. No broken internal links in documentation
+2. Profile links satisfy public-access policy: `python3 scripts/check_profile_links.py`
+3. Broad external links are valid: `bash scripts/check_links.sh`
+4. No broken internal links in documentation
 
 ## WakaTime Stats Management
 
@@ -108,6 +109,7 @@ Types: FEAT, FIX, DOCS, STYLE, REFACTOR, TEST, CHORE, CI
 ```bash
 # Full verification
 bash scripts/lint_markdown.sh
+python3 scripts/check_profile_links.py
 bash scripts/check_links.sh
 
 # If changes affect WakaTime workflow
@@ -120,8 +122,9 @@ gh pr view <PR_NUMBER>  # Verify auto-merge works
 ### Adding/Updating Documentation
 1. Write markdown files
 2. Run lint: `bash scripts/lint_markdown.sh`
-3. Check links: `bash scripts/check_links.sh`
-4. Commit with `DOCS(section): description`
+3. Check profile links: `python3 scripts/check_profile_links.py`
+4. Audit broad external links: `bash scripts/check_links.sh`
+5. Commit with `DOCS(section): description`
 
 ### Modifying WakaTime Stats Display
 1. Edit `.github/workflows/waka-readme.yml`
@@ -158,7 +161,8 @@ scripts/
 ├── generate_profile_stats.py    # Repository-hosted profile card generator
 ├── generate_waka_dashboard.py   # Seven-day WakaTime SVG and Markdown generator
 ├── lint_markdown.sh             # Markdown linting
-├── check_links.sh               # Link validation
+├── check_profile_links.py       # Deterministic public profile link policy
+├── check_links.sh               # Broad external link audit
 ├── pr_threads_guard.sh          # Review thread governance enforcement
 └── tests/                       # Profile card renderer tests
 ```
@@ -171,10 +175,11 @@ The `quality.yml` workflow consolidates all quality checks into a single sequent
 
 1. **ShellCheck**: Validates shell script syntax
 2. **Codespell**: Checks spelling across all files
-3. **Generated stats tests**: Validates self-contained SVG rendering
-4. **Markdownlint CLI2**: Enforces markdown formatting rules
-5. **Vale**: Validates prose style and quality
-6. **PR Thread Governance**: Ensures review threads are resolved (PR-only)
+3. **Python regression tests**: Validates profile rendering and link-policy behavior
+4. **Profile link policy**: Validates relative paths and public GitHub visibility
+5. **Markdownlint CLI2**: Enforces markdown formatting rules
+6. **Vale**: Validates prose style and quality
+7. **PR Thread Governance**: Ensures review threads are resolved (PR-only)
 
 **Status Check Name**: `Quality Gate / quality`
 
