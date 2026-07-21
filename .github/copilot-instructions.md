@@ -47,22 +47,26 @@ Always verify:
 
 ### What Gets Updated
 The `waka-readme.yml` workflow automatically updates:
-- Repository-hosted GitHub activity and top languages cards
-- Repository-hosted seven-day WakaTime dashboard
-- Daily activity chart and collapsed accessible details
-- Languages used (top 5 from WakaTime)
+- Repository-hosted public GitHub summary
+- Public project code composition from GitHub Linguist bytes
+- Repository-hosted seven-day WakaTime editor activity dashboard
+- Daily editor activity chart and collapsed accessible details
+- WakaTime language classifications (top 5)
 - Editors used (top 3)
 - Operating systems
-- Active projects
-- Activity categories (AI Coding, Coding, Writing Docs)
+- WakaTime activity classifications (AI Coding, Coding, Writing Docs)
 - Time zone and date range
+- Project names are intentionally omitted from public output
 
-### What's NOT Included (Free Tier Limitations)
-- Day-of-week breakdown (API doesn't provide)
-- Language repositories (incomplete GitHub data)
+### What's NOT Included
+- Separate weekday aggregates; the chart uses the seven dated summary entries
+- WakaTime project names, which may identify non-public work
+- Language-to-repository mappings, which are incomplete in GitHub data
 
 ### Data Freshness
 - **Updated**: Once daily at midnight UTC
+- **Reporting Time Zone**: `WAKATIME_TIMEZONE` repository variable, defaulting
+  to `America/New_York`
 - **Freshness**: 2-4 hours behind real-time (WakaTime free tier caching)
 - **Refresh Strategy**: Daily runs allow cache to naturally update between runs
 
@@ -152,7 +156,7 @@ gh workflow run waka-readme.yml
 └── copilot-instructions.md     # This file
 scripts/
 ├── generate_profile_stats.py    # Repository-hosted profile card generator
-├── generate_waka_dashboard.py   # Weekly WakaTime SVG and Markdown generator
+├── generate_waka_dashboard.py   # Seven-day WakaTime SVG and Markdown generator
 ├── lint_markdown.sh             # Markdown linting
 ├── check_links.sh               # Link validation
 ├── pr_threads_guard.sh          # Review thread governance enforcement

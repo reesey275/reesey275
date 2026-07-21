@@ -80,26 +80,39 @@ class WakaDashboardTests(unittest.TestCase):
                     [{"name": "TAGS_[Core]", "total_seconds": 5400}],
                 ),
                 summary_day("2026-07-17", 0, [], []),
+                summary_day("2026-07-18", 0, [], []),
+                summary_day("2026-07-19", 0, [], []),
+                summary_day("2026-07-20", 0, [], []),
+                summary_day("2026-07-21", 0, [], []),
             ]
         }
         self.data = dashboard.dashboard_from_summaries(self.payload)
 
     def test_summaries_are_aggregated_for_cards_and_daily_chart(self) -> None:
         self.assertEqual(self.data.total_seconds, 10800)
-        self.assertEqual(self.data.daily_average_seconds, 3600)
+        self.assertAlmostEqual(
+            self.data.daily_average_seconds,
+            10800 / dashboard.REPORTING_DAYS,
+        )
         self.assertEqual(self.data.best_day.date.isoformat(), "2026-07-16")
         self.assertEqual(self.data.languages[0].name, "Python")
         self.assertAlmostEqual(self.data.languages[0].percent, 55.56, places=2)
-        self.assertEqual(len(self.data.daily), 3)
+        self.assertEqual(len(self.data.daily), dashboard.REPORTING_DAYS)
 
     def test_svg_is_self_contained_and_accessible(self) -> None:
         card = dashboard.render_svg(self.data, "2026-07-21 12:00:00 UTC")
 
         element_tree.fromstring(card)
-        self.assertIn("Weekly WakaTime Development Dashboard", card)
-        self.assertIn("3 calendar days", card)
-        self.assertIn("Daily activity", card)
-        self.assertIn("TAGS_[Core]", card)
+        self.assertIn("Seven-Day WakaTime Editor Activity", card)
+        self.assertIn("7 calendar days", card)
+        self.assertIn("Daily editor activity", card)
+        self.assertIn("Editors", card)
+        self.assertIn("VS Code", card)
+        self.assertNotIn("TAGS_[Core]", card)
+        self.assertNotIn(">Projects<", card)
+        self.assertIn("not a productivity or skill score", card)
+        self.assertIn("not authorship measures", card)
+        self.assertIn("Last successful refresh", card)
         self.assertNotIn("<script", card)
         self.assertNotIn("href=", card)
         self.assertNotIn("https://", card)
@@ -166,6 +179,7 @@ class WakaDashboardTests(unittest.TestCase):
                     "GITHUB_ENV": str(environment_file),
                     "PATH": f"{fake_bin}:{environment['PATH']}",
                     "WAKATIME_API_KEY": "unavailable",
+                    "WAKATIME_TIMEZONE": "America/New_York",
                 }
             )
             result = subprocess.run(
@@ -200,9 +214,20 @@ class WakaDashboardTests(unittest.TestCase):
 
         self.assertIn("wakatime-dashboard.svg", markdown)
         self.assertIn("<details>", markdown)
-        self.assertIn("<summary>View detailed weekly data</summary>", markdown)
-        self.assertIn(r"TAGS\_\[Core\]", markdown)
+        self.assertIn(
+            "<summary>View seven-day editor activity data</summary>",
+            markdown,
+        )
+        self.assertIn("7 inclusive calendar dates", markdown)
+        self.assertEqual(
+            dashboard.markdown_text("TAGS_[Core]"),
+            r"TAGS\_\[Core\]",
+        )
+        self.assertNotIn("### Projects", markdown)
+        self.assertNotIn("TAGS_[Core]", markdown)
         self.assertIn("55.56%", markdown)
+        self.assertIn("do not measure authorship", markdown)
+        self.assertIn("Last successful refresh", markdown)
 
     def test_readme_update_preserves_markers_and_surrounding_content(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -226,10 +251,9 @@ class WakaDashboardTests(unittest.TestCase):
         snapshot = {
             "snapshot": {
                 "timezone": "America/New_York",
-                "start": "2026-07-14",
+                "start": "2026-07-15",
                 "end": "2026-07-21",
                 "total_seconds": 176631,
-                "daily_average_seconds": 22078,
                 "best_day": {
                     "date": "2026-07-17",
                     "total_seconds": 41880,
@@ -257,9 +281,8 @@ class WakaDashboardTests(unittest.TestCase):
             "snapshot": {
                 "timezone": "America/New_York",
                 "start": "2026-07-15",
-                "end": "2026-07-17",
+                "end": "2026-07-21",
                 "total_seconds": 10800,
-                "daily_average_seconds": 3600,
                 "best_day": {
                     "date": "2026-07-17",
                     "total_seconds": 7200,
@@ -268,6 +291,10 @@ class WakaDashboardTests(unittest.TestCase):
                     {"date": "2026-07-17", "total_seconds": 7200},
                     {"date": "2026-07-15", "total_seconds": 3600},
                     {"date": "2026-07-16", "total_seconds": 0},
+                    {"date": "2026-07-21", "total_seconds": 0},
+                    {"date": "2026-07-19", "total_seconds": 0},
+                    {"date": "2026-07-20", "total_seconds": 0},
+                    {"date": "2026-07-18", "total_seconds": 0},
                 ],
                 "languages": [],
                 "editors": [],
@@ -281,8 +308,92 @@ class WakaDashboardTests(unittest.TestCase):
 
         self.assertEqual(
             [day.date.isoformat() for day in data.daily],
-            ["2026-07-15", "2026-07-16", "2026-07-17"],
+            [
+                "2026-07-15",
+                "2026-07-16",
+                "2026-07-17",
+                "2026-07-18",
+                "2026-07-19",
+                "2026-07-20",
+                "2026-07-21",
+            ],
         )
+
+    def test_summaries_reject_non_seven_day_windows(self) -> None:
+        payload = {
+            "data": [
+                summary_day(
+                    f"2026-07-{day:02d}",
+                    0,
+                    [],
+                    [],
+                )
+                for day in range(14, 22)
+            ]
+        }
+
+        with self.assertRaisesRegex(
+            dashboard.DashboardDataError,
+            "exactly 7 inclusive calendar dates",
+        ):
+            dashboard.dashboard_from_summaries(payload)
+
+    def test_snapshot_rejects_legacy_eight_date_windows(self) -> None:
+        snapshot = {
+            "snapshot": {
+                "timezone": "America/New_York",
+                "start": "2026-07-14",
+                "end": "2026-07-21",
+                "total_seconds": 176631,
+                "best_day": {
+                    "date": "2026-07-17",
+                    "total_seconds": 41880,
+                },
+                "daily": [],
+                "languages": [],
+                "editors": [],
+                "operating_systems": [],
+                "projects": [],
+                "categories": [],
+            }
+        }
+
+        with self.assertRaisesRegex(
+            dashboard.DashboardDataError,
+            "exactly 7 inclusive calendar dates",
+        ):
+            dashboard.dashboard_from_snapshot(snapshot)
+
+    def test_summaries_reject_missing_reporting_dates(self) -> None:
+        payload = {
+            "data": [
+                summary_day(date, 0, [], [])
+                for date in (
+                    "2026-07-15",
+                    "2026-07-16",
+                    "2026-07-17",
+                    "2026-07-18",
+                    "2026-07-20",
+                    "2026-07-20",
+                    "2026-07-21",
+                )
+            ]
+        }
+
+        with self.assertRaisesRegex(
+            dashboard.DashboardDataError,
+            "consecutive reporting date",
+        ):
+            dashboard.dashboard_from_summaries(payload)
+
+    def test_workflow_requests_and_validates_seven_inclusive_dates(self) -> None:
+        script = workflow_run_script("Fetch WakaTime stats and update dashboard")
+
+        self.assertIn('TZ="$WAKATIME_TIMEZONE" date +%Y-%m-%d', script)
+        self.assertIn('date -d "$END_DATE - 6 days"', script)
+        self.assertIn('--data-urlencode "timezone=$WAKATIME_TIMEZONE"', script)
+        self.assertIn('--expected-start "$START_DATE"', script)
+        self.assertIn('--expected-end "$END_DATE"', script)
 
 
 if __name__ == "__main__":
