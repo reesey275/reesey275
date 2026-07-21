@@ -223,27 +223,36 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 Note: Contribution activity reflects a solo build phase focused on end-to-end system design and execution.
 
+These cards use public GitHub REST data only. Code composition is calculated
+from GitHub Linguist source-code bytes across public, non-fork projects,
+excludes this profile repository, and is not a proficiency ranking.
+
 [![GitHub Stats][github-stats]][profile]
-[![Top Languages][top-languages]][profile]
 
-## 📈 Weekly Development Stats
+[![Public Project Code Composition][top-languages]][profile]
 
-WakaTime reflects rolling development activity across daily engineering work,
-coursework, project builds, documentation, and active learning. It is current
-workflow evidence, not a permanent ranking of professional skill depth. Large
-"Other" entries represent unclassified activity and require follow-up before
-influencing badge changes.
+## 📈 Seven-Day Editor Activity
+
+WakaTime reports editor-tracked activity from the last successful
+seven-calendar-date window. It is workflow context rather than a measure of
+productivity, skill, or authorship. Labels such as "AI Coding" are WakaTime
+classifications; they do not identify who or what authored the work. If a
+refresh fails, the last successful
+snapshot and its timestamp remain visible. The most recent date may contain a
+partial day at refresh time. Project names are intentionally omitted from the
+public output.
 
 <!--START_SECTION:waka-->
 
-![Weekly WakaTime development dashboard](./profile/wakatime-dashboard.svg)
+![WakaTime editor activity dashboard — legacy eight-date snapshot](./profile/wakatime-dashboard.svg)
 
 <details>
-<summary>View detailed weekly data</summary>
+<summary>View legacy editor activity data</summary>
 
 - **Time Zone:** America/New\_York
+- **Reporting Window:** Legacy eight-date snapshot retained from before seven-day validation
 - **Date Range:** 2026-07-14 - 2026-07-21
-- **Total:** 49 hrs 3 mins
+- **Total Tracked:** 49 hrs 3 mins
 - **Daily Average:** 6 hrs 7 mins
 - **Best Day:** 2026-07-17 (11 hrs 38 mins)
 
@@ -265,14 +274,6 @@ influencing badge changes.
 - WSL: 16 hrs 46 mins (34.17%)
 - Linux: 1 hr 23 mins (2.83%)
 
-### Projects
-
-- TAGS-Ai: 24 hrs 13 mins (49.37%)
-- gameserver-manager: 14 hrs 33 mins (29.68%)
-- PowerShellScripts: 3 hrs 12 mins (6.52%)
-- TAGS: 2 hrs 32 mins (5.18%)
-- java: 2 hrs 15 mins (4.59%)
-
 ### Categories
 
 - AI Coding: 39 hrs 30 mins (80.54%)
@@ -281,9 +282,12 @@ influencing badge changes.
 - Writing Tests: 1 hr 5 mins (2.21%)
 - Debugging: 2 mins (0.08%)
 
+_Category names, including "AI Coding," are WakaTime classifications and do not
+measure authorship._
+
 </details>
 
-_Last updated: 2026-07-21 01:57:39 UTC_
+_Last successful refresh: 2026-07-21 01:57:39 UTC_
 <!--END_SECTION:waka-->
 
 ## 🎯 Featured Projects

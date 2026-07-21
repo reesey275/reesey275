@@ -17,7 +17,8 @@ from typing import Any
 
 
 WIDTH = 900
-HEIGHT = 825
+HEIGHT = 845
+REPORTING_DAYS = 7
 START_MARKER = "<!--START_SECTION:waka-->"
 END_MARKER = "<!--END_SECTION:waka-->"
 
@@ -72,7 +73,6 @@ class DashboardData:
     languages: tuple[Metric, ...]
     editors: tuple[Metric, ...]
     operating_systems: tuple[Metric, ...]
-    projects: tuple[Metric, ...]
     categories: tuple[Metric, ...]
 
 
@@ -125,6 +125,37 @@ def parse_date(value: object, label: str) -> dt.date:
         return dt.date.fromisoformat(str(value))
     except ValueError as error:
         raise DashboardDataError(f"{label} must be an ISO date") from error
+
+
+def validate_reporting_range(start: dt.date, end: dt.date, label: str) -> None:
+    """Require exactly seven inclusive calendar dates."""
+
+    if (end - start).days != REPORTING_DAYS - 1:
+        raise DashboardDataError(
+            f"{label} must span exactly {REPORTING_DAYS} inclusive calendar dates"
+        )
+
+
+def validate_daily_dates(
+    daily: list[Day],
+    start: dt.date,
+    end: dt.date,
+    label: str,
+) -> None:
+    """Require one chronological sample for every date in the reporting range."""
+
+    if len(daily) != REPORTING_DAYS:
+        raise DashboardDataError(
+            f"{label} must contain exactly {REPORTING_DAYS} daily samples"
+        )
+    expected_dates = [
+        start + dt.timedelta(days=index) for index in range(REPORTING_DAYS)
+    ]
+    actual_dates = [day.date for day in daily]
+    if actual_dates != expected_dates or daily[-1].date != end:
+        raise DashboardDataError(
+            f"{label} must contain one sample for each consecutive reporting date"
+        )
 
 
 def format_duration(total_seconds: float) -> str:
@@ -209,8 +240,15 @@ def dashboard_from_summaries(payload: dict[str, Any]) -> DashboardData:
         daily.append(Day(date, seconds, format_duration(seconds)))
 
     daily.sort(key=lambda item: item.date)
+    validate_reporting_range(daily[0].date, daily[-1].date, "WakaTime summaries")
+    validate_daily_dates(
+        daily,
+        daily[0].date,
+        daily[-1].date,
+        "WakaTime summaries",
+    )
     total_seconds = sum(day.total_seconds for day in daily)
-    daily_average_seconds = total_seconds / len(daily)
+    daily_average_seconds = total_seconds / REPORTING_DAYS
     best_day = max(daily, key=lambda item: item.total_seconds)
 
     return DashboardData(
@@ -231,7 +269,6 @@ def dashboard_from_summaries(payload: dict[str, Any]) -> DashboardData:
             total_seconds,
             5,
         ),
-        projects=aggregate_metrics(days, "projects", total_seconds, 5),
         categories=aggregate_metrics(days, "categories", total_seconds, 5),
     )
 
@@ -268,10 +305,9 @@ def dashboard_from_snapshot(payload: dict[str, Any]) -> DashboardData:
         raise DashboardDataError("snapshot must be an object")
 
     total_seconds = safe_number(snapshot.get("total_seconds"), "snapshot.total_seconds")
-    average_seconds = safe_number(
-        snapshot.get("daily_average_seconds"),
-        "snapshot.daily_average_seconds",
-    )
+    start = parse_date(snapshot.get("start"), "snapshot.start")
+    end = parse_date(snapshot.get("end"), "snapshot.end")
+    validate_reporting_range(start, end, "snapshot range")
     best = snapshot.get("best_day")
     if not isinstance(best, dict):
         raise DashboardDataError("snapshot.best_day must be an object")
@@ -283,38 +319,44 @@ def dashboard_from_snapshot(payload: dict[str, Any]) -> DashboardData:
         ),
         format_duration(safe_number(best.get("total_seconds"), "best day")),
     )
+    if not start <= best_day.date <= end:
+        raise DashboardDataError(
+            "snapshot.best_day.date must be inside the reporting range"
+        )
 
     raw_daily = snapshot.get("daily", [])
     if not isinstance(raw_daily, list):
         raise DashboardDataError("snapshot.daily must be a list")
-    daily = tuple(
-        sorted(
-            (
-                Day(
-                    parse_date(item.get("date"), "snapshot.daily.date"),
-                    safe_number(
-                        item.get("total_seconds"),
-                        "snapshot.daily.total_seconds",
-                    ),
-                    format_duration(
-                        safe_number(item.get("total_seconds"), "snapshot daily")
-                    ),
-                )
-                for item in raw_daily
-                if isinstance(item, dict)
-            ),
-            key=lambda item: item.date,
-        )
+    if not all(isinstance(item, dict) for item in raw_daily):
+        raise DashboardDataError("Every snapshot.daily entry must be an object")
+    daily_items = sorted(
+        (
+            Day(
+                parse_date(item.get("date"), "snapshot.daily.date"),
+                safe_number(
+                    item.get("total_seconds"),
+                    "snapshot.daily.total_seconds",
+                ),
+                format_duration(
+                    safe_number(item.get("total_seconds"), "snapshot daily")
+                ),
+            )
+            for item in raw_daily
+        ),
+        key=lambda item: item.date,
     )
+    if daily_items:
+        validate_daily_dates(daily_items, start, end, "snapshot.daily")
+    daily = tuple(daily_items)
 
     return DashboardData(
         timezone=str(snapshot.get("timezone") or "UTC"),
-        start=parse_date(snapshot.get("start"), "snapshot.start"),
-        end=parse_date(snapshot.get("end"), "snapshot.end"),
+        start=start,
+        end=end,
         total_seconds=total_seconds,
         total_text=format_duration(total_seconds),
-        daily_average_seconds=average_seconds,
-        daily_average_text=format_duration(average_seconds),
+        daily_average_seconds=total_seconds / REPORTING_DAYS,
+        daily_average_text=format_duration(total_seconds / REPORTING_DAYS),
         best_day=best_day,
         daily=daily,
         languages=snapshot_metrics(snapshot, "languages", total_seconds),
@@ -324,7 +366,6 @@ def dashboard_from_snapshot(payload: dict[str, Any]) -> DashboardData:
             "operating_systems",
             total_seconds,
         ),
-        projects=snapshot_metrics(snapshot, "projects", total_seconds),
         categories=snapshot_metrics(snapshot, "categories", total_seconds),
     )
 
@@ -383,12 +424,12 @@ def metric_card(x: int, label: str, value: str, detail: str) -> str:
 
 
 def daily_chart(data: DashboardData) -> str:
-    """Render the daily activity card, with an honest first-run fallback."""
+    """Render daily editor activity, with an honest first-run fallback."""
 
     parts = [
         f'''  <rect x="28" y="180" width="844" height="210" rx="8"
     fill="{THEME["surface"]}" stroke="{THEME["border"]}"/>
-  <text x="48" y="210" class="section-title">Daily activity</text>'''
+  <text x="48" y="210" class="section-title">Daily editor activity</text>'''
     ]
     if not data.daily:
         parts.extend(
@@ -411,7 +452,7 @@ def daily_chart(data: DashboardData) -> str:
     slot = chart_width / len(data.daily)
     bar_width = min(68.0, slot * 0.62)
     parts.append(
-        f'  <text x="852" y="210" text-anchor="end" class="muted">{len(data.daily)} calendar days</text>'
+        f'  <text x="852" y="210" text-anchor="end" class="muted">{REPORTING_DAYS} calendar days</text>'
     )
     for index, day in enumerate(data.daily):
         center = left + slot * index + slot / 2
@@ -472,20 +513,28 @@ def render_svg(data: DashboardData, updated: str) -> str:
     primary_editor = data.editors[0] if data.editors else None
     editor_value = primary_editor.name if primary_editor else "No data"
     editor_detail = (
-        f"{primary_editor.percent:.1f}% of activity" if primary_editor else "Editor unavailable"
+        f"{primary_editor.percent:.1f}% of tracked time"
+        if primary_editor
+        else "Editor unavailable"
     )
     description = (
-        f"{data.total_text} of activity from {data.start.isoformat()} through "
-        f"{data.end.isoformat()}, averaging {data.daily_average_text} per day."
+        f"{data.total_text} of editor-tracked activity across seven inclusive "
+        f"calendar dates from {data.start.isoformat()} through {data.end.isoformat()}, "
+        f"averaging {data.daily_average_text} per day."
     )
     cards = "\n".join(
         [
-            metric_card(28, "TOTAL ACTIVITY", compact_duration(data.total_seconds), "Rolling weekly total"),
+            metric_card(
+                28,
+                "TOTAL TRACKED",
+                compact_duration(data.total_seconds),
+                "Seven calendar days",
+            ),
             metric_card(
                 240,
                 "DAILY AVERAGE",
                 compact_duration(data.daily_average_seconds),
-                "Across calendar days",
+                "Across 7 calendar days",
             ),
             metric_card(
                 452,
@@ -498,7 +547,7 @@ def render_svg(data: DashboardData, updated: str) -> str:
     )
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}"
   viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="dashboard-title dashboard-description">
-  <title id="dashboard-title">Weekly WakaTime Development Dashboard</title>
+  <title id="dashboard-title">Seven-Day WakaTime Editor Activity</title>
   <desc id="dashboard-description">{svg_text(description)}</desc>
   <style>
     .title {{ fill: {THEME["title"]}; font: 700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
@@ -513,16 +562,17 @@ def render_svg(data: DashboardData, updated: str) -> str:
     .muted {{ fill: {THEME["muted"]}; font: 400 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
   </style>
   <rect width="{WIDTH}" height="{HEIGHT}" rx="10" fill="{THEME["background"]}"/>
-  <text x="28" y="36" class="title">Weekly Development Dashboard</text>
+  <text x="28" y="36" class="title">Seven-Day WakaTime Editor Activity</text>
   <text x="28" y="58" class="muted">{data.start.isoformat()} – {data.end.isoformat()} · {svg_text(data.timezone)}</text>
-  <text x="872" y="58" text-anchor="end" class="muted">Updated {svg_text(updated)}</text>
+  <text x="872" y="58" text-anchor="end" class="muted">Last successful refresh {svg_text(updated)}</text>
 {cards}
 {daily_chart(data)}
 {breakdown_card(28, 406, "Languages", data.languages, THEME["purple"])}
 {breakdown_card(457, 406, "Operating systems", data.operating_systems, THEME["green"])}
-{breakdown_card(28, 604, "Projects", data.projects, THEME["amber"])}
-{breakdown_card(457, 604, "Categories", data.categories, THEME["pink"])}
-  <text x="28" y="811" class="muted">WakaTime reflects rolling workflow activity, not permanent skill depth.</text>
+{breakdown_card(28, 604, "Editors", data.editors, THEME["amber"])}
+{breakdown_card(457, 604, "WakaTime categories", data.categories, THEME["pink"])}
+  <text x="28" y="812" class="muted">WakaTime reports editor-tracked activity; it is not a productivity or skill score.</text>
+  <text x="28" y="830" class="muted">Category names (including “AI Coding”) are WakaTime classifications, not authorship measures.</text>
 </svg>
 '''
 
@@ -545,14 +595,18 @@ def render_markdown(data: DashboardData, updated: str) -> str:
     """Render a compact image plus collapsed accessible details."""
 
     sections = [
-        "![Weekly WakaTime development dashboard](./profile/wakatime-dashboard.svg)",
+        "![Seven-day WakaTime editor activity dashboard](./profile/wakatime-dashboard.svg)",
         "",
         "<details>",
-        "<summary>View detailed weekly data</summary>",
+        "<summary>View seven-day editor activity data</summary>",
         "",
         f"- **Time Zone:** {markdown_text(data.timezone)}",
+        (
+            f"- **Reporting Window:** {REPORTING_DAYS} inclusive calendar dates "
+            "(latest may be partial)"
+        ),
         f"- **Date Range:** {data.start.isoformat()} - {data.end.isoformat()}",
-        f"- **Total:** {data.total_text}",
+        f"- **Total Tracked:** {data.total_text}",
         f"- **Daily Average:** {data.daily_average_text}",
         f"- **Best Day:** {data.best_day.date.isoformat()} ({data.best_day.text})",
         "",
@@ -562,13 +616,16 @@ def render_markdown(data: DashboardData, updated: str) -> str:
         "",
         metric_markdown("Operating Systems", data.operating_systems),
         "",
-        metric_markdown("Projects", data.projects),
-        "",
         metric_markdown("Categories", data.categories),
+        "",
+        (
+            '_Category names, including "AI Coding," are WakaTime classifications '
+            "and do not measure authorship._"
+        ),
         "",
         "</details>",
         "",
-        f"_Last updated: {markdown_text(updated)}_",
+        f"_Last successful refresh: {markdown_text(updated)}_",
     ]
     return "\n".join(sections)
 
@@ -619,6 +676,14 @@ def parse_args() -> argparse.Namespace:
         "--updated",
         default=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
     )
+    parser.add_argument(
+        "--expected-start",
+        help="Expected first date for the seven-day reporting window",
+    )
+    parser.add_argument(
+        "--expected-end",
+        help="Expected last date for the seven-day reporting window",
+    )
     return parser.parse_args()
 
 
@@ -630,6 +695,22 @@ def main() -> int:
         return 0
 
     data = load_dashboard(args.input)
+    if bool(args.expected_start) != bool(args.expected_end):
+        raise DashboardDataError(
+            "--expected-start and --expected-end must be provided together"
+        )
+    if args.expected_start and args.expected_end:
+        expected_start = parse_date(args.expected_start, "--expected-start")
+        expected_end = parse_date(args.expected_end, "--expected-end")
+        validate_reporting_range(
+            expected_start,
+            expected_end,
+            "expected reporting range",
+        )
+        if data.start != expected_start or data.end != expected_end:
+            raise DashboardDataError(
+                "WakaTime response dates do not match the requested reporting range"
+            )
     write_atomic(args.svg_output, render_svg(data, args.updated))
     if args.readme:
         update_readme(args.readme, render_markdown(data, args.updated))

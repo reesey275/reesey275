@@ -31,25 +31,28 @@ The repository includes an automated WakaTime stats workflow for keeping README 
    - If real-time stats needed, only paid tier provides that
 
 5. **Stats Included**:
-   - Repository-hosted GitHub activity card
-   - Repository-hosted top languages card
-   - Repository-hosted seven-day WakaTime dashboard
+   - Repository-hosted public GitHub summary
+   - Public project code composition from GitHub Linguist bytes
+   - Repository-hosted seven-day WakaTime editor activity dashboard
    - Daily activity chart with exact duration labels
    - Languages (top 5)
    - Editors (top 3)
    - Operating systems (top 3)
-   - Projects (top 5)
-   - Categories like "AI Coding", "Coding", "Writing Docs"
-   - Overall stats: total hours, daily average, best day
+   - WakaTime categories like "AI Coding", "Coding", "Writing Docs"
+   - Overall tracked time, daily average, and best day
+   - Project names are intentionally omitted from public output
 
-6. **Removed Sections** (API limitations):
-   - Day-of-week breakdown (WakaTime free tier API response doesn't include `.data.days` array with daily breakdowns)
-   - Language repos (GitHub API returns incomplete repository list for languages)
+6. **Deliberately Omitted Sections**:
+   - Separate weekday aggregates; the chart uses the seven dated summary entries
+   - WakaTime project names, which may identify non-public work
+   - Language-to-repository mappings, which are incomplete in GitHub data
 
 ### When Modifying the Workflow
 
 - Never disable the fine-grained PAT - it's critical for auto-merge functionality
 - Keep the midnight UTC schedule unless there's a specific reason to change
+- Compute reporting dates in `WAKATIME_TIMEZONE` (defaults to
+  `America/New_York`)
 - Keep `scripts/generate_profile_stats.py` dependency-free so it runs on the
   standard GitHub Actions Python installation
 - Keep `scripts/generate_waka_dashboard.py` dependency-free and generate its

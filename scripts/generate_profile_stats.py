@@ -127,30 +127,53 @@ def fetch_owned_repositories(client: GitHubClient, username: str) -> list[dict[s
     return repositories
 
 
-def search_total(client: GitHubClient, endpoint: str, query: str) -> int:
-    """Return a GitHub search result count."""
+def is_public_repository(repository: dict[str, Any]) -> bool:
+    """Return whether a repository record is explicitly safe for public output."""
 
-    response = client.get(endpoint, {"per_page": 1, "q": query})
-    try:
-        return int(response["total_count"])
-    except (KeyError, TypeError, ValueError) as error:
-        raise GitHubAPIError(f"Search response did not include total_count: {query}") from error
+    visibility = str(repository.get("visibility", "public")).lower()
+    return not bool(repository.get("private", False)) and visibility == "public"
+
+
+def is_profile_repository(repository: dict[str, Any], username: str) -> bool:
+    """Return whether a repository is the user's special profile repository."""
+
+    owner = repository.get("owner")
+    owner_login = str(owner.get("login", "")) if isinstance(owner, dict) else ""
+    repository_name = str(repository.get("name", ""))
+    full_name = str(repository.get("full_name", ""))
+    return (
+        (
+            owner_login.casefold() == username.casefold()
+            and repository_name.casefold() == username.casefold()
+        )
+        or full_name.casefold() == f"{username}/{username}".casefold()
+    )
 
 
 def collect_profile_data(
     client: GitHubClient,
     username: str,
-    year: int,
 ) -> tuple[dict[str, int | str], collections.Counter[str]]:
     """Collect the public data used by both profile cards."""
 
     encoded_username = escaped_path(username)
     user = client.get(f"/users/{encoded_username}")
-    repositories = fetch_owned_repositories(client, username)
-    source_repositories = [repository for repository in repositories if not repository.get("fork")]
+    repositories = [
+        repository
+        for repository in fetch_owned_repositories(client, username)
+        if is_public_repository(repository)
+    ]
+    source_repositories = [
+        repository for repository in repositories if not repository.get("fork")
+    ]
+    language_repositories = [
+        repository
+        for repository in source_repositories
+        if not is_profile_repository(repository, username)
+    ]
 
     language_bytes: collections.Counter[str] = collections.Counter()
-    for repository in source_repositories:
+    for repository in language_repositories:
         full_name = str(repository["full_name"])
         owner, name = full_name.split("/", 1)
         languages = client.get(
@@ -166,27 +189,14 @@ def collect_profile_data(
         )
 
     stats: dict[str, int | str] = {
-        "commits": search_total(
-            client,
-            "/search/commits",
-            f"author:{username} committer-date:>={year}-01-01",
-        ),
         "followers": int(user.get("followers", 0)),
-        "issues": search_total(
-            client,
-            "/search/issues",
-            f"author:{username} type:issue",
-        ),
         "name": str(user.get("name") or username),
         "public_repositories": int(user.get("public_repos", len(repositories))),
-        "pull_requests": search_total(
-            client,
-            "/search/issues",
-            f"author:{username} type:pr",
+        "stars": sum(
+            int(repository.get("stargazers_count", 0))
+            for repository in source_repositories
         ),
-        "stars": sum(int(repository.get("stargazers_count", 0)) for repository in source_repositories),
         "username": username,
-        "year": year,
     }
     return stats, language_bytes
 
@@ -204,10 +214,10 @@ def svg_document(width: int, height: int, title: str, body: str) -> str:
   viewBox="0 0 {width} {height}" role="img" aria-labelledby="card-title">
   <title id="card-title">{svg_text(title)}</title>
   <style>
-    .title {{ fill: {THEME["title"]}; font: 600 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
-    .label {{ fill: {THEME["text"]}; font: 400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
-    .value {{ fill: {THEME["title"]}; font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
-    .muted {{ fill: {THEME["muted"]}; font: 400 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+    .title {{ fill: {THEME["title"]}; font: 600 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+    .label {{ fill: {THEME["text"]}; font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+    .value {{ fill: {THEME["title"]}; font: 600 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+    .muted {{ fill: {THEME["muted"]}; font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
   </style>
   <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="6"
     fill="{THEME["background"]}" stroke="{THEME["border"]}"/>
@@ -217,40 +227,30 @@ def svg_document(width: int, height: int, title: str, body: str) -> str:
 
 
 def render_stats_card(stats: dict[str, int | str], updated: str) -> str:
-    """Render the GitHub activity summary card."""
+    """Render a summary containing only unambiguously public GitHub metrics."""
 
-    left_column = (
-        ("Total Stars Earned", stats["stars"]),
-        (f"Public Commits ({stats['year']})", stats["commits"]),
-        ("Pull Requests", stats["pull_requests"]),
-    )
-    right_column = (
-        ("Public Repositories", stats["public_repositories"]),
-        ("Issues Opened", stats["issues"]),
+    metrics = (
+        ("Stars on public source repositories", stats["stars"]),
+        ("Public repositories", stats["public_repositories"]),
         ("Followers", stats["followers"]),
     )
 
     rows: list[str] = []
-    for index, (label, value) in enumerate(left_column):
-        y = 72 + index * 36
+    for index, (label, value) in enumerate(metrics):
+        y = 72 + index * 34
         rows.append(
             f'''  <circle cx="25" cy="{y - 4}" r="4" fill="{THEME["accent"]}"/>
   <text x="39" y="{y}" class="label">{svg_text(label)}</text>
-  <text x="226" y="{y}" text-anchor="end" class="value">{svg_text(value)}</text>'''
-        )
-    for index, (label, value) in enumerate(right_column):
-        y = 72 + index * 36
-        rows.append(
-            f'''  <circle cx="267" cy="{y - 4}" r="4" fill="{THEME["accent"]}"/>
-  <text x="281" y="{y}" class="label">{svg_text(label)}</text>
   <text x="470" y="{y}" text-anchor="end" class="value">{svg_text(value)}</text>'''
         )
 
     display_name = svg_text(stats["name"])
-    body = f'''  <text x="25" y="36" class="title">{display_name}'s GitHub Stats</text>
+    card_title = f"{stats['name']}'s Public GitHub Summary"
+    body = f'''  <text x="25" y="36" class="title">{display_name}'s Public GitHub Summary</text>
 {os.linesep.join(rows)}
-  <text x="25" y="198" class="muted">Public GitHub activity • Updated {svg_text(updated)}</text>'''
-    return svg_document(495, 215, f"{stats['name']}'s GitHub Stats", body)
+  <text x="25" y="176" class="muted">Public GitHub REST data • Stars exclude forks</text>
+  <text x="25" y="193" class="muted">Last successful refresh {svg_text(updated)}</text>'''
+    return svg_document(495, 210, card_title, body)
 
 
 def render_languages_card(
@@ -258,7 +258,7 @@ def render_languages_card(
     updated: str,
     limit: int = 6,
 ) -> str:
-    """Render the top languages card using repository byte counts."""
+    """Render public project code composition using GitHub Linguist bytes."""
 
     total_bytes = sum(language_bytes.values())
     top_languages = language_bytes.most_common(limit)
@@ -269,20 +269,24 @@ def render_languages_card(
     rows: list[str] = []
     for index, (language, byte_count) in enumerate(top_languages):
         percent = byte_count / total_bytes * 100
-        y = 63 + index * 23
-        bar_width = max(2.0, 300 * percent / 100)
+        y = 82 + index * 34
+        bar_width = max(2.0, 445 * percent / 100)
         color = LANGUAGE_COLORS.get(language, THEME["accent"])
         rows.append(
             f'''  <text x="25" y="{y}" class="label">{svg_text(language)}</text>
-  <text x="325" y="{y}" text-anchor="end" class="value">{percent:.1f}%</text>
-  <rect x="25" y="{y + 7}" width="300" height="5" rx="2.5" fill="{THEME["track"]}"/>
-  <rect x="25" y="{y + 7}" width="{bar_width:.1f}" height="5" rx="2.5" fill="{color}"/>'''
+  <text x="470" y="{y}" text-anchor="end" class="value">{percent:.1f}%</text>
+  <rect x="25" y="{y + 8}" width="445" height="5" rx="2.5" fill="{THEME["track"]}"/>
+  <rect x="25" y="{y + 8}" width="{bar_width:.1f}" height="5" rx="2.5" fill="{color}"/>'''
         )
 
-    body = f'''  <text x="25" y="36" class="title">Top Languages</text>
+    title = "Public Project Code Composition"
+    body = f'''  <text x="25" y="34" class="title">{title}</text>
+  <text x="25" y="56" class="muted">Share of source-code bytes reported by GitHub Linguist</text>
 {os.linesep.join(rows)}
-  <text x="25" y="198" class="muted">Public, non-fork repositories • Updated {svg_text(updated)}</text>'''
-    return svg_document(350, 215, "Top Languages", body)
+  <text x="25" y="292" class="muted">Public, non-fork projects • Profile repository excluded</text>
+  <text x="25" y="310" class="muted">Not a proficiency ranking</text>
+  <text x="25" y="326" class="muted">Last successful refresh {svg_text(updated)}</text>'''
+    return svg_document(495, 340, title, body)
 
 
 def write_atomic(path: pathlib.Path, content: str) -> None:
@@ -314,12 +318,6 @@ def parse_args() -> argparse.Namespace:
         default=pathlib.Path("profile"),
         help="Directory for generated SVG files",
     )
-    parser.add_argument(
-        "--year",
-        type=int,
-        default=dt.datetime.now(dt.timezone.utc).year,
-        help="UTC year used for the public commit count",
-    )
     return parser.parse_args()
 
 
@@ -327,8 +325,8 @@ def main() -> int:
     args = parse_args()
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     client = GitHubClient(token=token)
-    stats, language_bytes = collect_profile_data(client, args.username, args.year)
-    updated = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d UTC")
+    stats, language_bytes = collect_profile_data(client, args.username)
+    updated = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     stats_path = args.output_dir / "github-stats.svg"
     languages_path = args.output_dir / "top-languages.svg"

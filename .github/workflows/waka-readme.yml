@@ -32,12 +32,13 @@ jobs:
       - name: Fetch WakaTime stats and update dashboard
         env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_TIMEZONE: ${{ vars.WAKATIME_TIMEZONE || 'America/New_York' }}
         run: |
           set -euo pipefail
 
           AUTH="$(printf '%s' "$WAKATIME_API_KEY" | base64 | tr -d '\n')"
-          END_DATE="$(date -u +%Y-%m-%d)"
-          START_DATE="$(date -u -d '6 days ago' +%Y-%m-%d)"
+          END_DATE="$(TZ="$WAKATIME_TIMEZONE" date +%Y-%m-%d)"
+          START_DATE="$(TZ="$WAKATIME_TIMEZONE" date -d "$END_DATE - 6 days" +%Y-%m-%d)"
           SUMMARIES_FILE="$(mktemp -t waka_summaries.XXXXXX.json)"
           README_CANDIDATE="$(mktemp -t waka_readme.XXXXXX.md)"
           SVG_CANDIDATE="$(mktemp -t waka_dashboard.XXXXXX.svg)"
@@ -49,20 +50,25 @@ jobs:
 
           WAKA_REFRESHED=false
           cp README.md "$README_CANDIDATE"
-          echo "Fetching seven calendar days from $START_DATE to $END_DATE"
+          echo "Fetching seven calendar dates from $START_DATE to $END_DATE in $WAKATIME_TIMEZONE"
 
-          if curl -fsS \
+          if curl -fsS -G \
               --retry 2 \
               --retry-all-errors \
               --connect-timeout 15 \
               --max-time 60 \
               -H "Authorization: Basic $AUTH" \
+              --data-urlencode "start=$START_DATE" \
+              --data-urlencode "end=$END_DATE" \
+              --data-urlencode "timezone=$WAKATIME_TIMEZONE" \
               -o "$SUMMARIES_FILE" \
-              "https://wakatime.com/api/v1/users/current/summaries?start=$START_DATE&end=$END_DATE" && \
+              "https://api.wakatime.com/api/v1/users/current/summaries" && \
             python3 scripts/generate_waka_dashboard.py \
               --input "$SUMMARIES_FILE" \
               --svg-output "$SVG_CANDIDATE" \
-              --readme "$README_CANDIDATE"; then
+              --readme "$README_CANDIDATE" \
+              --expected-start "$START_DATE" \
+              --expected-end "$END_DATE"; then
             mv "$SVG_CANDIDATE" profile/wakatime-dashboard.svg
             mv "$README_CANDIDATE" README.md
             WAKA_REFRESHED=true
@@ -100,6 +106,19 @@ jobs:
           if [[ "${WAKA_REFRESHED:-false}" == "true" ]] && \
             grep -q 'First automated refresh pending' profile/wakatime-dashboard.svg; then
             echo "ERROR: WakaTime dashboard did not receive daily activity"
+            exit 1
+          fi
+
+          if grep -Eq 'Public Commits|Pull Requests|Issues Opened' profile/github-stats.svg; then
+            echo "ERROR: GitHub summary contains a metric that is not proven public-only"
+            exit 1
+          fi
+
+          grep -q 'Public Project Code Composition' profile/top-languages.svg
+          grep -q 'Not a proficiency ranking' profile/top-languages.svg
+          grep -q 'Last successful refresh' profile/wakatime-dashboard.svg
+          if grep -q '>Projects<' profile/wakatime-dashboard.svg; then
+            echo "ERROR: WakaTime project names must not be published"
             exit 1
           fi
 
@@ -150,7 +169,7 @@ jobs:
             exit 0
           fi
 
-          git commit -m "chore(waka): update weekly development stats"
+          git commit -m "chore(waka): refresh public profile statistics"
 
           git fetch origin "$BASE_BRANCH" --depth=1 || true
           if git diff --quiet "origin/$BASE_BRANCH"...HEAD; then
@@ -171,17 +190,17 @@ jobs:
 
           TIMESTAMP="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           printf '%s\n' \
-            "Automated WakaTime and GitHub profile-card update from GitHub Actions." \
+            "Automated refresh of public profile cards from GitHub Actions." \
             "" \
             "**Stats Include:**" \
-            "- GitHub activity card" \
-            "- Top languages card" \
-            "- Seven-day WakaTime activity dashboard" \
-            "- Languages breakdown" \
+            "- Public GitHub summary" \
+            "- Public project code composition from GitHub Linguist bytes" \
+            "- Seven-day WakaTime editor activity dashboard" \
+            "- WakaTime language breakdown" \
             "- Editors used" \
             "- Operating systems" \
-            "- Active projects" \
-            "- Activity categories (AI Coding, Coding, Docs)" \
+            "- WakaTime activity classifications" \
+            "- Project names intentionally omitted from public output" \
             "" \
             "_Updated: ${TIMESTAMP}_" \
             > "$TEMP_BODY"

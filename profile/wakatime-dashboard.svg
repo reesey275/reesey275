@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="825"
-  viewBox="0 0 900 825" role="img" aria-labelledby="dashboard-title dashboard-description">
-  <title id="dashboard-title">Weekly WakaTime Development Dashboard</title>
-  <desc id="dashboard-description">49 hrs 3 mins of activity from 2026-07-14 through 2026-07-21, averaging 6 hrs 7 mins per day.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="845"
+  viewBox="0 0 900 845" role="img" aria-labelledby="dashboard-title dashboard-description">
+  <title id="dashboard-title">WakaTime Editor Activity — Legacy Eight-Date Snapshot</title>
+  <desc id="dashboard-description">49 hrs 3 mins of editor-tracked activity across a legacy eight-date snapshot from 2026-07-14 through 2026-07-21, retained from before seven-day validation.</desc>
   <style>
     .title { fill: #f0f6fc; font: 700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .section-title { fill: #f0f6fc; font: 600 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -14,20 +14,20 @@
     .axis { fill: #c9d1d9; font: 600 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .muted { fill: #8b949e; font: 400 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
   </style>
-  <rect width="900" height="825" rx="10" fill="#0d1117"/>
-  <text x="28" y="36" class="title">Weekly Development Dashboard</text>
-  <text x="28" y="58" class="muted">2026-07-14 – 2026-07-21 · America/New_York</text>
-  <text x="872" y="58" text-anchor="end" class="muted">Updated 2026-07-21 01:57:39 UTC</text>
+  <rect width="900" height="845" rx="10" fill="#0d1117"/>
+  <text x="28" y="36" class="title">WakaTime Editor Activity — Legacy Snapshot</text>
+  <text x="28" y="58" class="muted">2026-07-14 – 2026-07-21 · 8 dates · America/New_York</text>
+  <text x="872" y="58" text-anchor="end" class="muted">Last successful refresh 2026-07-21 01:57:39 UTC</text>
   <rect x="28" y="76" width="198" height="88" rx="8"
     fill="#161b22" stroke="#30363d"/>
-  <text x="44" y="101" class="eyebrow">TOTAL ACTIVITY</text>
+  <text x="44" y="101" class="eyebrow">TOTAL TRACKED</text>
   <text x="44" y="132" class="metric">49h 3m</text>
-  <text x="44" y="151" class="muted">Rolling weekly total</text>
+  <text x="44" y="151" class="muted">Legacy eight-date total</text>
   <rect x="240" y="76" width="198" height="88" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="256" y="101" class="eyebrow">DAILY AVERAGE</text>
   <text x="256" y="132" class="metric">6h 7m</text>
-  <text x="256" y="151" class="muted">Across calendar days</text>
+  <text x="256" y="151" class="muted">Across 8 calendar dates</text>
   <rect x="452" y="76" width="198" height="88" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="468" y="101" class="eyebrow">BEST DAY</text>
@@ -37,16 +37,16 @@
     fill="#161b22" stroke="#30363d"/>
   <text x="680" y="101" class="eyebrow">PRIMARY EDITOR</text>
   <text x="680" y="132" class="metric">VS Code</text>
-  <text x="680" y="151" class="muted">100.0% of activity</text>
+  <text x="680" y="151" class="muted">100.0% of tracked time</text>
   <rect x="28" y="180" width="844" height="210" rx="8"
     fill="#161b22" stroke="#30363d"/>
-  <text x="48" y="210" class="section-title">Daily activity</text>
-  <text x="852" y="210" text-anchor="end" class="muted">First automated refresh pending</text>
+  <text x="48" y="210" class="section-title">Daily editor activity</text>
+  <text x="852" y="210" text-anchor="end" class="muted">Legacy snapshot has no daily samples</text>
   <rect x="48" y="252" width="804" height="26" rx="6" fill="#21262d"/>
   <rect x="48" y="252" width="804" height="26" rx="6" fill="#58a6ff" opacity="0.8"/>
-  <text x="450" y="271" text-anchor="middle" class="bar-value">49 hrs 3 mins total</text>
-  <text x="450" y="321" text-anchor="middle" class="label">Daily bars will appear after the next scheduled WakaTime refresh.</text>
-  <text x="450" y="349" text-anchor="middle" class="muted">Current period: 2026-07-14 – 2026-07-21</text>
+  <text x="450" y="271" text-anchor="middle" class="bar-value">49 hrs 3 mins total tracked</text>
+  <text x="450" y="321" text-anchor="middle" class="label">Daily bars will return after the next validated seven-date refresh.</text>
+  <text x="450" y="349" text-anchor="middle" class="muted">Legacy period: 2026-07-14 – 2026-07-21</text>
   <rect x="28" y="406" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="46" y="434" class="section-title">Languages</text>
@@ -87,30 +87,14 @@
   <rect x="475" y="516" width="10.7" height="5" rx="2.5" fill="#3fb950"/>
   <rect x="28" y="604" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
-  <text x="46" y="632" class="section-title">Projects</text>
-  <text x="46" y="656" class="label">TAGS-Ai</text>
-  <text x="425" y="656" text-anchor="end" class="breakdown-value">49.4% · 24 hrs 13 mins</text>
+  <text x="46" y="632" class="section-title">Editors</text>
+  <text x="46" y="656" class="label">VS Code</text>
+  <text x="425" y="656" text-anchor="end" class="breakdown-value">100.0% · 49 hrs 3 mins</text>
   <rect x="46" y="664" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="664" width="187.1" height="5" rx="2.5" fill="#d29922"/>
-  <text x="46" y="681" class="label">gameserver-manager</text>
-  <text x="425" y="681" text-anchor="end" class="breakdown-value">29.7% · 14 hrs 33 mins</text>
-  <rect x="46" y="689" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="689" width="112.5" height="5" rx="2.5" fill="#d29922"/>
-  <text x="46" y="706" class="label">PowerShellScripts</text>
-  <text x="425" y="706" text-anchor="end" class="breakdown-value">6.5% · 3 hrs 12 mins</text>
-  <rect x="46" y="714" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="714" width="24.7" height="5" rx="2.5" fill="#d29922"/>
-  <text x="46" y="731" class="label">TAGS</text>
-  <text x="425" y="731" text-anchor="end" class="breakdown-value">5.2% · 2 hrs 32 mins</text>
-  <rect x="46" y="739" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="739" width="19.6" height="5" rx="2.5" fill="#d29922"/>
-  <text x="46" y="756" class="label">java</text>
-  <text x="425" y="756" text-anchor="end" class="breakdown-value">4.6% · 2 hrs 15 mins</text>
-  <rect x="46" y="764" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="764" width="17.4" height="5" rx="2.5" fill="#d29922"/>
+  <rect x="46" y="664" width="379.0" height="5" rx="2.5" fill="#d29922"/>
   <rect x="457" y="604" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
-  <text x="475" y="632" class="section-title">Categories</text>
+  <text x="475" y="632" class="section-title">WakaTime categories</text>
   <text x="475" y="656" class="label">AI Coding</text>
   <text x="854" y="656" text-anchor="end" class="breakdown-value">80.5% · 39 hrs 30 mins</text>
   <rect x="475" y="664" width="379" height="5" rx="2.5" fill="#21262d"/>
@@ -131,5 +115,6 @@
   <text x="854" y="756" text-anchor="end" class="breakdown-value">0.1% · 2 mins</text>
   <rect x="475" y="764" width="379" height="5" rx="2.5" fill="#21262d"/>
   <rect x="475" y="764" width="2.0" height="5" rx="2.5" fill="#f778ba"/>
-  <text x="28" y="811" class="muted">WakaTime reflects rolling workflow activity, not permanent skill depth.</text>
+  <text x="28" y="812" class="muted">WakaTime reports editor-tracked activity; it is not a productivity or skill score.</text>
+  <text x="28" y="830" class="muted">Category names (including “AI Coding”) are WakaTime classifications, not authorship measures.</text>
 </svg>
