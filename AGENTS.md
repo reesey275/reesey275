@@ -31,6 +31,8 @@ The repository includes an automated WakaTime stats workflow for keeping README 
    - If real-time stats needed, only paid tier provides that
 
 5. **Stats Included**:
+   - Repository-hosted GitHub activity card
+   - Repository-hosted top languages card
    - Languages (top 5)
    - Editors (top 3)
    - Operating systems (top 3)
@@ -46,7 +48,11 @@ The repository includes an automated WakaTime stats workflow for keeping README 
 
 - Never disable the fine-grained PAT - it's critical for auto-merge functionality
 - Keep the midnight UTC schedule unless there's a specific reason to change
+- Keep `scripts/generate_profile_stats.py` dependency-free so it runs on the
+  standard GitHub Actions Python installation
 - Debug with `gh workflow run waka-readme.yml` for manual testing
+- Preview profile cards locally with
+  `python3 scripts/generate_profile_stats.py --output-dir profile`
 - Check recent runs: `gh run list --workflow=waka-readme.yml --limit 10`
 - Reference `.github/WAKA_AUTO_MERGE_GUIDE.md` for troubleshooting
 

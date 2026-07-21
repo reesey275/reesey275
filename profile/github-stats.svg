@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="215"
+  viewBox="0 0 495 215" role="img" aria-labelledby="card-title">
+  <title id="card-title">Mr. Potato&#x27;s GitHub Stats</title>
+  <style>
+    .title { fill: #ffffff; font: 600 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .label { fill: #c9d1d9; font: 400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .value { fill: #ffffff; font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .muted { fill: #8b949e; font: 400 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  </style>
+  <rect x="0.5" y="0.5" width="494" height="214" rx="6"
+    fill="#151515" stroke="#e4e2e2"/>
+  <text x="25" y="36" class="title">Mr. Potato's GitHub Stats</text>
+  <circle cx="25" cy="68" r="4" fill="#79c0ff"/>
+  <text x="39" y="72" class="label">Total Stars Earned</text>
+  <text x="226" y="72" text-anchor="end" class="value">5</text>
+  <circle cx="25" cy="104" r="4" fill="#79c0ff"/>
+  <text x="39" y="108" class="label">Public Commits (2026)</text>
+  <text x="226" y="108" text-anchor="end" class="value">233</text>
+  <circle cx="25" cy="140" r="4" fill="#79c0ff"/>
+  <text x="39" y="144" class="label">Pull Requests</text>
+  <text x="226" y="144" text-anchor="end" class="value">1358</text>
+  <circle cx="267" cy="68" r="4" fill="#79c0ff"/>
+  <text x="281" y="72" class="label">Public Repositories</text>
+  <text x="470" y="72" text-anchor="end" class="value">4</text>
+  <circle cx="267" cy="104" r="4" fill="#79c0ff"/>
+  <text x="281" y="108" class="label">Issues Opened</text>
+  <text x="470" y="108" text-anchor="end" class="value">700</text>
+  <circle cx="267" cy="140" r="4" fill="#79c0ff"/>
+  <text x="281" y="144" class="label">Followers</text>
+  <text x="470" y="144" text-anchor="end" class="value">17</text>
+  <text x="25" y="198" class="muted">Public GitHub activity • Updated 2026-07-21 UTC</text>
+</svg>

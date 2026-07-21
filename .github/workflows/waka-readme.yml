@@ -1,9 +1,6 @@
 name: Waka Readme
 
 on:
-  push:
-    paths:
-      - ".github/workflows/waka-readme.yml"
   schedule:
     # Runs at 12am UTC every day
     - cron: "0 0 * * *"
@@ -18,60 +15,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  preview-cards:
-    name: Preview profile cards
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout current ref
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-
-      - name: Generate GitHub stats card
-        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
-        with:
-          card: stats
-          options: username=reesey275&show_icons=true&theme=dark
-          path: profile/github-stats.svg
-          token: ${{ github.token }}
-          core_version: 2.1.3
-
-      - name: Generate top languages card
-        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
-        with:
-          card: top-langs
-          options: username=reesey275&theme=dark
-          path: profile/top-languages.svg
-          token: ${{ github.token }}
-          core_version: 2.1.3
-
-      - name: Validate generated cards
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          for card in profile/github-stats.svg profile/top-languages.svg; do
-            test -s "$card"
-            grep -q '<svg' "$card"
-
-            if grep -Eq 'Something went wrong|No GitHub API tokens found|Maximum retries exceeded' "$card"; then
-              echo "ERROR: $card contains a renderer error"
-              exit 1
-            fi
-          done
-
-      - name: Upload card preview
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: profile-stats-preview
-          path: profile/*.svg
-          if-no-files-found: error
-          retention-days: 1
-
   update:
     name: Update README stats via PR
-    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -397,23 +342,13 @@ jobs:
             !skip { print }
           ' README.md > README.tmp && mv README.tmp README.md
 
-      - name: Generate GitHub stats card
-        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
-        with:
-          card: stats
-          options: username=reesey275&show_icons=true&theme=dark
-          path: profile/github-stats.svg
-          token: ${{ github.token }}
-          core_version: 2.1.3
-
-      - name: Generate top languages card
-        uses: stats-organization/github-readme-stats-action@f9d8133845f40d659a754f78b8484983ba766448 # v2.0.1
-        with:
-          card: top-langs
-          options: username=reesey275&theme=dark
-          path: profile/top-languages.svg
-          token: ${{ github.token }}
-          core_version: 2.1.3
+      - name: Generate GitHub profile cards
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/generate_profile_stats.py \
+            --username "${{ github.repository_owner }}" \
+            --output-dir profile
 
       - name: Validate generated cards
         shell: bash

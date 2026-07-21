@@ -11,3 +11,7 @@ resume/*.pdf
 *.pdf
 # Allow markdown resumes (sanitized public version)
 !resume/resume.md
+
+# Python cache files
+__pycache__/
+*.py[cod]
