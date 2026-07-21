@@ -342,6 +342,29 @@ jobs:
             !skip { print }
           ' README.md > README.tmp && mv README.tmp README.md
 
+      - name: Generate GitHub profile cards
+        env:
+          GITHUB_TOKEN: ${{ secrets.WAKA_PAT || github.token }}
+        run: |
+          python3 scripts/generate_profile_stats.py \
+            --username "${{ github.repository_owner }}" \
+            --output-dir profile
+
+      - name: Validate generated cards
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for card in profile/github-stats.svg profile/top-languages.svg; do
+            test -s "$card"
+            grep -q '<svg' "$card"
+
+            if grep -Eq 'Something went wrong|No GitHub API tokens found|Maximum retries exceeded' "$card"; then
+              echo "ERROR: $card contains a renderer error"
+              exit 1
+            fi
+          done
+
       - name: Create or update PR and enable auto-merge
         env:
           GH_TOKEN: ${{ secrets.WAKA_PAT || github.token }}
@@ -378,7 +401,7 @@ jobs:
             exit 1
           fi
 
-          git add README.md
+          git add README.md profile/github-stats.svg profile/top-languages.svg
 
           if git diff --staged --quiet; then
             echo "No changes to commit"
@@ -405,14 +428,18 @@ jobs:
           trap cleanup EXIT
 
           TIMESTAMP="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          printf '%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n' \
-            "Automated WakaTime stats update from GitHub Actions." \
+          printf '%s\n' \
+            "Automated WakaTime and GitHub profile-card update from GitHub Actions." \
+            "" \
             "**Stats Include:**" \
+            "- GitHub activity card" \
+            "- Top languages card" \
             "- Languages breakdown" \
             "- Editors used" \
             "- Operating systems" \
             "- Active projects" \
             "- Activity categories (AI Coding, Coding, Docs)" \
+            "" \
             "_Updated: ${TIMESTAMP}_" \
             > "$TEMP_BODY"
 

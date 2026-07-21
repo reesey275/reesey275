@@ -21,14 +21,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          
+
           # Python tools
-          python3 -m pip install --upgrade pip
-          python3 -m pip install codespell
-          
+          python3 -m pip install "codespell==2.4.1"
+
           # Node tools
-          npm install -g markdownlint-cli2
-          
+          npm install -g "markdownlint-cli2@0.20.0"
+
           # Vale (pinned version)
           VALE_VERSION="3.11.0"
           curl -fsSL -o vale.tar.gz \
@@ -48,6 +47,12 @@ jobs:
             --check-hidden \
             --skip="*.lock,*.png,*.jpg,*.jpeg,*.gif,*.svg,*.pdf,node_modules,.git" \
             .
+
+      - name: Profile stats tests
+        run: |
+          python3 -m unittest discover \
+            --start-directory scripts/tests \
+            --pattern 'test_*.py'
 
       - name: Markdownlint
         run: |
