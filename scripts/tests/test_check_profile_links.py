@@ -130,6 +130,21 @@ Bare repository: https://github.com/example/second-repo.
             self.assertEqual(len(errors), 1)
             self.assertIn("repository count is not allowed", errors[0])
 
+    def test_discovery_rejects_symlinked_markdown_outside_root(self) -> None:
+        with (
+            tempfile.TemporaryDirectory() as repository_directory,
+            tempfile.TemporaryDirectory() as outside_directory,
+        ):
+            root = pathlib.Path(repository_directory)
+            docs = root / "docs"
+            docs.mkdir()
+            outside_markdown = pathlib.Path(outside_directory) / "outside.md"
+            outside_markdown.write_text("# Outside\n", encoding="utf-8")
+            (docs / "escaped.md").symlink_to(outside_markdown)
+
+            with self.assertRaisesRegex(ValueError, "escapes repository root"):
+                profile_links.discover_markdown_files(root, ["docs"])
+
     def test_current_profile_relative_links_exist(self) -> None:
         files = profile_links.discover_markdown_files(
             PROJECT_ROOT,
