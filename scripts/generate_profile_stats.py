@@ -130,7 +130,7 @@ def fetch_owned_repositories(client: GitHubClient, username: str) -> list[dict[s
 def is_public_repository(repository: dict[str, Any]) -> bool:
     """Return whether a repository record is explicitly safe for public output."""
 
-    visibility = str(repository.get("visibility", "public")).lower()
+    visibility = str(repository.get("visibility", "")).lower()
     return not bool(repository.get("private", False)) and visibility == "public"
 
 
