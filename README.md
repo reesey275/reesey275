@@ -178,6 +178,8 @@ Security/Governance · AI-Enhanced Engineering
 [mysql]: https://www.mysql.com/
 [supabase-badge]: https://img.shields.io/badge/Supabase-Platform-3FCF8E?logo=supabase&style=flat
 [supabase]: https://supabase.com/
+[github-stats]: ./profile/github-stats.svg
+[top-languages]: ./profile/top-languages.svg
 [profile]: https://github.com/reesey275
 
 <!-- Optional ASCII header -->
@@ -221,7 +223,8 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 Note: Contribution activity reflects a solo build phase focused on end-to-end system design and execution.
 
-[View contribution activity on GitHub][profile].
+[![GitHub Stats][github-stats]][profile]
+[![Top Languages][top-languages]][profile]
 
 ## 📈 Weekly Development Stats
 
