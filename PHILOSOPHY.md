@@ -2,9 +2,9 @@ Philosophy
 
 We learn by doing, document the struggle, and turn it into doctrine—then we automate it.
 
-- Visible learning — DevOnboarder turns trials into AARs.
-- Doctrine — core-instructions captures lessons as guardrails.
-- Automation — SquirrelFocus feeds repeatable tooling.
+- Visible learning — document trials and outcomes as after-action reports.
+- Doctrine — capture established lessons as reusable guardrails.
+- Automation — turn stable, repeatable lessons into tooling.
 
 ---
 

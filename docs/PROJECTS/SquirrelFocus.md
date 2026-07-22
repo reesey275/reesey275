@@ -2,22 +2,23 @@
 
 **Repository:** [github.com/reesey275/squirrelfocus](https://github.com/reesey275/squirrelfocus)
 
-## What
-Lightweight journaling CLI that transforms daily logs into actionable doctrine.
+## Overview
 
-**Stack:** Python, Shell scripting
-**Last Updated:** September 2025
+SquirrelFocus is a Python command-line productivity and reflection toolkit for
+short work-session notes and supporting documentation.
 
-## Why
-More logs → better doctrine. Captures learning in structured format for future automation.
+## Public Source Scope
 
-## Current Features
-- Command-line journal entry creation
-- Structured logging format
-- Cross-platform compatibility (Python/Shell/PowerShell)
+The public repository contains:
 
-## Next Steps
-- Tag-based categorization system
-- GitHub Pages export functionality
-- Automated index generation
-- Integration with DevOnboarder AAR system
+- Command-line note and journal workflows
+- Structured text output for later review
+- Python packaging and supporting documentation
+- Shell and PowerShell helper scripts
+
+The project declares packaging and runtime dependencies.
+
+## Plans
+
+Potential categorization, publishing, indexing, or cross-project integrations
+remain plans unless they are present in the current public source.

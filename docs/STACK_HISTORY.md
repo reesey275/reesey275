@@ -1,6 +1,9 @@
 # Stack History & Systems Exposure
 
-This document represents technologies I've worked with hands-on across infrastructure, DevOps, systems administration, and software engineering over 25+ years.
+This document lists technologies from more than 25 years of hands-on computing
+and infrastructure experience, professional systems-administration and IT
+support work beginning in 2007, and software-development and automation work
+beginning in 2007.
 
 **This is historical exposure, not a claim of current daily usage.**
 
@@ -94,7 +97,7 @@ This document represents technologies I've worked with hands-on across infrastru
 - Cloudflare Tunnels
 - OAuth2 / JWT / RBAC patterns
 - Secret management
-- Zero-trust architecture
+- Network segmentation and access-control patterns
 
 ### Documentation & Content
 - Markdown
@@ -131,14 +134,6 @@ This document represents technologies I've worked with hands-on across infrastru
 - Plesk
 - Netdata
 
----
-
-## Full Visual Reference
-
-![Systems & Technologies](../assets/stack-badge-wall.png)
-
-*Badge representation generated from resume and systems history — not exhaustive of all exposure.*
-
----
-
-**Note:** This list reflects breadth of exposure across multiple decades. Current daily workflow centers on: Python, Shell, Docker, GitHub Actions, VS Code, NGINX, Cloudflare, and Linux (Ubuntu 24.04).
+**Note:** This list reflects historical breadth rather than current proficiency
+with every item. As of July 2026, regular work includes Python, Shell, Docker,
+GitHub Actions, Visual Studio Code, NGINX, Cloudflare, and Linux.
