@@ -243,50 +243,49 @@ public output.
 
 <!--START_SECTION:waka-->
 
-![WakaTime editor activity dashboard — legacy eight-date snapshot](./profile/wakatime-dashboard.svg)
+![Seven-day WakaTime editor activity dashboard](./profile/wakatime-dashboard.svg)
 
 <details>
-<summary>View legacy editor activity data</summary>
+<summary>View seven-day editor activity data</summary>
 
 - **Time Zone:** America/New\_York
-- **Reporting Window:** Legacy eight-date snapshot retained from before seven-day validation
-- **Date Range:** 2026-07-14 - 2026-07-21
-- **Total Tracked:** 49 hrs 3 mins
-- **Daily Average:** 6 hrs 7 mins
+- **Reporting Window:** 7 inclusive calendar dates (latest may be partial)
+- **Date Range:** 2026-07-15 - 2026-07-21
+- **Total Tracked:** 49 hrs 20 mins
+- **Daily Average:** 7 hrs 2 mins
 - **Best Day:** 2026-07-17 (11 hrs 38 mins)
 
 ### Languages
 
-- Markdown: 28 hrs 17 mins (57.67%)
-- PowerShell: 10 hrs 11 mins (20.77%)
-- Other: 3 hrs 49 mins (7.81%)
-- Java: 2 hrs 12 mins (4.49%)
-- JSON: 1 hr 21 mins (2.76%)
+- Markdown: 29 hrs 49 mins (60.46%)
+- PowerShell: 5 hrs 33 mins (11.28%)
+- Other: 5 hrs 19 mins (10.79%)
+- JSON: 3 hrs 13 mins (6.53%)
+- Java: 2 hrs 12 mins (4.46%)
 
 ### Editors
 
-- VS Code: 49 hrs 3 mins (100.00%)
+- VS Code: 49 hrs 20 mins (100.00%)
 
 ### Operating Systems
 
-- Windows: 30 hrs 54 mins (63.00%)
-- WSL: 16 hrs 46 mins (34.17%)
-- Linux: 1 hr 23 mins (2.83%)
+- Windows: 31 hrs 10 mins (63.20%)
+- WSL: 16 hrs 46 mins (33.99%)
+- Linux: 1 hr 23 mins (2.81%)
 
 ### Categories
 
-- AI Coding: 39 hrs 30 mins (80.54%)
-- Coding: 4 hrs 50 mins (9.85%)
-- Writing Docs: 3 hrs 35 mins (7.32%)
-- Writing Tests: 1 hr 5 mins (2.21%)
+- AI Coding: 42 hrs 18 mins (85.75%)
+- Writing Docs: 3 hrs 20 mins (6.76%)
+- Coding: 2 hrs 34 mins (5.21%)
+- Writing Tests: 1 hr 5 mins (2.20%)
 - Debugging: 2 mins (0.08%)
 
-_Category names, including "AI Coding," are WakaTime classifications and do not
-measure authorship._
+_Category names, including "AI Coding," are WakaTime classifications and do not measure authorship._
 
 </details>
 
-_Last successful refresh: 2026-07-21 01:57:39 UTC_
+_Last successful refresh: 2026-07-22 01:56:25 UTC_
 <!--END_SECTION:waka-->
 
 ## 🎯 Featured Projects
