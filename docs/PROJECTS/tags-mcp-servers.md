@@ -1,6 +1,6 @@
 # tags-mcp-servers
 
-**Status:** Active Development | **Repository:** [theangrygamershowproductions/tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)
+**Status:** Active Development | **Repository:** Private
 
 ## Overview
 

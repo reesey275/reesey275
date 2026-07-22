@@ -42,17 +42,17 @@ The TAGS (The Angry Gamer Show Productions) Ecosystem is a comprehensive develop
 
 ### Core Infrastructure
 - **[DevOnboarder](https://github.com/theangrygamershowproductions/DevOnboarder)**: Foundation ISaaS/PaaS platform with Discord integration and quality control
-- **[core-instructions](https://github.com/theangrygamershowproductions/core-instructions)**: AI context management standards and development policies
-- **[tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)**: Model Context Protocol server implementations for AI agent capabilities
+- **[core-instructions](core-instructions.md)** _(private repository)_: AI context management standards and development policies
+- **[tags-mcp-servers](tags-mcp-servers.md)** _(private repository)_: Model Context Protocol server implementations for AI agent capabilities
 
 ### Development Tools
-- **[AI-CI-Toolkit](https://github.com/theangrygamershowproductions/AI-CI-Toolkit)**: AI-enhanced continuous integration and quality assurance tools
+- **AI-CI-Toolkit** _(private repository)_: AI-enhanced continuous integration and quality assurance tools
 - **[tags-workflows](https://github.com/theangrygamershowproductions/tags-workflows)**: GitHub Actions workflows and automation templates
 
 ### Content & Community
-- **[website](https://github.com/theangrygamershowproductions/website)**: Public website and marketing platform
-- **[TAGS-META](https://github.com/theangrygamershowproductions/TAGS-META)**: Metadata management and content organization
-- **[White-Rabbit](https://github.com/theangrygamershowproductions/White-Rabbit)**: Content creation and publishing tools
+- **website** _(private repository)_: Public website and marketing platform
+- **TAGS-META** _(private repository)_: Metadata management and content organization
+- **White-Rabbit** _(private repository)_: Content creation and publishing tools
 
 ## Key Achievements
 

@@ -146,11 +146,11 @@ Security/Governance · AI-Enhanced Engineering
 [rbac-badge]: https://img.shields.io/badge/RBAC-Access%20Control-6F42C1?style=flat
 [rbac]: https://csrc.nist.gov/projects/role-based-access-control
 [ad-badge]: https://img.shields.io/badge/Active%20Directory-Identity-0078D4?logo=microsoft&style=flat
-[active-directory]: https://learn.microsoft.com/windows-server/identity/ad-ds/
+[active-directory]: https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
 [secrets-badge]: https://img.shields.io/badge/Secrets-Management-15803D?style=flat
-[secrets]: https://docs.github.com/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions
+[secrets]: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
 [quality-badge]: https://img.shields.io/badge/Quality%20Gates-CI%20Governance-2088FF?logo=githubactions&style=flat
-[quality-gates]: https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/using-jobs
+[quality-gates]: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-jobs
 [openai-badge]: https://img.shields.io/badge/OpenAI-Custom%20GPTs-412991?logo=openai&logoColor=white&style=flat
 [openai]: https://openai.com/
 [copilot-badge]: https://img.shields.io/badge/GitHub%20Copilot-AI%20Pairing-2EA44F?style=flat
@@ -216,8 +216,7 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 - **Core Languages & Formats:** Python • TypeScript • JavaScript • Bash • SQL • Markdown • YAML • JSON
 - **Active Learning:** Java
-- **Public Repositories:** 3 active projects • 3 private development repos
-- **Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions) — 9 repositories
+- **Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions)
 
 ### GitHub Contribution Activity
 
@@ -305,7 +304,7 @@ foundation for TAGS.
 
 ---
 
-### TAGS Ecosystem (9 repos)
+### [TAGS Ecosystem](docs/PROJECTS/TAGS-Ecosystem.md)
 **Overview:** Multi-repo platform for gaming content production; web app + bots + APIs;
 scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality gates.
 
@@ -317,7 +316,10 @@ scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality ga
 
 ---
 
-### [tags-mcp-servers](https://github.com/theangrygamershowproductions/tags-mcp-servers)
+### [tags-mcp-servers](docs/PROJECTS/tags-mcp-servers.md)
+
+**Repository:** Private
+
 **Overview:** Model Context Protocol servers for task management, knowledge graphs, time operations,
 and secure filesystem access.
 
@@ -352,7 +354,7 @@ and secure filesystem access.
 ---
 
 ### Personal tooling
-- [PortalSDK](https://github.com/reesey275/PortalSDK) — developer toolkit → library/CLI → productivity patterns.
+- **PortalSDK** _(private repository)_ — developer toolkit → library/CLI → productivity patterns.
 - [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist management → full-stack
   (API + SPA + Python CLI) → session auth + rate limiting.
 - [core-instructions](docs/PROJECTS/core-instructions.md) — engineering policies/contracts → docs → governance-as-code.

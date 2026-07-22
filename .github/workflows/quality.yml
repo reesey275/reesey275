@@ -48,11 +48,17 @@ jobs:
             --skip="*.lock,*.png,*.jpg,*.jpeg,*.gif,*.svg,*.pdf,node_modules,.git" \
             .
 
-      - name: Generated stats tests
+      - name: Python regression tests
         run: |
           python3 -m unittest discover \
             --start-directory scripts/tests \
             --pattern 'test_*.py'
+
+      - name: Profile link policy
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts/check_profile_links.py
 
       - name: Markdownlint
         run: |
