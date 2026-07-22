@@ -7,178 +7,60 @@
 > integration, and multi-site technology deployment.
 > I am the founder and CEO of The Angry Gamer Show Productions, LLC (TAGS).
 
-## Capability Badges
+## Demonstrated Capabilities
 
-**Current Focus:** Platform Engineering · Infrastructure Architecture · DevOps Automation ·
-Security/Governance · AI-Enhanced Engineering
+These badges identify current capabilities supported by public work or
+owner-confirmed professional responsibility. A dependency or optional service
+does not establish a capability by itself.
 
-### Core Languages & Formats
+### Software and API Development
 
-[![Python][python-badge]][python]
-[![TypeScript][ts-badge]][typescript]
-[![JavaScript][js-badge]][javascript]
-[![Bash][bash-badge]][posix]
-[![SQL][sql-badge]][sql]
-[![Markdown][markdown-badge]][markdown]
-[![YAML][yaml-badge]][yaml]
-[![JSON][json-badge]][json]
+[![Python][python-badge]][python-evidence]
+[![JavaScript and Node.js][js-node-badge]][js-node-evidence]
+[![TypeScript][ts-badge]][typescript-evidence]
+[![API Development][api-badge]][api-evidence]
 
-### Active Learning
+### Automation and Delivery
 
-[![Java][java-badge]][java]
+[![Shell and Bash][bash-badge]][shell-evidence]
+[![PowerShell][powershell-badge]][powershell-evidence]
+[![Docker and Compose][docker-compose-badge]][docker-evidence]
+[![GitHub Actions and CI Governance][ci-governance-badge]][ci-evidence]
 
-### Backend & APIs
+### Systems and Engineering Governance
 
-[![FastAPI][fastapi-badge]][fastapi]
-[![Node.js][node-badge]][node]
-[![Fastify][fastify-badge]][fastify]
-[![Express][express-badge]][express]
-[![Discord API][discord-badge]][discord-api]
-[![MCP SDK][mcp-badge]][mcp]
+[![Windows Administration][windows-badge]][windows-evidence]
+[![Linux Administration][linux-badge]][linux-evidence]
+[![Documentation, Validation, and Engineering Governance][governance-badge]][governance-evidence]
 
-### DevOps & Infrastructure
+### Current Learning
 
-[![Docker][docker-badge]][docker]
-[![Docker Compose][compose-badge]][docker-compose]
-[![GitHub Actions][actions-badge]][actions]
-[![Terraform][terraform-badge]][terraform]
-[![Ansible][ansible-badge]][ansible]
-[![Traefik][traefik-badge]][traefik]
-[![Cloudflare][cloudflare-badge]][cloudflare]
-[![TrueNAS SCALE][truenas-badge]][truenas]
+[![Java — Current Learning][java-badge]][java-evidence]
 
-### Frontend
-
-[![React][react-badge]][react]
-[![Vite][vite-badge]][vite]
-[![Tailwind CSS][tailwind-badge]][tailwind]
-[![shadcn/ui][shadcn-badge]][shadcn]
-
-### Security & Governance
-
-[![OAuth2][oauth-badge]][oauth]
-[![JWT][jwt-badge]][jwt]
-[![RBAC][rbac-badge]][rbac]
-[![Active Directory][ad-badge]][active-directory]
-[![Secrets][secrets-badge]][secrets]
-[![Quality Gates][quality-badge]][quality-gates]
-
-### AI & Automation
-
-[![OpenAI][openai-badge]][openai]
-[![GitHub Copilot][copilot-badge]][copilot]
-[![Codex][codex-badge]][codex]
-[![MCP Servers][mcp-servers-badge]][mcp]
-[![Prompt-Driven Workflows][prompt-badge]][prompt-workflows]
-
-### Systems Operations
-
-[![Linux][linux-badge]][linux]
-[![Windows][windows-badge]][windows]
-[![WSL][wsl-badge]][wsl]
-[![PowerShell][powershell-badge]][powershell]
-[![Virtualization][virtualization-badge]][virtualization]
-
-### Data
-
-[![PostgreSQL][postgres-badge]][postgres]
-[![Redis][redis-badge]][redis]
-[![MySQL][mysql-badge]][mysql]
-[![Supabase][supabase-badge]][supabase]
-
-[python-badge]: https://img.shields.io/badge/Python-3.12-3776AB?logo=python&style=flat
-[python]: https://www.python.org/
-[ts-badge]: https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&style=flat
-[typescript]: https://www.typescriptlang.org/
-[js-badge]: https://img.shields.io/badge/JavaScript-ES2023-F7DF1E?logo=javascript&style=flat
-[javascript]: https://developer.mozilla.org/docs/Web/JavaScript
-[bash-badge]: https://img.shields.io/badge/Shell-POSIX%2FBash-4EAA25?logo=gnubash&style=flat
-[posix]: https://pubs.opengroup.org/onlinepubs/9699919799/
-[sql-badge]: https://img.shields.io/badge/SQL-Query%20Language-336791?style=flat
-[sql]: https://en.wikipedia.org/wiki/SQL
-[markdown-badge]: https://img.shields.io/badge/Markdown-Documentation-1F2937?logo=markdown&logoColor=white&style=flat
-[markdown]: https://www.markdownguide.org/
-[yaml-badge]: https://img.shields.io/badge/YAML-Workflow%20Config-CB171E?logo=yaml&style=flat
-[yaml]: https://yaml.org/
-[json-badge]: https://img.shields.io/badge/JSON-Data%20Format-4B5563?style=flat
-[json]: https://www.json.org/json-en.html
-[java-badge]: https://img.shields.io/badge/Java-Active%20Learning-ED8B00?logo=openjdk&style=flat
-[java]: https://www.java.com/
-[fastapi-badge]: https://img.shields.io/badge/FastAPI-Framework-009688?logo=fastapi&style=flat
-[fastapi]: https://fastapi.tiangolo.com/
-[node-badge]: https://img.shields.io/badge/Node.js-Runtime-5FA04E?logo=nodedotjs&style=flat
-[node]: https://nodejs.org/
-[fastify-badge]: https://img.shields.io/badge/Fastify-Framework-202020?logo=fastify&logoColor=white&style=flat
-[fastify]: https://fastify.dev/
-[express-badge]: https://img.shields.io/badge/Express-Framework-404D59?logo=express&logoColor=white&style=flat
-[express]: https://expressjs.com/
-[discord-badge]: https://img.shields.io/badge/Discord%20API-Integration-5865F2?logo=discord&style=flat
-[discord-api]: https://discord.com/developers/docs/intro
-[mcp-badge]: https://img.shields.io/badge/MCP-SDK-334155?style=flat
-[mcp]: https://modelcontextprotocol.io/
-[docker-badge]: https://img.shields.io/badge/Docker-Containerization-2496ED?logo=docker&style=flat
-[docker]: https://www.docker.com/
-[compose-badge]: https://img.shields.io/badge/Docker%20Compose-Orchestration-2496ED?logo=docker&style=flat
-[docker-compose]: https://docs.docker.com/compose/
-[actions-badge]: https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=githubactions&style=flat
-[actions]: https://docs.github.com/actions
-[terraform-badge]: https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&style=flat
-[terraform]: https://www.terraform.io/
-[ansible-badge]: https://img.shields.io/badge/Ansible-Automation-EE0000?logo=ansible&style=flat
-[ansible]: https://www.ansible.com/
-[traefik-badge]: https://img.shields.io/badge/Traefik-Proxy-24A1C1?logo=traefikproxy&style=flat
-[traefik]: https://traefik.io/
-[cloudflare-badge]: https://img.shields.io/badge/Cloudflare-Edge%2FTunnel-F38020?logo=cloudflare&style=flat
-[cloudflare]: https://www.cloudflare.com/
-[truenas-badge]: https://img.shields.io/badge/TrueNAS%20SCALE-Storage-0095D5?logo=truenas&style=flat
-[truenas]: https://www.truenas.com/truenas-scale/
-[react-badge]: https://img.shields.io/badge/React-UI-61DAFB?logo=react&style=flat
-[react]: https://react.dev/
-[vite-badge]: https://img.shields.io/badge/Vite-Build%20Tool-646CFF?logo=vite&style=flat
-[vite]: https://vite.dev/
-[tailwind-badge]: https://img.shields.io/badge/Tailwind%20CSS-Styling-06B6D4?logo=tailwindcss&style=flat
-[tailwind]: https://tailwindcss.com/
-[shadcn-badge]: https://img.shields.io/badge/shadcn%2Fui-Components-334155?style=flat
-[shadcn]: https://ui.shadcn.com/
-[oauth-badge]: https://img.shields.io/badge/OAuth2-Authorization-2563EB?style=flat
-[oauth]: https://oauth.net/2/
-[jwt-badge]: https://img.shields.io/badge/JWT-Tokens-2F2F2F?style=flat
-[jwt]: https://jwt.io/
-[rbac-badge]: https://img.shields.io/badge/RBAC-Access%20Control-6F42C1?style=flat
-[rbac]: https://csrc.nist.gov/projects/role-based-access-control
-[ad-badge]: https://img.shields.io/badge/Active%20Directory-Identity-0078D4?logo=microsoft&style=flat
-[active-directory]: https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
-[secrets-badge]: https://img.shields.io/badge/Secrets-Management-15803D?style=flat
-[secrets]: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
-[quality-badge]: https://img.shields.io/badge/Quality%20Gates-CI%20Governance-2088FF?logo=githubactions&style=flat
-[quality-gates]: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-jobs
-[openai-badge]: https://img.shields.io/badge/OpenAI-Custom%20GPTs-412991?logo=openai&logoColor=white&style=flat
-[openai]: https://openai.com/
-[copilot-badge]: https://img.shields.io/badge/GitHub%20Copilot-AI%20Pairing-2EA44F?style=flat
-[copilot]: https://github.com/features/copilot
-[codex-badge]: https://img.shields.io/badge/Codex-Assisted%20Planning-412991?logo=openai&logoColor=white&style=flat
-[codex]: https://openai.com/codex/
-[mcp-servers-badge]: https://img.shields.io/badge/MCP%20Servers-Tooling-334155?style=flat
-[prompt-badge]: https://img.shields.io/badge/Prompt--Driven-Workflows-EA580C?style=flat
-[prompt-workflows]: https://platform.openai.com/docs/guides/prompting
-[linux-badge]: https://img.shields.io/badge/Linux-Administration-FCC624?logo=linux&style=flat
-[linux]: https://www.linux.org/
-[windows-badge]: https://img.shields.io/badge/Windows-Administration-0078D4?logo=windows&style=flat
-[windows]: https://www.microsoft.com/windows/
-[wsl-badge]: https://img.shields.io/badge/WSL-Linux%20on%20Windows-4D4D4D?logo=linux&style=flat
-[wsl]: https://learn.microsoft.com/windows/wsl/
+[python-badge]: https://img.shields.io/badge/Python-Demonstrated-3776AB?logo=python&style=flat
+[python-evidence]: https://github.com/reesey275/squirrelfocus
+[js-node-badge]: https://img.shields.io/badge/JavaScript%20%2F%20Node.js-Demonstrated-5FA04E?logo=nodedotjs&style=flat
+[js-node-evidence]: https://github.com/reesey275/spotify-dev-toolkit
+[ts-badge]: https://img.shields.io/badge/TypeScript-Demonstrated-3178C6?logo=typescript&style=flat
+[typescript-evidence]: docs/PROJECTS/TAGS-Ecosystem.md
+[api-badge]: https://img.shields.io/badge/API%20Development-FastAPI%20%7C%20Express%20%7C%20REST%20%7C%20OAuth-2563EB?style=flat
+[api-evidence]: docs/PROJECTS/DevOnboarder.md
+[bash-badge]: https://img.shields.io/badge/Shell%20%2F%20Bash-Automation-4EAA25?logo=gnubash&style=flat
+[shell-evidence]: https://github.com/reesey275/whisper-project
 [powershell-badge]: https://img.shields.io/badge/PowerShell-Automation-5391FE?logo=powershell&style=flat
-[powershell]: https://learn.microsoft.com/powershell/
-[virtualization-badge]: https://img.shields.io/badge/Virtualization-Operations-64748B?style=flat
-[virtualization]: https://en.wikipedia.org/wiki/Virtualization
-[postgres-badge]: https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&style=flat
-[postgres]: https://www.postgresql.org/
-[redis-badge]: https://img.shields.io/badge/Redis-Cache-FF4438?logo=redis&style=flat
-[redis]: https://redis.io/
-[mysql-badge]: https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql&style=flat
-[mysql]: https://www.mysql.com/
-[supabase-badge]: https://img.shields.io/badge/Supabase-Platform-3FCF8E?logo=supabase&style=flat
-[supabase]: https://supabase.com/
+[powershell-evidence]: docs/PROJECTS/SquirrelFocus.md
+[docker-compose-badge]: https://img.shields.io/badge/Docker%20%2F%20Compose-Delivery-2496ED?logo=docker&style=flat
+[docker-evidence]: docs/PROJECTS/WhisperProject.md
+[ci-governance-badge]: https://img.shields.io/badge/GitHub%20Actions-CI%20Governance-2088FF?logo=githubactions&style=flat
+[ci-evidence]: https://github.com/theangrygamershowproductions/tags-workflows
+[windows-badge]: https://img.shields.io/badge/Windows-Administration-0078D4?logo=windows&style=flat
+[windows-evidence]: resume/resume.md
+[linux-badge]: https://img.shields.io/badge/Linux-Administration-FCC624?logo=linux&style=flat
+[linux-evidence]: docs/STACK_HISTORY.md
+[governance-badge]: https://img.shields.io/badge/Documentation%20%7C%20Validation-Engineering%20Governance-334155?style=flat
+[governance-evidence]: https://github.com/theangrygamershowproductions/tags-workflows
+[java-badge]: https://img.shields.io/badge/Java-Current%20Learning-ED8B00?logo=openjdk&style=flat
+[java-evidence]: resume/resume.md
 [github-stats]: ./profile/github-stats.svg
 [top-languages]: ./profile/top-languages.svg
 [profile]: https://github.com/reesey275
@@ -216,7 +98,9 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 ## 📊 GitHub Stats
 
-- **Core Languages & Formats:** Python • TypeScript • JavaScript • Bash • SQL • Markdown • YAML • JSON
+- **Demonstrated development languages:** Python • JavaScript • TypeScript •
+  Shell/Bash • PowerShell
+- **Supporting formats:** SQL • Markdown • YAML • JSON • HTML/CSS
 - **Active Learning:** Java
 - **Organization:** [The Angry Gamer Show Productions](https://github.com/theangrygamershowproductions)
 
@@ -348,26 +232,21 @@ is available when cloud services are not desired.
 - [core-instructions](docs/PROJECTS/core-instructions.md) _(private repository)_ — documentation project for engineering
   policies, review processes, security guidance, and agent instructions.
 
-## Abilities
+## Supporting Project and Systems Exposure
 
-I build infrastructure-backed software systems with an emphasis on platform
-reliability, security boundaries, automation, and maintainable engineering
-workflows.
+Current or recent project work also includes Fastify; Discord API and MCP SDK
+integration; React, Vite, Tailwind CSS, and shadcn/ui; and Traefik, Cloudflare
+Tunnel, and TrueNAS SCALE. Supporting formats include Markdown, YAML, JSON,
+SQL, HTML, and CSS.
 
-- **Languages & Formats:** Python, TypeScript, JavaScript, Bash, SQL, Markdown,
-  YAML, JSON
-- **Frontend:** React, Vite, Tailwind CSS, shadcn/ui
-- **Backend/API:** Node.js, Fastify, FastAPI, Express, REST APIs, Discord API,
-  MCP SDK
-- **DevOps & Infrastructure:** Docker, Docker Compose, GitHub Actions, Traefik,
-  Cloudflare Tunnel, TrueNAS SCALE
-- **Security & Governance:** OAuth2, JWT, RBAC, Active Directory, secret
-  management, CI quality gates, documentation validation
-- **Data:** PostgreSQL, Redis, MySQL, Supabase
-- **AI-Enhanced Engineering:** OpenAI Custom GPTs, GitHub Copilot,
-  Codex-assisted planning, MCP servers, prompt-driven workflows
-- **Systems Operations:** Windows/Linux administration, virtualization, patching,
-  troubleshooting, service reliability, and infrastructure documentation
+Identity, data, and platform work includes OAuth2, JWT, RBAC, Active Directory,
+secret management, PostgreSQL, SQLite, virtualization, patching,
+troubleshooting, service reliability, and infrastructure documentation. MySQL
+and Supabase are historical, experimental, or project exposure rather than
+demonstrated core capabilities.
+
+AI tools support the current operating model; their use is not presented as a
+separate measure of engineering proficiency.
 
 **[📖 Stack History & Systems Exposure](docs/STACK_HISTORY.md)** — Selected,
 non-exhaustive historical technology exposure (historical breadth, not a claim

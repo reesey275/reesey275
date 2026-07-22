@@ -52,25 +52,26 @@ output, or third-party component.
   and configuring and validating handheld terminals and workstations at
   multiple installations.
 
-## Technical Capabilities and Exposure
+## Demonstrated Capabilities and Supporting Exposure
 
-This section distinguishes current project work from historical technical
-exposure. It is not a claim that every item is used daily.
+Demonstrated current capabilities are:
 
-- **Systems administration:** Windows, Windows Server, Linux, Active Directory,
-  workstation deployment, patching, troubleshooting, and service support
-- **Automation and scripting:** Windows batch, VBScript, PowerShell, Python,
-  Bash, GitHub Actions, Ansible, and Terraform
-- **Software development:** Python, JavaScript, TypeScript, Node.js, FastAPI,
-  Express, React, REST APIs, HTML, CSS, JSON, YAML, and Markdown
-- **Infrastructure:** Docker, Docker Compose, Hyper-V, VMware, VirtualBox,
-  TrueNAS SCALE, NGINX, Traefik, and Cloudflare Tunnel
-- **Identity and access:** OAuth2, JWT, RBAC, Active Directory, secret
-  management, and access-control implementation
-- **Documentation and governance:** Git, conventional commits, CI checks,
-  documentation validation, change control, review processes, and
-  evidence-based decision records
-- **Current learning:** Java and additional cloud-platform coursework
+- **Software and APIs:** Python, JavaScript and Node.js, TypeScript, and API
+  development using FastAPI, Express, REST, and OAuth
+- **Automation and delivery:** Shell and Bash, PowerShell, Docker and Docker
+  Compose, and GitHub Actions with CI governance
+- **Systems and governance:** Windows administration, Linux administration,
+  and documentation, validation, and engineering governance
+
+Current or recent project exposure also includes Fastify; Discord API and MCP
+SDK integration; React, Vite, Tailwind CSS, and shadcn/ui; Traefik, Cloudflare
+Tunnel, and TrueNAS SCALE; PostgreSQL and SQLite; identity and access patterns;
+virtualization; and infrastructure operations.
+
+Java is current learning. Terraform is historical/foundational exposure.
+Ansible reflects historical professional automation experience with continued
+familiarity. MySQL and Supabase are historical, experimental, or project
+exposure.
 
 See [Stack History & Systems Exposure](../docs/STACK_HISTORY.md) for a selected,
 non-exhaustive historical inventory.
