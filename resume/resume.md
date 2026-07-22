@@ -72,8 +72,8 @@ exposure. It is not a claim that every item is used daily.
   evidence-based decision records
 - **Current learning:** Java and additional cloud-platform coursework
 
-See the [complete stack history](../docs/STACK_HISTORY.md) for a broader
-historical inventory.
+See [Stack History & Systems Exposure](../docs/STACK_HISTORY.md) for a selected,
+non-exhaustive historical inventory.
 
 ## Selected Work
 

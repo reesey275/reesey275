@@ -39,6 +39,10 @@ REQUIRED_PROFILE_SNIPPETS: Mapping[str, tuple[str, ...]] = {
         "reesey.chad@outlook.com",
         "Space Coast, Florida, United States",
     ),
+    "docs/STACK_HISTORY.md": (
+        "selected, non-exhaustive inventory",
+        "not an exhaustive inventory",
+    ),
 }
 PROHIBITED_PROFILE_CLAIMS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
@@ -122,6 +126,13 @@ PROHIBITED_PROFILE_CLAIMS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
         "overbroad opportunity statement",
         re.compile(r"\bOpen to opportunities\b", re.IGNORECASE),
+    ),
+    (
+        "overstated stack-history completeness",
+        re.compile(
+            r"\b(?:Complete Stack History|Full technology exposure)\b",
+            re.IGNORECASE,
+        ),
     ),
     (
         "retired city-level location",

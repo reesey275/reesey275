@@ -1,11 +1,12 @@
 # Stack History & Systems Exposure
 
-This document lists technologies from more than 25 years of hands-on computing
-and infrastructure experience, professional systems-administration and IT
-support work beginning in 2007, and software-development and automation work
-beginning in 2007.
+This document provides a selected, non-exhaustive inventory of technologies
+from more than 25 years of hands-on computing and infrastructure experience,
+professional systems-administration and IT support work beginning in 2007,
+and software-development and automation work beginning in 2007.
 
-**This is historical exposure, not a claim of current daily usage.**
+**This is historical exposure, not an exhaustive inventory or a claim of
+current daily usage.**
 
 ---
 

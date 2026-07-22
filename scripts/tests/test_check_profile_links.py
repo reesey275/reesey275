@@ -180,6 +180,25 @@ Bare repository: https://github.com/example/second-repo.
 
             self.assertEqual(errors, [])
 
+    def test_stack_history_completeness_claims_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "Complete Stack History — Full technology exposure\n",
+                encoding="utf-8",
+            )
+
+            errors = profile_links.validate_profile_claims(root, [readme])
+
+            self.assertEqual(len(errors), 2)
+            self.assertTrue(
+                all(
+                    "overstated stack-history completeness" in error
+                    for error in errors
+                )
+            )
+
     def test_retired_profile_paths_must_remain_absent(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = pathlib.Path(temporary_directory)

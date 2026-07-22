@@ -369,8 +369,9 @@ workflows.
 - **Systems Operations:** Windows/Linux administration, virtualization, patching,
   troubleshooting, service reliability, and infrastructure documentation
 
-**[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience
-(historical breadth vs current daily usage)
+**[📖 Stack History & Systems Exposure](docs/STACK_HISTORY.md)** — Selected,
+non-exhaustive historical technology exposure (historical breadth, not a claim
+of current daily usage)
 
 ## 🎓 Continuous Learning
 
