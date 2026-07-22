@@ -1,14 +1,15 @@
 # Chad Reesey | reesey275 | Mr. Potato
 
 [!NOTE]
-> I'm a veteran software engineer and systems architect.
-> I build secure, self-hosted tools and AI-integrated platforms.
-> I'm an NSLS-inducted (National Society of Leadership and Success) leader,
-> and I founded TAGS (The Angry Gamer Show Productions).
+> I'm a United States Air Force veteran and an IT and systems professional.
+> My professional experience since 2007 includes systems administration,
+> automation, Windows scripting, SharePoint portal development, systems
+> integration, and multi-site technology deployment.
+> I am the founder and CEO of The Angry Gamer Show Productions, LLC (TAGS).
 
 ## Capability Badges
 
-**Primary Identity:** Platform Engineering · Infrastructure Architecture · DevOps Automation ·
+**Current Focus:** Platform Engineering · Infrastructure Architecture · DevOps Automation ·
 Security/Governance · AI-Enhanced Engineering
 
 ### Core Languages & Formats
@@ -186,14 +187,15 @@ Security/Governance · AI-Enhanced Engineering
 ## 🥔 Chad Reesey — Mr. Potato
 
 ## 🚀 About Me
-- **25+ years** building and securing systems across civilian and government environments
-- Veteran | Systems-first builder | DevOps & governance automation specialist
+- More than **25 years of hands-on computing and infrastructure experience**
+- Professional systems-administration, automation, and software-development
+  experience beginning in **2007**
+- **United States Air Force veteran** — active duty from August 10, 2000,
+  through March 28, 2012; honorable service
+- Founder and CEO of The Angry Gamer Show Productions, LLC, a United States
+  Air Force veteran-owned and operated Florida company
+- Currently operating the TAGS build phase as an **AI-assisted solo human operator**
 - I build thinking systems: **visible learning → doctrine → automation**
-- Currently leading TAGS (The Angry Gamer Show Productions) Ecosystem
-- Recent: Oct 10, 2025 — integrated DevOnboarder as TAGS foundation with IaaS/PaaS/SaaS architecture and 95% quality
-  guardrails
-- **U.S. Air Force veteran** — mission-focused operations, accountability, and system reliability shaped by service in
-  mission-critical environments
 
 ## 🧭 Engineering Philosophy
 I build systems the way mission-critical operations demand they be built:
@@ -220,7 +222,9 @@ If a system requires tribal knowledge to function, it is already a liability.
 
 ### GitHub Contribution Activity
 
-Note: Contribution activity reflects a solo build phase focused on end-to-end system design and execution.
+Note: Contribution activity reflects a current build phase operated by one human
+using AI-assisted tools. It does not imply sole authorship of every historical
+commit, dependency, generated output, or third-party component.
 
 These cards use public GitHub REST data only. Code composition is calculated
 from GitHub Linguist source-code bytes across public, non-fork projects,
@@ -291,72 +295,58 @@ _Last successful refresh: 2026-07-22 01:56:25 UTC_
 ## 🎯 Featured Projects
 
 ### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
-**Overview:** Automated developer onboarding and compliance platform;
-service foundation (FastAPI + CI governance + Discord bots); scales to enterprise workflows and CI/CD triggers.
+
+**Overview:** Multi-service onboarding-automation project with Discord, web,
+and CI/CD components.
 
 **Stack:** Python • Shell (POSIX/Bash) • FastAPI • Discord API • GitHub Actions
 
-**Role:** I designed and lead the architecture; I enforce 95%+ quality guardrails and governance-as-code.
-
-**Highlights:** CI-enforced workflows; OAuth2/JWT/RBAC provisioning; documentation/checklist validation; production
-foundation for TAGS.
+**Public components:** Onboarding workflows, web and API services, Discord
+integration, documentation checks, and GitHub Actions automation.
 
 ---
 
 ### [TAGS Ecosystem](docs/PROJECTS/TAGS-Ecosystem.md)
-**Overview:** Multi-repo platform for gaming content production; web app + bots + APIs;
-scales across IaaS/PaaS/SaaS with AI-enhanced workflows and automated quality gates.
+
+**Overview:** The current TAGS build phase brings together software,
+automation, documentation, and infrastructure projects operated under The
+Angry Gamer Show Productions, LLC.
 
 **Stack:** Python • TypeScript • Shell (POSIX/Bash) • Docker • GitHub Actions
 
-**Role:** I founded and lead the ecosystem; I own platform architecture and standards.
-
-**Highlights:** DevOnboarder, MCP servers, core-instructions, QA/QC systems; Discord/GitHub integrations.
-
----
-
-### [tags-mcp-servers](docs/PROJECTS/tags-mcp-servers.md)
-
-**Repository:** Private
-
-**Overview:** Model Context Protocol servers for task management, knowledge graphs, time operations,
-and secure filesystem access.
-
-**Stack:** Python • FastAPI • Pydantic • MCP SDK
-
-**Role:** I designed server architecture and tooling; I maintain developer experience.
-
-**Highlights:** 5 servers, 33+ tools, ~95% coverage.
+**Operating model:** Founder and CEO; AI-assisted solo human operator during
+the current build phase. Delivered work is distinguished from plans and
+experiments in the project overview.
 
 ---
 
-### [SquirrelFocus](https://github.com/reesey275/squirrelfocus)
-**Overview:** Lightweight journaling that turns daily logs into actionable doctrine.
+### [SquirrelFocus](docs/PROJECTS/SquirrelFocus.md) | [Repository](https://github.com/reesey275/squirrelfocus)
+
+**Overview:** Python command-line productivity and reflection toolkit for
+short work-session notes and supporting documentation.
 
 **Stack:** Python • Shell (POSIX/Bash)
-
-**Role:** I built the CLI and paper-trail patterns.
-
-**Highlights:** Zero-dependency workflow; repeatable journaling with doctrine output.
 
 ---
 
 ### [Whisper Project](docs/PROJECTS/WhisperProject.md) | [Repository](https://github.com/reesey275/whisper-project)
-**Overview:** Secure audio transcription with a universal interface; CLI + Docker + API; privacy-first local processing.
 
-**Stack:** Python • OpenAI Whisper • Docker
+**Overview:** Transcription utilities with local, Docker, and optional cloud-API
+processing paths, including batch and optional GPU workflows. Local processing
+is available when cloud services are not desired.
 
-**Role:** I designed the universal interface across local/Docker/API; I focus on privacy and reproducibility.
-
-**Highlights:** Organized outputs; batch processing; optional GPU acceleration.
+**Stack:** Python • Whisper • Docker • Optional cloud API
 
 ---
 
 ### Personal tooling
-- **PortalSDK** _(private repository)_ — developer toolkit → library/CLI → productivity patterns.
-- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist management → full-stack
-  (API + SPA + Python CLI) → session auth + rate limiting.
-- [core-instructions](docs/PROJECTS/core-instructions.md) — engineering policies/contracts → docs → governance-as-code.
+
+- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist tooling with an Express
+  backend, browser interface, and Python export utility.
+- [tags-workflows](https://github.com/theangrygamershowproductions/tags-workflows) — public reusable GitHub Actions
+  workflows for organization repositories.
+- [core-instructions](docs/PROJECTS/core-instructions.md) _(private repository)_ — documentation project for engineering
+  policies, review processes, security guidance, and agent instructions.
 
 ## Abilities
 
@@ -379,14 +369,20 @@ workflows.
 - **Systems Operations:** Windows/Linux administration, virtualization, patching,
   troubleshooting, service reliability, and infrastructure documentation
 
-**[📖 Complete Stack History](docs/STACK_HISTORY.md)** — Full technology exposure and systems experience
-(historical breadth vs current daily usage)
+**[📖 Stack History & Systems Exposure](docs/STACK_HISTORY.md)** — Selected,
+non-exhaustive historical technology exposure (historical breadth, not a claim
+of current daily usage)
 
 ## 🎓 Continuous Learning
 
-- **National Society of Leadership and Success (NSLS)** — Inducted in recognition of leadership and academic excellence
-- **Western Governors University** — B.S. Software Engineering _(in progress)_ —
-  formalizing CS fundamentals to complement 25+ years of hands-on systems work
+- **Western Governors University** — currently enrolled in the Bachelor of
+  Science, Software Engineering program
+- **National Society of Leadership and Success (NSLS)** — member since 2025;
+  completed the Foundations of Leadership program and earned the NSLS Advanced
+  Leadership Certificate in May 2025
+- **Microsoft Learn** — professional development during 2024–2025 covering
+  Azure architecture, networking, governance, application hosting, ASP.NET
+  Core, and introductory AI and machine-learning concepts
 
 ## 🌐 Connect With Me
 
@@ -395,7 +391,8 @@ workflows.
 - **🐦 Twitter/X:** [@reesey275](https://x.com/reesey275)
 - **📘 Facebook:** [Reesey275](https://facebook.com/Reesey275)
 - **📸 Instagram:** [reesey275](https://instagram.com/reesey275)
-- **📧 Email:** reesey275@theangrygamershow.com • creesey@wgu.edu
+- **📧 Email:** [reesey.chad@outlook.com](mailto:reesey.chad@outlook.com)
+- **📍 Location:** Space Coast, Florida, United States
 
 ## 📋 Resources
 
@@ -406,4 +403,5 @@ workflows.
 
 > _"We practice in public so others can perform in peace."_
 
-**Open to opportunities** • Veteran-owned • Florida-based
+**Availability:** Open to serious, role-specific professional opportunities
+and professionally presented inquiries.

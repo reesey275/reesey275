@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import pathlib
 import sys
@@ -130,6 +132,162 @@ Bare repository: https://github.com/example/second-repo.
             self.assertEqual(len(errors), 1)
             self.assertIn("repository count is not allowed", errors[0])
 
+    def test_prohibited_profile_claims_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "Recent: project reached 95% coverage with PortalSDK.\n",
+                encoding="utf-8",
+            )
+
+            errors = profile_links.validate_profile_claims(root, [readme])
+
+            self.assertEqual(len(errors), 3)
+            self.assertTrue(
+                any("stale relative-date label" in error for error in errors)
+            )
+            self.assertTrue(
+                any("unsupported percentage claim" in error for error in errors)
+            )
+            self.assertTrue(
+                any("removed private-project reference" in error for error in errors)
+            )
+
+    def test_profile_claim_validation_ignores_fenced_examples(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "```markdown\nRecent: old 95% claim\n```\n",
+                encoding="utf-8",
+            )
+
+            errors = profile_links.validate_profile_claims(root, [readme])
+
+            self.assertEqual(errors, [])
+
+    def test_profile_claim_validation_ignores_generated_waka_section(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "<!--START_SECTION:waka-->\n"
+                "Measured category: 95%\n"
+                "<!--END_SECTION:waka-->\n",
+                encoding="utf-8",
+            )
+
+            errors = profile_links.validate_profile_claims(root, [readme])
+
+            self.assertEqual(errors, [])
+
+    def test_stack_history_completeness_claims_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "Complete Stack History — Full technology exposure\n",
+                encoding="utf-8",
+            )
+
+            errors = profile_links.validate_profile_claims(root, [readme])
+
+            self.assertEqual(len(errors), 2)
+            self.assertTrue(
+                all(
+                    "overstated stack-history completeness" in error
+                    for error in errors
+                )
+            )
+
+    def test_retired_profile_paths_must_remain_absent(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            retired = root / "docs" / "PROJECTS" / "retired.md"
+            retired.parent.mkdir(parents=True)
+            retired.write_text("# Retired\n", encoding="utf-8")
+
+            errors = profile_links.validate_retired_profile_paths(
+                root,
+                ["docs/PROJECTS/retired.md"],
+            )
+
+            self.assertEqual(len(errors), 1)
+            self.assertIn("must remain absent", errors[0])
+
+    def test_required_owner_approved_content_is_enforced(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text("Approved contact\n", encoding="utf-8")
+
+            errors = profile_links.validate_required_profile_content(
+                root,
+                {"README.md": ("Approved contact", "Approved location")},
+            )
+
+            self.assertEqual(len(errors), 1)
+            self.assertIn("Approved location", errors[0])
+
+    def test_required_content_is_scoped_to_discovered_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text("Approved contact\n", encoding="utf-8")
+
+            requirements = profile_links.required_profile_content_for_files(
+                root,
+                [readme],
+                {
+                    "README.md": ("Approved contact",),
+                    "resume/resume.md": ("Approved history",),
+                },
+            )
+            errors = profile_links.validate_required_profile_content(
+                root,
+                requirements,
+            )
+
+            self.assertEqual(requirements, {"README.md": ("Approved contact",)})
+            self.assertEqual(errors, [])
+
+    def test_main_subset_ignores_unselected_required_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "AI-assisted solo human operator\n"
+                "reesey.chad@outlook.com\n"
+                "Space Coast, Florida, United States\n",
+                encoding="utf-8",
+            )
+
+            result = profile_links.main(
+                ["--root", str(root), "--skip-github", "README.md"]
+            )
+
+            self.assertEqual(result, 0)
+
+    def test_main_subset_still_enforces_selected_required_content(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "AI-assisted solo human operator\n"
+                "reesey.chad@outlook.com\n",
+                encoding="utf-8",
+            )
+            stderr = io.StringIO()
+
+            with contextlib.redirect_stderr(stderr):
+                result = profile_links.main(
+                    ["--root", str(root), "--skip-github", "README.md"]
+                )
+
+            self.assertEqual(result, 1)
+            self.assertIn("Space Coast, Florida, United States", stderr.getvalue())
+
     def test_discovery_rejects_symlinked_markdown_outside_root(self) -> None:
         with (
             tempfile.TemporaryDirectory() as repository_directory,
@@ -158,6 +316,29 @@ Bare repository: https://github.com/example/second-repo.
         )
         self.assertEqual(
             profile_links.validate_repository_counts(PROJECT_ROOT, files),
+            [],
+        )
+        self.assertEqual(
+            profile_links.validate_profile_claims(PROJECT_ROOT, files),
+            [],
+        )
+        self.assertEqual(
+            profile_links.validate_retired_profile_paths(PROJECT_ROOT),
+            [],
+        )
+        requirements = profile_links.required_profile_content_for_files(
+            PROJECT_ROOT,
+            files,
+        )
+        self.assertEqual(
+            set(requirements),
+            set(profile_links.REQUIRED_PROFILE_SNIPPETS),
+        )
+        self.assertEqual(
+            profile_links.validate_required_profile_content(
+                PROJECT_ROOT,
+                requirements,
+            ),
             [],
         )
 

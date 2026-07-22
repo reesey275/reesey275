@@ -1,28 +1,24 @@
 # core-instructions
 
-**Repository:** Private | **Type:** Documentation Framework
+**Repository:** Private
 
-## What
-Policies and contracts for humans + agents that enable consistent decision-making
-across development workflows.
+**Type:** Documentation project
 
-**Format:** Markdown documentation suite
-**Scope:** Team standards, automation rules, security policies
+## Overview
 
-## Includes
-- **Style guides:** Code formatting, documentation standards
-- **PR workflows:** Review processes, merge criteria
-- **Security policies:** Access control, secret management
-- **AGENTS.md:** Instructions for AI-powered automation
+core-instructions is a private documentation project represented here by a
+public-safe purpose description.
 
-## Why
-Fewer review loops, clearer decisions, and consistent automation behavior.
-Reduces context switching and enables self-documenting systems.
+## Documented Areas
 
-## Philosophy
-Visible learning → doctrine → automation. Capture decisions once,
-apply them consistently across human and AI workflows.
+- Code and documentation style guidance
+- Pull-request and review processes
+- Merge and change-control criteria
+- Access-control and secret-management guidance
+- Instructions for AI-assisted development workflows
 
-## Integration
-Used by DevOnboarder for onboarding guardrails and quality thresholds.
-Provides foundation for Codex agent instructions and workflow automation.
+## Scope Boundary
+
+This page does not claim current enforcement or integration across other
+projects. Project-specific use must be established by the public source or
+clearly labeled as a plan.

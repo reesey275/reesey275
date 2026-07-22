@@ -15,11 +15,133 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from collections.abc import Callable, Iterable, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from typing import Any
 
 
-DEFAULT_INPUTS = ("README.md", "docs/PROJECTS")
+DEFAULT_INPUTS = (
+    "README.md",
+    "resume/resume.md",
+    "docs/PROJECTS",
+    "docs/STACK_HISTORY.md",
+    "PHILOSOPHY.md",
+)
+RETIRED_PROFILE_PATHS = ("docs/PROJECTS/tags-mcp-servers.md",)
+REQUIRED_PROFILE_SNIPPETS: Mapping[str, tuple[str, ...]] = {
+    "README.md": (
+        "AI-assisted solo human operator",
+        "reesey.chad@outlook.com",
+        "Space Coast, Florida, United States",
+    ),
+    "resume/resume.md": (
+        "August 10, 2000–March 28, 2012",
+        "AI-assisted solo human operator",
+        "reesey.chad@outlook.com",
+        "Space Coast, Florida, United States",
+    ),
+    "docs/STACK_HISTORY.md": (
+        "selected, non-exhaustive inventory",
+        "not an exhaustive inventory",
+    ),
+}
+PROHIBITED_PROFILE_CLAIMS: tuple[tuple[str, re.Pattern[str]], ...] = (
+    (
+        "unsupported percentage claim",
+        re.compile(r"\b95\s*%\+?", re.IGNORECASE),
+    ),
+    (
+        "stale relative-date label",
+        re.compile(r"\b(?:recent|latest update|last updated)\s*:", re.IGNORECASE),
+    ),
+    (
+        "removed private-project reference",
+        re.compile(r"\b(?:PortalSDK|tags-mcp(?:-servers)?)\b", re.IGNORECASE),
+    ),
+    (
+        "retired public email",
+        re.compile(
+            r"\b(?:creesey@wgu\.edu|reesey275@theangrygamershow\.com)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "unapproved professional identity or seniority label",
+        re.compile(
+            r"\b(?:veteran software engineer|systems architect|senior-level|"
+            r"lead architect|platform lead|automation specialist)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "unsupported readiness or maturity label",
+        re.compile(
+            r"\b(?:production[- ]ready|production[- ]grade|enterprise[- ]grade)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "unsupported universal architecture claim",
+        re.compile(r"\b(?:ISaaS|IaaS)/PaaS/SaaS\b", re.IGNORECASE),
+    ),
+    (
+        "unsupported dependency claim",
+        re.compile(r"\bzero[- ]dependency\b", re.IGNORECASE),
+    ),
+    (
+        "unsupported superlative or outcome claim",
+        re.compile(
+            r"\b(?:pioneered|most reliable|prevents? technical debt|"
+            r"global scaling|rapid scaling|scalable foundation)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "unsupported universal enforcement claim",
+        re.compile(r"\b(?:across|for) all repositories\b", re.IGNORECASE),
+    ),
+    (
+        "unsupported server, tool, or test total",
+        re.compile(r"\b\d+\+?\s+(?:MCP\s+)?(?:servers|tools|tests)\b", re.IGNORECASE),
+    ),
+    (
+        "unsupported DevOnboarder-wide authority claim",
+        re.compile(
+            r"(?:DevOnboarder[^\n]{0,100}\b(?:foundation|orchestrat\w*)\b|"
+            r"\b(?:foundation|orchestrat\w*)\b[^\n]{0,100}DevOnboarder)",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "unsupported NSLS induction rationale",
+        re.compile(
+            r"\bInducted in recognition of leadership(?: excellence)? and "
+            r"academic (?:achievement|excellence)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "unverified military-course title",
+        re.compile(r"\bKnowledge Operations Management Course\b", re.IGNORECASE),
+    ),
+    (
+        "overbroad opportunity statement",
+        re.compile(r"\bOpen to opportunities\b", re.IGNORECASE),
+    ),
+    (
+        "overstated stack-history completeness",
+        re.compile(
+            r"\b(?:Complete Stack History|Full technology exposure)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "retired city-level location",
+        re.compile(
+            r"\b(?:Yulee|Fernandina Beach|Cocoa Beach)\b",
+            re.IGNORECASE,
+        ),
+    ),
+)
 GITHUB_RESERVED_ROOTS = frozenset(
     {
         "apps",
@@ -60,6 +182,10 @@ REPOSITORY_COUNT_RE = re.compile(
     r"\b\d+\s+(?:(?:active|public|private|development)\s+){0,4}"
     r"(?:repos|repositories)\b",
     re.IGNORECASE,
+)
+GENERATED_WAKA_SECTION_RE = re.compile(
+    r"<!--START_SECTION:waka-->.*?<!--END_SECTION:waka-->",
+    re.DOTALL,
 )
 
 
@@ -107,6 +233,17 @@ def mask_fenced_code(text: str) -> str:
         masked.append(line)
 
     return "".join(masked)
+
+
+def mask_generated_profile_sections(text: str) -> str:
+    """Mask generated profile blocks while preserving offsets and line numbers."""
+
+    return GENERATED_WAKA_SECTION_RE.sub(
+        lambda match: "".join(
+            "\n" if char == "\n" else " " for char in match.group(0)
+        ),
+        text,
+    )
 
 
 def extract_link_references(source: pathlib.Path, text: str) -> list[LinkReference]:
@@ -254,7 +391,7 @@ def validate_repository_counts(
     errors: list[str] = []
     for source in files:
         text = source.read_text(encoding="utf-8")
-        searchable = mask_fenced_code(text)
+        searchable = mask_fenced_code(mask_generated_profile_sections(text))
         for match in REPOSITORY_COUNT_RE.finditer(searchable):
             line = text.count("\n", 0, match.start()) + 1
             errors.append(
@@ -262,6 +399,81 @@ def validate_repository_counts(
                 f"repository count is not allowed: {match.group(0)!r}"
             )
     return errors
+
+
+def validate_profile_claims(
+    root: pathlib.Path,
+    files: Iterable[pathlib.Path],
+) -> list[str]:
+    """Reject wording prohibited by the approved public-profile contract."""
+
+    errors: list[str] = []
+    for source in files:
+        text = source.read_text(encoding="utf-8")
+        searchable = mask_fenced_code(mask_generated_profile_sections(text))
+        for label, pattern in PROHIBITED_PROFILE_CLAIMS:
+            for match in pattern.finditer(searchable):
+                line = text.count("\n", 0, match.start()) + 1
+                errors.append(
+                    f"{source.relative_to(root)}:{line}: {label} is not "
+                    f"allowed: {match.group(0)!r}"
+                )
+    return errors
+
+
+def validate_retired_profile_paths(
+    root: pathlib.Path,
+    paths: Sequence[str] = RETIRED_PROFILE_PATHS,
+) -> list[str]:
+    """Require owner-removed profile surfaces to stay absent."""
+
+    errors: list[str] = []
+    for relative_path in paths:
+        if (root / relative_path).exists():
+            errors.append(
+                f"retired public-profile path must remain absent: {relative_path}"
+            )
+    return errors
+
+
+def validate_required_profile_content(
+    root: pathlib.Path,
+    requirements: Mapping[str, Sequence[str]] = REQUIRED_PROFILE_SNIPPETS,
+) -> list[str]:
+    """Require stable owner-approved identity and contact boundaries."""
+
+    errors: list[str] = []
+    for relative_path, snippets in requirements.items():
+        source = root / relative_path
+        if not source.is_file():
+            errors.append(f"required public-profile file is missing: {relative_path}")
+            continue
+        text = source.read_text(encoding="utf-8")
+        for snippet in snippets:
+            if snippet not in text:
+                errors.append(
+                    f"{relative_path}: required owner-approved wording is "
+                    f"missing: {snippet!r}"
+                )
+    return errors
+
+
+def required_profile_content_for_files(
+    root: pathlib.Path,
+    files: Iterable[pathlib.Path],
+    requirements: Mapping[str, Sequence[str]] = REQUIRED_PROFILE_SNIPPETS,
+) -> dict[str, Sequence[str]]:
+    """Return owner-approved content requirements for discovered inputs only."""
+
+    discovered_paths = {
+        source.relative_to(root).as_posix()
+        for source in files
+    }
+    return {
+        relative_path: snippets
+        for relative_path, snippets in requirements.items()
+        if relative_path in discovered_paths
+    }
 
 
 def github_repository_name(target: str) -> str | None:
@@ -437,6 +649,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     references = read_link_references(files)
     failures = validate_relative_links(root, references)
     failures.extend(validate_repository_counts(root, files))
+    failures.extend(validate_profile_claims(root, files))
+    failures.extend(validate_retired_profile_paths(root))
+    required_content = required_profile_content_for_files(root, files)
+    failures.extend(validate_required_profile_content(root, required_content))
 
     repositories = collect_github_repositories(references)
     if not args.skip_github:
