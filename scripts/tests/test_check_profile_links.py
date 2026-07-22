@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import pathlib
 import sys
@@ -228,6 +230,64 @@ Bare repository: https://github.com/example/second-repo.
             self.assertEqual(len(errors), 1)
             self.assertIn("Approved location", errors[0])
 
+    def test_required_content_is_scoped_to_discovered_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text("Approved contact\n", encoding="utf-8")
+
+            requirements = profile_links.required_profile_content_for_files(
+                root,
+                [readme],
+                {
+                    "README.md": ("Approved contact",),
+                    "resume/resume.md": ("Approved history",),
+                },
+            )
+            errors = profile_links.validate_required_profile_content(
+                root,
+                requirements,
+            )
+
+            self.assertEqual(requirements, {"README.md": ("Approved contact",)})
+            self.assertEqual(errors, [])
+
+    def test_main_subset_ignores_unselected_required_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "AI-assisted solo human operator\n"
+                "reesey.chad@outlook.com\n"
+                "Space Coast, Florida, United States\n",
+                encoding="utf-8",
+            )
+
+            result = profile_links.main(
+                ["--root", str(root), "--skip-github", "README.md"]
+            )
+
+            self.assertEqual(result, 0)
+
+    def test_main_subset_still_enforces_selected_required_content(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            readme = root / "README.md"
+            readme.write_text(
+                "AI-assisted solo human operator\n"
+                "reesey.chad@outlook.com\n",
+                encoding="utf-8",
+            )
+            stderr = io.StringIO()
+
+            with contextlib.redirect_stderr(stderr):
+                result = profile_links.main(
+                    ["--root", str(root), "--skip-github", "README.md"]
+                )
+
+            self.assertEqual(result, 1)
+            self.assertIn("Space Coast, Florida, United States", stderr.getvalue())
+
     def test_discovery_rejects_symlinked_markdown_outside_root(self) -> None:
         with (
             tempfile.TemporaryDirectory() as repository_directory,
@@ -266,8 +326,19 @@ Bare repository: https://github.com/example/second-repo.
             profile_links.validate_retired_profile_paths(PROJECT_ROOT),
             [],
         )
+        requirements = profile_links.required_profile_content_for_files(
+            PROJECT_ROOT,
+            files,
+        )
         self.assertEqual(
-            profile_links.validate_required_profile_content(PROJECT_ROOT),
+            set(requirements),
+            set(profile_links.REQUIRED_PROFILE_SNIPPETS),
+        )
+        self.assertEqual(
+            profile_links.validate_required_profile_content(
+                PROJECT_ROOT,
+                requirements,
+            ),
             [],
         )
 

@@ -458,6 +458,24 @@ def validate_required_profile_content(
     return errors
 
 
+def required_profile_content_for_files(
+    root: pathlib.Path,
+    files: Iterable[pathlib.Path],
+    requirements: Mapping[str, Sequence[str]] = REQUIRED_PROFILE_SNIPPETS,
+) -> dict[str, Sequence[str]]:
+    """Return owner-approved content requirements for discovered inputs only."""
+
+    discovered_paths = {
+        source.relative_to(root).as_posix()
+        for source in files
+    }
+    return {
+        relative_path: snippets
+        for relative_path, snippets in requirements.items()
+        if relative_path in discovered_paths
+    }
+
+
 def github_repository_name(target: str) -> str | None:
     """Return owner/repository for GitHub repository URLs, not site pages."""
 
@@ -633,7 +651,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     failures.extend(validate_repository_counts(root, files))
     failures.extend(validate_profile_claims(root, files))
     failures.extend(validate_retired_profile_paths(root))
-    failures.extend(validate_required_profile_content(root))
+    required_content = required_profile_content_for_files(root, files)
+    failures.extend(validate_required_profile_content(root, required_content))
 
     repositories = collect_github_repositories(references)
     if not args.skip_github:
