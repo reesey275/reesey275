@@ -216,6 +216,116 @@ Bare repository: https://github.com/example/second-repo.
             self.assertEqual(len(errors), 1)
             self.assertIn("must remain absent", errors[0])
 
+    def test_obsolete_environment_path_must_remain_absent(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            (root / "ENVIRONMENT.md").write_text(
+                "# Obsolete scaffold\n",
+                encoding="utf-8",
+            )
+
+            errors = profile_links.validate_retired_profile_paths(root)
+
+            self.assertEqual(len(errors), 1)
+            self.assertIn("ENVIRONMENT.md", errors[0])
+
+    def test_superseded_profile_content_is_rejected_across_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            archive = root / "archive"
+            archive.mkdir()
+            (archive / "stale.md").write_text(
+                "Location: Cocoa Beach\n"
+                "Email: creesey@wgu.edu\n"
+                "Bio: Veteran software engineer and systems architect.\n"
+                "Public Repositories: 2 public repositories\n"
+                "Infrastructure: 25+ years\n",
+                encoding="utf-8",
+            )
+
+            errors = (
+                profile_links.validate_superseded_public_profile_content(root)
+            )
+
+            self.assertTrue(
+                any("retired public location" in error for error in errors)
+            )
+            self.assertTrue(
+                any("retired public contact" in error for error in errors)
+            )
+            self.assertTrue(
+                any("superseded public biography" in error for error in errors)
+            )
+            self.assertTrue(
+                any("hard-coded public profile count" in error for error in errors)
+            )
+            self.assertTrue(
+                any(
+                    "overbroad numeric tenure shorthand" in error
+                    for error in errors
+                )
+            )
+
+    def test_superseded_profile_content_ignores_fenced_examples(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            archive = root / "archive"
+            archive.mkdir()
+            (archive / "examples.md").write_text(
+                "Superseded examples for validator documentation:\n"
+                "```markdown\n"
+                "Location: Cocoa Beach\n"
+                "Email: creesey@wgu.edu\n"
+                "Bio: Veteran software engineer and systems architect.\n"
+                "Public Repositories: 2 public repositories\n"
+                "Infrastructure: 25+ years\n"
+                "```\n",
+                encoding="utf-8",
+            )
+
+            errors = (
+                profile_links.validate_superseded_public_profile_content(root)
+            )
+
+            self.assertEqual(errors, [])
+
+    def test_four_space_indented_backticks_do_not_mask_visible_prose(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            archive = root / "archive"
+            archive.mkdir()
+            (archive / "visible.md").write_text(
+                "    ```markdown\n"
+                "Visible profile location: Cocoa Beach\n",
+                encoding="utf-8",
+            )
+
+            errors = (
+                profile_links.validate_superseded_public_profile_content(root)
+            )
+
+            self.assertTrue(
+                any("retired public location" in error for error in errors)
+            )
+
+    def test_fenced_code_requires_matching_character_and_closing_length(self) -> None:
+        text = (
+            "````markdown\n"
+            "Location: Cocoa Beach\n"
+            "~~~\n"
+            "Location: Cocoa Beach\n"
+            "```\n"
+            "Location: Cocoa Beach\n"
+            "````\n"
+            "Visible location: Cocoa Beach\n"
+        )
+
+        masked = profile_links.mask_fenced_code(text)
+
+        self.assertNotIn("Location: Cocoa Beach\n~~~", masked)
+        self.assertNotIn("Location: Cocoa Beach\n```", masked)
+        self.assertIn("Visible location: Cocoa Beach", masked)
+
     def test_required_owner_approved_content_is_enforced(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = pathlib.Path(temporary_directory)
@@ -259,7 +369,12 @@ Bare repository: https://github.com/example/second-repo.
             readme.write_text(
                 "AI-assisted solo human operator\n"
                 "reesey.chad@outlook.com\n"
-                "Space Coast, Florida, United States\n",
+                "Space Coast, Florida, United States\n"
+                "## Demonstrated Capabilities\n"
+                "JavaScript and Node.js\n"
+                "API Development\n"
+                "Java — Current Learning\n"
+                "Documentation, Validation, and Engineering Governance\n",
                 encoding="utf-8",
             )
 
@@ -323,6 +438,12 @@ Bare repository: https://github.com/example/second-repo.
             [],
         )
         self.assertEqual(
+            profile_links.validate_superseded_public_profile_content(
+                PROJECT_ROOT
+            ),
+            [],
+        )
+        self.assertEqual(
             profile_links.validate_retired_profile_paths(PROJECT_ROOT),
             [],
         )
@@ -341,6 +462,134 @@ Bare repository: https://github.com/example/second-repo.
             ),
             [],
         )
+
+    def test_current_badge_wall_matches_approved_taxonomy(self) -> None:
+        readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+        capability_section = readme.split(
+            "## Demonstrated Capabilities",
+            maxsplit=1,
+        )[1].split("[github-stats]:", maxsplit=1)[0]
+        demonstrated, learning = capability_section.split(
+            "### Current Learning",
+            maxsplit=1,
+        )
+
+        self.assertEqual(demonstrated.count("[!["), 11)
+        self.assertEqual(learning.count("[!["), 1)
+        for approved_label in (
+            "Python",
+            "JavaScript and Node.js",
+            "TypeScript",
+            "API Development",
+            "Shell and Bash",
+            "PowerShell",
+            "Docker and Compose",
+            "GitHub Actions and CI Governance",
+            "Windows Administration",
+            "Linux Administration",
+            "Documentation, Validation, and Engineering Governance",
+            "Java — Current Learning",
+        ):
+            self.assertIn(f"[![{approved_label}]", capability_section)
+
+    def test_capability_badges_link_to_consistent_evidence(self) -> None:
+        readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+        stack_history = (
+            PROJECT_ROOT / "docs" / "STACK_HISTORY.md"
+        ).read_text(encoding="utf-8")
+        demonstrated_capabilities = stack_history.split(
+            "## Demonstrated Current Capabilities",
+            maxsplit=1,
+        )[1].split("\n## ", maxsplit=1)[0]
+        tags_evidence = (
+            PROJECT_ROOT / "docs" / "PROJECTS" / "TAGS-Ecosystem.md"
+        ).read_text(encoding="utf-8")
+        tags_evidence_searchable = " ".join(tags_evidence.split())
+
+        self.assertIn(
+            "[typescript-evidence]: "
+            "docs/STACK_HISTORY.md#demonstrated-current-capabilities",
+            readme,
+        )
+        self.assertIn(
+            "[api-evidence]: "
+            "docs/PROJECTS/TAGS-Ecosystem.md#api-development-evidence",
+            readme,
+        )
+        self.assertIn("- TypeScript", demonstrated_capabilities)
+        self.assertIn(
+            "TypeScript is a demonstrated current capability",
+            tags_evidence_searchable,
+        )
+        for snippet in (
+            "DevOnboarder",
+            "FastAPI services and routes",
+            "spotify-dev-toolkit",
+            "Node.js and Express backend",
+            "RESTful API endpoints",
+            "OAuth 2.0 PKCE flow",
+        ):
+            self.assertIn(snippet, tags_evidence_searchable)
+
+    def test_readme_uses_github_admonition_syntax(self) -> None:
+        readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+
+        self.assertTrue(
+            readme.startswith(
+                "# Chad Reesey | reesey275 | Mr. Potato\n\n> [!NOTE]\n"
+            )
+        )
+
+    def test_owner_amendment_preserves_qualified_supporting_exposure(self) -> None:
+        readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+        resume = (PROJECT_ROOT / "resume" / "resume.md").read_text(
+            encoding="utf-8"
+        )
+        stack_history = (PROJECT_ROOT / "docs" / "STACK_HISTORY.md").read_text(
+            encoding="utf-8"
+        )
+        readme_searchable = " ".join(readme.split())
+
+        for snippet in (
+            "OpenAI/ChatGPT and Custom GPT workflows",
+            "GitHub Copilot",
+            "Codex-assisted planning",
+            "MCP servers and SDK integration",
+            "agent-assisted and prompt-driven workflows",
+            "not standalone proof of software-engineering proficiency",
+            "React, Vite, Tailwind CSS, and shadcn/ui",
+            "Fastify",
+            "Traefik, Cloudflare Tunnel, and TrueNAS SCALE",
+            "PostgreSQL, Redis, and SQLite",
+        ):
+            self.assertIn(snippet, readme_searchable)
+
+        for document in (resume, stack_history):
+            searchable = " ".join(document.split()).casefold()
+            for snippet in (
+                "Windows Server",
+                "Active Directory",
+                "SCCM",
+                "Exchange",
+                "SharePoint",
+                "Microsoft 365",
+                "Endpoint deployment",
+                "Hyper-V",
+                "Citrix XenServer",
+                "VMware",
+                "VirtualBox",
+                "Ansible",
+                "Puppet",
+                "Windows batch",
+                "VBScript",
+                "LAN, WAN, and WLAN",
+                "TCP/IP, DHCP, DNS, VoIP, WINS, and POTS",
+                "account administration",
+                "RBAC, OAuth2, JWT, and secrets handling",
+                "AIS-media procedures",
+                "security documentation",
+            ):
+                self.assertIn(snippet.casefold(), searchable)
 
 
 class GitHubVisibilityTests(unittest.TestCase):
