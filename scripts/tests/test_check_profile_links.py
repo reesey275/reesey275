@@ -494,6 +494,13 @@ Bare repository: https://github.com/example/second-repo.
 
     def test_capability_badges_link_to_consistent_evidence(self) -> None:
         readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+        stack_history = (
+            PROJECT_ROOT / "docs" / "STACK_HISTORY.md"
+        ).read_text(encoding="utf-8")
+        demonstrated_capabilities = stack_history.split(
+            "## Demonstrated Current Capabilities",
+            maxsplit=1,
+        )[1].split("\n## ", maxsplit=1)[0]
         tags_evidence = (
             PROJECT_ROOT / "docs" / "PROJECTS" / "TAGS-Ecosystem.md"
         ).read_text(encoding="utf-8")
@@ -509,6 +516,7 @@ Bare repository: https://github.com/example/second-repo.
             "docs/PROJECTS/TAGS-Ecosystem.md#api-development-evidence",
             readme,
         )
+        self.assertIn("- TypeScript", demonstrated_capabilities)
         self.assertIn(
             "TypeScript is a demonstrated current capability",
             tags_evidence_searchable,
