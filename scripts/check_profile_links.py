@@ -482,7 +482,7 @@ def validate_superseded_public_profile_content(
     files = discover_markdown_files(root, ["."])
     for source in files:
         text = source.read_text(encoding="utf-8")
-        searchable = mask_generated_profile_sections(text)
+        searchable = mask_fenced_code(mask_generated_profile_sections(text))
         for label, pattern in SUPERSEDED_PUBLIC_PROFILE_CONTENT:
             for match in pattern.finditer(searchable):
                 line = text.count("\n", 0, match.start()) + 1

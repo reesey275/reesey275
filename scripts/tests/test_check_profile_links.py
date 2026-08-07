@@ -266,6 +266,29 @@ Bare repository: https://github.com/example/second-repo.
                 )
             )
 
+    def test_superseded_profile_content_ignores_fenced_examples(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            archive = root / "archive"
+            archive.mkdir()
+            (archive / "examples.md").write_text(
+                "Superseded examples for validator documentation:\n"
+                "```markdown\n"
+                "Location: Cocoa Beach\n"
+                "Email: creesey@wgu.edu\n"
+                "Bio: Veteran software engineer and systems architect.\n"
+                "Public Repositories: 2 public repositories\n"
+                "Infrastructure: 25+ years\n"
+                "```\n",
+                encoding="utf-8",
+            )
+
+            errors = (
+                profile_links.validate_superseded_public_profile_content(root)
+            )
+
+            self.assertEqual(errors, [])
+
     def test_required_owner_approved_content_is_enforced(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = pathlib.Path(temporary_directory)
@@ -431,6 +454,57 @@ Bare repository: https://github.com/example/second-repo.
             "Java — Current Learning",
         ):
             self.assertIn(f"[![{approved_label}]", capability_section)
+
+    def test_owner_amendment_preserves_qualified_supporting_exposure(self) -> None:
+        readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+        resume = (PROJECT_ROOT / "resume" / "resume.md").read_text(
+            encoding="utf-8"
+        )
+        stack_history = (PROJECT_ROOT / "docs" / "STACK_HISTORY.md").read_text(
+            encoding="utf-8"
+        )
+        readme_searchable = " ".join(readme.split())
+
+        for snippet in (
+            "OpenAI/ChatGPT and Custom GPT workflows",
+            "GitHub Copilot",
+            "Codex-assisted planning",
+            "MCP servers and SDK integration",
+            "agent-assisted and prompt-driven workflows",
+            "not standalone proof of software-engineering proficiency",
+            "React, Vite, Tailwind CSS, and shadcn/ui",
+            "Fastify",
+            "Traefik, Cloudflare Tunnel, and TrueNAS SCALE",
+            "PostgreSQL, Redis, and SQLite",
+        ):
+            self.assertIn(snippet, readme_searchable)
+
+        for document in (resume, stack_history):
+            searchable = " ".join(document.split()).casefold()
+            for snippet in (
+                "Windows Server",
+                "Active Directory",
+                "SCCM",
+                "Exchange",
+                "SharePoint",
+                "Microsoft 365",
+                "Endpoint deployment",
+                "Hyper-V",
+                "Citrix XenServer",
+                "VMware",
+                "VirtualBox",
+                "Ansible",
+                "Puppet",
+                "Windows batch",
+                "VBScript",
+                "LAN, WAN, and WLAN",
+                "TCP/IP, DHCP, DNS, VoIP, WINS, and POTS",
+                "account administration",
+                "RBAC, OAuth2, JWT, and secrets handling",
+                "AIS-media procedures",
+                "security documentation",
+            ):
+                self.assertIn(snippet.casefold(), searchable)
 
 
 class GitHubVisibilityTests(unittest.TestCase):

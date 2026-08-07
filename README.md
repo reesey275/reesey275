@@ -238,13 +238,19 @@ Tunnel, and TrueNAS SCALE. Supporting formats include Markdown, YAML, JSON,
 SQL, HTML, and CSS.
 
 Identity, data, and platform work includes OAuth2, JWT, RBAC, Active Directory,
-secret management, PostgreSQL, SQLite, virtualization, patching,
+secret management, PostgreSQL, Redis, and SQLite; virtualization; patching,
 troubleshooting, service reliability, and infrastructure documentation. MySQL
 and Supabase are historical, experimental, or project exposure rather than
 demonstrated core capabilities.
 
-AI tools support the current operating model; their use is not presented as a
-separate measure of engineering proficiency.
+### AI-Assisted Engineering and Orchestration Tooling
+
+Engineering tooling and workflow exposure includes OpenAI/ChatGPT and Custom
+GPT workflows, GitHub Copilot, Codex-assisted planning, MCP servers and SDK
+integration, and agent-assisted and prompt-driven workflows. These tools
+support planning, implementation, documentation, review, and orchestration;
+their use is not standalone proof of software-engineering proficiency or
+authorship.
 
 **[📖 Stack History & Systems Exposure](docs/STACK_HISTORY.md)** — Selected,
 non-exhaustive historical technology exposure (historical breadth, not a claim

@@ -52,6 +52,25 @@ output, or third-party component.
   and configuring and validating handheld terminals and workstations at
   multiple installations.
 
+## Professional and Historical Systems Experience
+
+The following owner-confirmed experience preserves professional and historical
+systems breadth. It does not classify every named technology as a current core
+capability.
+
+- **Microsoft enterprise systems:** Windows Server, Active Directory, System
+  Center Configuration Manager (SCCM), Exchange, SharePoint, and Microsoft 365
+- **Endpoint operations:** Endpoint deployment, lifecycle support, patching,
+  troubleshooting, and operational support
+- **Virtualization:** Hyper-V, Citrix XenServer, VMware, and VirtualBox
+- **Automation and scripting:** Ansible, Puppet, PowerShell, Bash, Python,
+  Windows batch, and VBScript
+- **Networking and telephony:** LAN, WAN, and WLAN; TCP/IP, DHCP, DNS, VoIP,
+  WINS, and POTS
+- **Identity and security operations:** account administration, access control,
+  RBAC, OAuth2, JWT, and secrets handling; AIS-media procedures; and security
+  documentation
+
 ## Demonstrated Capabilities and Supporting Exposure
 
 Demonstrated current capabilities are:

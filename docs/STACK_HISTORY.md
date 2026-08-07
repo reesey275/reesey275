@@ -52,15 +52,48 @@ experimental exposure are labeled separately where that distinction matters.
 The technologies in this section support recent projects but are not presented
 as separate core-capability badges.
 
-## Historical, Foundational, and Continuing Exposure
+## Owner-Confirmed Professional Systems and Operational Exposure
+
+This section preserves professional and historical experience. It does not
+classify every named technology as a current core capability or current daily
+tool.
+
+### Microsoft Enterprise and Endpoint Operations
+
+- Windows Server administration; Active Directory; System Center Configuration
+  Manager (SCCM); Exchange; SharePoint; and Microsoft 365
+- Endpoint deployment, lifecycle support, patching, troubleshooting, and
+  operational support
+
+### Virtualization
+
+- Hyper-V, Citrix XenServer, VMware, and VirtualBox
+
+### Automation and Scripting
+
+- PowerShell, Bash, Python, Windows batch, and VBScript
+- Ansible — historical professional automation experience with continued
+  familiarity
+- Puppet — historical professional automation exposure
+
+### Network and Telephony Support
+
+- LAN, WAN, and WLAN
+- TCP/IP, DHCP, DNS, VoIP, WINS, and POTS
+
+### Identity, Access, and Security Procedures
+
+- Account administration and access control
+- RBAC, OAuth2, JWT, and secrets handling
+- AIS-media procedures and security documentation
+
+## Additional Historical, Foundational, and Continuing Exposure
 
 ### Automation and Development
 
-- Windows batch files and VBScript
-- SharePoint website and portal development
+- SharePoint website and portal development, including professional work from
+  approximately 2008 through 2012
 - Terraform — historical/foundational exposure
-- Ansible — historical professional automation experience with continued
-  familiarity
 - Bootstrap
 - Git
 - GitHub and GitHub Copilot
@@ -98,12 +131,6 @@ as separate core-capability badges.
 
 - Portainer
 - Kubernetes — foundational exposure
-
-### Virtualization
-
-- VMware
-- VirtualBox
-- Hyper-V
 
 ### Databases and Data Tools
 
