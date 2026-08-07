@@ -262,23 +262,33 @@ def mask_fenced_code(text: str) -> str:
     """Replace fenced code contents while preserving offsets and line numbers."""
 
     masked: list[str] = []
-    active_fence: str | None = None
+    active_fence: tuple[str, int] | None = None
     for line in text.splitlines(keepends=True):
-        stripped = line.lstrip()
-        marker = None
-        if stripped.startswith("```"):
-            marker = "```"
-        elif stripped.startswith("~~~"):
-            marker = "~~~"
+        content = line.rstrip("\r\n")
 
-        if active_fence is None and marker is not None:
-            active_fence = marker
-            masked.append("".join("\n" if char == "\n" else " " for char in line))
-            continue
+        if active_fence is None:
+            opening = re.match(
+                r"^ {0,3}(?P<fence>`{3,}|~{3,})(?P<info>[^\r\n]*)$",
+                content,
+            )
+            if opening is not None:
+                fence = opening.group("fence")
+                info = opening.group("info")
+                if fence[0] != "`" or "`" not in info:
+                    active_fence = (fence[0], len(fence))
+                    masked.append(
+                        "".join("\n" if char == "\n" else " " for char in line)
+                    )
+                    continue
 
         if active_fence is not None:
             masked.append("".join("\n" if char == "\n" else " " for char in line))
-            if stripped.startswith(active_fence):
+            fence_character, minimum_length = active_fence
+            if re.fullmatch(
+                rf" {{0,3}}{re.escape(fence_character)}"
+                rf"{{{minimum_length},}}[ \t]*",
+                content,
+            ):
                 active_fence = None
             continue
 

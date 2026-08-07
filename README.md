@@ -1,6 +1,6 @@
 # Chad Reesey | reesey275 | Mr. Potato
 
-[!NOTE]
+> [!NOTE]
 > I'm a United States Air Force veteran and an IT and systems professional.
 > My professional experience since 2007 includes systems administration,
 > automation, Windows scripting, SharePoint portal development, systems
@@ -42,9 +42,9 @@ does not establish a capability by itself.
 [js-node-badge]: https://img.shields.io/badge/JavaScript%20%2F%20Node.js-Demonstrated-5FA04E?logo=nodedotjs&style=flat
 [js-node-evidence]: https://github.com/reesey275/spotify-dev-toolkit
 [ts-badge]: https://img.shields.io/badge/TypeScript-Demonstrated-3178C6?logo=typescript&style=flat
-[typescript-evidence]: docs/PROJECTS/TAGS-Ecosystem.md
+[typescript-evidence]: docs/STACK_HISTORY.md#demonstrated-current-capabilities
 [api-badge]: https://img.shields.io/badge/API%20Development-FastAPI%20%7C%20Express%20%7C%20REST%20%7C%20OAuth-2563EB?style=flat
-[api-evidence]: docs/PROJECTS/DevOnboarder.md
+[api-evidence]: docs/PROJECTS/TAGS-Ecosystem.md#api-development-evidence
 [bash-badge]: https://img.shields.io/badge/Shell%20%2F%20Bash-Automation-4EAA25?logo=gnubash&style=flat
 [shell-evidence]: https://github.com/reesey275/whisper-project
 [powershell-badge]: https://img.shields.io/badge/PowerShell-Automation-5391FE?logo=powershell&style=flat

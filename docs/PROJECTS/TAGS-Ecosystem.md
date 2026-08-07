@@ -31,11 +31,32 @@ output, or third-party component.
 - [core-instructions](core-instructions.md) — private documentation project
   represented by a public-safe overview
 
+## Demonstrated Capability Classification
+
+TypeScript is a demonstrated current capability based on owner-confirmed
+responsibility in current and recent TAGS project work. The supporting
+frameworks and tools named below remain project-stack exposure; their presence
+does not make each one a separate core capability.
+
+## API Development Evidence
+
+The combined API-development capability is supported across more than one
+public repository:
+
+- [DevOnboarder](https://github.com/theangrygamershowproductions/DevOnboarder)
+  contains FastAPI services and routes.
+- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit)
+  contains a Node.js and Express backend, RESTful API endpoints, and an OAuth
+  2.0 PKCE flow for Spotify integration.
+
+Neither repository is presented as evidence for the entire combined claim by
+itself.
+
 ## Current and Recent Project-Stack Exposure
 
-Current or recent TAGS project work includes TypeScript and Fastify; React,
-Vite, Tailwind CSS, and shadcn/ui; Traefik and TrueNAS SCALE; and MCP SDK
-integration where applicable.
+Current or recent TAGS project work includes Fastify; React, Vite, Tailwind CSS,
+and shadcn/ui; Traefik and TrueNAS SCALE; and MCP SDK integration where
+applicable.
 
 This is project-stack exposure. It does not mean every technology is used by
 every project, and supporting technologies are not presented as separate
