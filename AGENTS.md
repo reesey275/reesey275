@@ -105,8 +105,8 @@ If Copilot leaves review comments and your PR shows active threads:
 scripts/pr_threads_guard.sh <PR_NUMBER>
 
 # Exit codes:
-# 0 = No active threads (safe to merge)
-# 1 = Active threads exist (PR blocked)
+# 0 = No current unresolved threads in standard mode
+# 1 = Blocking unresolved threads under the selected mode
 # 3 = API error (check network/auth)
 ```
 
@@ -119,8 +119,9 @@ scripts/pr_threads_guard.sh <PR_NUMBER>
    ```
 
 2. **Interpret results**:
-   - Exit 0: ✅ No blocking threads - safe to merge
-   - Exit 1: ❌ Active threads found - see output for details
+   - Exit 0 in standard mode: no current unresolved threads; outdated
+     unresolved threads may still require the human handoff
+   - Exit 1: blocking unresolved threads were found under the selected mode
    - Script lists each thread with:
      - Thread ID
      - File path and line number
@@ -158,14 +159,15 @@ scripts/pr_threads_guard.sh <PR_NUMBER> --resolve-bot-threads --annotate
 scripts/pr_threads_guard.sh <PR_NUMBER> --resolve-bot-threads --force
 ```
 
-**Strict mode** (auto-enabled in CI and for agents):
+**Strict mode** (selected explicitly for merge governance):
 
 ```bash
 # Treats ALL unresolved threads as blocking (ignores outdated status)
-export AGENT_CONTEXT=true  # Auto-enables strict mode
-export CI=true             # Also auto-enables strict mode
 scripts/pr_threads_guard.sh <PR_NUMBER> --strict
 ```
+
+`CI=true` and `AGENT_CONTEXT=true` do not select strict mode implicitly. The
+Quality Gate passes `--strict` explicitly so its mode is visible and testable.
 
 **Note**: The `--resolve-bot-threads` mode is human-only and will fail if agent context is detected.
 
@@ -173,8 +175,9 @@ scripts/pr_threads_guard.sh <PR_NUMBER> --strict
 
 The `pr_threads_guard.sh` script uses exit codes to indicate different outcomes:
 
-- **0** - No active threads (safe to merge) or all threads resolved successfully
-- **1** - Active threads exist (policy violation, PR blocked)
+- **0** - No threads block under the selected mode, or all threads resolved
+- **1** - Unresolved threads block under the selected mode; output distinguishes
+  current technical feedback from an outdated-thread human handoff
 - **2** - Usage error (incorrect command syntax or missing arguments)
 - **3** - API error (network issues, authentication failure, GitHub API problems)
 - **4** - Annotation failed (human-only operation attempted without proper authorization)
@@ -183,7 +186,7 @@ The `pr_threads_guard.sh` script uses exit codes to indicate different outcomes:
 **Usage in Scripts**:
 
 ```bash
-if scripts/pr_threads_guard.sh "$PR_NUMBER"; then
+if scripts/pr_threads_guard.sh "$PR_NUMBER" --check --strict; then
   echo "No blocking threads, safe to merge"
   gh pr merge "$PR_NUMBER" --squash
 else

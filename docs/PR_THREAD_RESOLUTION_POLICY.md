@@ -1,226 +1,107 @@
 # PR Thread Resolution Policy
 
-## Problem Statement
+## Purpose
 
-GitHub's GraphQL `resolveReviewThread` mutation performs a **silent state flip** - it marks threads as resolved without leaving any human-readable audit trail. This creates governance issues:
+Review-thread state must distinguish technical work from the human governance
+checkpoint. A changed diff hunk can make a thread outdated without proving that
+the concern was addressed, and GitHub can report a thread as resolved without a
+useful audit record.
 
-- No visible record of **why** a thread was resolved
-- No reference to **what commit** addressed the concern
-- No indication of **who** or **what process** triggered the resolution
-- Future code archaeology becomes impossible
+## Thread states
 
-## Policy: Audit Trail Required
+| GitHub state | Repository meaning | Required action |
+|---|---|---|
+| `isResolved=false`, `isOutdated=false` | Current actionable feedback | Correct, explain, or defer the concern and add an inline audit reply. |
+| `isResolved=false`, `isOutdated=true` | Technical fix may be present; human handoff is pending | The owner inspects the corrective commit and audit reply, then resolves the thread in GitHub UI. |
+| `isResolved=true` | Human checkpoint complete | No further thread action is required. |
 
-**RULE:** Never resolve a review thread without leaving an inline reply that documents:
+Outdated is not equivalent to resolved. It only means the original diff anchor
+changed.
 
-1. **What commit** addressed the concern (SHA reference)
-2. **Why** the thread is being resolved (rationale)
-3. **Who/what** triggered the resolution (human vs automation)
+## Mode semantics
 
-## Implementation
-
-### Tool: `resolve_bot_threads.sh`
-
-The proper way to resolve bot/Copilot review threads:
-
-```bash
-# Check what would be resolved (dry run)
-scripts/resolve_bot_threads.sh <PR#> --dry-run
-
-# Resolve with audit trail
-scripts/resolve_bot_threads.sh <PR#>
-
-# Force resolution even if reply fails (NOT RECOMMENDED)
-scripts/resolve_bot_threads.sh <PR#> --force
-```
-
-**What it does:**
-
-1. Queries unresolved bot threads (GraphQL)
-2. For each thread:
-   - Posts inline reply with commit SHA and rationale (REST API)
-   - Resolves the thread (GraphQL mutation)
-3. Fails if any inline reply cannot be posted (unless `--force`)
-
-**Example inline reply:**
-
-```markdown
-✅ **Resolved by automation**
-
-**Commit:** `36ef22d`
-**Reason:** Bot review suggestions applied; resolving thread to unblock merge.
-**Policy:** All code changes reviewed and implemented per bot recommendations.
-
-Thread resolved automatically after checks passed.
-```
-
-### Tool: `pr_threads_guard.sh`
-
-Enhanced guard script with resolution capability:
+`scripts/pr_threads_guard.sh` has two explicit check modes:
 
 ```bash
-# Check mode (read-only)
-scripts/pr_threads_guard.sh <PR#>
+# Standard operator inspection: only current unresolved threads return 1.
+scripts/pr_threads_guard.sh <PR_NUMBER> --check
 
-# Strict mode (fail on any unresolved thread, even outdated)
-scripts/pr_threads_guard.sh <PR#> --strict
-
-# Resolve mode (delegates to resolve_bot_threads.sh)
-scripts/pr_threads_guard.sh <PR#> --resolve-bot-threads --annotate
+# Merge governance: every unresolved thread returns 1.
+scripts/pr_threads_guard.sh <PR_NUMBER> --check --strict
 ```
 
-**Policy enforcement:**
+Generic environment variables such as `CI=true` and `AGENT_CONTEXT=true` do not
+select strict mode. The caller must pass `--strict` deliberately. The Quality
+Gate does so in `.github/workflows/quality.yml` because repository policy
+requires human resolution before merge.
 
-- `--resolve-bot-threads` **requires** `--annotate` flag
-- Exits with error if used without `--annotate`
-- Prevents silent resolutions that violate governance
+This separation makes the result testable and keeps an addressed, outdated
+thread from being reported as a code-quality failure. In strict mode it still
+blocks, but the output identifies the block as a human handoff.
 
-## Workflow Integration
+## Line-drift audit procedure
 
-### Option A: Manual resolution workflow
+When a corrective commit changes the reviewed lines and makes a thread
+outdated:
 
-1. Developer reviews bot threads
-2. Applies code fixes
-3. Commits changes
-4. Runs: `scripts/resolve_bot_threads.sh <PR#>`
-5. Inline replies are posted with commit SHA
-6. Threads are resolved
-7. Auto-merge proceeds
+1. Reply on the original thread.
+2. Identify the corrective commit or commits.
+3. Describe the behavioral change.
+4. Record the relevant test and validation evidence.
+5. Record the current `isOutdated` and `isResolved` values.
+6. Stop for owner inspection and manual resolution in GitHub UI.
 
-### Option B: Automated CI workflow
+An audit reply should be specific to one thread. A PR-level summary alone does
+not preserve the necessary review context.
 
-```yaml
-- name: Check for active bot threads
-  run: scripts/pr_threads_guard.sh ${{ github.event.pull_request.number }}
-  
-- name: Resolve bot threads with audit trail
-  if: failure()
-  run: scripts/resolve_bot_threads.sh ${{ github.event.pull_request.number }}
-```
+## Human and agent boundaries
 
-## Why This Matters
+- Agents may inspect threads, implement fixes, and post explanatory replies.
+- Agents must not resolve or reopen review threads.
+- The human owner performs the final resolution in GitHub UI.
+- Automated or batch resolution is not a substitute for owner inspection.
 
-### Code Archaeology
+The legacy resolution helpers remain human-only administrative tools. Their
+existence does not authorize an agent or CI job to mutate thread state.
 
-Future developers can:
-- See **exactly** which commit addressed a concern
-- Understand **why** the resolution was acceptable
-- Trace the **decision-making process**
+## CI reporting contract
 
-### Governance Compliance
+The guard reports three separate outcomes:
 
-Organizations with audit requirements can:
-- Demonstrate proper review processes
-- Show clear decision trails
-- Meet regulatory standards
+- **Actionable review feedback:** current unresolved comments need technical
+  disposition.
+- **Human handoff pending/required:** addressed or outdated comments still need
+  owner inspection and resolution.
+- **No unresolved review threads:** the thread gate is complete.
 
-### Team Trust
+The Quality Gate invokes explicit strict mode, so either unresolved category
+fails the `quality` job. The wording identifies whether the failure represents
+current technical feedback or the human-resolution checkpoint.
 
-Transparent resolution builds trust:
-- No "silent fixes" or unexplained changes
-- Clear communication of reasoning
-- Documented rationale for future reference
+## Regression coverage
 
-## Anti-Patterns (DO NOT DO THIS)
+`scripts/tests/test_pr_threads_guard.py` exercises:
 
-### ❌ Silent GraphQL Resolution
+- current unresolved feedback in standard mode;
+- outdated unresolved feedback in standard mode;
+- outdated unresolved feedback in explicit strict mode;
+- resolved feedback in strict mode;
+- the absence of implicit strict selection from `CI=true`; and
+- explicit strict selection in the Quality Gate workflow.
 
-```bash
-# BAD: No audit trail
-gh api graphql -f query='mutation($id:ID!){
-  resolveReviewThread(input:{threadId:$id}){ thread{isResolved} }
-}' -F id="$THREAD_ID"
-```
+## Ownership boundary
 
-**Problem:** Future developers see "resolved" with no explanation.
-
-### ❌ Batch Resolution Without Context
-
-```bash
-# BAD: Resolves all threads without documenting each
-for id in $THREAD_IDS; do
-  resolve_thread "$id"  # No inline reply, no rationale
-done
-```
-
-**Problem:** Loses specificity about which fix addressed which concern.
-
-### ❌ PR-Level Comment Only
-
-```bash
-# WEAK: One comment for all resolutions
-gh pr comment <PR#> -b "Resolved all bot threads in commit abc123"
-```
-
-**Problem:** Doesn't link specific fixes to specific concerns. Harder to trace during code archaeology.
-
-## Best Practices
-
-### ✅ Inline Reply + Resolution
-
-```bash
-# GOOD: Reply documents the fix, then resolve
-gh api -X POST "repos/OWNER/REPO/pulls/PR/comments" \
-  -f in_reply_to="$COMMENT_ID" \
-  -f body="Fixed in commit $SHA: [explanation]"
-
-gh api graphql -f query='mutation($id:ID!){
-  resolveReviewThread(input:{threadId:$id}){ thread{isResolved} }
-}' -F id="$THREAD_ID"
-```
-
-### ✅ Use Provided Tooling
-
-```bash
-# BEST: Automated audit trail
-scripts/resolve_bot_threads.sh <PR#>
-```
-
-**Advantages:**
-- Consistent audit format
-- Error handling for failed replies
-- Dry-run mode for safety
-- Policy enforcement built-in
-
-## FAQ
-
-### Q: Why not just rely on "Outdated" status?
-
-**A:** "Outdated" only means the diff hunk changed - it doesn't prove the concern was addressed. You can change whitespace and make a comment "outdated" without fixing anything.
-
-### Q: Can I resolve threads without replies in emergencies?
-
-**A:** Use `--force` flag, but document in a follow-up commit message:
-
-```bash
-scripts/resolve_bot_threads.sh <PR#> --force
-
-git commit --allow-empty -m "POLICY: Emergency thread resolution
-- Resolved bot threads without inline replies due to [reason]
-- See discussion in [link to issue/chat]
-- Audit trail documented in this commit message"
-```
-
-### Q: What about human reviewer threads?
-
-**A:** This policy applies to **all** review threads, but automation should only resolve **bot** threads. Human threads require human judgment and should be resolved through discussion.
-
-### Q: Does this slow down the workflow?
-
-**A:** Initial setup adds ~5 seconds per PR. Long-term benefit:
-- Faster code archaeology (no digging through git history)
-- Clearer decision rationale (reduces confusion)
-- Compliance with audit requirements (saves hours in reviews)
+This policy covers `.github/workflows/quality.yml` and
+`scripts/pr_threads_guard.sh` in this repository. Broader shared-governance or
+upstream behavior requires separate evidence, scope, and authorization.
 
 ## References
 
-- GitHub REST API: [Create Review Comment](https://docs.github.com/en/rest/pulls/comments#create-a-review-comment-for-a-pull-request)
-- GitHub GraphQL API: [resolveReviewThread mutation](https://docs.github.com/en/graphql/reference/mutations#resolvereviewthread)
-- `in_reply_to` parameter: Links comment to thread for proper nesting
+- [GitHub GraphQL `PullRequestReviewThread`](https://docs.github.com/en/graphql/reference/objects#pullrequestreviewthread)
+- [GitHub GraphQL `resolveReviewThread`](https://docs.github.com/en/graphql/reference/mutations#resolvereviewthread)
 
 ## Changelog
 
-- **2025-12-21**: Initial policy document
-  - Created `resolve_bot_threads.sh` for audit trail automation
-  - Enhanced `pr_threads_guard.sh` with `--resolve-bot-threads --annotate` mode
-  - Established "audit trail required" as mandatory policy
+- **2026-08-07:** Defined explicit standard and strict modes, human-handoff
+  terminology, the line-drift audit procedure, and behavioral regression tests.
+- **2025-12-21:** Established the audit-trail requirement for thread resolution.

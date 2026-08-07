@@ -261,8 +261,9 @@ The repository enforces **mandatory human-in-the-loop review** through `scripts/
 scripts/pr_threads_guard.sh <PR_NUMBER>
 ```
 
-- Exit 0 = no blocking threads (proceed)
-- Exit 1 = active threads found (address them first)
+- Exit 0 in standard mode = no current unresolved threads; inspect the output
+  for any outdated-thread human handoff
+- Exit 1 = unresolved threads block under the selected mode
 
 1. **Review Copilot comments** in GitHub UI:
    - Navigate to PR → Files changed
@@ -278,8 +279,9 @@ git commit -m "FIX(component): address Copilot review feedback"
 git push
 ```
 
-- Fixed threads become "outdated" automatically
-- Outdated threads don't block merges
+- Fixed threads can become "outdated" automatically
+- Outdated does not mean resolved; the owner still inspects the audit reply and
+  resolves the thread before merge
 
 1. **Re-check thread status**:
 
@@ -287,7 +289,7 @@ git push
 scripts/pr_threads_guard.sh <PR_NUMBER>
 ```
 
-- Verify threads are now outdated or resolved
+- Verify the technical disposition, audit reply, and current thread state
 
 1. **STOP and wait** - a human must resolve threads in GitHub UI:
    - Only humans can mark threads as "Resolved"
@@ -297,15 +299,17 @@ scripts/pr_threads_guard.sh <PR_NUMBER>
 1. **Merge only when clear**:
 
 ```bash
-# Only after pr_threads_guard.sh exits 0
+# Use explicit strict mode before merge; only continue after it exits 0
+scripts/pr_threads_guard.sh <PR_NUMBER> --check --strict
 gh pr merge <PR_NUMBER> --squash
 ```
 
-**Result**: Outdated threads no longer block merges, but unresolved threads always do.
+**Result**: The standard check distinguishes current feedback from a human
+handoff. Explicit strict mode blocks every unresolved thread before merge.
 
 **Exit Codes Reference**:
-- `0` - No active threads (safe to merge)
-- `1` - Active threads exist (policy violation)
+- `0` - No threads block under the selected mode
+- `1` - Unresolved threads block under the selected mode
 - `2` - Usage error (check command syntax)
 - `3` - API error (check network/authentication)
 - `4` - Annotation failed (human-only operation)

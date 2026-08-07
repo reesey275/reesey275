@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # pr_threads_guard.sh - Enforce Copilot/bot review thread resolution before merge
 #
-# POLICY: PRs cannot advance while any review thread is in an "active" state.
-# Active = (isResolved=false AND isOutdated=false)
+# POLICY: Standard inspection distinguishes current unresolved feedback from an
+# outdated-thread human handoff. Merge governance uses explicit --strict mode,
+# where every isResolved=false thread blocks until a human resolves it.
 #
 # CRITICAL CONSTRAINT:
 #   Agents can NEVER resolve threads. Only humans can set isResolved=true.
@@ -16,7 +17,7 @@
 #     --annotate              (required with resolve) Adds rationale before resolving
 #     --force                 Resolve without annotation (REQUIRES force registry)
 #   --strict                  Fail on isResolved=false regardless of outdated status
-#                             AUTO-ENABLED when AGENT_CONTEXT=true or CI=true
+#                             (must be selected explicitly by the caller)
 #
 # Usage:
 #   scripts/pr_threads_guard.sh <PR#>                                    # Check only
@@ -61,11 +62,6 @@ STRICT=false
 ANNOTATE=false
 FORCE=false
 
-# Auto-enable strict mode for agents/CI (unresolved threads are always blocking)
-if [[ "${AGENT_CONTEXT:-}" == "true" || "${CI:-}" == "true" ]]; then
-  STRICT=true
-fi
-
 print_usage() {
   cat << 'USAGE'
 Usage: pr_threads_guard.sh <PR_NUMBER|PR_URL> [OPTIONS]
@@ -77,7 +73,8 @@ MODES (mutually exclusive):
 OPTIONS:
   --annotate                Required with --resolve-bot-threads: add rationale
   --force                   Bypass annotation requirement (logged to force registry)
-  --strict                  Fail on any unresolved thread (even if outdated)
+  --strict                  Fail on any unresolved thread (even if outdated).
+                            CI selects this explicitly in quality.yml.
 
 EXIT CODES:
   0 = Success (no active threads, or all resolved)
@@ -99,10 +96,11 @@ EXAMPLES:
   ./pr_threads_guard.sh 373 --resolve-bot-threads --force
 
 POLICY:
-  Every thread must end in exactly one state:
-  1. FIXED (code pushed under thread → becomes outdated)
-  2. RESOLVED (reply with rationale → resolve)
-  3. DEFERRED (create issue, reply "Tracked in #XXX" → resolve)
+  Current unresolved feedback requires a code change, rationale, or deferral.
+  Outdated unresolved feedback means the technical fix is present but the
+  human-resolution checkpoint is still pending. A human owner must inspect the
+  audit reply and resolve the thread in GitHub UI.
+  Resolved feedback is complete.
 USAGE
 }
 
@@ -525,17 +523,37 @@ echo "  🚫 Blocking Count:      ${ACTIVE_COUNT} (based on mode)"
 if [[ "${MODE}" == "check" ]]; then
   if [[ "${ACTIVE_COUNT}" -eq 0 ]]; then
     echo ""
-    echo "✅ No blocking review threads. Safe to proceed."
+    if [[ "${UNRESOLVED_OUTDATED}" -gt 0 ]]; then
+      echo "⚠️  HUMAN HANDOFF PENDING: ${UNRESOLVED_OUTDATED} outdated thread(s)"
+      echo "   are non-blocking in STANDARD mode, but remain unresolved."
+      echo "   Required human action: inspect each audit reply and resolve"
+      echo "   the thread in GitHub UI before merge when strict governance applies."
+    else
+      echo "✅ No unresolved review threads. Safe to proceed."
+    fi
     exit 0
   fi
 
   echo ""
-  echo "❌ POLICY VIOLATION: ${ACTIVE_COUNT} thread(s) must be handled before merge."
-  echo ""
-  echo "Each thread must be:"
-  echo "  1. Made OUTDATED (push code change under it), or"
-  echo "  2. RESOLVED (reply with rationale, then resolve in GitHub UI), or"
-  echo "  3. DEFERRED (create issue, reply with 'Tracked in #XXX', resolve in GitHub UI)"
+  if [[ "${STRICT}" == "true" && "${UNRESOLVED_ACTIVE}" -eq 0 && "${UNRESOLVED_OUTDATED}" -gt 0 ]]; then
+    echo "❌ HUMAN HANDOFF REQUIRED: ${ACTIVE_COUNT} addressed/outdated thread(s)"
+    echo "   remain unresolved. Technical checks may be green; this is a"
+    echo "   human-governance gate, not a code or test failure."
+    echo ""
+    echo "Required human action: inspect the corrective commits and audit reply,"
+    echo "then resolve each thread in the GitHub UI."
+  else
+    echo "❌ ACTIONABLE REVIEW FEEDBACK: ${ACTIVE_COUNT} blocking thread(s)"
+    echo "   remain current or unresolved."
+    echo ""
+    echo "For each current thread:"
+    echo "  1. Push a corrective change and add an audit reply, or"
+    echo "  2. Reply with rationale, or"
+    echo "  3. Create a follow-up issue and reply with 'Tracked in #XXX'."
+    echo ""
+    echo "After the technical disposition, a human owner must resolve the thread"
+    echo "in GitHub UI before merge under strict governance."
+  fi
 
   # Context-aware help message
   if [[ "${AGENT_CONTEXT:-}" == "true" || "${CI:-}" == "true" ]]; then
@@ -551,7 +569,8 @@ if [[ "${MODE}" == "check" ]]; then
   display_threads "${ACTIVE_THREADS}"
 
   echo ""
-  echo "Action required: Handle all threads before proceeding."
+  echo "Action required: complete the technical disposition and human resolution"
+  echo "checkpoint described above before proceeding."
   exit 1
 fi
 
