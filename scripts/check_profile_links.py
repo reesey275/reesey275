@@ -26,22 +26,35 @@ DEFAULT_INPUTS = (
     "docs/STACK_HISTORY.md",
     "PHILOSOPHY.md",
 )
-RETIRED_PROFILE_PATHS = ("docs/PROJECTS/tags-mcp-servers.md",)
+RETIRED_PROFILE_PATHS = (
+    "docs/PROJECTS/tags-mcp-servers.md",
+    "ENVIRONMENT.md",
+)
 REQUIRED_PROFILE_SNIPPETS: Mapping[str, tuple[str, ...]] = {
     "README.md": (
         "AI-assisted solo human operator",
         "reesey.chad@outlook.com",
         "Space Coast, Florida, United States",
+        "## Demonstrated Capabilities",
+        "JavaScript and Node.js",
+        "API Development",
+        "Java — Current Learning",
+        "Documentation, Validation, and Engineering Governance",
     ),
     "resume/resume.md": (
         "August 10, 2000–March 28, 2012",
         "AI-assisted solo human operator",
         "reesey.chad@outlook.com",
         "Space Coast, Florida, United States",
+        "Demonstrated Capabilities and Supporting Exposure",
     ),
     "docs/STACK_HISTORY.md": (
         "selected, non-exhaustive inventory",
         "not an exhaustive inventory",
+        "MS-DOS 6.2 and hands-on experience across Microsoft Windows",
+        "including Windows XP x64",
+        "Terraform — historical/foundational exposure",
+        "Ansible — historical professional automation experience",
     ),
 }
 PROHIBITED_PROFILE_CLAIMS: tuple[tuple[str, re.Pattern[str]], ...] = (
@@ -186,6 +199,45 @@ REPOSITORY_COUNT_RE = re.compile(
 GENERATED_WAKA_SECTION_RE = re.compile(
     r"<!--START_SECTION:waka-->.*?<!--END_SECTION:waka-->",
     re.DOTALL,
+)
+SUPERSEDED_PUBLIC_PROFILE_CONTENT: tuple[
+    tuple[str, re.Pattern[str]], ...
+] = (
+    (
+        "retired public contact",
+        re.compile(
+            r"\b(?:creesey@wgu\.edu|chad\.reesey@outlook\.com|"
+            r"reesey275@theangrygamershow\.com)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "retired public location",
+        re.compile(
+            r"\b(?:Yulee|Fernandina Beach|Cocoa Beach)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "superseded public biography",
+        re.compile(
+            r"\b(?:veteran software engineer|systems architect|"
+            r"NSLS-inducted)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "hard-coded public profile count",
+        re.compile(
+            rf"(?:{REPOSITORY_COUNT_RE.pattern}|"
+            r"\bFollowers?\s*:\s*\d+|\bFollowing\s*:\s*\d+)",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "overbroad numeric tenure shorthand",
+        re.compile(r"\b25\+\s+years\b", re.IGNORECASE),
+    ),
 )
 
 
@@ -421,6 +473,26 @@ def validate_profile_claims(
     return errors
 
 
+def validate_superseded_public_profile_content(
+    root: pathlib.Path,
+) -> list[str]:
+    """Reject narrowly scoped superseded claims across all public Markdown."""
+
+    errors: list[str] = []
+    files = discover_markdown_files(root, ["."])
+    for source in files:
+        text = source.read_text(encoding="utf-8")
+        searchable = mask_generated_profile_sections(text)
+        for label, pattern in SUPERSEDED_PUBLIC_PROFILE_CONTENT:
+            for match in pattern.finditer(searchable):
+                line = text.count("\n", 0, match.start()) + 1
+                errors.append(
+                    f"{source.relative_to(root)}:{line}: {label} is not "
+                    f"allowed in public Markdown: {match.group(0)!r}"
+                )
+    return errors
+
+
 def validate_retired_profile_paths(
     root: pathlib.Path,
     paths: Sequence[str] = RETIRED_PROFILE_PATHS,
@@ -650,6 +722,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     failures = validate_relative_links(root, references)
     failures.extend(validate_repository_counts(root, files))
     failures.extend(validate_profile_claims(root, files))
+    failures.extend(validate_superseded_public_profile_content(root))
     failures.extend(validate_retired_profile_paths(root))
     required_content = required_profile_content_for_files(root, files)
     failures.extend(validate_required_profile_content(root, required_content))

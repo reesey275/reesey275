@@ -6,135 +6,154 @@ professional systems-administration and IT support work beginning in 2007,
 and software-development and automation work beginning in 2007.
 
 **This is historical exposure, not an exhaustive inventory or a claim of
-current daily usage.**
+current daily usage.** Current, recent, historical, foundational, and
+experimental exposure are labeled separately where that distinction matters.
 
 ---
 
 ## Operating Systems
 
-- **Linux:** Ubuntu, Debian, Red Hat, Rocky Linux, AlmaLinux
-- **Windows:** Windows 11, Windows Server
-- **Specialized:** Synology, OPNSense, Pi-hole
+- **Microsoft:** MS-DOS 6.2 and hands-on experience across Microsoft Windows
+  generations from Windows 3.1 through Windows 11, including Windows XP x64,
+  with Windows Server administration experience
+- **Linux distributions:** Ubuntu, Debian, Red Hat, Rocky Linux, AlmaLinux
+- **Linux on Windows:** WSL and WSL2
 
-## Skills & Technologies
+## Demonstrated Current Capabilities
 
-### Cloud & Infrastructure
-- Amazon EC2
-- DigitalOcean
-- Linode
-- OVH
-- Azure
-- Backblaze
+### Software and API Development
 
-### Containers & Orchestration
-- Docker
-- Portainer
-- Kubernetes (foundational)
+- Python
+- JavaScript and Node.js
+- TypeScript
+- API development using FastAPI, Express, REST, and OAuth
 
-### Web Servers & Networking
+### Automation and Delivery
+
+- Shell and Bash
+- PowerShell
+- Docker and Docker Compose
+- GitHub Actions and CI governance
+
+### Systems and Engineering Governance
+
+- Windows administration
+- Linux administration
+- Documentation, validation, and engineering governance
+
+## Current or Recent Project Exposure
+
+- **Backend and integration:** Fastify, Discord API, MCP SDK
+- **Frontend:** React, Vite, Tailwind CSS, shadcn/ui
+- **Systems and platforms:** Traefik, Cloudflare Tunnel, TrueNAS SCALE
+- **Data:** PostgreSQL, SQLite
+- **Formats:** Markdown, YAML, JSON, SQL, HTML, CSS, Jinja, EJS
+
+The technologies in this section support recent projects but are not presented
+as separate core-capability badges.
+
+## Historical, Foundational, and Continuing Exposure
+
+### Automation and Development
+
+- Windows batch files and VBScript
+- SharePoint website and portal development
+- Terraform — historical/foundational exposure
+- Ansible — historical professional automation experience with continued
+  familiarity
+- Bootstrap
+- Git
+- GitHub and GitHub Copilot
+- Visual Studio Code
+- Vim
+- GitKraken
+- EditorConfig
+- Prettier
+- Snyk
+
+### Systems, Storage, and Network Platforms
+
+- Synology
+- OPNsense
+- Pi-hole
 - NGINX
 - NGINX Proxy Manager
 - Apache
 - Cloudflare
 - Tailscale
 - Let's Encrypt
-- Next DNS
+- NextDNS
+- Plesk
 
-### Automation & DevOps
-- GitHub Actions
-- Ansible
-- Terraform
-- Bash scripting
-- Python automation
+### Cloud and Infrastructure
 
-### Development Tools
-- GitHub / GitHub Copilot
-- GitKraken
-- Visual Studio Code
-- Vim
-- Git
-- Editor Config
-- Prettier
-- Snyk
+- Amazon EC2
+- Azure
+- DigitalOcean
+- Linode
+- OVH
+- Backblaze
 
-### Languages & Frameworks
-- Python
-- JavaScript / Node.js
-- TypeScript
-- Shell scripting
-- HTML / CSS
-- Bootstrap
-- JSON
-- Markdown
-- Jinja
-- EJS
+### Containers and Orchestration
 
-### Databases & Data
-- MySQL
-- PostgreSQL (via Supabase)
+- Portainer
+- Kubernetes — foundational exposure
 
-### CI/CD & Quality
-- GitHub Actions
+### Virtualization
+
+- VMware
+- VirtualBox
+- Hyper-V
+
+### Databases and Data Tools
+
+- MySQL — historical, experimental, or project exposure
+- Supabase — historical, experimental, or project exposure
+- Redis — project-stack exposure; not classified as a demonstrated core
+  capability
+
+### CI, Quality, and Observability
+
 - Codacy
-- SemVer
-- Vale (documentation linting)
-- Linting standards enforcement
-
-### Monitoring & Observability
+- Semantic Versioning
+- Vale
+- Linting and documentation standards enforcement
 - Netdata
 - Uptime Kuma
 - PageSpeed Insights
 - Google Analytics
 
-### Media & Community Platforms
+### Documentation, Media, and Collaboration
+
+- Hugo
+- GitBook
+- WordPress
+- Microsoft Word and Visio
+- diagrams.net
+- GIMP
+- Font Awesome
 - Discord
 - TeamSpeak
 - Plex
 - Home Assistant
 - IFTTT
-- Steam / SteamDB
+- Steam and SteamDB
+- Atlassian Jira and Confluence
+- Bitbucket
 
-### Security & Identity
-- Cloudflare Tunnels
-- OAuth2 / JWT / RBAC patterns
-- Secret management
-- Network segmentation and access-control patterns
+### Package and Command-Line Tools
 
-### Documentation & Content
-- Markdown
-- Hugo
-- GitBook
-- Wordpress
-- Microsoft Word / Visio
-- diagrams.net
-- GIMP
-- Font Awesome
-
-### Package Management
 - npm
 - Chocolatey
 - Packagist
-
-### Developer Platforms
-- Atlassian / Jira / Confluence
-- Bitbucket
-- Stack Exchange
-- Pluralsight
-
-### Virtualization
-- VMware
-- VirtualBox
-- Hyper-V
-
-### Miscellaneous
-- Raspberry Pi
-- Linux Server
-- Microsoft Edge
 - curl
-- hole (network diagnostics)
-- Plesk
-- Netdata
+- Raspberry Pi
 
-**Note:** This list reflects historical breadth rather than current proficiency
-with every item. As of July 2026, regular work includes Python, Shell, Docker,
-GitHub Actions, Visual Studio Code, NGINX, Cloudflare, and Linux.
+## Current Learning
+
+- Java
+
+**Current-use summary:** Regular or recent work includes Python, JavaScript and
+Node.js, TypeScript, API development, Shell and PowerShell automation, Docker
+and Docker Compose, GitHub Actions, Windows and Linux administration, and
+documentation, validation, and engineering governance.

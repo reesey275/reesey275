@@ -216,6 +216,56 @@ Bare repository: https://github.com/example/second-repo.
             self.assertEqual(len(errors), 1)
             self.assertIn("must remain absent", errors[0])
 
+    def test_obsolete_environment_path_must_remain_absent(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            (root / "ENVIRONMENT.md").write_text(
+                "# Obsolete scaffold\n",
+                encoding="utf-8",
+            )
+
+            errors = profile_links.validate_retired_profile_paths(root)
+
+            self.assertEqual(len(errors), 1)
+            self.assertIn("ENVIRONMENT.md", errors[0])
+
+    def test_superseded_profile_content_is_rejected_across_markdown(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = pathlib.Path(temporary_directory)
+            archive = root / "archive"
+            archive.mkdir()
+            (archive / "stale.md").write_text(
+                "Location: Cocoa Beach\n"
+                "Email: creesey@wgu.edu\n"
+                "Bio: Veteran software engineer and systems architect.\n"
+                "Public Repositories: 2 public repositories\n"
+                "Infrastructure: 25+ years\n",
+                encoding="utf-8",
+            )
+
+            errors = (
+                profile_links.validate_superseded_public_profile_content(root)
+            )
+
+            self.assertTrue(
+                any("retired public location" in error for error in errors)
+            )
+            self.assertTrue(
+                any("retired public contact" in error for error in errors)
+            )
+            self.assertTrue(
+                any("superseded public biography" in error for error in errors)
+            )
+            self.assertTrue(
+                any("hard-coded public profile count" in error for error in errors)
+            )
+            self.assertTrue(
+                any(
+                    "overbroad numeric tenure shorthand" in error
+                    for error in errors
+                )
+            )
+
     def test_required_owner_approved_content_is_enforced(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
             root = pathlib.Path(temporary_directory)
@@ -259,7 +309,12 @@ Bare repository: https://github.com/example/second-repo.
             readme.write_text(
                 "AI-assisted solo human operator\n"
                 "reesey.chad@outlook.com\n"
-                "Space Coast, Florida, United States\n",
+                "Space Coast, Florida, United States\n"
+                "## Demonstrated Capabilities\n"
+                "JavaScript and Node.js\n"
+                "API Development\n"
+                "Java — Current Learning\n"
+                "Documentation, Validation, and Engineering Governance\n",
                 encoding="utf-8",
             )
 
@@ -323,6 +378,12 @@ Bare repository: https://github.com/example/second-repo.
             [],
         )
         self.assertEqual(
+            profile_links.validate_superseded_public_profile_content(
+                PROJECT_ROOT
+            ),
+            [],
+        )
+        self.assertEqual(
             profile_links.validate_retired_profile_paths(PROJECT_ROOT),
             [],
         )
@@ -341,6 +402,35 @@ Bare repository: https://github.com/example/second-repo.
             ),
             [],
         )
+
+    def test_current_badge_wall_matches_approved_taxonomy(self) -> None:
+        readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+        capability_section = readme.split(
+            "## Demonstrated Capabilities",
+            maxsplit=1,
+        )[1].split("[github-stats]:", maxsplit=1)[0]
+        demonstrated, learning = capability_section.split(
+            "### Current Learning",
+            maxsplit=1,
+        )
+
+        self.assertEqual(demonstrated.count("[!["), 11)
+        self.assertEqual(learning.count("[!["), 1)
+        for approved_label in (
+            "Python",
+            "JavaScript and Node.js",
+            "TypeScript",
+            "API Development",
+            "Shell and Bash",
+            "PowerShell",
+            "Docker and Compose",
+            "GitHub Actions and CI Governance",
+            "Windows Administration",
+            "Linux Administration",
+            "Documentation, Validation, and Engineering Governance",
+            "Java — Current Learning",
+        ):
+            self.assertIn(f"[![{approved_label}]", capability_section)
 
 
 class GitHubVisibilityTests(unittest.TestCase):

@@ -31,6 +31,16 @@ output, or third-party component.
 - [core-instructions](core-instructions.md) — private documentation project
   represented by a public-safe overview
 
+## Current and Recent Project-Stack Exposure
+
+Current or recent TAGS project work includes TypeScript and Fastify; React,
+Vite, Tailwind CSS, and shadcn/ui; Traefik and TrueNAS SCALE; and MCP SDK
+integration where applicable.
+
+This is project-stack exposure. It does not mean every technology is used by
+every project, and supporting technologies are not presented as separate
+core-capability badges.
+
 ## Delivered Work, Plans, and Experiments
 
 A component is described as delivered only when current public source or an
