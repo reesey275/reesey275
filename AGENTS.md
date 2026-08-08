@@ -138,7 +138,8 @@ scripts/pr_threads_guard.sh <PR_NUMBER>
 4. **Merge when clear**:
 
    ```bash
-   # Only after pr_threads_guard.sh exits 0
+   # Use explicit strict mode before merge; only continue after it exits 0
+   scripts/pr_threads_guard.sh <PR_NUMBER> --check --strict
    gh pr merge <PR_NUMBER> --squash
    ```
 
