@@ -10,7 +10,7 @@ useful audit record.
 ## Thread states
 
 | GitHub state | Repository meaning | Required action |
-|---|---|---|
+| --- | --- | --- |
 | `isResolved=false`, `isOutdated=false` | Current actionable feedback | Correct, explain, or defer the concern and add an inline audit reply. |
 | `isResolved=false`, `isOutdated=true` | Technical fix may be present; human handoff is pending | The owner inspects the corrective commit and audit reply, then resolves the thread in GitHub UI. |
 | `isResolved=true` | Human checkpoint complete | No further thread action is required. |
