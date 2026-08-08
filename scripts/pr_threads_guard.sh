@@ -26,8 +26,8 @@
 #   scripts/pr_threads_guard.sh <PR#> --resolve-bot-threads --force      # Bypass annotation (logged)
 #
 # Exit codes:
-#   0 - No active threads (or all resolved successfully)
-#   1 - Active threads exist (policy violation)
+#   0 - No threads block under the selected mode (or all resolved successfully)
+#   1 - Unresolved threads block under the selected mode
 #   2 - Usage error
 #   3 - API error
 #   4 - Annotation failed (--force not provided)
@@ -77,8 +77,8 @@ OPTIONS:
                             CI selects this explicitly in quality.yml.
 
 EXIT CODES:
-  0 = Success (no active threads, or all resolved)
-  1 = Active threads exist (policy violation)
+  0 = No threads block under the selected mode, or all threads are resolved
+  1 = Unresolved threads block under the selected mode
   2 = Usage error
   3 = API error
   4 = Annotation failed (--force not provided)
