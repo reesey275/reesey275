@@ -569,8 +569,13 @@ if [[ "${MODE}" == "check" ]]; then
   display_threads "${ACTIVE_THREADS}"
 
   echo ""
-  echo "Action required: complete the technical disposition and human resolution"
-  echo "checkpoint described above before proceeding."
+  if [[ "${STRICT}" == "true" ]]; then
+    echo "Action required: complete the technical disposition and human resolution"
+    echo "before rerunning strict governance checks."
+  else
+    echo "Action required: complete the technical disposition before rerunning checks."
+    echo "Human thread resolution remains required before merge."
+  fi
   exit 1
 fi
 

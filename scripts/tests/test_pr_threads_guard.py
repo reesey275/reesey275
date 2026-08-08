@@ -94,6 +94,8 @@ class ReviewThreadGuardTests(unittest.TestCase):
 
         self.assertEqual(result.returncode, 1)
         self.assertIn("ACTIONABLE REVIEW FEEDBACK", result.stdout)
+        self.assertIn("technical disposition before rerunning checks", result.stdout)
+        self.assertIn("Human thread resolution remains required before merge", result.stdout)
 
     def test_outdated_unresolved_is_handoff_in_standard_mode(self) -> None:
         result = self.run_guard("outdated")
@@ -109,6 +111,7 @@ class ReviewThreadGuardTests(unittest.TestCase):
         self.assertIn("HUMAN HANDOFF REQUIRED", result.stdout)
         self.assertIn("not a code or test failure", result.stdout)
         self.assertIn("resolve each thread in the GitHub UI", result.stdout)
+        self.assertIn("before rerunning strict governance checks", result.stdout)
 
     def test_resolved_thread_passes_strict_mode(self) -> None:
         result = self.run_guard("resolved", strict=True)
@@ -127,9 +130,11 @@ class ReviewThreadGuardTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        self.assertIn(
-            '"${{ github.event.pull_request.number }}" --check --strict',
+        self.assertRegex(
             workflow,
+            r"bash\s+scripts/pr_threads_guard\.sh(?:\s*\\)?\s+"
+            r'"\$\{\{\s*github\.event\.pull_request\.number\s*\}\}"'
+            r"\s+--check\s+--strict\b",
         )
 
 
