@@ -138,10 +138,10 @@ public output.
 
 - **Time Zone:** America/New\_York
 - **Reporting Window:** 7 inclusive calendar dates (latest may be partial)
-- **Date Range:** 2026-08-22 - 2026-08-28
+- **Date Range:** 2026-08-23 - 2026-08-29
 - **Total Tracked:** 0 mins
 - **Daily Average:** 0 mins
-- **Best Day:** 2026-08-22 (0 mins)
+- **Best Day:** 2026-08-23 (0 mins)
 
 ### Languages
 
@@ -163,7 +163,7 @@ _Category names, including "AI Coding," are WakaTime classifications and do not 
 
 </details>
 
-_Last successful refresh: 2026-08-29 00:14:42 UTC_
+_Last successful refresh: 2026-08-30 00:17:34 UTC_
 <!--END_SECTION:waka-->
 
 ## 🎯 Featured Projects
