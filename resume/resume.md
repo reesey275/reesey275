@@ -140,6 +140,11 @@ policies, review processes, security guidance, and agent instructions.
 Currently enrolled in the **Bachelor of Science, Software Engineering**
 program.
 
+- **Progress:** 79 competency units earned as of October 1, 2026 (72 at WGU
+  and 7 transfer units)
+- **Front-End Developer micro-credential:** awarded April 15, 2026
+- **Completed coursework:** Java Fundamentals (D286) and Java Frameworks (D287)
+
 ### National Society of Leadership and Success
 
 Member since 2025. Completed the Foundations of Leadership program and earned

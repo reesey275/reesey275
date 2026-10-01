@@ -261,7 +261,9 @@ of current daily usage)
 ## 🎓 Continuous Learning
 
 - **Western Governors University** — currently enrolled in the Bachelor of
-  Science, Software Engineering program
+  Science, Software Engineering program; completed Java Fundamentals (D286)
+  and Java Frameworks (D287)
+- **WGU Front-End Developer micro-credential** — awarded April 15, 2026
 - **National Society of Leadership and Success (NSLS)** — member since 2025;
   completed the Foundations of Leadership program and earned the NSLS Advanced
   Leadership Certificate in May 2025
