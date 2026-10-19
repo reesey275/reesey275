@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="845"
   viewBox="0 0 900 845" role="img" aria-labelledby="dashboard-title dashboard-description">
   <title id="dashboard-title">Seven-Day WakaTime Editor Activity</title>
-  <desc id="dashboard-description">26 hrs 25 mins of editor-tracked activity across seven inclusive calendar dates from 2026-10-11 through 2026-10-17, averaging 3 hrs 46 mins per day.</desc>
+  <desc id="dashboard-description">26 hrs 25 mins of editor-tracked activity across seven inclusive calendar dates from 2026-10-12 through 2026-10-18, averaging 3 hrs 46 mins per day.</desc>
   <style>
     .title { fill: #f0f6fc; font: 700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .section-title { fill: #f0f6fc; font: 600 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -16,8 +16,8 @@
   </style>
   <rect width="900" height="845" rx="10" fill="#0d1117"/>
   <text x="28" y="36" class="title">Seven-Day WakaTime Editor Activity</text>
-  <text x="28" y="58" class="muted">2026-10-11 – 2026-10-17 · America/New_York</text>
-  <text x="872" y="58" text-anchor="end" class="muted">Last successful refresh 2026-10-18 00:15:55 UTC</text>
+  <text x="28" y="58" class="muted">2026-10-12 – 2026-10-18 · America/New_York</text>
+  <text x="872" y="58" text-anchor="end" class="muted">Last successful refresh 2026-10-19 00:16:11 UTC</text>
   <rect x="28" y="76" width="198" height="88" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="44" y="101" class="eyebrow">TOTAL TRACKED</text>
@@ -42,34 +42,34 @@
     fill="#161b22" stroke="#30363d"/>
   <text x="48" y="210" class="section-title">Daily editor activity</text>
   <text x="852" y="210" text-anchor="end" class="muted">7 calendar days</text>
-  <rect x="80.0" y="338.0" width="68.0" height="4.0" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="114.0" y="330.0" text-anchor="middle" class="bar-label">0m</text>
-  <text x="114.0" y="365" text-anchor="middle" class="axis">Sun</text>
-  <text x="114.0" y="381" text-anchor="middle" class="muted">Oct 11</text>
-  <rect x="192.0" y="277.0" width="68.0" height="65.0" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="226.0" y="269.0" text-anchor="middle" class="bar-label">5h 1m</text>
-  <text x="226.0" y="365" text-anchor="middle" class="axis">Mon</text>
-  <text x="226.0" y="381" text-anchor="middle" class="muted">Oct 12</text>
-  <rect x="304.0" y="301.9" width="68.0" height="40.1" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="338.0" y="293.9" text-anchor="middle" class="bar-label">3h 6m</text>
-  <text x="338.0" y="365" text-anchor="middle" class="axis">Tue</text>
-  <text x="338.0" y="381" text-anchor="middle" class="muted">Oct 13</text>
-  <rect x="416.0" y="295.1" width="68.0" height="46.9" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="450.0" y="287.1" text-anchor="middle" class="bar-label">3h 37m</text>
-  <text x="450.0" y="365" text-anchor="middle" class="axis">Wed</text>
-  <text x="450.0" y="381" text-anchor="middle" class="muted">Oct 14</text>
-  <rect x="528.0" y="246.0" width="68.0" height="96.0" rx="5" fill="#58a6ff" opacity="1"/>
-  <text x="562.0" y="238.0" text-anchor="middle" class="bar-label">7h 25m</text>
-  <text x="562.0" y="365" text-anchor="middle" class="axis">Thu</text>
-  <text x="562.0" y="381" text-anchor="middle" class="muted">Oct 15</text>
-  <rect x="640.0" y="265.4" width="68.0" height="76.6" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="674.0" y="257.4" text-anchor="middle" class="bar-label">5h 55m</text>
-  <text x="674.0" y="365" text-anchor="middle" class="axis">Fri</text>
-  <text x="674.0" y="381" text-anchor="middle" class="muted">Oct 16</text>
-  <rect x="752.0" y="325.2" width="68.0" height="16.8" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="786.0" y="317.2" text-anchor="middle" class="bar-label">1h 18m</text>
-  <text x="786.0" y="365" text-anchor="middle" class="axis">Sat</text>
-  <text x="786.0" y="381" text-anchor="middle" class="muted">Oct 17</text>
+  <rect x="80.0" y="277.0" width="68.0" height="65.0" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="114.0" y="269.0" text-anchor="middle" class="bar-label">5h 1m</text>
+  <text x="114.0" y="365" text-anchor="middle" class="axis">Mon</text>
+  <text x="114.0" y="381" text-anchor="middle" class="muted">Oct 12</text>
+  <rect x="192.0" y="301.9" width="68.0" height="40.1" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="226.0" y="293.9" text-anchor="middle" class="bar-label">3h 6m</text>
+  <text x="226.0" y="365" text-anchor="middle" class="axis">Tue</text>
+  <text x="226.0" y="381" text-anchor="middle" class="muted">Oct 13</text>
+  <rect x="304.0" y="295.1" width="68.0" height="46.9" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="338.0" y="287.1" text-anchor="middle" class="bar-label">3h 37m</text>
+  <text x="338.0" y="365" text-anchor="middle" class="axis">Wed</text>
+  <text x="338.0" y="381" text-anchor="middle" class="muted">Oct 14</text>
+  <rect x="416.0" y="246.0" width="68.0" height="96.0" rx="5" fill="#58a6ff" opacity="1"/>
+  <text x="450.0" y="238.0" text-anchor="middle" class="bar-label">7h 25m</text>
+  <text x="450.0" y="365" text-anchor="middle" class="axis">Thu</text>
+  <text x="450.0" y="381" text-anchor="middle" class="muted">Oct 15</text>
+  <rect x="528.0" y="265.4" width="68.0" height="76.6" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="562.0" y="257.4" text-anchor="middle" class="bar-label">5h 55m</text>
+  <text x="562.0" y="365" text-anchor="middle" class="axis">Fri</text>
+  <text x="562.0" y="381" text-anchor="middle" class="muted">Oct 16</text>
+  <rect x="640.0" y="325.2" width="68.0" height="16.8" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="674.0" y="317.2" text-anchor="middle" class="bar-label">1h 18m</text>
+  <text x="674.0" y="365" text-anchor="middle" class="axis">Sat</text>
+  <text x="674.0" y="381" text-anchor="middle" class="muted">Oct 17</text>
+  <rect x="752.0" y="338.0" width="68.0" height="4.0" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="786.0" y="330.0" text-anchor="middle" class="bar-label">0m</text>
+  <text x="786.0" y="365" text-anchor="middle" class="axis">Sun</text>
+  <text x="786.0" y="381" text-anchor="middle" class="muted">Oct 18</text>
   <rect x="28" y="406" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="46" y="434" class="section-title">Languages</text>
