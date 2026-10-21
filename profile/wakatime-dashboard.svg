@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="845"
   viewBox="0 0 900 845" role="img" aria-labelledby="dashboard-title dashboard-description">
   <title id="dashboard-title">Seven-Day WakaTime Editor Activity</title>
-  <desc id="dashboard-description">21 hrs 23 mins of editor-tracked activity across seven inclusive calendar dates from 2026-10-13 through 2026-10-19, averaging 3 hrs 3 mins per day.</desc>
+  <desc id="dashboard-description">18 hrs 18 mins of editor-tracked activity across seven inclusive calendar dates from 2026-10-14 through 2026-10-20, averaging 2 hrs 36 mins per day.</desc>
   <style>
     .title { fill: #f0f6fc; font: 700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .section-title { fill: #f0f6fc; font: 600 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -16,17 +16,17 @@
   </style>
   <rect width="900" height="845" rx="10" fill="#0d1117"/>
   <text x="28" y="36" class="title">Seven-Day WakaTime Editor Activity</text>
-  <text x="28" y="58" class="muted">2026-10-13 – 2026-10-19 · America/New_York</text>
-  <text x="872" y="58" text-anchor="end" class="muted">Last successful refresh 2026-10-20 00:14:49 UTC</text>
+  <text x="28" y="58" class="muted">2026-10-14 – 2026-10-20 · America/New_York</text>
+  <text x="872" y="58" text-anchor="end" class="muted">Last successful refresh 2026-10-21 00:14:21 UTC</text>
   <rect x="28" y="76" width="198" height="88" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="44" y="101" class="eyebrow">TOTAL TRACKED</text>
-  <text x="44" y="132" class="metric">21h 23m</text>
+  <text x="44" y="132" class="metric">18h 18m</text>
   <text x="44" y="151" class="muted">Seven calendar days</text>
   <rect x="240" y="76" width="198" height="88" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="256" y="101" class="eyebrow">DAILY AVERAGE</text>
-  <text x="256" y="132" class="metric">3h 3m</text>
+  <text x="256" y="132" class="metric">2h 36m</text>
   <text x="256" y="151" class="muted">Across 7 calendar days</text>
   <rect x="452" y="76" width="198" height="88" rx="8"
     fill="#161b22" stroke="#30363d"/>
@@ -37,107 +37,107 @@
     fill="#161b22" stroke="#30363d"/>
   <text x="680" y="101" class="eyebrow">PRIMARY EDITOR</text>
   <text x="680" y="132" class="metric">VS Code</text>
-  <text x="680" y="151" class="muted">59.5% of tracked time</text>
+  <text x="680" y="151" class="muted">69.6% of tracked time</text>
   <rect x="28" y="180" width="844" height="210" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="48" y="210" class="section-title">Daily editor activity</text>
   <text x="852" y="210" text-anchor="end" class="muted">7 calendar days</text>
-  <rect x="80.0" y="301.9" width="68.0" height="40.1" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="114.0" y="293.9" text-anchor="middle" class="bar-label">3h 6m</text>
-  <text x="114.0" y="365" text-anchor="middle" class="axis">Tue</text>
-  <text x="114.0" y="381" text-anchor="middle" class="muted">Oct 13</text>
-  <rect x="192.0" y="295.1" width="68.0" height="46.9" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="226.0" y="287.1" text-anchor="middle" class="bar-label">3h 37m</text>
-  <text x="226.0" y="365" text-anchor="middle" class="axis">Wed</text>
-  <text x="226.0" y="381" text-anchor="middle" class="muted">Oct 14</text>
-  <rect x="304.0" y="246.0" width="68.0" height="96.0" rx="5" fill="#58a6ff" opacity="1"/>
-  <text x="338.0" y="238.0" text-anchor="middle" class="bar-label">7h 25m</text>
-  <text x="338.0" y="365" text-anchor="middle" class="axis">Thu</text>
-  <text x="338.0" y="381" text-anchor="middle" class="muted">Oct 15</text>
-  <rect x="416.0" y="265.4" width="68.0" height="76.6" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="450.0" y="257.4" text-anchor="middle" class="bar-label">5h 55m</text>
-  <text x="450.0" y="365" text-anchor="middle" class="axis">Fri</text>
-  <text x="450.0" y="381" text-anchor="middle" class="muted">Oct 16</text>
-  <rect x="528.0" y="325.2" width="68.0" height="16.8" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="562.0" y="317.2" text-anchor="middle" class="bar-label">1h 18m</text>
-  <text x="562.0" y="365" text-anchor="middle" class="axis">Sat</text>
-  <text x="562.0" y="381" text-anchor="middle" class="muted">Oct 17</text>
+  <rect x="80.0" y="295.1" width="68.0" height="46.9" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="114.0" y="287.1" text-anchor="middle" class="bar-label">3h 37m</text>
+  <text x="114.0" y="365" text-anchor="middle" class="axis">Wed</text>
+  <text x="114.0" y="381" text-anchor="middle" class="muted">Oct 14</text>
+  <rect x="192.0" y="246.0" width="68.0" height="96.0" rx="5" fill="#58a6ff" opacity="1"/>
+  <text x="226.0" y="238.0" text-anchor="middle" class="bar-label">7h 25m</text>
+  <text x="226.0" y="365" text-anchor="middle" class="axis">Thu</text>
+  <text x="226.0" y="381" text-anchor="middle" class="muted">Oct 15</text>
+  <rect x="304.0" y="265.4" width="68.0" height="76.6" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="338.0" y="257.4" text-anchor="middle" class="bar-label">5h 55m</text>
+  <text x="338.0" y="365" text-anchor="middle" class="axis">Fri</text>
+  <text x="338.0" y="381" text-anchor="middle" class="muted">Oct 16</text>
+  <rect x="416.0" y="325.2" width="68.0" height="16.8" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="450.0" y="317.2" text-anchor="middle" class="bar-label">1h 18m</text>
+  <text x="450.0" y="365" text-anchor="middle" class="axis">Sat</text>
+  <text x="450.0" y="381" text-anchor="middle" class="muted">Oct 17</text>
+  <rect x="528.0" y="338.0" width="68.0" height="4.0" rx="5" fill="#58a6ff" opacity="0.72"/>
+  <text x="562.0" y="330.0" text-anchor="middle" class="bar-label">0m</text>
+  <text x="562.0" y="365" text-anchor="middle" class="axis">Sun</text>
+  <text x="562.0" y="381" text-anchor="middle" class="muted">Oct 18</text>
   <rect x="640.0" y="338.0" width="68.0" height="4.0" rx="5" fill="#58a6ff" opacity="0.72"/>
-  <text x="674.0" y="330.0" text-anchor="middle" class="bar-label">0m</text>
-  <text x="674.0" y="365" text-anchor="middle" class="axis">Sun</text>
-  <text x="674.0" y="381" text-anchor="middle" class="muted">Oct 18</text>
+  <text x="674.0" y="330.0" text-anchor="middle" class="bar-label">1m</text>
+  <text x="674.0" y="365" text-anchor="middle" class="axis">Mon</text>
+  <text x="674.0" y="381" text-anchor="middle" class="muted">Oct 19</text>
   <rect x="752.0" y="338.0" width="68.0" height="4.0" rx="5" fill="#58a6ff" opacity="0.72"/>
   <text x="786.0" y="330.0" text-anchor="middle" class="bar-label">0m</text>
-  <text x="786.0" y="365" text-anchor="middle" class="axis">Mon</text>
-  <text x="786.0" y="381" text-anchor="middle" class="muted">Oct 19</text>
+  <text x="786.0" y="365" text-anchor="middle" class="axis">Tue</text>
+  <text x="786.0" y="381" text-anchor="middle" class="muted">Oct 20</text>
   <rect x="28" y="406" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="46" y="434" class="section-title">Languages</text>
   <text x="46" y="458" class="label">JSON with Comments</text>
-  <text x="425" y="458" text-anchor="end" class="breakdown-value">31.5% · 6 hrs 44 mins</text>
+  <text x="425" y="458" text-anchor="end" class="breakdown-value">36.9% · 6 hrs 45 mins</text>
   <rect x="46" y="466" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="466" width="119.5" height="5" rx="2.5" fill="#a371f7"/>
+  <rect x="46" y="466" width="140.0" height="5" rx="2.5" fill="#a371f7"/>
   <text x="46" y="483" class="label">Markdown</text>
-  <text x="425" y="483" text-anchor="end" class="breakdown-value">27.3% · 5 hrs 51 mins</text>
+  <text x="425" y="483" text-anchor="end" class="breakdown-value">29.5% · 5 hrs 24 mins</text>
   <rect x="46" y="491" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="491" width="103.7" height="5" rx="2.5" fill="#a371f7"/>
+  <rect x="46" y="491" width="111.9" height="5" rx="2.5" fill="#a371f7"/>
   <text x="46" y="508" class="label">Other</text>
-  <text x="425" y="508" text-anchor="end" class="breakdown-value">24.1% · 5 hrs 9 mins</text>
+  <text x="425" y="508" text-anchor="end" class="breakdown-value">13.6% · 2 hrs 29 mins</text>
   <rect x="46" y="516" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="516" width="91.3" height="5" rx="2.5" fill="#a371f7"/>
+  <rect x="46" y="516" width="51.7" height="5" rx="2.5" fill="#a371f7"/>
   <text x="46" y="533" class="label">JSON</text>
-  <text x="425" y="533" text-anchor="end" class="breakdown-value">8.2% · 1 hr 44 mins</text>
+  <text x="425" y="533" text-anchor="end" class="breakdown-value">9.5% · 1 hr 44 mins</text>
   <rect x="46" y="541" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="541" width="31.0" height="5" rx="2.5" fill="#a371f7"/>
+  <rect x="46" y="541" width="36.2" height="5" rx="2.5" fill="#a371f7"/>
   <text x="46" y="558" class="label">Bash</text>
-  <text x="425" y="558" text-anchor="end" class="breakdown-value">4.3% · 55 mins</text>
+  <text x="425" y="558" text-anchor="end" class="breakdown-value">5.0% · 55 mins</text>
   <rect x="46" y="566" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="566" width="16.3" height="5" rx="2.5" fill="#a371f7"/>
+  <rect x="46" y="566" width="19.0" height="5" rx="2.5" fill="#a371f7"/>
   <rect x="457" y="406" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="475" y="434" class="section-title">Operating systems</text>
   <text x="475" y="458" class="label">Windows</text>
-  <text x="854" y="458" text-anchor="end" class="breakdown-value">88.2% · 18 hrs 52 mins</text>
+  <text x="854" y="458" text-anchor="end" class="breakdown-value">88.6% · 16 hrs 13 mins</text>
   <rect x="475" y="466" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="475" y="466" width="334.2" height="5" rx="2.5" fill="#3fb950"/>
+  <rect x="475" y="466" width="335.8" height="5" rx="2.5" fill="#3fb950"/>
   <text x="475" y="483" class="label">Linux</text>
-  <text x="854" y="483" text-anchor="end" class="breakdown-value">11.8% · 2 hrs 31 mins</text>
+  <text x="854" y="483" text-anchor="end" class="breakdown-value">11.4% · 2 hrs 5 mins</text>
   <rect x="475" y="491" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="475" y="491" width="44.8" height="5" rx="2.5" fill="#3fb950"/>
+  <rect x="475" y="491" width="43.2" height="5" rx="2.5" fill="#3fb950"/>
   <rect x="28" y="604" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="46" y="632" class="section-title">Editors</text>
   <text x="46" y="656" class="label">VS Code</text>
-  <text x="425" y="656" text-anchor="end" class="breakdown-value">59.5% · 12 hrs 43 mins</text>
+  <text x="425" y="656" text-anchor="end" class="breakdown-value">69.6% · 12 hrs 45 mins</text>
   <rect x="46" y="664" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="664" width="225.5" height="5" rx="2.5" fill="#d29922"/>
-  <text x="46" y="681" class="label">Codex Vscode</text>
-  <text x="425" y="681" text-anchor="end" class="breakdown-value">25.1% · 5 hrs 21 mins</text>
+  <rect x="46" y="664" width="263.9" height="5" rx="2.5" fill="#d29922"/>
+  <text x="46" y="681" class="label">Copilot CLI</text>
+  <text x="425" y="681" text-anchor="end" class="breakdown-value">15.5% · 2 hrs 50 mins</text>
   <rect x="46" y="689" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="689" width="95.0" height="5" rx="2.5" fill="#d29922"/>
-  <text x="46" y="706" class="label">Copilot CLI</text>
-  <text x="425" y="706" text-anchor="end" class="breakdown-value">15.5% · 3 hrs 18 mins</text>
+  <rect x="46" y="689" width="58.8" height="5" rx="2.5" fill="#d29922"/>
+  <text x="46" y="706" class="label">Codex Vscode</text>
+  <text x="425" y="706" text-anchor="end" class="breakdown-value">14.9% · 2 hrs 43 mins</text>
   <rect x="46" y="714" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="46" y="714" width="58.6" height="5" rx="2.5" fill="#d29922"/>
+  <rect x="46" y="714" width="56.3" height="5" rx="2.5" fill="#d29922"/>
   <rect x="457" y="604" width="415" height="182" rx="8"
     fill="#161b22" stroke="#30363d"/>
   <text x="475" y="632" class="section-title">WakaTime categories</text>
   <text x="475" y="656" class="label">AI Coding</text>
-  <text x="854" y="656" text-anchor="end" class="breakdown-value">55.0% · 11 hrs 46 mins</text>
+  <text x="854" y="656" text-anchor="end" class="breakdown-value">47.3% · 8 hrs 40 mins</text>
   <rect x="475" y="664" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="475" y="664" width="208.5" height="5" rx="2.5" fill="#f778ba"/>
+  <rect x="475" y="664" width="179.4" height="5" rx="2.5" fill="#f778ba"/>
   <text x="475" y="681" class="label">Coding</text>
-  <text x="854" y="681" text-anchor="end" class="breakdown-value">29.2% · 6 hrs 14 mins</text>
+  <text x="854" y="681" text-anchor="end" class="breakdown-value">34.2% · 6 hrs 15 mins</text>
   <rect x="475" y="689" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="475" y="689" width="110.6" height="5" rx="2.5" fill="#f778ba"/>
+  <rect x="475" y="689" width="129.5" height="5" rx="2.5" fill="#f778ba"/>
   <text x="475" y="706" class="label">Writing Docs</text>
-  <text x="854" y="706" text-anchor="end" class="breakdown-value">11.9% · 2 hrs 33 mins</text>
+  <text x="854" y="706" text-anchor="end" class="breakdown-value">14.0% · 2 hrs 33 mins</text>
   <rect x="475" y="714" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="475" y="714" width="45.2" height="5" rx="2.5" fill="#f778ba"/>
+  <rect x="475" y="714" width="52.9" height="5" rx="2.5" fill="#f778ba"/>
   <text x="475" y="731" class="label">Debugging</text>
-  <text x="854" y="731" text-anchor="end" class="breakdown-value">3.9% · 49 mins</text>
+  <text x="854" y="731" text-anchor="end" class="breakdown-value">4.5% · 49 mins</text>
   <rect x="475" y="739" width="379" height="5" rx="2.5" fill="#21262d"/>
-  <rect x="475" y="739" width="14.7" height="5" rx="2.5" fill="#f778ba"/>
+  <rect x="475" y="739" width="17.2" height="5" rx="2.5" fill="#f778ba"/>
   <text x="28" y="812" class="muted">WakaTime reports editor-tracked activity; it is not a productivity or skill score.</text>
   <text x="28" y="830" class="muted">Category names (including “AI Coding”) are WakaTime classifications, not authorship measures.</text>
 </svg>
