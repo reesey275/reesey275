@@ -138,42 +138,42 @@ public output.
 
 - **Time Zone:** America/New\_York
 - **Reporting Window:** 7 inclusive calendar dates (latest may be partial)
-- **Date Range:** 2026-10-14 - 2026-10-20
-- **Total Tracked:** 18 hrs 18 mins
-- **Daily Average:** 2 hrs 36 mins
-- **Best Day:** 2026-10-15 (7 hrs 25 mins)
+- **Date Range:** 2026-10-16 - 2026-10-22
+- **Total Tracked:** 16 hrs 34 mins
+- **Daily Average:** 2 hrs 22 mins
+- **Best Day:** 2026-10-16 (5 hrs 55 mins)
 
 ### Languages
 
-- JSON with Comments: 6 hrs 45 mins (36.94%)
-- Markdown: 5 hrs 24 mins (29.53%)
-- Other: 2 hrs 29 mins (13.63%)
-- JSON: 1 hr 44 mins (9.54%)
-- Bash: 55 mins (5.03%)
+- Markdown: 6 hrs 30 mins (39.22%)
+- Other: 3 hrs 59 mins (24.05%)
+- JSON with Comments: 2 hrs 49 mins (17.09%)
+- JSON: 1 hr 31 mins (9.15%)
+- HTML: 49 mins (5.02%)
 
 ### Editors
 
-- VS Code: 12 hrs 45 mins (69.62%)
-- Copilot CLI: 2 hrs 50 mins (15.53%)
-- Codex Vscode: 2 hrs 43 mins (14.85%)
+- VS Code: 8 hrs 43 mins (52.60%)
+- Codex Vscode: 5 hrs 54 mins (35.67%)
+- Copilot CLI: 1 hr 56 mins (11.73%)
 
 ### Operating Systems
 
-- Windows: 16 hrs 13 mins (88.61%)
-- Linux: 2 hrs 5 mins (11.39%)
+- Windows: 14 hrs 24 mins (86.94%)
+- Linux: 2 hrs 9 mins (13.06%)
 
 ### Categories
 
-- AI Coding: 8 hrs 40 mins (47.34%)
-- Coding: 6 hrs 15 mins (34.18%)
-- Writing Docs: 2 hrs 33 mins (13.95%)
-- Debugging: 49 mins (4.53%)
+- AI Coding: 10 hrs 46 mins (65.01%)
+- Coding: 3 hrs 32 mins (21.40%)
+- Writing Docs: 1 hr 25 mins (8.59%)
+- Debugging: 49 mins (5.01%)
 
 _Category names, including "AI Coding," are WakaTime classifications and do not measure authorship._
 
 </details>
 
-_Last successful refresh: 2026-10-21 00:14:21 UTC_
+_Last successful refresh: 2026-10-23 00:15:22 UTC_
 <!--END_SECTION:waka-->
 
 ## 🎯 Featured Projects
