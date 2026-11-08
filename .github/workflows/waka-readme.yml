@@ -31,20 +31,24 @@ jobs:
 
       - name: Fetch WakaTime stats and update dashboard
         env:
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_OAUTH_TOKEN: ${{ secrets.WAKATIME_OAUTH_TOKEN }}
           WAKATIME_TIMEZONE: ${{ vars.WAKATIME_TIMEZONE || 'America/New_York' }}
         run: |
           set -euo pipefail
 
-          AUTH="$(printf '%s' "$WAKATIME_API_KEY" | base64 | tr -d '\n')"
+          OAUTH_TOKEN="${WAKATIME_OAUTH_TOKEN:-}"
+          export -n OAUTH_TOKEN
+          unset WAKATIME_OAUTH_TOKEN
+          umask 077
           END_DATE="$(TZ="$WAKATIME_TIMEZONE" date +%Y-%m-%d)"
           START_DATE="$(TZ="$WAKATIME_TIMEZONE" date -d "$END_DATE - 6 days" +%Y-%m-%d)"
           SUMMARIES_FILE="$(mktemp -t waka_summaries.XXXXXX.json)"
           README_CANDIDATE="$(mktemp -t waka_readme.XXXXXX.md)"
           SVG_CANDIDATE="$(mktemp -t waka_dashboard.XXXXXX.svg)"
 
+          AUTH_FILE=""
           cleanup() {
-            rm -f "$SUMMARIES_FILE" "$README_CANDIDATE" "$SVG_CANDIDATE"
+            rm -f "$SUMMARIES_FILE" "$README_CANDIDATE" "$SVG_CANDIDATE" "$AUTH_FILE"
           }
           trap cleanup EXIT
 
@@ -52,28 +56,71 @@ jobs:
           cp README.md "$README_CANDIDATE"
           echo "Fetching seven calendar dates from $START_DATE to $END_DATE in $WAKATIME_TIMEZONE"
 
-          if curl -fsS -G \
-              --retry 2 \
-              --retry-all-errors \
-              --connect-timeout 15 \
-              --max-time 60 \
-              -H "Authorization: Basic $AUTH" \
-              --data-urlencode "start=$START_DATE" \
-              --data-urlencode "end=$END_DATE" \
-              --data-urlencode "timezone=$WAKATIME_TIMEZONE" \
-              -o "$SUMMARIES_FILE" \
-              "https://api.wakatime.com/api/v1/users/current/summaries" && \
-            python3 scripts/generate_waka_dashboard.py \
-              --input "$SUMMARIES_FILE" \
-              --svg-output "$SVG_CANDIDATE" \
-              --readme "$README_CANDIDATE" \
-              --expected-start "$START_DATE" \
-              --expected-end "$END_DATE"; then
-            mv "$SVG_CANDIDATE" profile/wakatime-dashboard.svg
-            mv "$README_CANDIDATE" README.md
-            WAKA_REFRESHED=true
-          else
-            echo "::warning title=WakaTime refresh skipped::Keeping the last successful dashboard and README details."
+          OUTCOME="missing OAuth token"
+          HTTP_STATUS="000"
+          if [[ -n "$OAUTH_TOKEN" ]]; then
+            if [[ "$OAUTH_TOKEN" =~ [[:space:][:cntrl:]] ]]; then
+              OUTCOME="invalid OAuth token format"
+            else
+              AUTH_FILE="$(mktemp -t waka_auth.XXXXXX)"
+              printf 'Authorization: Bearer %s\n' "$OAUTH_TOKEN" > "$AUTH_FILE"
+              # Keep credentials out of process arguments and child environments.
+              unset OAUTH_TOKEN
+              CURL_STATUS=0
+              HTTP_STATUS="$(curl --disable --silent --get \
+                --proto '=https' \
+                --retry 2 \
+                --retry-max-time 180 \
+                --connect-timeout 15 \
+                --max-time 60 \
+                --max-filesize 10485760 \
+                --header "@$AUTH_FILE" \
+                --data-urlencode "start=$START_DATE" \
+                --data-urlencode "end=$END_DATE" \
+                --data-urlencode "timezone=$WAKATIME_TIMEZONE" \
+                --output "$SUMMARIES_FILE" \
+                --write-out '%{http_code}' \
+                "https://api.wakatime.com/api/v1/users/current/summaries" \
+                2>/dev/null)" || CURL_STATUS=$?
+              rm -f "$AUTH_FILE"
+              AUTH_FILE=""
+              if [[ "$CURL_STATUS" -ne 0 ]]; then
+                OUTCOME="network or transfer failure"
+              elif [[ "$HTTP_STATUS" == "200" ]]; then
+                # Do not print provider payloads or renderer exceptions into public logs.
+                if python3 scripts/generate_waka_dashboard.py \
+                    --input "$SUMMARIES_FILE" \
+                    --svg-output "$SVG_CANDIDATE" \
+                    --readme "$README_CANDIDATE" \
+                    --expected-start "$START_DATE" \
+                    --expected-end "$END_DATE" >/dev/null 2>&1 && \
+                  python3 scripts/generate_waka_dashboard.py \
+                    --validate-svg "$SVG_CANDIDATE" >/dev/null 2>&1; then
+                  mv "$SVG_CANDIDATE" profile/wakatime-dashboard.svg
+                  mv "$README_CANDIDATE" README.md
+                  WAKA_REFRESHED=true
+                  OUTCOME="refreshed"
+                else
+                  OUTCOME="response or renderer validation failed"
+                fi
+              else
+                case "$HTTP_STATUS" in
+                  401) OUTCOME="authentication rejected (HTTP 401)" ;;
+                  403) OUTCOME="access denied (HTTP 403); check OAuth type and scopes" ;;
+                  429) OUTCOME="rate limited (HTTP 429)" ;;
+                  5??) OUTCOME="provider unavailable (HTTP 5xx)" ;;
+                  *) OUTCOME="unexpected HTTP response" ;;
+                esac
+              fi
+            fi
+          fi
+          unset OAUTH_TOKEN
+          if [[ "$WAKA_REFRESHED" != "true" ]]; then
+            echo "::warning title=WakaTime refresh skipped::Keeping the last successful dashboard and README details. Reason: $OUTCOME."
+          fi
+          if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+            printf 'WakaTime: %s. Last-good snapshot is retained unless refreshed.\n' \
+              "$OUTCOME" >> "$GITHUB_STEP_SUMMARY"
           fi
           echo "WAKA_REFRESHED=$WAKA_REFRESHED" >> "$GITHUB_ENV"
 

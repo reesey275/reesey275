@@ -1,5 +1,75 @@
 # WakaTime Auto-Merge Workflow Guide
 
+## OAuth migration: authentication handoff
+
+Prepared 2026-11-08. This section supersedes older claims below that a green
+workflow proves the WakaTime dashboard refreshed. The legacy guide describes
+GitHub PR automation, not current WakaTime authorization.
+
+WakaTime read requests now require an OAuth token. The workflow reads
+`WAKATIME_OAUTH_TOKEN` from repository Actions secrets and sends it as a Bearer
+header. `WAKA_PAT` is the separate GitHub credential and remains unchanged.
+The editor/plugin API key must not be rotated for this migration.
+
+Official references: [authentication](https://wakatime.com/developers#authentication)
+and [personal OAuth tokens](https://wakatime.com/oauth).
+
+### Owner authentication steps
+
+1. Open the personal OAuth page and sign in to WakaTime yourself.
+2. Inspect the permissions offered before authorizing. Prefer summary access
+   limited to categories, editors, languages, and operating systems if the
+   interface supports those granular scopes. Do not assume that it does.
+3. If only broader summary access is offered, review that scope before accepting;
+   it can include private project and machine summaries. No write, heartbeat,
+   email, or organization scope is needed for this dashboard.
+4. Record the actual token expiry shown by the service. Do not copy the token
+   into chat, source code, logs, screenshots, or issue/PR text.
+5. In this repository, open Settings, Secrets and variables, Actions. Create a
+   repository secret named `WAKATIME_OAUTH_TOKEN` using the OAuth access token.
+   This authorizes trusted GitHub Actions code to read the permitted WakaTime
+   data. Leave `WAKA_PAT` and the old `WAKATIME_API_KEY` unchanged.
+
+The authenticated OAuth interface has not been inspected during preparation.
+Button labels after login, available scope controls, and token expiry must be
+verified there. Creating the grant and installing the credential require the
+owner's explicit authorization; these are not part of offline testing.
+
+### Verification and publication gates
+
+Run the Python regression suite and all Quality Gate checks before review.
+Tests use fake credentials and a fake transport; they do not contact WakaTime.
+Use a normal fix branch, not the generated `waka-readme` branch. Humans alone
+resolve review threads. Obtain authorization before publishing or merging.
+
+A manual `waka-readme.yml` run is a production operation: it checks out `main`,
+updates files, pushes a branch, creates a PR, and requests auto-merge. It is not
+a read-only test or a safe way to test feature-branch scripts. A nonpublishing
+smoke test must run only the reviewed fetch/render step in an isolated checkout,
+with authorized credential access and no git push or PR commands.
+
+After approved deployment, verify the exact run SHA, `WAKA_REFRESHED=true`,
+seven expected dates, a new last-success timestamp, public-output privacy,
+required checks, and the final merged artifact. A green run alone is not proof.
+
+### Failure and rollback
+
+Missing or malformed credentials, HTTP errors, transfer failures, and invalid
+responses preserve the previous dashboard and README timestamp. The step summary
+reports a fixed safe category, never the provider body or credentials. A 403
+means denied access; it does not prove expiry. Required summary fields must be
+present, while empty arrays remain valid for zero activity.
+
+The workflow keeps the existing graceful fallback and can still refresh GitHub
+cards. It bounds retries/time/body size, does not follow redirects, and removes
+private temporary files. It never sends the OAuth value as a URL parameter or
+process argument. The generated public files omit project and machine details.
+
+Revert defective code through the ordinary reviewed PR route. Reverting to an
+API key does not restore supported read access. Retain the last valid snapshot.
+If a token is compromised, the owner must revoke that specific grant and replace
+its secret through a secure flow. Do not alter editor keys or the GitHub PAT.
+
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Known Limitations](#wakatime-free-tier-limitations)
