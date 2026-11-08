@@ -445,6 +445,11 @@ for offset in range(7):
                  "machines": [{"name": "PRIVATE_MACHINE_SENTINEL"}]})
 if mode == "missing":
     del rows[0]["languages"]
+if mode == "missing_total":
+    del rows[0]["grand_total"]["total_seconds"]
+if mode == "zero_total":
+    for row in rows:
+        row["grand_total"]["total_seconds"] = 0
 if mode == "dates":
     rows[0]["range"]["date"] = rows[1]["range"]["date"]
 payload = json.dumps({"data": rows})
@@ -488,6 +493,9 @@ print(os.environ["FAKE_STATUS"], end="")
             card = (root / "profile/wakatime-dashboard.svg").read_text()
             refreshed = (root / "environment").read_text() == "WAKA_REFRESHED=true\n"
             if not refreshed:
+                self.assertEqual(
+                    (root / "environment").read_text(), "WAKA_REFRESHED=false\n"
+                )
                 self.assertEqual(readme, before)
                 self.assertEqual(card, "<svg>old</svg>\n")
             return refreshed, (root / "called").exists(), summary, readme + card
@@ -521,6 +529,20 @@ print(os.environ["FAKE_STATUS"], end="")
             with self.subTest(mode=mode):
                 refreshed, _, _, _ = self.run_workflow(mode=mode)
                 self.assertFalse(refreshed)
+
+    def test_missing_daily_total_preserves_snapshot_and_reports_false(self):
+        refreshed, called, summary, _ = self.run_workflow(mode="missing_total")
+        self.assertFalse(refreshed)
+        self.assertTrue(called)
+        self.assertIn("response or renderer validation failed", summary)
+        # run_workflow also asserts exact false output and unchanged README/SVG.
+
+    def test_explicit_zero_daily_totals_remain_valid(self):
+        refreshed, called, summary, output = self.run_workflow(mode="zero_total")
+        self.assertTrue(refreshed)
+        self.assertTrue(called)
+        self.assertIn("WakaTime: refreshed.", summary)
+        self.assertIn("**Total Tracked:** 0 mins", output)
 
     def test_authentication_does_not_change_schedule_or_github_pat(self):
         workflow = (REPOSITORY_ROOT / ".github/workflows/waka-readme.yml").read_text()
