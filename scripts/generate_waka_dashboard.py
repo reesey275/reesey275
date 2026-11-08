@@ -223,6 +223,13 @@ def dashboard_from_summaries(payload: dict[str, Any]) -> DashboardData:
     if not all(isinstance(day, dict) for day in raw_days):
         raise DashboardDataError("Every WakaTime summary day must be an object")
 
+    for index, day in enumerate(raw_days):
+        for field in ("categories", "editors", "languages", "operating_systems"):
+            if field not in day:
+                raise DashboardDataError(
+                    f"data[{index}] is missing required summary field {field}"
+                )
+
     days = list(raw_days)
     daily: list[Day] = []
     timezone = "UTC"
@@ -231,6 +238,8 @@ def dashboard_from_summaries(payload: dict[str, Any]) -> DashboardData:
         grand_total = day.get("grand_total")
         if not isinstance(day_range, dict) or not isinstance(grand_total, dict):
             raise DashboardDataError(f"data[{index}] is missing range or grand_total")
+        if "total_seconds" not in grand_total:
+            raise DashboardDataError(f"data[{index}] is missing daily total")
         date = parse_date(day_range.get("date"), f"data[{index}].range.date")
         seconds = safe_number(
             grand_total.get("total_seconds", 0),

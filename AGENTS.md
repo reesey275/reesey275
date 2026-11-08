@@ -313,3 +313,11 @@ jobs:
     runs-on: ubuntu-latest
     steps: [security steps]
 ```
+
+## WakaTime OAuth authentication
+
+WakaTime reads use the `WAKATIME_OAUTH_TOKEN` Actions secret, distinct from
+GitHub `WAKA_PAT`. Do not rotate editor/plugin keys for read authentication.
+See the OAuth migration section of `.github/WAKA_AUTO_MERGE_GUIDE.md`.
+Manual WakaTime workflow dispatch publishes generated changes and requests
+auto-merge; it is not a read-only test. Use offline regressions first.

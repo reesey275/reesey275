@@ -321,3 +321,11 @@ handoff. Explicit strict mode blocks every unresolved thread before merge.
 **Status**: Operational
 **Workflows**: quality.yml (consolidated), waka-readme.yml (auto-merge)
 **Emergency Contact**: `.github/WAKA_AUTO_MERGE_GUIDE.md` for WakaTime issues
+
+## WakaTime OAuth authentication
+
+WakaTime reads use the `WAKATIME_OAUTH_TOKEN` Actions secret, distinct from
+GitHub `WAKA_PAT`. Do not rotate editor/plugin keys for read authentication.
+See the OAuth migration section of `.github/WAKA_AUTO_MERGE_GUIDE.md`.
+Manual WakaTime workflow dispatch publishes generated changes and requests
+auto-merge; it is not a read-only test. Use offline regressions first.
