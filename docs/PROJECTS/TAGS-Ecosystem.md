@@ -31,6 +31,27 @@ output, or third-party component.
 - [core-instructions](core-instructions.md) — private documentation project
   represented by a public-safe overview
 
+## Reusable CI and Documentation Evidence
+
+The public workflow source provides concrete examples of TAGS engineering work:
+
+- [CI Lite][ci-lite-source] defines a reusable Python/Node.js validation
+  workflow with configurable runtime versions and lint/test steps.
+- [Documentation Governance][docs-source] implements Markdown linting and
+  optional prose/link checks. Its Vale and broken-link findings are advisory,
+  so this is not evidence that every documentation issue blocks delivery.
+- [Public Runner Guard][runner-source] scans workflow files for specified
+  self-hosted runner references. This is a source-level check, not proof of
+  complete runner isolation or organization-wide enforcement.
+
+These links identify implementations at a fixed source revision. Their
+presence does not establish adoption by every TAGS repository, a successful
+deployment, or a measured operational outcome.
+
+[ci-lite-source]: https://github.com/theangrygamershowproductions/tags-workflows/blob/3197cf33a6029c71bf6936b8e4c26fe33ec52093/.github/workflows/ci-lite.yml
+[docs-source]: https://github.com/theangrygamershowproductions/tags-workflows/blob/3197cf33a6029c71bf6936b8e4c26fe33ec52093/.github/workflows/docs-governance.yml
+[runner-source]: https://github.com/theangrygamershowproductions/tags-workflows/blob/3197cf33a6029c71bf6936b8e4c26fe33ec52093/.github/workflows/runner-guard-public.yml
+
 ## Demonstrated Capability Classification
 
 TypeScript is a demonstrated current capability based on owner-confirmed

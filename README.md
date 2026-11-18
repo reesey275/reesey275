@@ -32,7 +32,9 @@ Angry Gamer Show Productions, LLC.
 
 **Operating model:** Founder and CEO; AI-assisted solo human operator during
 the current build phase. Delivered work is distinguished from plans and
-experiments in the project overview.
+experiments in the project overview. See the
+[reusable CI and documentation implementations](docs/PROJECTS/TAGS-Ecosystem.md#reusable-ci-and-documentation-evidence)
+for concrete public examples.
 
 ---
 
