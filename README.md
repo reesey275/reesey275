@@ -1,6 +1,7 @@
 # Chad Reesey | reesey275 | Mr. Potato
 
-Platform & Infrastructure Engineering | DevSecOps | Systems Automation
+> [!NOTE]
+> Platform & Infrastructure Engineering | DevSecOps | Systems Automation
 
 ## Professional Summary
 
