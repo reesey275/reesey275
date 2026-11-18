@@ -12,35 +12,46 @@ This document records a governance breach on the `reesey275/reesey275` profile r
 
 ## Signals Observed
 
-The following GitHub Actions runs concluded with `failure` on `main`:
+The original report recorded the following GitHub Actions runs as concluding
+with `failure` on `main`.
+
+**Evidence availability — November 18, 2026:** All nine original run URLs
+returned HTTP 404 during the link audit. Their run IDs and recorded head
+commits are retained below; the reason the runs are unavailable is unknown.
+The replacement commit links were verified through the GitHub API. They
+identify the associated changes, but do not independently establish the
+historical workflow results or recover the unavailable logs.
+
+The incident findings, remediation plan, and protection snapshot below describe
+the December 2025 report, not current repository settings.
 
 - docs-quality — DOCS(profile): add 2025-12 profile lock artifacts
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392262276
-  - Head SHA: `eb059b8fb329dfc280ad1817db9b5066b6e31647`
+  - Run ID: `20392262276` (unavailable; HTTP 404)
+  - Head commit: [eb059b8](https://github.com/reesey275/reesey275/commit/eb059b8fb329dfc280ad1817db9b5066b6e31647)
 - Lint — DOCS(profile): add 2025-12 profile lock artifacts
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392262269
-  - Head SHA: `eb059b8fb329dfc280ad1817db9b5066b6e31647`
+  - Run ID: `20392262269` (unavailable; HTTP 404)
+  - Head commit: [eb059b8](https://github.com/reesey275/reesey275/commit/eb059b8fb329dfc280ad1817db9b5066b6e31647)
 - Lint — DOCS(profile): minimalist polish (badges + optional header)
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392225668
-  - Head SHA: `f7a9ddc2db8a42c3542dba5a30292a298a84954c`
+  - Run ID: `20392225668` (unavailable; HTTP 404)
+  - Head commit: [f7a9ddc](https://github.com/reesey275/reesey275/commit/f7a9ddc2db8a42c3542dba5a30292a298a84954c)
 - docs-quality — DOCS(profile): minimalist polish (badges + optional header)
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392225655
-  - Head SHA: `f7a9ddc2db8a42c3542dba5a30292a298a84954c`
+  - Run ID: `20392225655` (unavailable; HTTP 404)
+  - Head commit: [f7a9ddc](https://github.com/reesey275/reesey275/commit/f7a9ddc2db8a42c3542dba5a30292a298a84954c)
 - Lint — DOCS(profile): unify voice to first-person and structure project sections
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392190266
-  - Head SHA: `903dca9c2d40c25b55390a77b0b2a1c33c9467f8`
+  - Run ID: `20392190266` (unavailable; HTTP 404)
+  - Head commit: [903dca9](https://github.com/reesey275/reesey275/commit/903dca9c2d40c25b55390a77b0b2a1c33c9467f8)
 - docs-quality — DOCS(profile): unify voice to first-person and structure project sections
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392190262
-  - Head SHA: `903dca9c2d40c25b55390a77b0b2a1c33c9467f8`
+  - Run ID: `20392190262` (unavailable; HTTP 404)
+  - Head commit: [903dca9](https://github.com/reesey275/reesey275/commit/903dca9c2d40c25b55390a77b0b2a1c33c9467f8)
 - docs-quality — DOCS(profile): unify project blurbs to tight one-liners
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392165598
-  - Head SHA: `1fb5c65adbd6a21572bf24b123e1be57d57b27a8`
+  - Run ID: `20392165598` (unavailable; HTTP 404)
+  - Head commit: [1fb5c65](https://github.com/reesey275/reesey275/commit/1fb5c65adbd6a21572bf24b123e1be57d57b27a8)
 - Lint — DOCS(profile): unify project blurbs to tight one-liners
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392165595
-  - Head SHA: `1fb5c65adbd6a21572bf24b123e1be57d57b27a8`
+  - Run ID: `20392165595` (unavailable; HTTP 404)
+  - Head commit: [1fb5c65](https://github.com/reesey275/reesey275/commit/1fb5c65adbd6a21572bf24b123e1be57d57b27a8)
 - docs-quality — DOCS(profile): standardize Shell (POSIX/Bash) and add Education & Certifications
-  - Run: https://github.com/reesey275/reesey275/actions/runs/20392136162
-  - Head SHA: `1025d01a8ae8a753e09fa09fa6c02c4cd80b947e`
+  - Run ID: `20392136162` (unavailable; HTTP 404)
+  - Head commit: [1025d01](https://github.com/reesey275/reesey275/commit/1025d01a8ae8a753e09fa09fa6c02c4cd80b947e)
 
 ## Root Cause
 
