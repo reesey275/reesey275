@@ -370,10 +370,10 @@ Bare repository: https://github.com/example/second-repo.
                 "AI-assisted solo human operator\n"
                 "reesey.chad@outlook.com\n"
                 "Space Coast, Florida, United States\n"
-                "## Demonstrated Capabilities\n"
+                "## Engineering Capabilities & Experience\n"
                 "JavaScript and Node.js\n"
                 "API Development\n"
-                "Java — Current Learning\n"
+                "Java — Developing Proficiency\n"
                 "Documentation, Validation, and Engineering Governance\n",
                 encoding="utf-8",
             )
@@ -466,16 +466,27 @@ Bare repository: https://github.com/example/second-repo.
     def test_current_badge_wall_matches_approved_taxonomy(self) -> None:
         readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
         capability_section = readme.split(
-            "## Demonstrated Capabilities",
+            "## Engineering Capabilities & Experience",
             maxsplit=1,
         )[1].split("[github-stats]:", maxsplit=1)[0]
-        demonstrated, learning = capability_section.split(
-            "### Current Learning",
+        demonstrated, supporting = capability_section.split(
+            "### Professional & Historical Systems Experience",
             maxsplit=1,
         )
 
         self.assertEqual(demonstrated.count("[!["), 11)
-        self.assertEqual(learning.count("[!["), 1)
+        historical, learning = supporting.split(
+            "### Earned Credentials & Continuing Development", maxsplit=1,
+        )
+        self.assertIn("not a claim of current daily use", historical)
+        self.assertEqual(learning.count("[!["), 2)
+        self.assertIn("AWS Certified Cloud Practitioner — Certified", learning)
+        self.assertIn("separate from production", learning)
+        self.assertIn("coursework does not imply production Java experience", learning)
+        self.assertLess(
+            demonstrated.index("#### Systems & Infrastructure"),
+            demonstrated.index("#### Software & APIs"),
+        )
         for approved_label in (
             "Python",
             "JavaScript and Node.js",
@@ -488,7 +499,7 @@ Bare repository: https://github.com/example/second-repo.
             "Windows Administration",
             "Linux Administration",
             "Documentation, Validation, and Engineering Governance",
-            "Java — Current Learning",
+            "Java — Developing Proficiency",
         ):
             self.assertIn(f"[![{approved_label}]", capability_section)
 

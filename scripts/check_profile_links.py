@@ -35,10 +35,10 @@ REQUIRED_PROFILE_SNIPPETS: Mapping[str, tuple[str, ...]] = {
         "AI-assisted solo human operator",
         "reesey.chad@outlook.com",
         "Space Coast, Florida, United States",
-        "## Demonstrated Capabilities",
+        "## Engineering Capabilities & Experience",
         "JavaScript and Node.js",
         "API Development",
-        "Java — Current Learning",
+        "Java — Developing Proficiency",
         "Documentation, Validation, and Engineering Governance",
     ),
     "resume/resume.md": (
