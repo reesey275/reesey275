@@ -78,35 +78,73 @@ is available when cloud services are not desired.
 - [core-instructions](docs/PROJECTS/core-instructions.md) _(private repository)_ — documentation project for engineering
   policies, review processes, security guidance, and agent instructions.
 
-## Demonstrated Capabilities
+## Engineering Capabilities & Experience
+
+Current evidence, professional experience, and qualifications are distinguished
+below. A dependency or optional service does not establish a capability by itself.
+
+### Demonstrated Current Capabilities
 
 These badges identify current capabilities supported by public work or
-owner-confirmed professional responsibility. A dependency or optional service
-does not establish a capability by itself.
+owner-confirmed professional responsibility.
 
-### Software and API Development
+#### Systems & Infrastructure
+
+[![Windows Administration][windows-badge]][windows-evidence]
+[![Linux Administration][linux-badge]][linux-evidence]
+[![Docker and Compose][docker-compose-badge]][docker-evidence]
+
+#### Automation & Engineering Governance
+
+[![PowerShell][powershell-badge]][powershell-evidence]
+[![Shell and Bash][bash-badge]][shell-evidence]
+[![GitHub Actions and CI Governance][ci-governance-badge]][ci-evidence]
+[![Documentation, Validation, and Engineering Governance][governance-badge]][governance-evidence]
+
+#### Software & APIs
 
 [![Python][python-badge]][python-evidence]
 [![JavaScript and Node.js][js-node-badge]][js-node-evidence]
 [![TypeScript][ts-badge]][typescript-evidence]
 [![API Development][api-badge]][api-evidence]
 
-### Automation and Delivery
+[Explore projects and supporting evidence](docs/PROJECTS/TAGS-Ecosystem.md).
 
-[![Shell and Bash][bash-badge]][shell-evidence]
-[![PowerShell][powershell-badge]][powershell-evidence]
-[![Docker and Compose][docker-compose-badge]][docker-evidence]
-[![GitHub Actions and CI Governance][ci-governance-badge]][ci-evidence]
+### Professional & Historical Systems Experience
 
-### Systems and Engineering Governance
+Experience across professional roles; not a claim of current daily use.
+These technologies are not additional demonstrated-current capability badges.
 
-[![Windows Administration][windows-badge]][windows-evidence]
-[![Linux Administration][linux-badge]][linux-evidence]
-[![Documentation, Validation, and Engineering Governance][governance-badge]][governance-evidence]
+| Area | Professional and historical experience |
+| --- | --- |
+| Enterprise Systems | [![Windows Server](https://img.shields.io/badge/Windows%20Server-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) [![Active Directory](https://img.shields.io/badge/Active%20Directory-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) [![SCCM](https://img.shields.io/badge/SCCM-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) [![Exchange](https://img.shields.io/badge/Exchange-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) [![SharePoint](https://img.shields.io/badge/SharePoint-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) [![Microsoft 365](https://img.shields.io/badge/Microsoft%20365-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) |
+| Virtualization | [![Hyper-V](https://img.shields.io/badge/Hyper--V-484f58?style=flat)](docs/STACK_HISTORY.md#virtualization) [![VMware](https://img.shields.io/badge/VMware-484f58?style=flat)](docs/STACK_HISTORY.md#virtualization) [![Citrix XenServer](https://img.shields.io/badge/Citrix%20XenServer-484f58?style=flat)](docs/STACK_HISTORY.md#virtualization) [![VirtualBox](https://img.shields.io/badge/VirtualBox-484f58?style=flat)](docs/STACK_HISTORY.md#virtualization) |
+| Networking & Endpoint Operations | [![LAN / WAN / WLAN](https://img.shields.io/badge/LAN%20%2F%20WAN%20%2F%20WLAN-484f58?style=flat)](docs/STACK_HISTORY.md#network-and-telephony-support) [![DNS / DHCP / TCP/IP](https://img.shields.io/badge/DNS%20%2F%20DHCP%20%2F%20TCP%2FIP-484f58?style=flat)](docs/STACK_HISTORY.md#network-and-telephony-support) [![Deployment](https://img.shields.io/badge/Deployment-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) [![Patching & Support](https://img.shields.io/badge/Patching%20%26%20Support-484f58?style=flat)](docs/STACK_HISTORY.md#microsoft-enterprise-and-endpoint-operations) |
+| Identity & Access | [![Account Administration](https://img.shields.io/badge/Account%20Administration-484f58?style=flat)](docs/STACK_HISTORY.md#identity-access-and-security-procedures) [![Access Controls](https://img.shields.io/badge/Access%20Controls-484f58?style=flat)](docs/STACK_HISTORY.md#identity-access-and-security-procedures) [![Secrets Handling](https://img.shields.io/badge/Secrets%20Handling-484f58?style=flat)](docs/STACK_HISTORY.md#identity-access-and-security-procedures) |
 
-### Current Learning
+[Professional history & responsibilities](resume/resume.md#professional-and-historical-systems-experience) ·
+[Technology exposure & classifications](docs/STACK_HISTORY.md)
 
-[![Java — Current Learning][java-badge]][java-evidence]
+### Earned Credentials & Continuing Development
+
+[![AWS Certified Cloud Practitioner — Certified][aws-badge]][aws-evidence]
+
+Issued November 17, 2026. Foundational cloud knowledge; separate from production
+AWS experience. [Credential details](resume/resume.md#earned-certifications).
+
+[![Java — Developing Proficiency][java-badge]][java-evidence]
+
+Completed WGU Java Fundamentals (D286) and Java Frameworks (D287).
+Java remains current learning; coursework does not imply production Java experience.
+
+- **WGU B.S. Software Engineering** — currently enrolled; also completed
+  Hardware and Operating Systems Essentials (D386).
+- **WGU Front-End Developer micro-credential** — awarded April 15, 2026.
+
+See [certification and coursework details](resume/resume.md#education-and-recognition)
+for completion dates, earned CUs, pending D282 credit, and leadership
+recognition; [professional development](resume/resume.md#professional-development)
+covers additional training.
 
 [python-badge]: https://img.shields.io/badge/Python-Demonstrated-3776AB?logo=python&style=flat
 [python-evidence]: https://github.com/reesey275/squirrelfocus
@@ -130,26 +168,13 @@ does not establish a capability by itself.
 [linux-evidence]: docs/STACK_HISTORY.md#operating-systems
 [governance-badge]: https://img.shields.io/badge/Documentation%20%7C%20Validation-Engineering%20Governance-334155?style=flat
 [governance-evidence]: https://github.com/theangrygamershowproductions/tags-workflows
-[java-badge]: https://img.shields.io/badge/Java-Current%20Learning-ED8B00?logo=openjdk&style=flat
+[aws-badge]: https://img.shields.io/badge/AWS%20Certified%20Cloud%20Practitioner-Certified-b78103?style=flat
+[aws-evidence]: resume/resume.md#earned-certifications
+[java-badge]: https://img.shields.io/badge/Java-Developing%20Proficiency-ED8B00?logo=openjdk&style=flat
 [java-evidence]: resume/resume.md#western-governors-university
 [github-stats]: ./profile/github-stats.svg
 [top-languages]: ./profile/top-languages.svg
 [profile]: https://github.com/reesey275
-
-## 🎓 Certifications and Education
-
-- **AWS Certified Cloud Practitioner (CLF-C02)** — issued November 17, 2026.
-  Cloud foundational knowledge; not a claim of production AWS experience.
-  [Credential details](resume/resume.md#earned-certifications).
-- **WGU B.S. Software Engineering** — currently enrolled; completed Java
-  Fundamentals (D286), Java Frameworks (D287), and Hardware and Operating
-  Systems Essentials (D386). Java proficiency remains developing.
-- **WGU Front-End Developer micro-credential** — awarded April 15, 2026.
-
-See [education and recognition](resume/resume.md#education-and-recognition)
-for completion dates, earned CUs, pending D282 credit, and leadership
-recognition; [professional development](resume/resume.md#professional-development)
-covers additional training.
 
 ## Supporting Project and Systems Exposure
 
