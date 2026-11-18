@@ -120,6 +120,13 @@ tool.
 
 ### Cloud and Infrastructure
 
+**AWS Certified Cloud Practitioner (CLF-C02):** cloud foundational knowledge,
+separate from hands-on deployment and operations experience.
+See [credential details](../resume/resume.md#earned-certifications).
+
+The historical/foundational platform exposure below is not established by the
+certification and does not imply current production AWS responsibility.
+
 - Amazon EC2
 - Azure
 - DigitalOcean
@@ -178,7 +185,9 @@ tool.
 
 ## Current Learning
 
-- Java
+- **Java — developing proficiency:** completed WGU Java Fundamentals (D286)
+  and Java Frameworks (D287). Formal coursework is not a claim of production
+  Java experience. See [coursework details](../resume/resume.md#western-governors-university).
 
 **Current-use summary:** Regular or recent work includes Python, JavaScript and
 Node.js, TypeScript, API development, Shell and PowerShell automation, Docker
