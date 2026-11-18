@@ -120,6 +120,13 @@ tool.
 
 ### Cloud and Infrastructure
 
+**Earned credential:** AWS Certified Cloud Practitioner (CLF-C02), issued
+November 17, 2026; expires November 17, 2029. This records cloud foundational
+knowledge separately from hands-on deployment and operations experience.
+
+The historical/foundational platform exposure below is not established by the
+certification and does not imply current production AWS responsibility.
+
 - Amazon EC2
 - Azure
 - DigitalOcean
@@ -178,7 +185,15 @@ tool.
 
 ## Current Learning
 
-- Java
+- **Java — developing proficiency:** completed WGU Java Fundamentals (D286)
+  on August 19, 2026, and Java Frameworks (D287) on September 15, 2026.
+  Formal coursework is not a claim of production Java experience.
+- **Academic context:** WGU B.S. Software Engineering degree plan shows
+  82 / 119 CUs earned in November 2026. Hardware and Operating Systems
+  Essentials (D386) was completed November 10, 2026. As of November 18, 2026,
+  Cloud Foundations (D282, 3 CUs) remains pending academic posting after
+  submission of the AWS certification result; those CUs are not counted as
+  earned.
 
 **Current-use summary:** Regular or recent work includes Python, JavaScript and
 Node.js, TypeScript, API development, Shell and PowerShell automation, Docker

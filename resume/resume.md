@@ -1,4 +1,4 @@
-# Chad Reesey | IT and Systems Professional
+# Chad Reesey | Platform & Infrastructure Engineering
 
 - **Location:** Space Coast, Florida, United States
 - **Email:** [reesey.chad@outlook.com](mailto:reesey.chad@outlook.com)
@@ -9,7 +9,8 @@
 
 ## Professional Summary
 
-IT and systems professional with more than 25 years of hands-on computing and
+Focus: platform and infrastructure engineering, DevSecOps, and systems
+automation. More than 25 years of hands-on computing and
 infrastructure experience. Professional systems-administration, automation,
 and software-development experience beginning in 2007, including Windows
 scripting, SharePoint portal development, systems integration, and multi-site
@@ -87,7 +88,9 @@ SDK integration; React, Vite, Tailwind CSS, and shadcn/ui; Traefik, Cloudflare
 Tunnel, and TrueNAS SCALE; PostgreSQL and SQLite; identity and access patterns;
 virtualization; and infrastructure operations.
 
-Java is current learning. Terraform is historical/foundational exposure.
+Java remains current learning and developing proficiency following completed
+formal coursework; no production Java experience is implied.
+Terraform is historical/foundational exposure.
 Ansible reflects historical professional automation experience with continued
 familiarity. MySQL and Supabase are historical, experimental, or project
 exposure.
@@ -133,6 +136,12 @@ Public reusable GitHub Actions workflows for organization repositories.
 Private documentation project with a public-safe overview covering engineering
 policies, review processes, security guidance, and agent instructions.
 
+## Earned Certifications
+
+- **AWS Certified Cloud Practitioner (CLF-C02)** — issued November 17, 2026;
+  expires November 17, 2029. This credential establishes cloud foundational
+  knowledge, not production AWS deployment or operations experience.
+
 ## Education and Recognition
 
 ### Western Governors University
@@ -140,10 +149,15 @@ policies, review processes, security guidance, and agent instructions.
 Currently enrolled in the **Bachelor of Science, Software Engineering**
 program.
 
-- **Progress:** 79 competency units earned as of October 1, 2026 (72 at WGU
-  and 7 transfer units)
+- **Progress:** 82 / 119 competency units earned, as shown in the November 2026
+  degree plan (status as of November 18, 2026).
+- **Pending credit:** Cloud Foundations (D282, 3 CUs); AWS certification result
+  submitted to WGU Student Scores, but academic posting remains unconfirmed.
+  These three CUs are not included in the earned total.
 - **Front-End Developer micro-credential:** awarded April 15, 2026
-- **Completed coursework:** Java Fundamentals (D286) and Java Frameworks (D287)
+- **Completed coursework:** Java Fundamentals (D286), August 19, 2026;
+  Java Frameworks (D287), September 15, 2026; Hardware and Operating Systems
+  Essentials (D386), November 10, 2026.
 
 ### National Society of Leadership and Success
 

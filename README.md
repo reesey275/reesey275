@@ -1,11 +1,110 @@
 # Chad Reesey | reesey275 | Mr. Potato
 
-> [!NOTE]
-> I'm a United States Air Force veteran and an IT and systems professional.
-> My professional experience since 2007 includes systems administration,
-> automation, Windows scripting, SharePoint portal development, systems
-> integration, and multi-site technology deployment.
-> I am the founder and CEO of The Angry Gamer Show Productions, LLC (TAGS).
+Platform & Infrastructure Engineering | DevSecOps | Systems Automation
+
+## Professional Summary
+
+United States Air Force veteran and founder and CEO of The Angry Gamer Show
+Productions, LLC (TAGS), a veteran-owned and operated Florida company.
+My focus is platform and infrastructure engineering, DevSecOps, and systems
+automation, grounded in more than 25 years of hands-on computing and
+infrastructure experience. Professional work beginning in 2007 includes
+systems administration, Windows scripting, SharePoint portal development,
+systems integration, and multi-site technology deployment.
+
+I currently operate the TAGS build phase as an **AI-assisted solo human operator**.
+My active-duty service ran from August 10, 2000, through March 28, 2012;
+honorable service.
+
+## 🎓 Certifications and Education
+
+### Earned Certifications
+
+- **AWS Certified Cloud Practitioner (CLF-C02)** — issued November 17, 2026;
+  expires November 17, 2029. This credential establishes cloud foundational
+  knowledge; it is not a claim of production AWS deployment or operations
+  experience.
+
+### Western Governors University
+
+Currently enrolled in the **B.S. Software Engineering** program.
+
+- **Progress:** 82 / 119 competency units earned, as shown in the November 2026
+  degree plan (status as of November 18, 2026).
+- **Cloud Foundations (D282, 3 CUs):** AWS certification result submitted to
+  WGU Student Scores; academic posting remains unconfirmed and is not included
+  in the earned total.
+- **Completed coursework:** Java Fundamentals (D286), August 19, 2026;
+  Java Frameworks (D287), September 15, 2026; Hardware and Operating Systems
+  Essentials (D386), November 10, 2026.
+- **Java:** continuing learning and developing proficiency through completed
+  formal coursework; no production Java experience is implied.
+- **WGU Front-End Developer micro-credential** — awarded April 15, 2026.
+
+### Continuing Professional Development
+
+- **National Society of Leadership and Success (NSLS)** — member since 2025;
+  completed the Foundations of Leadership program and earned the NSLS Advanced
+  Leadership Certificate in May 2025
+- **Microsoft Learn** — professional development during 2024–2025 covering
+  Azure architecture, networking, governance, application hosting, ASP.NET
+  Core, and introductory AI and machine-learning concepts
+
+## 🎯 Featured Projects
+
+### [TAGS Ecosystem](docs/PROJECTS/TAGS-Ecosystem.md)
+
+**Overview:** The current TAGS build phase brings together software,
+automation, documentation, and infrastructure projects operated under The
+Angry Gamer Show Productions, LLC.
+
+**Stack:** Python • TypeScript • Shell (POSIX/Bash) • Docker • GitHub Actions
+
+**Operating model:** Founder and CEO; AI-assisted solo human operator during
+the current build phase. Delivered work is distinguished from plans and
+experiments in the project overview.
+
+---
+
+### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
+
+**Overview:** Multi-service onboarding-automation project with Discord, web,
+and CI/CD components.
+
+**Stack:** Python • Shell (POSIX/Bash) • FastAPI • Discord API • GitHub Actions
+
+**Public components:** Onboarding workflows, web and API services, Discord
+integration, documentation checks, and GitHub Actions automation.
+
+---
+
+### [SquirrelFocus](docs/PROJECTS/SquirrelFocus.md) | [Repository](https://github.com/reesey275/squirrelfocus)
+
+**Overview:** Python command-line productivity and reflection toolkit for
+short work-session notes and supporting documentation.
+
+**Stack:** Python • Shell (POSIX/Bash)
+
+---
+
+### [Whisper Project](docs/PROJECTS/WhisperProject.md) | [Repository](https://github.com/reesey275/whisper-project)
+
+**Overview:** Transcription utilities with local, Docker, and optional cloud-API
+processing paths, including batch and optional GPU workflows. Local processing
+is available when cloud services are not desired.
+
+**Stack:** Python • Whisper • Docker • Optional cloud API
+
+---
+
+### Personal tooling
+
+- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist tooling with an Express
+  backend, browser interface, and Python export utility.
+- [tags-workflows](https://github.com/theangrygamershowproductions/tags-workflows) — public reusable GitHub Actions
+  workflows for organization repositories.
+- [core-instructions](docs/PROJECTS/core-instructions.md) _(private repository)_ — documentation project for engineering
+  policies, review processes, security guidance, and agent instructions.
 
 ## Demonstrated Capabilities
 
@@ -65,36 +164,44 @@ does not establish a capability by itself.
 [top-languages]: ./profile/top-languages.svg
 [profile]: https://github.com/reesey275
 
-<!-- Optional ASCII header -->
-## 🥔 Chad Reesey — Mr. Potato
+## Supporting Project and Systems Exposure
 
-## 🚀 About Me
-- More than **25 years of hands-on computing and infrastructure experience**
-- Professional systems-administration, automation, and software-development
-  experience beginning in **2007**
-- **United States Air Force veteran** — active duty from August 10, 2000,
-  through March 28, 2012; honorable service
-- Founder and CEO of The Angry Gamer Show Productions, LLC, a United States
-  Air Force veteran-owned and operated Florida company
-- Currently operating the TAGS build phase as an **AI-assisted solo human operator**
-- I build thinking systems: **visible learning → doctrine → automation**
+Current or recent project work also includes Fastify; Discord API and MCP SDK
+integration; React, Vite, Tailwind CSS, and shadcn/ui; and Traefik, Cloudflare
+Tunnel, and TrueNAS SCALE. Supporting formats include Markdown, YAML, JSON,
+SQL, HTML, and CSS.
 
-## 🧭 Engineering Philosophy
-I build systems the way mission-critical operations demand they be built:
-- Structure over improvisation
-- Accountability over ambiguity
-- Correctness over cleverness
-- Documentation over assumptions
-- Automation over heroics
+Identity, data, and platform work includes OAuth2, JWT, RBAC, Active Directory,
+secret management, PostgreSQL, Redis, and SQLite; virtualization; patching,
+troubleshooting, service reliability, and infrastructure documentation. MySQL
+and Supabase are historical, experimental, or project exposure rather than
+demonstrated core capabilities.
 
-If a system requires tribal knowledge to function, it is already a liability.
+### AI-Assisted Engineering and Orchestration Tooling
 
-## 🔧 How I Work
-- Written context before decisions; initial meetings are used for scoping and discovery when requirements are still
-  forming
-- Bias toward observable, repeatable, resilient systems
+Engineering tooling and workflow exposure includes OpenAI/ChatGPT and Custom
+GPT workflows, GitHub Copilot, Codex-assisted planning, MCP servers and SDK
+integration, and agent-assisted and prompt-driven workflows. These tools
+support planning, implementation, documentation, review, and orchestration;
+their use is not standalone proof of software-engineering proficiency or
+authorship.
+
+**[📖 Stack History & Systems Exposure](docs/STACK_HISTORY.md)** — Selected,
+non-exhaustive historical technology exposure (historical breadth, not a claim
+of current daily usage)
+
+## 🧭 Engineering Philosophy and Working Practices
+
+I build thinking systems: **visible learning → doctrine → automation**.
+Structure, accountability, correctness, documentation, and automation guide
+the work. If a system requires tribal knowledge to function, it is already a
+liability.
+
+- Written context before decisions; scoping and discovery when requirements
+  are still forming
+- Observable, repeatable, resilient systems
 - Deterministic CI, linting, documentation validation, and reproducible builds
-- Clear standards, direct feedback, and auditability over hand-waving
+- Clear standards, direct feedback, and auditability
 
 ## 📊 GitHub Stats
 
@@ -175,101 +282,6 @@ _Category names, including "AI Coding," are WakaTime classifications and do not 
 
 _Last successful refresh: 2026-11-18 00:09:55 UTC_
 <!--END_SECTION:waka-->
-
-## 🎯 Featured Projects
-
-### [DevOnboarder](docs/PROJECTS/DevOnboarder.md)
-
-**Overview:** Multi-service onboarding-automation project with Discord, web,
-and CI/CD components.
-
-**Stack:** Python • Shell (POSIX/Bash) • FastAPI • Discord API • GitHub Actions
-
-**Public components:** Onboarding workflows, web and API services, Discord
-integration, documentation checks, and GitHub Actions automation.
-
----
-
-### [TAGS Ecosystem](docs/PROJECTS/TAGS-Ecosystem.md)
-
-**Overview:** The current TAGS build phase brings together software,
-automation, documentation, and infrastructure projects operated under The
-Angry Gamer Show Productions, LLC.
-
-**Stack:** Python • TypeScript • Shell (POSIX/Bash) • Docker • GitHub Actions
-
-**Operating model:** Founder and CEO; AI-assisted solo human operator during
-the current build phase. Delivered work is distinguished from plans and
-experiments in the project overview.
-
----
-
-### [SquirrelFocus](docs/PROJECTS/SquirrelFocus.md) | [Repository](https://github.com/reesey275/squirrelfocus)
-
-**Overview:** Python command-line productivity and reflection toolkit for
-short work-session notes and supporting documentation.
-
-**Stack:** Python • Shell (POSIX/Bash)
-
----
-
-### [Whisper Project](docs/PROJECTS/WhisperProject.md) | [Repository](https://github.com/reesey275/whisper-project)
-
-**Overview:** Transcription utilities with local, Docker, and optional cloud-API
-processing paths, including batch and optional GPU workflows. Local processing
-is available when cloud services are not desired.
-
-**Stack:** Python • Whisper • Docker • Optional cloud API
-
----
-
-### Personal tooling
-
-- [spotify-dev-toolkit](https://github.com/reesey275/spotify-dev-toolkit) — Spotify playlist tooling with an Express
-  backend, browser interface, and Python export utility.
-- [tags-workflows](https://github.com/theangrygamershowproductions/tags-workflows) — public reusable GitHub Actions
-  workflows for organization repositories.
-- [core-instructions](docs/PROJECTS/core-instructions.md) _(private repository)_ — documentation project for engineering
-  policies, review processes, security guidance, and agent instructions.
-
-## Supporting Project and Systems Exposure
-
-Current or recent project work also includes Fastify; Discord API and MCP SDK
-integration; React, Vite, Tailwind CSS, and shadcn/ui; and Traefik, Cloudflare
-Tunnel, and TrueNAS SCALE. Supporting formats include Markdown, YAML, JSON,
-SQL, HTML, and CSS.
-
-Identity, data, and platform work includes OAuth2, JWT, RBAC, Active Directory,
-secret management, PostgreSQL, Redis, and SQLite; virtualization; patching,
-troubleshooting, service reliability, and infrastructure documentation. MySQL
-and Supabase are historical, experimental, or project exposure rather than
-demonstrated core capabilities.
-
-### AI-Assisted Engineering and Orchestration Tooling
-
-Engineering tooling and workflow exposure includes OpenAI/ChatGPT and Custom
-GPT workflows, GitHub Copilot, Codex-assisted planning, MCP servers and SDK
-integration, and agent-assisted and prompt-driven workflows. These tools
-support planning, implementation, documentation, review, and orchestration;
-their use is not standalone proof of software-engineering proficiency or
-authorship.
-
-**[📖 Stack History & Systems Exposure](docs/STACK_HISTORY.md)** — Selected,
-non-exhaustive historical technology exposure (historical breadth, not a claim
-of current daily usage)
-
-## 🎓 Continuous Learning
-
-- **Western Governors University** — currently enrolled in the Bachelor of
-  Science, Software Engineering program; completed Java Fundamentals (D286)
-  and Java Frameworks (D287)
-- **WGU Front-End Developer micro-credential** — awarded April 15, 2026
-- **National Society of Leadership and Success (NSLS)** — member since 2025;
-  completed the Foundations of Leadership program and earned the NSLS Advanced
-  Leadership Certificate in May 2025
-- **Microsoft Learn** — professional development during 2024–2025 covering
-  Azure architecture, networking, governance, application hosting, ASP.NET
-  Core, and introductory AI and machine-learning concepts
 
 ## 🌐 Connect With Me
 
