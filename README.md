@@ -17,39 +17,8 @@ I currently operate the TAGS build phase as an **AI-assisted solo human operator
 My active-duty service ran from August 10, 2000, through March 28, 2012;
 honorable service.
 
-## 🎓 Certifications and Education
-
-### Earned Certifications
-
-- **AWS Certified Cloud Practitioner (CLF-C02)** — issued November 17, 2026;
-  expires November 17, 2029. This credential establishes cloud foundational
-  knowledge; it is not a claim of production AWS deployment or operations
-  experience.
-
-### Western Governors University
-
-Currently enrolled in the **B.S. Software Engineering** program.
-
-- **Progress:** 82 / 119 competency units earned, as shown in the November 2026
-  degree plan (status as of November 18, 2026).
-- **Cloud Foundations (D282, 3 CUs):** AWS certification result submitted to
-  WGU Student Scores; academic posting remains unconfirmed and is not included
-  in the earned total.
-- **Completed coursework:** Java Fundamentals (D286), August 19, 2026;
-  Java Frameworks (D287), September 15, 2026; Hardware and Operating Systems
-  Essentials (D386), November 10, 2026.
-- **Java:** continuing learning and developing proficiency through completed
-  formal coursework; no production Java experience is implied.
-- **WGU Front-End Developer micro-credential** — awarded April 15, 2026.
-
-### Continuing Professional Development
-
-- **National Society of Leadership and Success (NSLS)** — member since 2025;
-  completed the Foundations of Leadership program and earned the NSLS Advanced
-  Leadership Certificate in May 2025
-- **Microsoft Learn** — professional development during 2024–2025 covering
-  Azure architecture, networking, governance, application hosting, ASP.NET
-  Core, and introductory AI and machine-learning concepts
+See my [résumé](resume/resume.md#professional-experience) for professional
+responsibilities, service history, and deployment experience.
 
 ## 🎯 Featured Projects
 
@@ -154,16 +123,31 @@ does not establish a capability by itself.
 [ci-governance-badge]: https://img.shields.io/badge/GitHub%20Actions-CI%20Governance-2088FF?logo=githubactions&style=flat
 [ci-evidence]: https://github.com/theangrygamershowproductions/tags-workflows
 [windows-badge]: https://img.shields.io/badge/Windows-Administration-0078D4?logo=windows&style=flat
-[windows-evidence]: resume/resume.md
+[windows-evidence]: resume/resume.md#professional-and-historical-systems-experience
 [linux-badge]: https://img.shields.io/badge/Linux-Administration-FCC624?logo=linux&style=flat
-[linux-evidence]: docs/STACK_HISTORY.md
+[linux-evidence]: docs/STACK_HISTORY.md#operating-systems
 [governance-badge]: https://img.shields.io/badge/Documentation%20%7C%20Validation-Engineering%20Governance-334155?style=flat
 [governance-evidence]: https://github.com/theangrygamershowproductions/tags-workflows
 [java-badge]: https://img.shields.io/badge/Java-Current%20Learning-ED8B00?logo=openjdk&style=flat
-[java-evidence]: resume/resume.md
+[java-evidence]: resume/resume.md#western-governors-university
 [github-stats]: ./profile/github-stats.svg
 [top-languages]: ./profile/top-languages.svg
 [profile]: https://github.com/reesey275
+
+## 🎓 Certifications and Education
+
+- **AWS Certified Cloud Practitioner (CLF-C02)** — issued November 17, 2026.
+  Cloud foundational knowledge; not a claim of production AWS experience.
+  [Credential details](resume/resume.md#earned-certifications).
+- **WGU B.S. Software Engineering** — currently enrolled; completed Java
+  Fundamentals (D286), Java Frameworks (D287), and Hardware and Operating
+  Systems Essentials (D386). Java proficiency remains developing.
+- **WGU Front-End Developer micro-credential** — awarded April 15, 2026.
+
+See [education and recognition](resume/resume.md#education-and-recognition)
+for completion dates, earned CUs, pending D282 credit, and leadership
+recognition; [professional development](resume/resume.md#professional-development)
+covers additional training.
 
 ## Supporting Project and Systems Exposure
 
@@ -203,6 +187,10 @@ liability.
 - Observable, repeatable, resilient systems
 - Deterministic CI, linting, documentation validation, and reproducible builds
 - Clear standards, direct feedback, and auditability
+
+Read the [engineering philosophy](PHILOSOPHY.md),
+[learning journal](docs/Journal_Index.md), and
+[after-action reports](docs/AAR_Index.md) for methodology and reflection.
 
 ## 📊 GitHub Stats
 
