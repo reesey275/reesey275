@@ -13,8 +13,8 @@ Focus: platform and infrastructure engineering, DevSecOps, and systems
 automation. More than 25 years of hands-on computing and
 infrastructure experience. Professional systems-administration, automation,
 and software-development experience beginning in 2007, including Windows
-scripting, SharePoint portal development, systems integration, and multi-site
-technology deployment.
+scripting, operational application development with SharePoint and Microsoft
+Access, systems integration, and multi-site technology deployment.
 
 United States Air Force veteran and founder and CEO of The Angry Gamer Show
 Productions, LLC, a United States Air Force veteran-owned and operated Florida
@@ -92,6 +92,28 @@ August 2008–May 2018 | Community infrastructure
   Asset Management implementation effort, coordinating base-level deployments
   and configuring and validating handheld terminals and workstations at
   multiple installations.
+
+#### Operational Application Development
+
+The following historical responsibilities are based on my firsthand account
+of work at Langley and during my Afghanistan service:
+
+- Designed and implemented operational applications using SharePoint and,
+  for certain projects, Microsoft Access to support S1, S4, and S6 operations.
+- Built personnel in-processing and out-processing workflows and tracking for
+  purchase requests, commitments, and base supply orders.
+- Developed customer self-service check-in, queue displays, and estimated
+  wait times, along with quality assurance scheduling, reporting, follow-up,
+  and accountability workflows.
+- Implemented workflow routing, notifications, command-level distribution
+  lists, team-scoped read/write/administrative access, and Common Access Card
+  (CAC)-based approval and sign-off requirements.
+- Trained personnel and supported operational handoff of the applications.
+
+Received the **Joint Service Achievement Medal**, documented on my DD-214.
+The connection to systems work during my Afghanistan assignment is supported
+by my firsthand account and private award ceremony photographs; the DD-214
+establishes the medal, not the specific application-development responsibilities.
 
 ## Professional and Historical Systems Experience
 
@@ -193,7 +215,9 @@ policies, review processes, security guidance, and agent instructions.
 ### Western Governors University
 
 Currently enrolled in the **Bachelor of Science, Software Engineering**
-program.
+program. I began this academic path in 2024 to formalize and expand engineering
+capabilities developed through years of practical systems and application
+development.
 
 - **Progress:** 82 / 119 competency units earned, as shown in the November 2026
   degree plan (status as of November 18, 2026).
@@ -212,12 +236,11 @@ the NSLS Advanced Leadership Certificate in May 2025.
 
 ## Professional Development
 
-- **Completed military professional development (owner-confirmed)** —
-  historical career records identify Airman Leadership School and training in
-  knowledge operations and supply management. Original paper documentation
-  is retained and available upon request; it has not been independently
-  inspected for this profile. Conflicting exact course titles and completion
-  dates remain deferred.
+- **Airman Leadership School** — completed March 2005, documented on my DD-214
+- **Additional completed military professional development (owner-confirmed)**
+  — knowledge operations and supply management training. Historical records
+  and retained military documentation support the general training history;
+  only conflicting exact titles and completion dates remain deferred.
 - **Microsoft Learn professional development** — Azure cloud architecture,
   networking, governance, application hosting, ASP.NET Core, and introductory
   AI and machine-learning concepts, 2024–2025
