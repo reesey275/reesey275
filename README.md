@@ -87,8 +87,9 @@ below. A dependency or optional service does not establish a capability by itsel
 
 ### Demonstrated Current Capabilities
 
-These badges identify current capabilities supported by public work or
-owner-confirmed professional responsibility.
+These capabilities are supported by current project work or established
+professional experience. Supporting evidence and historical context are
+linked where available.
 
 #### Systems & Infrastructure
 

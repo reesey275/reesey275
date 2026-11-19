@@ -52,7 +52,7 @@ experimental exposure are labeled separately where that distinction matters.
 The technologies in this section support recent projects but are not presented
 as separate core-capability badges.
 
-## Owner-Confirmed Professional Systems and Operational Exposure
+## Professional Systems and Operational Experience
 
 This section preserves professional and historical experience. It does not
 classify every named technology as a current core capability or current daily
@@ -61,8 +61,7 @@ tool.
 The [résumé role history](../resume/resume.md#professional-experience) attributes
 Windows/Linux virtualization, patching, and Ansible/Puppet administration to
 ASoS community infrastructure work (2008–2018), and systems support and
-recovery procedures to USAF service (2007–2012). These historical
-responsibilities are owner-reported. Training topics remain separate under
+recovery procedures to USAF service (2007–2012). Training is listed separately in
 [professional development](../resume/resume.md#professional-development).
 
 ### Microsoft Enterprise and Endpoint Operations

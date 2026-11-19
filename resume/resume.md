@@ -39,10 +39,9 @@ output, or third-party component.
 
 ## Professional Experience
 
-The role history below is drawn from my career records. Responsibilities are
-owner-reported; public project evidence is linked separately under
-[Selected Work](#selected-work). Community and nonprofit leadership are
-identified separately from military service and business operations.
+The following roles encompass military service, business operations,
+nonprofit leadership, and community infrastructure administration. Public
+project implementations are linked under [Selected Work](#selected-work).
 
 ### Project Manager | Reesey Sewer Compliance Inspector LLC
 
@@ -121,9 +120,9 @@ August 2008–May 2018 | Community infrastructure
 
 ## Professional and Historical Systems Experience
 
-The following owner-confirmed experience preserves professional and historical
-systems breadth. It does not classify every named technology as a current core
-capability.
+Experience spans enterprise systems, infrastructure, networking, automation,
+identity, and operational technologies. Historical experience does not imply
+current daily use of every technology listed.
 
 - **Microsoft enterprise systems:** Windows Server, Active Directory, System
   Center Configuration Manager (SCCM), Exchange, SharePoint, and Microsoft 365
@@ -210,9 +209,7 @@ policies, review processes, security guidance, and agent instructions.
 
 ### Historical Certification — Expired
 
-- **CompTIA A+ — expired:** historical credential supported by career records
-  and owner confirmation. Exact issue and expiration dates have not been
-  independently verified. This is not an active credential.
+- **CompTIA A+ — expired:** historical certification; not an active credential.
 
 ## Education and Recognition
 
@@ -240,11 +237,9 @@ the NSLS Advanced Leadership Certificate in May 2025.
 
 ## Professional Development
 
-- **Airman Leadership School** — completed March 2005, documented on my DD-214
-- **Additional completed military professional development (owner-confirmed)**
-  — knowledge operations and supply management training. Historical records
-  and retained military documentation support the general training history;
-  only conflicting exact titles and completion dates remain deferred.
+- **Airman Leadership School** — completed March 2005
+- **Additional completed military professional development** — knowledge
+  operations and supply management training
 - **Microsoft Learn professional development** — Azure cloud architecture,
   networking, governance, application hosting, ASP.NET Core, and introductory
   AI and machine-learning concepts, 2024–2025
@@ -263,9 +258,8 @@ coursework and are not presented as Microsoft professional certifications.
 
 Historical career records identify O’Reilly study in DevOps with Azure, Docker,
 Linux Fundamentals, Ansible, Kubernetes, Linux Under the Hood, Practical Docker
-Guide, and DevOps Complete Course. These are owner-reported continuing
-education topics; individual completion dates and exact certificate titles
-have not been independently verified. Course completion does not establish
+Guide, and DevOps Complete Course. These are continuing education topics,
+not a list of earned certifications. Course completion does not establish
 production experience with the subject technology.
 
 ## Contact and Availability
