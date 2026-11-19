@@ -95,25 +95,29 @@ August 2008–May 2018 | Community infrastructure
 
 #### Operational Application Development
 
-The following historical responsibilities are based on my firsthand account
-of work at Langley and during my Afghanistan service:
+##### Langley — Operational Application Development
 
-- Designed and implemented operational applications using SharePoint and,
-  for certain projects, Microsoft Access to support S1, S4, and S6 operations.
-- Built personnel in-processing and out-processing workflows and tracking for
-  purchase requests, commitments, and base supply orders.
-- Developed customer self-service check-in, queue displays, and estimated
-  wait times, along with quality assurance scheduling, reporting, follow-up,
-  and accountability workflows.
-- Implemented workflow routing, notifications, command-level distribution
-  lists, team-scoped read/write/administrative access, and Common Access Card
-  (CAC)-based approval and sign-off requirements.
-- Trained personnel and supported operational handoff of the applications.
+- Designed and implemented SharePoint-based applications and selected
+  Microsoft Access solutions for operational workflows.
+- Built customer self-service check-in and queue management, including
+  secondary status displays and estimated waiting times.
+- Developed quality assurance report management, scheduling, tracking,
+  follow-up, and accountability workflows.
+- Implemented workflow routing and notifications, including global
+  distribution lists supporting chains of command.
+- Configured team-scoped read, write, and administrative permissions and
+  Common Access Card (CAC)-based approval and sign-off requirements.
 
-Received the **Joint Service Achievement Medal**, documented on my DD-214.
-The connection to systems work during my Afghanistan assignment is supported
-by my firsthand account and private award ceremony photographs; the DD-214
-establishes the medal, not the specific application-development responsibilities.
+##### Afghanistan — Joint Operational Systems
+
+- Designed and implemented SharePoint-based operational applications
+  supporting S1, S4, and S6 functions.
+- Built personnel in-processing and out-processing workflows, purchase
+  request and commitment tracking, and base supply order tracking.
+- Supported operational information management and workflows, trained
+  personnel, and handed off applications for operational use.
+- Received the **Joint Service Achievement Medal** for systems-development
+  work during the Afghanistan assignment.
 
 ## Professional and Historical Systems Experience
 
