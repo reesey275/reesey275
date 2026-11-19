@@ -182,6 +182,12 @@ policies, review processes, security guidance, and agent instructions.
   expires November 17, 2029. This credential establishes cloud foundational
   knowledge, not production AWS deployment or operations experience.
 
+### Historical Certification — Expired
+
+- **CompTIA A+ — expired:** historical credential supported by career records
+  and owner confirmation. Exact issue and expiration dates have not been
+  independently verified. This is not an active credential.
+
 ## Education and Recognition
 
 ### Western Governors University
@@ -206,18 +212,22 @@ the NSLS Advanced Leadership Certificate in May 2025.
 
 ## Professional Development
 
-- **Historical military professional development (owner-reported)** — career
-  records identify Airman Leadership School and training in knowledge
-  operations and supply management. Official course titles and completion
-  dates have not been independently verified.
+- **Completed military professional development (owner-confirmed)** —
+  historical career records identify Airman Leadership School and training in
+  knowledge operations and supply management. Original paper documentation
+  is retained and available upon request; it has not been independently
+  inspected for this profile. Conflicting exact course titles and completion
+  dates remain deferred.
 - **Microsoft Learn professional development** — Azure cloud architecture,
   networking, governance, application hosting, ASP.NET Core, and introductory
   AI and machine-learning concepts, 2024–2025
 - **Introduction to machine learning, Microsoft Learn** — completed May 12,
   2025
 - **O’Reilly Media continuing education** — March–April 2024
-- **CompTIA A+ 220-1001: Networking** — course completed February 27, 2026;
-  a course-completion certificate, not full CompTIA A+ certification
+- **CompTIA A+ 220-1001: Networking** — WGU-associated coursework completed
+  February 27, 2026. No official CompTIA certification exam was taken as part
+  of this course; it did not confer a new certification, renewal, or active
+  A+ credential.
 - **Introduction to Git for GitLab projects, Udemy** — completed November 20,
   2024
 
