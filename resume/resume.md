@@ -206,8 +206,10 @@ the NSLS Advanced Leadership Certificate in May 2025.
 
 ## Professional Development
 
-- **Airman Leadership School** — March 2005
-- **Supply Management Craftsman** — April 2006
+- **Historical military professional development (owner-reported)** — career
+  records identify Airman Leadership School and training in knowledge
+  operations and supply management. Official course titles and completion
+  dates have not been independently verified.
 - **Microsoft Learn professional development** — Azure cloud architecture,
   networking, governance, application hosting, ASP.NET Core, and introductory
   AI and machine-learning concepts, 2024–2025
