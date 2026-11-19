@@ -18,7 +18,9 @@ My active-duty service ran from August 10, 2000, through March 28, 2012;
 honorable service.
 
 See my [résumé](resume/resume.md#professional-experience) for professional
-responsibilities, service history, and deployment experience.
+responsibilities, military service, community infrastructure, and nonprofit
+leadership, with [credential and training details](resume/resume.md#earned-certifications)
+kept separate from experience.
 
 ## 🎯 Featured Projects
 

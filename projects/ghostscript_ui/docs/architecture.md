@@ -1,5 +1,8 @@
 # Architecture
 
+**Proposed design:** This sketch does not establish an implemented or deployed
+service. See the [project status](../README.md).
+
 The UI connects to a containerized Ghostscript service that handles document conversions.
 
 ```mermaid

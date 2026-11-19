@@ -24,6 +24,11 @@ company.
 
 ### Founder and CEO | The Angry Gamer Show Productions, LLC
 
+**Independent platform development: 2024–present.** Engineering responsibilities
+include platform architecture and development of shared automation and
+documentation practices. This period describes the engineering work, not the
+company's incorporation date.
+
 Currently operating the TAGS build phase as an **AI-assisted solo human operator**.
 Current work includes software, automation, documentation, infrastructure, and
 public project development.
@@ -34,10 +39,45 @@ output, or third-party component.
 
 ## Professional Experience
 
+The role history below is drawn from my career records. Responsibilities are
+owner-reported; public project evidence is linked separately under
+[Selected Work](#selected-work). Community and nonprofit leadership are
+identified separately from military service and business operations.
+
+### Project Manager | Reesey Sewer Compliance Inspector LLC
+
+April 2021–December 2022 | Business operations
+
+- Managed daily operations, budgets, vendor coordination, and client
+  relationships for compliance-related service delivery.
+- Coordinated with regulatory agencies and introduced technology and process
+  improvements to support operational planning and compliance work.
+
+### Founder / CEO | National Veterans Hockey League
+
+June 2016–November 2019 | Nonprofit leadership
+
+- Led organizational strategy, fundraising, budgeting, and communications for
+  a veteran-focused hockey organization.
+- Coordinated with the board, staff, and volunteers on events, records, and
+  organizational administration.
+
+### Windows and Linux Systems Administrator | ASoS Gaming Community
+
+August 2008–May 2018 | Community infrastructure
+
+- Administered Windows and Linux servers using Hyper-V and Citrix XenServer.
+- Maintained services through patching, troubleshooting, log analysis, and
+  resource management; supported gaming, web, and communications workloads.
+- Used Ansible and Puppet for configuration and deployment tasks and
+  coordinated technical changes with community operators and users.
+
 ### United States Air Force | Active Duty
 
 - **Active duty:** August 10, 2000–March 28, 2012
 - **Character of service:** Honorable
+- **Technical role:** Functional Systems Administrator / Client Support
+  Administrator, September 2007–March 2012; 633rd Logistics Readiness Squadron
 
 - Performed professional systems-administration and IT support work beginning
   in 2007.
@@ -174,11 +214,20 @@ the NSLS Advanced Leadership Certificate in May 2025.
 - **Introduction to machine learning, Microsoft Learn** — completed May 12,
   2025
 - **O’Reilly Media continuing education** — March–April 2024
+- **CompTIA A+ 220-1001: Networking** — course completed February 27, 2026;
+  a course-completion certificate, not full CompTIA A+ certification
+- **Introduction to Git for GitLab projects, Udemy** — completed November 20,
+  2024
 
 Microsoft Learn modules, learning paths, and completion achievements are
 coursework and are not presented as Microsoft professional certifications.
-Individual O’Reilly Media course titles are omitted because the available
-record does not establish reliable title-and-date mappings.
+
+Historical career records identify O’Reilly study in DevOps with Azure, Docker,
+Linux Fundamentals, Ansible, Kubernetes, Linux Under the Hood, Practical Docker
+Guide, and DevOps Complete Course. These are owner-reported continuing
+education topics; individual completion dates and exact certificate titles
+have not been independently verified. Course completion does not establish
+production experience with the subject technology.
 
 ## Contact and Availability
 
