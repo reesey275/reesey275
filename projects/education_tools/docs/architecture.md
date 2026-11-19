@@ -1,5 +1,8 @@
 # Architecture
 
+**Proposed design:** This sketch does not establish implemented or deployed
+applications. See the [project status](../README.md).
+
 Education Tools uses a small API gateway to route traffic to different micro apps.
 
 ```mermaid

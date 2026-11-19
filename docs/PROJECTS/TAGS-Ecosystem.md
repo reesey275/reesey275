@@ -54,10 +54,10 @@ deployment, or a measured operational outcome.
 
 ## Demonstrated Capability Classification
 
-TypeScript is a demonstrated current capability based on owner-confirmed
-responsibility in current and recent TAGS project work. The supporting
-frameworks and tools named below remain project-stack exposure; their presence
-does not make each one a separate core capability.
+TypeScript is a demonstrated current capability used in current and recent
+TAGS project work. The supporting frameworks and tools named below remain
+project-stack exposure; their presence does not make each one a separate core
+capability.
 
 ## API Development Evidence
 
@@ -84,6 +84,28 @@ every project, and supporting technologies are not presented as separate
 core-capability badges.
 
 ## Delivered Work, Plans, and Experiments
+
+### Historical Portfolio Reconciliation
+
+The May 2025 developer portfolio describes TAG Auth Server authentication and
+role management, a role-gated TAG WebApp, and a Discord Commander Bot. Those
+are historical implementations described in that portfolio; their present
+deployment and maintenance status have not been verified. They are not
+presented as current production services or as interchangeable with DevOnboarder.
+
+The local [Tags Auth Server notes](../../projects/tags_auth_server/README.md)
+describe early design work and a future demo. They do not independently
+verify the historical authentication implementation or establish that the
+same component is being described.
+
+[Ghostscript UI](../../projects/ghostscript_ui/README.md) and
+[Education Tools](../../projects/education_tools/README.md) retain public
+project sketches and setup placeholders. The historical portfolio describes
+Ghostscript UI as an internal automation candidate and the educational tools
+as in development. These records support project history and proposed
+architecture, not a verified public release or current deployment.
+
+### Delivery Evidence Boundary
 
 A component is described as delivered only when current public source or an
 owner-confirmed public statement supports that status. Roadmaps, possible

@@ -13,8 +13,8 @@ Focus: platform and infrastructure engineering, DevSecOps, and systems
 automation. More than 25 years of hands-on computing and
 infrastructure experience. Professional systems-administration, automation,
 and software-development experience beginning in 2007, including Windows
-scripting, SharePoint portal development, systems integration, and multi-site
-technology deployment.
+scripting, operational application development with SharePoint and Microsoft
+Access, systems integration, and multi-site technology deployment.
 
 United States Air Force veteran and founder and CEO of The Angry Gamer Show
 Productions, LLC, a United States Air Force veteran-owned and operated Florida
@@ -23,6 +23,11 @@ company.
 ## Current Role
 
 ### Founder and CEO | The Angry Gamer Show Productions, LLC
+
+**Independent platform development: 2024–present.** Engineering responsibilities
+include platform architecture and development of shared automation and
+documentation practices. This period describes the engineering work, not the
+company's incorporation date.
 
 Currently operating the TAGS build phase as an **AI-assisted solo human operator**.
 Current work includes software, automation, documentation, infrastructure, and
@@ -34,10 +39,44 @@ output, or third-party component.
 
 ## Professional Experience
 
+The following roles encompass military service, business operations,
+nonprofit leadership, and community infrastructure administration. Public
+project implementations are linked under [Selected Work](#selected-work).
+
+### Project Manager | Reesey Sewer Compliance Inspector LLC
+
+April 2021–December 2022 | Business operations
+
+- Managed daily operations, budgets, vendor coordination, and client
+  relationships for compliance-related service delivery.
+- Coordinated with regulatory agencies and introduced technology and process
+  improvements to support operational planning and compliance work.
+
+### Founder / CEO | National Veterans Hockey League
+
+June 2016–November 2019 | Nonprofit leadership
+
+- Led organizational strategy, fundraising, budgeting, and communications for
+  a veteran-focused hockey organization.
+- Coordinated with the board, staff, and volunteers on events, records, and
+  organizational administration.
+
+### Windows and Linux Systems Administrator | ASoS Gaming Community
+
+August 2008–May 2018 | Community infrastructure
+
+- Administered Windows and Linux servers using Hyper-V and Citrix XenServer.
+- Maintained services through patching, troubleshooting, log analysis, and
+  resource management; supported gaming, web, and communications workloads.
+- Used Ansible and Puppet for configuration and deployment tasks and
+  coordinated technical changes with community operators and users.
+
 ### United States Air Force | Active Duty
 
 - **Active duty:** August 10, 2000–March 28, 2012
 - **Character of service:** Honorable
+- **Technical role:** Functional Systems Administrator / Client Support
+  Administrator, September 2007–March 2012; 633rd Logistics Readiness Squadron
 
 - Performed professional systems-administration and IT support work beginning
   in 2007.
@@ -53,11 +92,37 @@ output, or third-party component.
   and configuring and validating handheld terminals and workstations at
   multiple installations.
 
+#### Operational Application Development
+
+##### Langley — Operational Application Development
+
+- Designed and implemented SharePoint-based applications and selected
+  Microsoft Access solutions for operational workflows.
+- Built customer self-service check-in and queue management, including
+  secondary status displays and estimated waiting times.
+- Developed quality assurance report management, scheduling, tracking,
+  follow-up, and accountability workflows.
+- Implemented workflow routing and notifications, including global
+  distribution lists supporting chains of command.
+- Configured team-scoped read, write, and administrative permissions and
+  Common Access Card (CAC)-based approval and sign-off requirements.
+
+##### Afghanistan — Joint Operational Systems
+
+- Designed and implemented SharePoint-based operational applications
+  supporting S1, S4, and S6 functions.
+- Built personnel in-processing and out-processing workflows, purchase
+  request and commitment tracking, and base supply order tracking.
+- Supported operational information management and workflows, trained
+  personnel, and handed off applications for operational use.
+- Received the **Joint Service Achievement Medal** for systems-development
+  work during the Afghanistan assignment.
+
 ## Professional and Historical Systems Experience
 
-The following owner-confirmed experience preserves professional and historical
-systems breadth. It does not classify every named technology as a current core
-capability.
+Experience spans enterprise systems, infrastructure, networking, automation,
+identity, and operational technologies. Historical experience does not imply
+current daily use of every technology listed.
 
 - **Microsoft enterprise systems:** Windows Server, Active Directory, System
   Center Configuration Manager (SCCM), Exchange, SharePoint, and Microsoft 365
@@ -142,12 +207,18 @@ policies, review processes, security guidance, and agent instructions.
   expires November 17, 2029. This credential establishes cloud foundational
   knowledge, not production AWS deployment or operations experience.
 
+### Historical Certification — Expired
+
+- **CompTIA A+ — expired:** historical certification; not an active credential.
+
 ## Education and Recognition
 
 ### Western Governors University
 
 Currently enrolled in the **Bachelor of Science, Software Engineering**
-program.
+program. I began this academic path in 2024 to formalize and expand engineering
+capabilities developed through years of practical systems and application
+development.
 
 - **Progress:** 82 / 119 competency units earned, as shown in the November 2026
   degree plan (status as of November 18, 2026).
@@ -166,19 +237,30 @@ the NSLS Advanced Leadership Certificate in May 2025.
 
 ## Professional Development
 
-- **Airman Leadership School** — March 2005
-- **Supply Management Craftsman** — April 2006
+- **Airman Leadership School** — completed March 2005
+- **Additional completed military professional development** — knowledge
+  operations and supply management training
 - **Microsoft Learn professional development** — Azure cloud architecture,
   networking, governance, application hosting, ASP.NET Core, and introductory
   AI and machine-learning concepts, 2024–2025
 - **Introduction to machine learning, Microsoft Learn** — completed May 12,
   2025
 - **O’Reilly Media continuing education** — March–April 2024
+- **CompTIA A+ 220-1001: Networking** — WGU-associated coursework completed
+  February 27, 2026. No official CompTIA certification exam was taken as part
+  of this course; it did not confer a new certification, renewal, or active
+  A+ credential.
+- **Introduction to Git for GitLab projects, Udemy** — completed November 20,
+  2024
 
 Microsoft Learn modules, learning paths, and completion achievements are
 coursework and are not presented as Microsoft professional certifications.
-Individual O’Reilly Media course titles are omitted because the available
-record does not establish reliable title-and-date mappings.
+
+Historical career records identify O’Reilly study in DevOps with Azure, Docker,
+Linux Fundamentals, Ansible, Kubernetes, Linux Under the Hood, Practical Docker
+Guide, and DevOps Complete Course. These are continuing education topics,
+not a list of earned certifications. Course completion does not establish
+production experience with the subject technology.
 
 ## Contact and Availability
 

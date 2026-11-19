@@ -18,7 +18,9 @@ My active-duty service ran from August 10, 2000, through March 28, 2012;
 honorable service.
 
 See my [résumé](resume/resume.md#professional-experience) for professional
-responsibilities, service history, and deployment experience.
+responsibilities, military service, community infrastructure, and nonprofit
+leadership, with [credential and training details](resume/resume.md#earned-certifications)
+kept separate from experience.
 
 ## 🎯 Featured Projects
 
@@ -85,8 +87,9 @@ below. A dependency or optional service does not establish a capability by itsel
 
 ### Demonstrated Current Capabilities
 
-These badges identify current capabilities supported by public work or
-owner-confirmed professional responsibility.
+These capabilities are supported by current project work or established
+professional experience. Supporting evidence and historical context are
+linked where available.
 
 #### Systems & Infrastructure
 
