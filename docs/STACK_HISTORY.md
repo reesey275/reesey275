@@ -28,6 +28,13 @@ experimental exposure are labeled separately where that distinction matters.
 - TypeScript
 - API development using FastAPI, Express, REST, and OAuth
 
+TypeScript implementation example: DevOnboarder's
+[typed API client][typescript-api-source] defines request/response functions
+for onboarding and contribution operations. This is source-level evidence,
+not a claim of current deployment or sole authorship.
+
+[typescript-api-source]: https://github.com/theangrygamershowproductions/DevOnboarder/blob/7377279c9d8aceec01a438ca74d21c42503d447b/bot/src/api.ts
+
 ### Automation and Delivery
 
 - Shell and Bash
@@ -97,8 +104,10 @@ recovery procedures to USAF service (2007–2012). Training is listed separately
 
 ### Automation and Development
 
-- SharePoint website and portal development, including professional work from
-  approximately 2008 through 2012
+- SharePoint operational application, website, and portal development,
+  including professional work from approximately 2008 through 2012; selected
+  Microsoft Access solutions at Langley. See the
+  [assignment-specific application history](../resume/resume.md#operational-application-development).
 - Terraform — historical/foundational exposure
 - Bootstrap
 - Git

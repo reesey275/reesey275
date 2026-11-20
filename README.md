@@ -10,8 +10,9 @@ Productions, LLC (TAGS), a veteran-owned and operated Florida company.
 My focus is platform and infrastructure engineering, DevSecOps, and systems
 automation, grounded in more than 25 years of hands-on computing and
 infrastructure experience. Professional work beginning in 2007 includes
-systems administration, Windows scripting, SharePoint portal development,
-systems integration, and multi-site technology deployment.
+systems administration, Windows scripting, operational application development
+with SharePoint and selected Microsoft Access solutions, systems integration,
+and multi-site technology deployment.
 
 I currently operate the TAGS build phase as an **AI-assisted solo human operator**.
 My active-duty service ran from August 10, 2000, through March 28, 2012;

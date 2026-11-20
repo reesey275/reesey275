@@ -6,6 +6,23 @@ We learn by doing, document the struggle, and turn it into doctrine—then we au
 - Doctrine — capture established lessons as reusable guardrails.
 - Automation — turn stable, repeatable lessons into tooling.
 
+## Engineering Methodology
+
+My 12-Step Process Improvement Framework organizes work from problem
+identification and information gathering through root-cause analysis, solution
+design, testing, implementation, monitoring, and adjustment. Documentation,
+knowledge sharing, recurrence prevention, and continuous improvement complete
+the process.
+
+The separate 12-Point Engineering Analysis Policy adds explicit ownership,
+constraints, success criteria, and planning to technical investigation. It
+emphasizes small, reversible changes, validation, communication, responsible
+deployment, and follow-up monitoring. These documents describe my engineering
+approach; they do not establish adoption or enforcement across every project.
+
+The BUILD method below supports learning and experimentation, while the
+[AAR loop](#aar-loop) captures lessons from actual outcomes.
+
 ---
 
 # Foundational Knowledge Enhancement
