@@ -60,6 +60,9 @@ June 2016–November 2019 | Nonprofit leadership
   a veteran-focused hockey organization.
 - Coordinated with the board, staff, and volunteers on events, records, and
   organizational administration.
+- Managed supporting technology operations, including web-domain and DNS
+  administration, email-configuration testing, and coordination of website,
+  vendor, and digital communication services.
 
 ### Windows and Linux Systems Administrator | ASoS Gaming Community
 
@@ -75,8 +78,15 @@ August 2008–May 2018 | Community infrastructure
 
 - **Active duty:** August 10, 2000–March 28, 2012
 - **Character of service:** Honorable
+- **Final Rank:** Technical Sergeant (E-6) | **AFSC:** 2S071 — Materiel Management Craftsman
+- **E-6 effective date:** October 1, 2011
 - **Technical role:** Functional Systems Administrator / Client Support
-  Administrator, September 2007–March 2012; 633rd Logistics Readiness Squadron
+  Administrator, September 2007–March 2012
+- **Assignment context:** 1st Logistics Readiness Squadron (2007–2009);
+  deployment with 380 ELRS at Al Dhafra AB, UAE (2007–2008); and HHC at Camp
+  Eggers, Kabul, Afghanistan (January–July 2010). The 633rd Logistics Readiness
+  Squadron was the home unit documented in February 2010 and the final
+  assignment. These home-unit and deployment periods overlap.
 
 - Performed professional systems-administration and IT support work beginning
   in 2007.
@@ -115,8 +125,17 @@ August 2008–May 2018 | Community infrastructure
   request and commitment tracking, and base supply order tracking.
 - Supported operational information management and workflows, trained
   personnel, and handed off applications for operational use.
+- Developed inventory-accountability and computerized asset-management
+  solutions for joint-service supply operations, tracking equipment receipt,
+  storage, and issue while improving personnel-processing and
+  accountable-equipment procedures.
+- Coordinated with and trained Army, Navy, and Marine Corps personnel in
+  supply procedures and their operational use. See the
+  [February 2010 Air Force interview][air-force-interview].
 - Received the **Joint Service Achievement Medal** for systems-development
   work during the Afghanistan assignment.
+
+[air-force-interview]: https://www.jble.af.mil/News/Article-Display/Article/259056/front-line-staff-sgt-chad-reesey/
 
 ## Professional and Historical Systems Experience
 
