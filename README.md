@@ -265,42 +265,42 @@ public output.
 
 - **Time Zone:** America/New\_York
 - **Reporting Window:** 7 inclusive calendar dates (latest may be partial)
-- **Date Range:** 2026-11-14 - 2026-11-20
-- **Total Tracked:** 29 hrs 35 mins
-- **Daily Average:** 4 hrs 13 mins
+- **Date Range:** 2026-11-15 - 2026-11-21
+- **Total Tracked:** 31 hrs 29 mins
+- **Daily Average:** 4 hrs 29 mins
 - **Best Day:** 2026-11-19 (11 hrs 3 mins)
 
 ### Languages
 
-- Markdown: 14 hrs 43 mins (49.75%)
-- Other: 11 hrs 7 mins (37.60%)
-- TOML: 1 hr 26 mins (4.85%)
-- JSON with Comments: 46 mins (2.61%)
-- PowerShell: 43 mins (2.44%)
+- Markdown: 14 hrs 28 mins (45.96%)
+- Other: 12 hrs 57 mins (41.13%)
+- TOML: 1 hr 26 mins (4.56%)
+- JSON with Comments: 1 hr 6 mins (3.54%)
+- PowerShell: 41 mins (2.18%)
 
 ### Editors
 
-- Codex Vscode: 14 hrs 40 mins (49.60%)
-- VS Code: 14 hrs 33 mins (49.19%)
-- Codex Exec: 21 mins (1.21%)
+- Codex Vscode: 17 hrs 38 mins (56.00%)
+- VS Code: 13 hrs 37 mins (43.25%)
+- Codex Exec: 14 mins (0.75%)
 
 ### Operating Systems
 
-- Windows: 29 hrs 34 mins (99.98%)
+- Windows: 31 hrs 29 mins (99.98%)
 - Linux: 0 mins (0.02%)
 
 ### Categories
 
-- AI Coding: 23 hrs 50 mins (80.60%)
-- Writing Docs: 2 hrs 53 mins (9.76%)
-- Coding: 1 hr 53 mins (6.40%)
-- Building: 57 mins (3.24%)
+- AI Coding: 26 hrs 38 mins (84.62%)
+- Coding: 2 hrs 4 mins (6.57%)
+- Writing Docs: 1 hr 48 mins (5.77%)
+- Building: 57 mins (3.05%)
 
 _Category names, including "AI Coding," are WakaTime classifications and do not measure authorship._
 
 </details>
 
-_Last successful refresh: 2026-11-21 00:10:03 UTC_
+_Last successful refresh: 2026-11-22 00:10:31 UTC_
 <!--END_SECTION:waka-->
 
 ## 🌐 Connect With Me
