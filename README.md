@@ -265,42 +265,42 @@ public output.
 
 - **Time Zone:** America/New\_York
 - **Reporting Window:** 7 inclusive calendar dates (latest may be partial)
-- **Date Range:** 2026-11-20 - 2026-11-26
-- **Total Tracked:** 13 hrs 15 mins
-- **Daily Average:** 1 hr 53 mins
+- **Date Range:** 2026-11-21 - 2026-11-27
+- **Total Tracked:** 9 hrs 32 mins
+- **Daily Average:** 1 hr 21 mins
 - **Best Day:** 2026-11-23 (4 hrs 11 mins)
 
 ### Languages
 
-- Other: 6 hrs 44 mins (50.86%)
-- Markdown: 4 hrs 32 mins (34.30%)
-- PowerShell: 1 hr 11 mins (8.97%)
-- JSON with Comments: 21 mins (2.72%)
-- Text: 21 mins (2.69%)
+- Other: 6 hrs 39 mins (69.84%)
+- Markdown: 1 hr 30 mins (15.88%)
+- PowerShell: 56 mins (9.92%)
+- Text: 21 mins (3.74%)
+- Git Config: 1 min (0.30%)
 
 ### Editors
 
-- VS Code: 7 hrs 53 mins (59.53%)
-- Codex Vscode: 4 hrs 59 mins (37.70%)
-- Copilot CLI: 21 mins (2.76%)
+- VS Code: 6 hrs 19 mins (66.29%)
+- Codex Vscode: 2 hrs 50 mins (29.87%)
+- Copilot CLI: 21 mins (3.84%)
 
 ### Operating Systems
 
-- Windows: 13 hrs 15 mins (100.00%)
+- Windows: 9 hrs 32 mins (100.00%)
 
 ### Categories
 
-- AI Coding: 11 hrs 4 mins (83.48%)
-- Coding: 1 hr 7 mins (8.54%)
-- Writing Docs: 1 hr 2 mins (7.91%)
-- Debugging: 0 mins (0.06%)
-- Building: 0 mins (0.00%)
+- AI Coding: 8 hrs 25 mins (88.33%)
+- Coding: 52 mins (9.23%)
+- Writing Docs: 13 mins (2.35%)
+- Debugging: 0 mins (0.09%)
+- Building: 0 mins (0.01%)
 
 _Category names, including "AI Coding," are WakaTime classifications and do not measure authorship._
 
 </details>
 
-_Last successful refresh: 2026-11-27 00:09:36 UTC_
+_Last successful refresh: 2026-11-28 00:09:24 UTC_
 <!--END_SECTION:waka-->
 
 ## 🌐 Connect With Me
